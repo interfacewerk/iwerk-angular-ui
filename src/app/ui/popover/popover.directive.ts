@@ -70,8 +70,7 @@ export class PopoverDirective implements OnDestroy {
       (<HTMLElement>container.location.nativeElement).style.visibility = 'hidden';
       this.renderer.invokeElementMethod(document.body, 'appendChild', [scrollMask.location.nativeElement]);
       this.renderer.invokeElementMethod(document.body, 'appendChild', [container.location.nativeElement]);
-      (<HTMLElement>container.location.nativeElement).style.left = (<HTMLElement>this.viewContainerRef.element.nativeElement).getBoundingClientRect().left + 'px';
-      (<HTMLElement>container.location.nativeElement).style.top = (<HTMLElement>this.viewContainerRef.element.nativeElement).getBoundingClientRect().bottom + 'px';
+      this._positionToBottom(container.location.nativeElement, this.viewContainerRef.element.nativeElement);
       (<HTMLElement>container.location.nativeElement).style.visibility = 'visible';
     }, 0);
 
@@ -88,6 +87,14 @@ export class PopoverDirective implements OnDestroy {
     this._elements.container.destroy();
     this._elements.scrollMask.destroy();
     this._elements = null;
+  }
+
+  _positionToBottom(element: HTMLElement, target: HTMLElement) {
+    let w = element.getBoundingClientRect().width;
+    let maxLeft = document.body.getBoundingClientRect().width - w;
+    element.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
+    element.style.top = target.getBoundingClientRect().bottom + 'px';
+    element.style.visibility = 'visible';
   }
 
   _elements: {
