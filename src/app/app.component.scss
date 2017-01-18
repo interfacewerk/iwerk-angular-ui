@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  $width_aside: 200px;
+
+  aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: $width_aside;
+    overflow: auto;
+    background: black;
+    color: white;
+    padding: 15px;
+  }
+
+  main {
+    position: absolute;
+    top: 0;
+    left: $width_aside;
+    height: 100%;
+    right: 0;
+    overflow: auto;
+    padding: 15px;
+  }
+}

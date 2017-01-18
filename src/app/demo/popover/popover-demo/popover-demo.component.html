@@ -1,0 +1,12 @@
+<h1> Popover </h1>
+
+<button [iwPopover]="myPopoverTemplate"
+  [isOpen]="isPopoverOpen1"
+  (shouldClose)="isPopoverOpen1 = false"
+  (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
+
+<input [(ngModel)]="myText" type="text"/>
+
+<template #myPopoverTemplate>
+  I can display my template in a popover: {{myText}}
+</template>

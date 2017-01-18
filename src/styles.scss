@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  font-family: Monaco;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: underline;
+  outline: none;
+
+  &:visited, &:focus, &:hover {
+    color: white;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
