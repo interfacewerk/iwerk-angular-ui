@@ -55,9 +55,11 @@ export class PopoverDirective implements OnDestroy {
   }
 
   _open() {
+    // create the mask component
     let scrollMask = this.componentFactoryResolver.resolveComponentFactory(PopoverScrollMaskComponent)
       .create(this.injector);
     scrollMask.instance.onClick.asObservable().subscribe(() => this.shouldClose.emit());
+    // create the popover container
     let content = this._templateRef.createEmbeddedView(this.injector);
     let container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
       .create(this.injector, [ content.rootNodes ]);

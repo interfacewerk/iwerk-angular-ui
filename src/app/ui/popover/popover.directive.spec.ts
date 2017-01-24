@@ -28,7 +28,7 @@ class TestButtonComponent {
   }
 }
 
-fdescribe('PopoverDirective', () => {
+describe('PopoverDirective', () => {
 
   let comp:    TestButtonComponent;
   let fixture: ComponentFixture<TestButtonComponent>;

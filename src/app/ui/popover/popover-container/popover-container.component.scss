@@ -3,18 +3,9 @@
   z-index: 3;
   top: 0;
   left: 0;
-  background: lightgrey;
   display: block;
+  background: #eee;
   margin: 5px;
   box-shadow: 2px 2px 5px 2px #7b7b7b;
   max-width: 300px;
-
-  .iw-popover--header {
-    background: lightslategray;
-    padding: 10px;
-  }
-
-  .iw-popover--content {
-    padding: 10px;
-  }
 }

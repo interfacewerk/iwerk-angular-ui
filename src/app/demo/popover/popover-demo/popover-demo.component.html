@@ -8,5 +8,6 @@
 <input [(ngModel)]="myText" type="text"/>
 
 <template #myPopoverTemplate>
-  I can display my template in a popover: {{myText}}
+  <div class="popover-header">header</div>
+  <div class="popover-content">I can display my template in a popover: {{myText}}</div>
 </template>
