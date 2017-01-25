@@ -1,17 +1,42 @@
 <h1> Popover </h1>
 
-<div class="cell" *ngFor="let truc of trucs">
-  <button [iwPopover]="myPopoverTemplate"
-    [isOpen]="truc.isOpen"
-    (shouldClose)="truc.isOpen = false"
-    [popoverClass]="'popover-demo'"
-    (click)="truc.isOpen = !truc.isOpen">I open/close a popover</button>
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of persons;">
+      <td class="cell-right-icon" [iwPopover]="editFirstTemplate"
+        [isOpen]="editedPerson === person && editedField === 'first'"
+        (shouldClose)="editedPerson = null"
+        [popoverClass]="'popover-demo'">
 
-  <input [(ngModel)]="myText" type="text"/>
+        {{person.first}}
 
-  <template #myPopoverTemplate>
-    <app-custom-popover-demo (close)="truc.isOpen = false">
-      Context: <input [(ngModel)]="myText" type="text"/>
-    </app-custom-popover-demo>
-  </template>
-</div>
+        <button (click)="editedPerson = person; editedField = 'first'">&#x270E;</button>
+      </td>
+      <td class="cell-right-icon" [iwPopover]="editLastTemplate"
+        [isOpen]="editedPerson === person && editedField === 'last'"
+        (shouldClose)="editedPerson = null"
+        [popoverClass]="'popover-demo'">{{person.last}}
+
+        <button (click)="editedPerson = person; editedField = 'last'">&#x270E;</button>          
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<template #editFirstTemplate>
+  <app-custom-popover-demo (close)="editedPerson = null">
+    First: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.first" type="text"/>
+  </app-custom-popover-demo>
+</template>
+
+<template #editLastTemplate>
+  <app-custom-popover-demo (close)="editedPerson = null">
+    Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
+  </app-custom-popover-demo>
+</template>

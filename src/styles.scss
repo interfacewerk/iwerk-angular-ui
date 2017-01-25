@@ -15,7 +15,8 @@ html, body {
 a {
   text-decoration: underline;
   outline: none;
-
+  color: white;
+  
   &:visited, &:focus, &:hover {
     color: white;
   }
