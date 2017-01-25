@@ -1,13 +1,17 @@
 <h1> Popover </h1>
 
-<button [iwPopover]="myPopoverTemplate"
-  [isOpen]="isPopoverOpen1"
-  (shouldClose)="isPopoverOpen1 = false"
-  (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
+<div class="cell" *ngFor="let truc of trucs">
+  <button [iwPopover]="myPopoverTemplate"
+    [isOpen]="truc.isOpen"
+    (shouldClose)="truc.isOpen = false"
+    [popoverClass]="'popover-demo'"
+    (click)="truc.isOpen = !truc.isOpen">I open/close a popover</button>
 
-<input [(ngModel)]="myText" type="text"/>
+  <input [(ngModel)]="myText" type="text"/>
 
-<template #myPopoverTemplate>
-  <div class="popover-header">header</div>
-  <div class="popover-content">I can display my template in a popover: {{myText}}</div>
-</template>
+  <template #myPopoverTemplate>
+    <app-custom-popover-demo (close)="truc.isOpen = false">
+      Context: <input [(ngModel)]="myText" type="text"/>
+    </app-custom-popover-demo>
+  </template>
+</div>

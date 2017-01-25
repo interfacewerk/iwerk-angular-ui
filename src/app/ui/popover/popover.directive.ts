@@ -10,10 +10,10 @@ import {
   Injector,
   ComponentRef,
   OnDestroy,
-  DoCheck,
-  ViewContainerRef
+  ViewContainerRef,
+  EmbeddedViewRef
 } from '@angular/core';
-
+import { Subscription } from 'rxjs/Subscription';
 import { PopoverContainerComponent } from './popover-container/popover-container.component';
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 
@@ -21,6 +21,7 @@ import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll
   selector: '[iwPopover]'
 })
 export class PopoverDirective implements OnDestroy {
+  @Input() popoverClass: string;
 
   @Input() set iwPopover(v: TemplateRef<PopoverContext>) {
     this._templateRef = v;
@@ -58,7 +59,8 @@ export class PopoverDirective implements OnDestroy {
     // create the mask component
     let scrollMask = this.componentFactoryResolver.resolveComponentFactory(PopoverScrollMaskComponent)
       .create(this.injector);
-    scrollMask.instance.onClick.asObservable().subscribe(() => this.shouldClose.emit());
+    // we bind to the output (which is an observable)
+    let clickSubscription = scrollMask.instance.onClick.asObservable().subscribe(() => this.shouldClose.emit());
     // create the popover container
     let content = this._templateRef.createEmbeddedView(this.injector);
     let container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
@@ -68,22 +70,20 @@ export class PopoverDirective implements OnDestroy {
     this.appRef.attachView(container.hostView);
     this.appRef.attachView(scrollMask.hostView);
 
-    setTimeout(() => {
-      (<HTMLElement>container.location.nativeElement).style.visibility = 'hidden';
-      this.renderer.invokeElementMethod(document.body, 'appendChild', [scrollMask.location.nativeElement]);
-      this.renderer.invokeElementMethod(document.body, 'appendChild', [container.location.nativeElement]);
-      this._positionToBottom(container.location.nativeElement, this.viewContainerRef.element.nativeElement);
-      (<HTMLElement>container.location.nativeElement).style.visibility = 'visible';
-    }, 0);
-
     this._elements = {
-      container: container,
-      scrollMask: scrollMask
+      content,
+      container,
+      scrollMask,
+      clickSubscription
     };
+
+    this._showPopover();
   }
 
   _close() {
     if (!this._elements) return;
+    this._elements.clickSubscription.unsubscribe();
+    this._elements.content.destroy();
     this.appRef.detachView(this._elements.container.hostView);
     this.appRef.detachView(this._elements.scrollMask.hostView);
     this._elements.container.destroy();
@@ -91,17 +91,47 @@ export class PopoverDirective implements OnDestroy {
     this._elements = null;
   }
 
-  _positionToBottom(element: HTMLElement, target: HTMLElement) {
-    let w = element.getBoundingClientRect().width;
-    let maxLeft = document.body.getBoundingClientRect().width - w;
-    element.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
-    element.style.top = target.getBoundingClientRect().bottom + 'px';
-    element.style.visibility = 'visible';
+  _showPopover() {
+    let container: HTMLElement = this._elements.container.location.nativeElement;
+    let scrollMask: HTMLElement = this._elements.scrollMask.location.nativeElement;
+
+    setTimeout(() => {
+      container.style.visibility = 'hidden';
+      container.classList.add(this.popoverClass);
+      this.renderer.invokeElementMethod(document.body, 'appendChild', [scrollMask]);
+      this.renderer.invokeElementMethod(document.body, 'appendChild', [container]);
+
+      this._smartPosition();
+
+      container.style.visibility = 'visible';
+      container.classList.add('iw-popover-container--visible');
+    }, 0);
+  }
+
+  _smartPosition() {
+    let target: HTMLElement = this.viewContainerRef.element.nativeElement;
+    let container: HTMLElement = this._elements.container.location.nativeElement;
+
+    let targetRect = target.getBoundingClientRect();
+    let containerRect = target.getBoundingClientRect();
+    let y = targetRect.top;
+    let centerYBody = document.body.getBoundingClientRect().height / 2;
+    if (y > centerYBody) {
+      container.style.top = (target.getBoundingClientRect().top - container.offsetHeight) + 'px';
+    } else {
+      container.style.top = target.getBoundingClientRect().bottom + 'px';
+    }
+
+    let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+    container.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
+    container.style.visibility = 'visible';
   }
 
   _elements: {
+    content: EmbeddedViewRef<PopoverContext>,
     container: ComponentRef<PopoverContext>,
-    scrollMask: ComponentRef<PopoverContext>
+    scrollMask: ComponentRef<PopoverContext>,
+    clickSubscription: Subscription
   } = null;
 
   _templateRef: TemplateRef<PopoverContext> = null;

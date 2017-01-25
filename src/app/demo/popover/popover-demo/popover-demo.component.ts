@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopoverDemoComponent implements OnInit {
 
-  isPopoverOpen1 = false;
+  isPopoverOpen1 = true;
   myText = 'some text here';
+  trucs: {isOpen: boolean}[] = [];
 
-  constructor() { }
+  constructor() {
+    for(let i = 0; i < 100; i++) {
+      this.trucs.push({isOpen: false});
+    }
+  }
 
   ngOnInit() {
   }

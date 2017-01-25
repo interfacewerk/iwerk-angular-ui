@@ -24,3 +24,14 @@ a {
     text-decoration: none;
   }
 }
+
+iw-popover-container.popover-demo {
+  background: transparent;
+  padding: 5px 0px;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  &.iw-popover-container--visible {
+    opacity: 1;
+  }
+}

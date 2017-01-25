@@ -7,26 +7,21 @@ import {
   Renderer,
   ViewChild,
   ElementRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  ViewEncapsulation,
+  HostBinding,
+  Input
 } from '@angular/core';
 
 @Component({
   selector: 'iw-popover-container',
   templateUrl: './popover-container.component.html',
-  styleUrls: ['./popover-container.component.scss']
+  styleUrls: ['./popover-container.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class PopoverContainerComponent implements OnInit {
+export class PopoverContainerComponent {
   @ViewChild('content') content: ElementRef;
 
-  constructor(
-    private viewContainer: ViewContainerRef,
-    private renderer: Renderer,
-    private injector: Injector
-  ) {
-
-  }
-
-  ngOnInit() {
-  }
+  constructor() {}
 
 }
