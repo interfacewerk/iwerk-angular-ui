@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
+  "main": "npm run ng s",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

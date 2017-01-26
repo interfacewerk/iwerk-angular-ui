@@ -36,3 +36,12 @@ iw-popover-container.popover-demo {
     opacity: 1;
   }
 }
+
+iw-tooltip-container {
+  background: black;
+  font-size: 10px;
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 5px 0px;
+}
