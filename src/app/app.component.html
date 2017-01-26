@@ -1,7 +1,12 @@
 <aside>
   <ul>
-    <li><a routerLink="/">Get Started</a></li>
-    <li><a routerLink="/popover">Popover</a></li>
+    <li><a routerLink="/"
+      [routerLinkActiveOptions]="{exact: true}" 
+      routerLinkActive="active-link">
+      Get Started
+    </a></li>
+    <li><a routerLinkActive="active-link" routerLink="/popover">Popover</a></li>
+    <li><a routerLinkActive="active-link" routerLink="/tooltip">Tooltip</a></li>
   </ul>
 </aside>
 

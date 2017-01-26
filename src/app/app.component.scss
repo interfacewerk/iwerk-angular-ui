@@ -15,7 +15,7 @@
     overflow: auto;
     background: black;
     color: white;
-    padding: 15px;
+    padding: 15px 0px;
   }
 
   main {
@@ -26,5 +26,34 @@
     right: 0;
     overflow: auto;
     padding: 15px;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      width: 100%;
+      border-bottom: 1px solid #222;
+      padding: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-decoration: none;
+        padding: 0px 15px;
+
+        &:hover, &:focus {
+          background: #222;
+        }
+
+        &.active-link {
+          background: grey;
+        }
+      }
+    }
   }
 }

@@ -10,7 +10,7 @@ import {
   Injector,
   ComponentRef,
   OnDestroy,
-  ViewContainerRef,
+  ElementRef,
   EmbeddedViewRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -36,7 +36,7 @@ export class PopoverDirective implements OnDestroy {
   @Output() shouldClose = new EventEmitter();
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
+    private elementRef: ElementRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
     private renderer: Renderer,
@@ -109,7 +109,7 @@ export class PopoverDirective implements OnDestroy {
   }
 
   _smartPosition() {
-    let target: HTMLElement = this.viewContainerRef.element.nativeElement;
+    let target: HTMLElement = this.elementRef.nativeElement;
     let container: HTMLElement = this._elements.container.location.nativeElement;
 
     let targetRect = target.getBoundingClientRect();

@@ -10,6 +10,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'popover', loadChildren: 'app/demo/popover/popover.module#PopoverModule' },
+  { path: 'tooltip', loadChildren: 'app/demo/tooltip/tooltip.module#TooltipModule' },
 ];
 
 @NgModule({

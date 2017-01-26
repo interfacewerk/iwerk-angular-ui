@@ -1,0 +1,20 @@
+<h1> Tooltip </h1>
+
+<button [iwTooltip]="tooltipTemplate" (click)="value = value + 1">
+  Increment
+</button>
+
+<button [iwTooltip]="tooltipTemplate2" (click)="value = 0">
+  Reset
+</button>
+
+<pre>{{tooltipHtml1}}</pre>
+
+<template #tooltipTemplate>
+  Click to go from {{value}} to {{value+1}}
+</template>
+
+<template #tooltipTemplate2>
+  Reset to 0
+</template>
+
