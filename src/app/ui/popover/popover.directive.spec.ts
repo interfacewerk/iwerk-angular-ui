@@ -58,7 +58,7 @@ describe('PopoverDirective', () => {
     expect(document.body.querySelectorAll('iw-popover-container>div.iw-popover--content')[0].textContent.trim()).toBe('popover content should be projected');
   }));
 
-  fit('closes if iw-popover is destroyed', fakeAsync(() => {
+  it('closes if iw-popover is destroyed', fakeAsync(() => {
     button.triggerEventHandler('click', null);
 
     fixture.detectChanges();
