@@ -31,7 +31,10 @@
 
 <template #editFirstTemplate>
   <app-custom-popover-demo (close)="editedPerson = null">
-    First: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.first" type="text"/>
+    <app-custom-popover-header>Edit</app-custom-popover-header>
+    <app-custom-popover-content>
+      First: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.first" type="text"/>    
+    </app-custom-popover-content>
   </app-custom-popover-demo>
 </template>
 

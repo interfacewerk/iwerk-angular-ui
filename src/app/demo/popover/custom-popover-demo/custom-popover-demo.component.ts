@@ -1,4 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Directive, Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+@Directive({
+  selector: 'app-custom-popover-header'
+})
+export class CustomPopoverHeader {}
+
+@Directive({
+  selector: 'app-custom-popover-content'
+})
+export class CustomPopoverContent {}
 
 @Component({
   selector: 'app-custom-popover-demo',

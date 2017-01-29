@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../../ui/ui.module';
-import { CustomPopoverDemoComponent } from './custom-popover-demo/custom-popover-demo.component';
+import {
+  CustomPopoverDemoComponent,
+  CustomPopoverHeader,
+  CustomPopoverContent
+} from './custom-popover-demo/custom-popover-demo.component';
 
 @NgModule({
   imports: [
@@ -15,7 +19,12 @@ import { CustomPopoverDemoComponent } from './custom-popover-demo/custom-popover
     UiModule,
     FormsModule
   ],
-  declarations: [PopoverDemoComponent, CustomPopoverDemoComponent],
+  declarations: [
+    PopoverDemoComponent,
+    CustomPopoverDemoComponent,
+    CustomPopoverHeader,
+    CustomPopoverContent
+  ],
   exports: [RouterModule]
 })
 export class PopoverModule { }
