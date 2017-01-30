@@ -1,16 +1,7 @@
 import {
   Injector,
   Component,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-  Renderer,
-  ViewChild,
-  ElementRef,
-  EmbeddedViewRef,
-  ViewEncapsulation,
-  HostBinding,
-  Input
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -20,8 +11,7 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class PopoverContainerComponent {
-  @ViewChild('content') content: ElementRef;
-
+  
   constructor() {}
 
 }

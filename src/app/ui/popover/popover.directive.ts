@@ -33,6 +33,10 @@ export class PopoverDirective implements OnDestroy {
     this._update();
   }
 
+  @Input() set escToClose(v: boolean) {
+    this._escToClose = v;
+  }
+
   @Output() shouldClose = new EventEmitter();
 
   constructor(
@@ -70,11 +74,15 @@ export class PopoverDirective implements OnDestroy {
     this.appRef.attachView(container.hostView);
     this.appRef.attachView(scrollMask.hostView);
 
+    let escPressedHandler = this._onKeyPress.bind(this);
+    window.addEventListener("keyup", escPressedHandler);
+
     this._elements = {
       content,
       container,
       scrollMask,
-      clickSubscription
+      clickSubscription,
+      escPressedHandler
     };
 
     this._showPopover();
@@ -88,6 +96,7 @@ export class PopoverDirective implements OnDestroy {
     this.appRef.detachView(this._elements.scrollMask.hostView);
     this._elements.container.destroy();
     this._elements.scrollMask.destroy();
+    window.removeEventListener('keyup', this._elements.escPressedHandler);
     this._elements = null;
   }
 
@@ -127,15 +136,24 @@ export class PopoverDirective implements OnDestroy {
     container.style.visibility = 'visible';
   }
 
+  _onKeyPress(event: KeyboardEvent) {
+    if (this._escToClose && event.key === 'Escape') {
+      event.preventDefault();
+      this._close();
+    }
+  }
+
   _elements: {
     content: EmbeddedViewRef<PopoverContext>,
     container: ComponentRef<PopoverContext>,
     scrollMask: ComponentRef<PopoverContext>,
-    clickSubscription: Subscription
+    clickSubscription: Subscription,
+    escPressedHandler: EventListenerObject
   } = null;
 
   _templateRef: TemplateRef<PopoverContext> = null;
   _isOpen: boolean = null;
+  _escToClose: boolean = true;
 }
 
 export type PopoverContext = {}

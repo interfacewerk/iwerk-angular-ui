@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverModule } from './popover/popover.module';
-import { TooltipDirective } from './tooltip/tooltip.directive';
-import { TooltipContainerComponent } from './tooltip/tooltip-container/tooltip-container.component';
-export { PopoverModule };
+import { TooltipModule } from './tooltip/tooltip.module';
+export { PopoverModule, TooltipModule };
 
 @NgModule({
-  entryComponents: [ TooltipContainerComponent ],
   imports: [
     CommonModule,
     PopoverModule
   ],
-  declarations: [TooltipDirective, TooltipContainerComponent],
-  exports: [ PopoverModule, TooltipDirective ]
+  exports: [ PopoverModule, TooltipModule ]
 })
 export class UiModule { }

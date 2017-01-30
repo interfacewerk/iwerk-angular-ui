@@ -40,6 +40,9 @@
 
 <template #editLastTemplate>
   <app-custom-popover-demo (close)="editedPerson = null">
-    Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
+    <app-custom-popover-header>Edit</app-custom-popover-header>
+    <app-custom-popover-content>    
+      Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
+    </app-custom-popover-content>
   </app-custom-popover-demo>
 </template>

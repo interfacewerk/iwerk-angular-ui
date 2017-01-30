@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
+import {
+  CustomPopoverHeader,
+  CustomPopoverContent,
+  CustomPopoverDemoComponent
+} from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../../ui/ui.module';
-import {
-  CustomPopoverDemoComponent,
-  CustomPopoverHeader,
-  CustomPopoverContent
-} from './custom-popover-demo/custom-popover-demo.component';
 
 @NgModule({
   imports: [
@@ -21,9 +21,9 @@ import {
   ],
   declarations: [
     PopoverDemoComponent,
-    CustomPopoverDemoComponent,
     CustomPopoverHeader,
-    CustomPopoverContent
+    CustomPopoverContent,
+    CustomPopoverDemoComponent
   ],
   exports: [RouterModule]
 })
