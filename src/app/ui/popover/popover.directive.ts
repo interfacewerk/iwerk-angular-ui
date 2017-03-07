@@ -97,7 +97,7 @@ export class PopoverDirective implements OnDestroy {
     this._elements.container.destroy();
     this._elements.scrollMask.destroy();
     window.removeEventListener('keyup', this._elements.escPressedHandler);
-    this._elements = null;
+    this._elements = undefined;
   }
 
   _showPopover() {
@@ -149,10 +149,10 @@ export class PopoverDirective implements OnDestroy {
     scrollMask: ComponentRef<PopoverContext>,
     clickSubscription: Subscription,
     escPressedHandler: EventListenerObject
-  } = null;
+  } | undefined = undefined;
 
-  _templateRef: TemplateRef<PopoverContext> = null;
-  _isOpen: boolean = null;
+  _templateRef: TemplateRef<PopoverContext> | undefined = undefined;
+  _isOpen: boolean = false;
   _escToClose: boolean = true;
 }
 
