@@ -149,9 +149,9 @@ export class PopoverDirective implements OnDestroy {
     scrollMask: ComponentRef<PopoverContext>,
     clickSubscription: Subscription,
     escPressedHandler: EventListenerObject
-  } | undefined = undefined;
+  };
 
-  _templateRef: TemplateRef<PopoverContext> | undefined = undefined;
+  _templateRef: TemplateRef<PopoverContext>;
   _isOpen: boolean = false;
   _escToClose: boolean = true;
 }

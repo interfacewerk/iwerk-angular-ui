@@ -97,7 +97,7 @@ export class TooltipDirective implements OnInit {
   _elements: {
     content: EmbeddedViewRef<TooltipContext>,
     container: ComponentRef<TooltipContainerComponent>
-  } | undefined = undefined;
+  };
   
   _templateRef: TemplateRef<TooltipContext>;
 
