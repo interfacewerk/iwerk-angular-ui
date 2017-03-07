@@ -23,7 +23,6 @@ describe('PopoverDemoComponent', () => {
       ],
       imports: [
         UiModule,
-        PopoverModule,
         BrowserModule,
         FormsModule
       ]
