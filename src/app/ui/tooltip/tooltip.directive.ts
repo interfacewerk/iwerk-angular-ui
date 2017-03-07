@@ -89,15 +89,15 @@ export class TooltipDirective implements OnInit {
     this._elements.container.hostView.detach();
     
     this._elements.content.destroy();
-    this._elements.content.destroy();
+    this._elements.container.destroy();
 
-    this._elements = null;
+    this._elements = undefined;
   }
 
   _elements: {
     content: EmbeddedViewRef<TooltipContext>,
     container: ComponentRef<TooltipContainerComponent>
-  } = null;
+  } | undefined = undefined;
   
   _templateRef: TemplateRef<TooltipContext>;
 
