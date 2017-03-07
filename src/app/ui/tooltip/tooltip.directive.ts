@@ -63,6 +63,8 @@ export class TooltipDirective implements OnInit {
   }
 
   _smartPosition() {
+    if (!this._elements) return;
+    
     let target: HTMLElement = this.elementRef.nativeElement;
     let container: HTMLElement = this._elements.container.location.nativeElement;
 
@@ -84,7 +86,7 @@ export class TooltipDirective implements OnInit {
   @HostListener('mouseleave')
   onMouseLeave(event: MouseEvent) {
     if (!this._elements) return;
-    
+
     this.appRef.detachView(this._elements.content);
     this.appRef.detachView(this._elements.container.hostView);
     this._elements.container.hostView.detach();
