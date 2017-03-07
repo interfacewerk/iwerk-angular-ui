@@ -101,6 +101,8 @@ export class PopoverDirective implements OnDestroy {
   }
 
   _showPopover() {
+    if (!this._elements) return;
+
     let container: HTMLElement = this._elements.container.location.nativeElement;
     let scrollMask: HTMLElement = this._elements.scrollMask.location.nativeElement;
 
@@ -118,6 +120,8 @@ export class PopoverDirective implements OnDestroy {
   }
 
   _smartPosition() {
+    if (!this._elements) return;
+
     let target: HTMLElement = this.elementRef.nativeElement;
     let container: HTMLElement = this._elements.container.location.nativeElement;
 
@@ -149,7 +153,7 @@ export class PopoverDirective implements OnDestroy {
     scrollMask: ComponentRef<PopoverContext>,
     clickSubscription: Subscription,
     escPressedHandler: EventListenerObject
-  };
+  } | undefined;
 
   _templateRef: TemplateRef<PopoverContext>;
   _isOpen: boolean = false;

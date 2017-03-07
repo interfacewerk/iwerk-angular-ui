@@ -84,6 +84,7 @@ export class TooltipDirective implements OnInit {
   @HostListener('mouseleave')
   onMouseLeave(event: MouseEvent) {
     if (!this._elements) return;
+    
     this.appRef.detachView(this._elements.content);
     this.appRef.detachView(this._elements.container.hostView);
     this._elements.container.hostView.detach();
@@ -97,7 +98,7 @@ export class TooltipDirective implements OnInit {
   _elements: {
     content: EmbeddedViewRef<TooltipContext>,
     container: ComponentRef<TooltipContainerComponent>
-  };
+  } | undefined;
   
   _templateRef: TemplateRef<TooltipContext>;
 
