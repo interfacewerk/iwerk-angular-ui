@@ -28,10 +28,10 @@ a {
 
 iw-popover-container.popover-demo {
   background: transparent;
-  padding: 5px 0px;
+  padding: 10px;
   opacity: 0;
   transition: opacity 0.2s;
-
+  
   &.iw-popover-container--visible {
     opacity: 1;
   }
@@ -43,5 +43,24 @@ iw-tooltip-container {
   color: white;
   padding: 3px 5px;
   border-radius: 3px;
-  margin: 5px 0px;
+}
+
+.iw-popover-arrow-element {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid grey;
+  border-right: 1px solid grey;
+  z-index: 3;
+
+  &.from-the-bottom {
+    transform: rotateZ(-45deg) translate(-7px, 0px);
+    background-color: lightgrey;
+  }
+
+  &.from-the-top {
+    transform: translate(-5px, -15px) rotateZ(135deg);
+    background-color: white;
+    box-shadow: 4px -4px 6px -1px #7b7b7b;
+  }
 }
