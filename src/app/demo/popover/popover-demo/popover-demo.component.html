@@ -9,7 +9,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let person of persons;">
-      <td class="cell-right-icon" [iwPopover]="editFirstTemplate"
+      <td class="cell-right-icon" 
+        [iwPopover]="editFirstTemplate"
         [isOpen]="editedPerson === person && editedField === 'first'"
         (shouldClose)="editedPerson = null"
         [popoverClass]="'popover-demo'">
@@ -18,10 +19,13 @@
 
         <button (click)="editedPerson = person; editedField = 'first'">&#x270E;</button>
       </td>
-      <td class="cell-right-icon" [iwPopover]="editLastTemplate"
+      <td class="cell-right-icon" 
+        [iwPopover]="editLastTemplate"
         [isOpen]="editedPerson === person && editedField === 'last'"
         (shouldClose)="editedPerson = null"
-        [popoverClass]="'popover-demo'">{{person.last}}
+        popoverClass="popover-demo">
+        
+        {{person.last}}
 
         <button (click)="editedPerson = person; editedField = 'last'">&#x270E;</button>          
       </td>

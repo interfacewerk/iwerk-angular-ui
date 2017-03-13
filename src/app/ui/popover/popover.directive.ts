@@ -69,6 +69,9 @@ export class PopoverDirective implements OnDestroy {
     let content = this._templateRef.createEmbeddedView(this.injector);
     let container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
       .create(this.injector, [ content.rootNodes ]);
+    
+    let arrowElement = document.createElement('div');
+    arrowElement.classList.add('iw-popover-arrow-element');
 
     this.appRef.attachView(content);
     this.appRef.attachView(container.hostView);
@@ -81,6 +84,7 @@ export class PopoverDirective implements OnDestroy {
       content,
       container,
       scrollMask,
+      arrowElement,
       clickSubscription,
       escPressedHandler
     };
@@ -94,6 +98,7 @@ export class PopoverDirective implements OnDestroy {
     this._elements.content.destroy();
     this.appRef.detachView(this._elements.container.hostView);
     this.appRef.detachView(this._elements.scrollMask.hostView);
+    this.renderer.invokeElementMethod(document.body, 'removeChild', [this._elements.arrowElement]);
     this._elements.container.destroy();
     this._elements.scrollMask.destroy();
     window.removeEventListener('keyup', this._elements.escPressedHandler);
@@ -105,17 +110,20 @@ export class PopoverDirective implements OnDestroy {
 
     let container: HTMLElement = this._elements.container.location.nativeElement;
     let scrollMask: HTMLElement = this._elements.scrollMask.location.nativeElement;
+    let arrowElement: HTMLElement = this._elements.arrowElement;
 
     setTimeout(() => {
       container.style.visibility = 'hidden';
+      arrowElement.style.visibility = 'hidden';
       container.classList.add(this.popoverClass);
       this.renderer.invokeElementMethod(document.body, 'appendChild', [scrollMask]);
       this.renderer.invokeElementMethod(document.body, 'appendChild', [container]);
+      this.renderer.invokeElementMethod(document.body, 'appendChild', [arrowElement]);
 
       this._smartPosition();
 
-      container.style.visibility = 'visible';
       container.classList.add('iw-popover-container--visible');
+      arrowElement.classList.add('iw-popover-arrow-element--visible');
     }, 0);
   }
 
@@ -124,20 +132,26 @@ export class PopoverDirective implements OnDestroy {
 
     let target: HTMLElement = this.elementRef.nativeElement;
     let container: HTMLElement = this._elements.container.location.nativeElement;
+    let arrowElement: HTMLElement = this._elements.arrowElement;
 
-    let targetRect = target.getBoundingClientRect();
-    let containerRect = target.getBoundingClientRect();
-    let y = targetRect.top;
+    let {top, left, bottom, right} = target.getBoundingClientRect();
     let centerYBody = document.body.getBoundingClientRect().height / 2;
-    if (y > centerYBody) {
-      container.style.top = (target.getBoundingClientRect().top - container.offsetHeight) + 'px';
+    if (top > centerYBody) {
+      container.style.top = (top - container.offsetHeight) + 'px';
+      this._elements.arrowElement.style.top = top + 'px';
+      this._elements.arrowElement.classList.add('from-the-top');
     } else {
-      container.style.top = target.getBoundingClientRect().bottom + 'px';
+      container.style.top = bottom + 'px';
+      this._elements.arrowElement.style.top = container.style.top;
+      this._elements.arrowElement.classList.add('from-the-bottom');
     }
 
+    this._elements.arrowElement.style.left = `${0.5 * (left + right)}px`;
     let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-    container.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
+    container.style.left = Math.min(maxLeft, left + 0.5 * (right - left) - 0.5 * container.offsetWidth) + 'px';
+    
     container.style.visibility = 'visible';
+    arrowElement.style.visibility = 'visible';
   }
 
   _onKeyPress(event: KeyboardEvent) {
@@ -151,6 +165,7 @@ export class PopoverDirective implements OnDestroy {
     content: EmbeddedViewRef<PopoverContext>,
     container: ComponentRef<PopoverContext>,
     scrollMask: ComponentRef<PopoverContext>,
+    arrowElement: HTMLElement,
     clickSubscription: Subscription,
     escPressedHandler: EventListenerObject
   } | undefined;
