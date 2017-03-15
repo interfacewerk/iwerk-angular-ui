@@ -1,8 +1,6 @@
 import {
   Component,
-  OnInit,
   HostListener,
-  HostBinding,
   Output,
   EventEmitter,
   ViewEncapsulation
@@ -14,14 +12,11 @@ import {
   styleUrls: ['./popover-scroll-mask.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PopoverScrollMaskComponent implements OnInit {
+export class PopoverScrollMaskComponent {
 
   @Output() onClick = new EventEmitter();
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   @HostListener('click', ['$event'])
   $onClick() {

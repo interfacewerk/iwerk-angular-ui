@@ -32,9 +32,7 @@ export class TooltipDirective implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
-  ngOnInit() {
-    let element = <HTMLElement>this.elementRef.nativeElement;
-  }
+  ngOnInit() {}
 
   @HostListener('mouseenter')
   onMouseEnter(event: MouseEvent) {
@@ -69,7 +67,7 @@ export class TooltipDirective implements OnInit {
     let container: HTMLElement = this._elements.container.location.nativeElement;
 
     let targetRect = target.getBoundingClientRect();
-    let containerRect = target.getBoundingClientRect();
+    // let containerRect = target.getBoundingClientRect();
     let y = targetRect.top;
     let centerYBody = document.body.getBoundingClientRect().height / 2;
     if (y > centerYBody) {

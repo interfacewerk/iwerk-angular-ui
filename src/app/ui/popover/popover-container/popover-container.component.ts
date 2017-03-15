@@ -1,5 +1,4 @@
 import {
-  Injector,
   Component,
   ViewEncapsulation
 } from '@angular/core';
