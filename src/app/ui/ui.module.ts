@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverModule } from './popover/popover.module';
 import { TooltipModule } from './tooltip/tooltip.module';
-export { PopoverModule, TooltipModule };
+export * from './popover/popover.module';
+export * from './tooltip/tooltip.module';
 
 @NgModule({
   imports: [

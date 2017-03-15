@@ -17,11 +17,20 @@ import { Subscription } from 'rxjs/Subscription';
 import { PopoverContainerComponent } from './popover-container/popover-container.component';
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 
+export type PopoverPosition = {
+  vertical: 'top' | 'bottom'
+};
+
+export type PopoverHorizontalAlignment = 'leftWithLeft' | undefined;
+
 @Directive({
   selector: '[iwPopover]'
 })
 export class PopoverDirective implements OnDestroy {
   @Input() popoverClass: string;
+  @Input() arrowClass: string;
+  @Input() horizontalAlignment: PopoverHorizontalAlignment;
+  @Input() scrollMaskClass: string;
 
   @Input() set iwPopover(v: TemplateRef<PopoverContext>) {
     this._templateRef = v;
@@ -38,6 +47,8 @@ export class PopoverDirective implements OnDestroy {
   }
 
   @Output() shouldClose = new EventEmitter();
+  @Output() popoverPosition = new EventEmitter<PopoverPosition>();
+  @Output() onToggle = new EventEmitter<boolean>();
 
   constructor(
     private elementRef: ElementRef,
@@ -45,7 +56,7 @@ export class PopoverDirective implements OnDestroy {
     private injector: Injector,
     private renderer: Renderer,
     private appRef: ApplicationRef
-  ) {}
+  ) { }
 
   ngOnDestroy() {
     this._close();
@@ -68,8 +79,8 @@ export class PopoverDirective implements OnDestroy {
     // create the popover container
     let content = this._templateRef.createEmbeddedView(this.injector);
     let container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
-      .create(this.injector, [ content.rootNodes ]);
-    
+      .create(this.injector, [content.rootNodes]);
+
     let arrowElement = document.createElement('div');
     arrowElement.classList.add('iw-popover-arrow-element');
 
@@ -103,6 +114,7 @@ export class PopoverDirective implements OnDestroy {
     this._elements.scrollMask.destroy();
     window.removeEventListener('keyup', this._elements.escPressedHandler);
     this._elements = undefined;
+    this.onToggle.emit(false);
   }
 
   _showPopover() {
@@ -116,6 +128,12 @@ export class PopoverDirective implements OnDestroy {
       container.style.visibility = 'hidden';
       arrowElement.style.visibility = 'hidden';
       container.classList.add(this.popoverClass);
+      if (this.scrollMaskClass) {
+        scrollMask.classList.add(this.scrollMaskClass);
+      }
+      if (this.arrowClass) {
+        arrowElement.classList.add(this.arrowClass);
+      }
       this.renderer.invokeElementMethod(document.body, 'appendChild', [scrollMask]);
       this.renderer.invokeElementMethod(document.body, 'appendChild', [container]);
       this.renderer.invokeElementMethod(document.body, 'appendChild', [arrowElement]);
@@ -124,6 +142,8 @@ export class PopoverDirective implements OnDestroy {
 
       container.classList.add('iw-popover-container--visible');
       arrowElement.classList.add('iw-popover-arrow-element--visible');
+
+      this.onToggle.emit(true);
     }, 0);
   }
 
@@ -134,22 +154,31 @@ export class PopoverDirective implements OnDestroy {
     let container: HTMLElement = this._elements.container.location.nativeElement;
     let arrowElement: HTMLElement = this._elements.arrowElement;
 
-    let {top, left, bottom, right} = target.getBoundingClientRect();
+    let { top, left, bottom, right } = target.getBoundingClientRect();
     let centerYBody = document.body.getBoundingClientRect().height / 2;
     if (top > centerYBody) {
       container.style.top = (top - container.offsetHeight) + 'px';
       this._elements.arrowElement.style.top = top + 'px';
       this._elements.arrowElement.classList.add('from-the-top');
+      this.popoverPosition.emit({ vertical: 'top' });
     } else {
       container.style.top = bottom + 'px';
       this._elements.arrowElement.style.top = container.style.top;
       this._elements.arrowElement.classList.add('from-the-bottom');
+      this.popoverPosition.emit({ vertical: 'bottom' });
     }
 
-    this._elements.arrowElement.style.left = `${0.5 * (left + right)}px`;
-    let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-    container.style.left = Math.min(maxLeft, left + 0.5 * (right - left) - 0.5 * container.offsetWidth) + 'px';
-    
+    let centerX = 0.5 * (left + right);
+    this._elements.arrowElement.style.left = `${centerX}px`;
+    if (this.horizontalAlignment === 'leftWithLeft') {
+      let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+      container.style.left = Math.max(0, Math.min(maxLeft, left)) + 'px';
+    }
+    else {
+      let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+      container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
+    }
+
     container.style.visibility = 'visible';
     arrowElement.style.visibility = 'visible';
   }
@@ -168,7 +197,7 @@ export class PopoverDirective implements OnDestroy {
     arrowElement: HTMLElement,
     clickSubscription: Subscription,
     escPressedHandler: EventListenerObject
-  } | undefined;
+  } |  undefined;
 
   _templateRef: TemplateRef<PopoverContext>;
   _isOpen: boolean = false;
