@@ -11,6 +11,7 @@ const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'popover', loadChildren: 'app/demo/popover/popover.module#PopoverModule' },
   { path: 'tooltip', loadChildren: 'app/demo/tooltip/tooltip.module#TooltipModule' },
+  { path: 'stateful-button', loadChildren: 'app/demo/stateful-button/stateful-button.module#StatefulButtonDemoModule' },
 ];
 
 @NgModule({

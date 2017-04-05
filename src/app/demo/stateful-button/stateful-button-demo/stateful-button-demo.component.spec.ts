@@ -1,25 +1,22 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TooltipDemoComponent } from './tooltip-demo.component';
+import { StatefulButtonDemoComponent } from './stateful-button-demo.component';
 import { UiModule } from '../../../ui/ui.module';
 
-describe('TooltipDemoComponent', () => {
-  let component: TooltipDemoComponent;
-  let fixture: ComponentFixture<TooltipDemoComponent>;
+describe('StatefulButtonDemoComponent', () => {
+  let component: StatefulButtonDemoComponent;
+  let fixture: ComponentFixture<StatefulButtonDemoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TooltipDemoComponent ],
-      imports: [
-        UiModule
-      ]
+      declarations: [ StatefulButtonDemoComponent ],
+      imports: [ UiModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TooltipDemoComponent);
+    fixture = TestBed.createComponent(StatefulButtonDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

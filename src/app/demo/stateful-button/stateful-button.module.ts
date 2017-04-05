@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
+import { StatefulButtonDemoComponent } from './stateful-button-demo/stateful-button-demo.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../../ui/ui.module';
@@ -9,12 +9,12 @@ import { UiModule } from '../../ui/ui.module';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: TooltipDemoComponent }
+      { path: '', component: StatefulButtonDemoComponent }
     ]),
     UiModule,
     FormsModule
   ],
-  declarations: [TooltipDemoComponent],
+  declarations: [StatefulButtonDemoComponent],
   exports: [RouterModule]
 })
-export class TooltipModule { }
+export class StatefulButtonDemoModule { }

@@ -3,8 +3,6 @@ import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testin
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
 
-import { PopoverDirective } from './popover.directive';
-import { PopoverContainerComponent } from './popover-container/popover-container.component';
 import { PopoverModule } from './popover.module';
 
 @Component({
@@ -100,7 +98,7 @@ describe('PopoverDirective basic features', () => {
   `
 })
 class TestButtonComponentWithNoEsc {
-  escToClose = undefined;
+  escToClose: boolean = undefined;
   isPopoverOpen1 = true;
   shouldClose() {
     this.isPopoverOpen1 = false;
