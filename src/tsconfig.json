@@ -6,6 +6,7 @@
     "experimentalDecorators": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
+    "noUnusedExpression": true,
     "lib": ["es6", "dom"],
     "mapRoot": "./",
     "module": "es6",
