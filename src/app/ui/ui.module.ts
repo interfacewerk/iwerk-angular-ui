@@ -11,6 +11,7 @@ export * from './stateful-button/stateful-button.module';
   imports: [
     CommonModule,
     PopoverModule,
+    TooltipModule,
     StatefulButtonModule
   ],
   exports: [ PopoverModule, TooltipModule, StatefulButtonModule ]
