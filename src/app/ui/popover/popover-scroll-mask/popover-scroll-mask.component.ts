@@ -14,12 +14,11 @@ import {
 })
 export class PopoverScrollMaskComponent {
 
-  @Output() onClick = new EventEmitter();
-
-  constructor() { }
+  @Output() public onClick = new EventEmitter<void>();
 
   @HostListener('click', ['$event'])
-  $onClick() {
+  public $onClick($event: any) {
+    // $event is not used here but AOT complains that the signature is not right ...
     this.onClick.emit();
   }
 

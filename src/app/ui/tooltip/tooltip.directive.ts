@@ -34,7 +34,7 @@ export class TooltipDirective implements OnInit {
 
   ngOnInit() {}
 
-  @HostListener('mouseenter')
+  @HostListener('mouseenter', ['$event'])
   onMouseEnter(event: MouseEvent) {
     if (!this._elements) {
       let content = this._templateRef.createEmbeddedView(this.injector);
@@ -81,7 +81,7 @@ export class TooltipDirective implements OnInit {
     container.style.visibility = 'visible';
   }
 
-  @HostListener('mouseleave')
+  @HostListener('mouseleave', ['$event'])
   onMouseLeave(event: MouseEvent) {
     if (!this._elements) return;
 
