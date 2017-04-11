@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/interfacewerk/iwerk-angular-ui/tree/master.svg?style=svg)](https://circleci.com/gh/interfacewerk/iwerk-angular-ui/tree/master)
+
 # Iwerk Angular Ui
 
 This project is a collection of useful Angular 2 directives and components. The implemented UI concepts (stateful buttons, popovers, tooltips) are very opinionated and are the basic blocks to provide the best UX as possible to users. For instance, the popovers and tooltips are always put in the body and positioned relatively to the target element according to a very simple heuristics.
