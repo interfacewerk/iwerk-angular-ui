@@ -64,3 +64,34 @@ iw-tooltip-container {
     box-shadow: 4px -4px 6px -1px #7b7b7b;
   }
 }
+
+iw-dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(192, 192, 192, 0.67);
+
+  .dialog-container__content {
+    position: absolute;
+    top: 100px;
+    left: 20%;
+    width: 60%;
+    background: white;
+    max-height: calc(100% - 200px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s;
+    transform: translateY(-100%);
+    box-shadow: 2px 2px 4px 1px gray;
+  }
+
+  &.visible {
+    .dialog-container__content {
+      transform: translateY(0);
+    }
+  }
+}
