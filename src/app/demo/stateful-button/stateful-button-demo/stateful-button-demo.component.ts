@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonState, delay } from '../../../ui/ui.module';
+import { ButtonState, delay } from '../../../ui/stateful-button/stateful-button.module';
 
 @Component({
   selector: 'app-stateful-button-demo',
