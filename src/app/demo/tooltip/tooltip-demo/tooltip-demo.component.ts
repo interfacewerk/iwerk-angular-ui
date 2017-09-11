@@ -15,13 +15,13 @@ export class TooltipDemoComponent implements OnInit {
   Reset
 </button>
 
-<template #tooltipTemplate>
+<ng-template #tooltipTemplate>
   Click to go from {{value}} to {{value+1}}
-</template>
+</ng-template>
 
-<template #tooltipTemplate2>
+<ng-template #tooltipTemplate2>
   Reset to 0
-</template>`.trim();
+</ng-template>`.trim();
 
   constructor() {}
 

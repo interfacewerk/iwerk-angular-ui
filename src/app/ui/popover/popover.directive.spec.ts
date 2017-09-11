@@ -13,9 +13,9 @@ import { PopoverModule } from './popover.module';
       (shouldClose)="shouldClose()"
       (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
 
-    <template #myPopoverTemplate>
+    <ng-template #myPopoverTemplate>
       {{myText}}
-    </template>
+    </ng-template>
   `
 })
 class TestButtonComponent {
@@ -94,7 +94,7 @@ describe('PopoverDirective basic features', () => {
       [escToClose]="escToClose"
       (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
 
-    <template #myPopoverTemplate></template>
+    <ng-template #myPopoverTemplate></ng-template>
   `
 })
 class TestButtonComponentWithNoEsc {

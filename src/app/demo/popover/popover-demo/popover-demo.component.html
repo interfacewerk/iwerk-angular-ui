@@ -33,20 +33,20 @@
   </tbody>
 </table>
 
-<template #editFirstTemplate>
+<ng-template #editFirstTemplate>
   <app-custom-popover-demo (close)="editedPerson = null">
     <app-custom-popover-header>Edit</app-custom-popover-header>
     <app-custom-popover-content>
       First: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.first" type="text"/>    
     </app-custom-popover-content>
   </app-custom-popover-demo>
-</template>
+</ng-template>
 
-<template #editLastTemplate>
+<ng-template #editLastTemplate>
   <app-custom-popover-demo (close)="editedPerson = null">
     <app-custom-popover-header>Edit</app-custom-popover-header>
     <app-custom-popover-content>    
       Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
     </app-custom-popover-content>
   </app-custom-popover-demo>
-</template>
+</ng-template>
