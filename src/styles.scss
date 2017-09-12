@@ -72,7 +72,9 @@ iw-dialog-container {
   width: 100%;
   height: 100%;
   z-index: 1;
+  opacity: 0;
   background: rgba(192, 192, 192, 0.67);
+  transition: opacity 0.5s;
 
   .dialog-container__content {
     position: absolute;
@@ -89,7 +91,8 @@ iw-dialog-container {
     box-shadow: 2px 2px 4px 1px gray;
   }
 
-  &.visible {
+  &.iw-dialog-container--visible {
+    opacity: 1;
     .dialog-container__content {
       transform: translateY(0);
     }

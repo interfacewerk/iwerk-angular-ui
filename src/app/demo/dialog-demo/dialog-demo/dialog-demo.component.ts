@@ -34,18 +34,4 @@ export class DialogComponent implements OnInit {
     this.myDialog1.open();
   }
 
-  code1 = `class MyComponent {
-    constructor(private dialog: DialogService) { }
-    
-    openDialog() {
-      this.dialog.open(MyDialogComponent, {...});
-    }
-  }`;
-
-  code2 = `
-  <button (click)="myDialog1.open()">Open a dialog with a template</button>
-  ...  
-  <ng-template iwDialogTest #myDialog1="iw-dialog">
-    <app-my-dialog title="Template Dialog"></app-my-dialog>
-  </ng-template>`;
 }

@@ -53,7 +53,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.renderer.setElementClass(this.elementRef.nativeElement, 'visible', true);
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'iw-dialog-container--visible', true);
     }, 0);
   }
 
