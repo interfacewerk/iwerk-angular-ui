@@ -8,15 +8,13 @@ import { PopoverModule } from './popover.module';
 @Component({
   selector: 'popoverTestButton',
   template: `
-    <button [iwPopover]="myPopoverTemplate"
-      [isOpen]="isPopoverOpen1"
-      (shouldClose)="shouldClose()"
-      (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
-
-    <ng-template #myPopoverTemplate>
-      {{myText}}
-    </ng-template>
-  `
+    <button (click)="isPopoverOpen1 = !isPopoverOpen1" iwPopoverTarget>I open/close a popover
+      <ng-template iwPopover
+        [isOpen]="isPopoverOpen1"
+        (shouldClose)="shouldClose()">
+        {{myText}}
+      </ng-template>
+    </button>`
 })
 class TestButtonComponent {
   isPopoverOpen1 = false;
@@ -88,13 +86,14 @@ describe('PopoverDirective basic features', () => {
 @Component({
   selector: 'popoverTestButton',
   template: `
-    <button [iwPopover]="myPopoverTemplate"
-      [isOpen]="isPopoverOpen1"
-      (shouldClose)="shouldClose()"
-      [escToClose]="escToClose"
-      (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
-
-    <ng-template #myPopoverTemplate></ng-template>
+    <button (click)="isPopoverOpen1 = !isPopoverOpen1" iwPopoverTarget>
+      I open/close a popover
+      <ng-template iwPopover 
+        [isOpen]="isPopoverOpen1"
+        (shouldClose)="shouldClose()"
+        [escToClose]="escToClose">
+      </ng-template>
+    </button>
   `
 })
 class TestButtonComponentWithNoEsc {
