@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FirstNamePopoverComponent } from '../first-name-popover/first-name-popover.component';
-import { LastNamePopoverComponent } from '../last-name-popover/last-name-popover.component';
+import { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';
 import { PopoverService } from '../../../ui/popover/popover.module';
 
 @Component({
@@ -35,24 +34,15 @@ export class PopoverDemoComponent implements OnInit {
   }
 
   openEditPropertyPopover(person: Person, propertyName: string, p: keyof Person, $event: MouseEvent) {
-    const shouldClose = new EventEmitter(true);
-    const popover = this.popoverService.open(FirstNamePopoverComponent, <HTMLElement>$event.target, {
-      arrowClass: '',
-      horizontalAlignment: undefined,
+    this.popoverService.open(PropertyEditPopoverComponent, <HTMLElement>$event.target, {
       popoverClass: 'popover-demo',
-      scrollMaskClass: '',
-      shouldClose,
-      onToggle: new EventEmitter(),
-      popoverPosition: new EventEmitter()
+      escToClose: true
     }, component => {
       component.value = person[p];
       component.propertyName = propertyName;
       component.onValueChange.subscribe((v: string) => {
         person[p] = v;
       });
-    });
-    shouldClose.subscribe(() => {
-      popover.close();
     });
   }
 

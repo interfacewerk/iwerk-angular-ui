@@ -4,7 +4,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noImplicitAny": true,
     "lib": ["es6", "dom"],
     "mapRoot": "./",

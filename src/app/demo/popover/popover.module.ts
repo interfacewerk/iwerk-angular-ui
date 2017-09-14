@@ -9,8 +9,7 @@ import {
 } from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../../ui/ui.module';
-import { LastNamePopoverComponent } from './last-name-popover/last-name-popover.component';
-import { FirstNamePopoverComponent } from './first-name-popover/first-name-popover.component';
+import { PropertyEditPopoverComponent } from './property-edit-popover/property-edit-popover.component';
 
 @NgModule({
   imports: [
@@ -26,13 +25,11 @@ import { FirstNamePopoverComponent } from './first-name-popover/first-name-popov
     CustomPopoverHeader,
     CustomPopoverContent,
     CustomPopoverDemoComponent,
-    LastNamePopoverComponent,
-    FirstNamePopoverComponent
+    PropertyEditPopoverComponent
   ],
   exports: [RouterModule],
   entryComponents: [
-    LastNamePopoverComponent,
-    FirstNamePopoverComponent
+    PropertyEditPopoverComponent
   ]
 })
 export class PopoverModule { }

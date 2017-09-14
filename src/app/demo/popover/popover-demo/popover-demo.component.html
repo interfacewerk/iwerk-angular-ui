@@ -1,5 +1,41 @@
 <h1> Popover </h1>
 
+<h2>Popover declarative logic</h2>
+
+<p iwPopoverTarget>The popover will appear on this element!
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen3"
+    popoverClass="popover-simple-demo"
+    arrowClass="popover-no-arrow"
+    (shouldClose)="isPopoverOpen3 = false">
+    Helloooo
+  </ng-template>
+</p>
+<hr/>
+<button (click)="isPopoverOpen3 = true">
+  Click to open!
+</button>
+
+<h2>Click outside to close: No, Esc to close: No</h2>
+
+<button (click)="isPopoverOpen2 = true" iwPopoverTarget>
+  Click to open!
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen2"
+    [clickOutsideToClose]="false"
+    [escToClose]="false"
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen2 = false">
+    <app-custom-popover-demo (close)="isPopoverOpen2 = false">
+      <app-custom-popover-header>Popover</app-custom-popover-header>
+      <app-custom-popover-content>    
+        Click, or Esc, I won't close!
+      </app-custom-popover-content>
+    </app-custom-popover-demo>
+  </ng-template>
+</button>
+
 <h2>Declarative way</h2>
 
 <button (click)="isPopoverOpen = true" iwPopoverTarget>
@@ -7,8 +43,8 @@
 
   <ng-template iwPopover 
     [isOpen]="isPopoverOpen"
-    (shouldClose)="isPopoverOpen = false"
-    popoverClass="popover-demo">
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen = false">
     <app-custom-popover-demo (close)="isPopoverOpen = false">
       <app-custom-popover-header>Popover</app-custom-popover-header>
       <app-custom-popover-content>    
@@ -43,9 +79,3 @@
   </tbody>
 </table>
 
-  <!-- <app-custom-popover-demo (close)="editedPerson = null">
-    <app-custom-popover-header>Edit</app-custom-popover-header>
-    <app-custom-popover-content>    
-      Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
-    </app-custom-popover-content>
-  </app-custom-popover-demo> -->

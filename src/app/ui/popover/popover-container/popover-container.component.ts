@@ -1,6 +1,8 @@
 import {
   Component,
-  ViewEncapsulation
+  ViewEncapsulation,
+  HostListener,
+  EventEmitter
 } from '@angular/core';
 
 @Component({
@@ -10,7 +12,17 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class PopoverContainerComponent {
-  
+  escToClose: boolean;
+  onClose = new EventEmitter(true);
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown($event: KeyboardEvent) {
+    if (this.escToClose && $event.key === 'Escape') {
+      event.preventDefault();
+      this.onClose.emit();
+    }
+  }
+
   constructor() {}
 
 }

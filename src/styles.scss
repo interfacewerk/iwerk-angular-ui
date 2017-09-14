@@ -64,3 +64,13 @@ iw-tooltip-container {
     box-shadow: 4px -4px 6px -1px #7b7b7b;
   }
 }
+
+.popover-simple-demo {
+  background: lightgrey;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 0px #7b7b7b;
+}
+
+.popover-no-arrow {
+  display: none;
+}

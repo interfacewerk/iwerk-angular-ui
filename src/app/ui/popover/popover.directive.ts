@@ -1,21 +1,12 @@
 import {
-  ApplicationRef,
-  Renderer,
   Directive,
   Input,
   Output,
   EventEmitter,
   TemplateRef,
-  ComponentFactoryResolver,
-  Injector,
-  ComponentRef,
   OnDestroy,
-  ElementRef,
-  EmbeddedViewRef
+  ElementRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { PopoverContainerComponent } from './popover-container/popover-container.component';
-import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 import { PopoverService, IPopover } from './popover.service';
 
 export type PopoverPosition = {
@@ -39,31 +30,22 @@ export class PopoverDirective implements OnDestroy {
   @Input() arrowClass: string;
   @Input() horizontalAlignment: PopoverHorizontalAlignment;
   @Input() scrollMaskClass: string;
-
+  @Input() escToClose: boolean;
+  @Input() clickOutsideToClose: boolean;
   @Input() set isOpen(v: boolean) {
     this._isOpen = v;
     this.__update();
   }
 
-  @Input() set escToClose(v: boolean) {
-    this._escToClose = v;
-  }
-
   @Output() shouldClose = new EventEmitter();
   @Output() popoverPosition = new EventEmitter<PopoverPosition>();
-  @Output() onToggle = new EventEmitter<boolean>();
   
   private __popoverInstance: IPopover;
 
   constructor(
     private popoverService: PopoverService,
     private target: PopoverTargetDirective,
-    private templateRef: TemplateRef<any>,
-    private elementRef: ElementRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private renderer: Renderer,
-    private appRef: ApplicationRef
+    private templateRef: TemplateRef<any>
   ) { }
 
   ngOnDestroy() {
@@ -86,9 +68,14 @@ export class PopoverDirective implements OnDestroy {
         horizontalAlignment: this.horizontalAlignment,
         popoverClass: this.popoverClass,
         scrollMaskClass: this.scrollMaskClass,
-        shouldClose: this.shouldClose,
-        onToggle: this.onToggle,
-        popoverPosition: this.popoverPosition
+        shouldClose: () => {
+          this.shouldClose.emit();
+        },
+        popoverPosition: p => {
+          this.popoverPosition.emit(p);
+        },
+        escToClose: this.escToClose,
+        clickOutsideToClose: this.clickOutsideToClose
       });
   }
 
@@ -99,13 +86,5 @@ export class PopoverDirective implements OnDestroy {
     }
   }
 
-  private __onKeyPress(event: KeyboardEvent) {
-    if (this._escToClose && event.key === 'Escape') {
-      event.preventDefault();
-      this.__close();
-    }
-  }
-
   _isOpen: boolean = false;
-  _escToClose: boolean = true;
 }

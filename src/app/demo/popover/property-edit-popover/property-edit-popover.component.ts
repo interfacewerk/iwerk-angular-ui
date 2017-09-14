@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Popover } from '../../../ui/popover/popover.module';
 
 @Component({
-  selector: 'app-first-name-popover',
-  templateUrl: './first-name-popover.component.html',
-  styleUrls: ['./first-name-popover.component.scss']
+  selector: 'app-property-edit-popover',
+  templateUrl: './property-edit-popover.component.html',
+  styleUrls: ['./property-edit-popover.component.scss']
 })
-export class FirstNamePopoverComponent implements OnInit {
+export class PropertyEditPopoverComponent implements OnInit {
   @Input() value: string;
   @Input() propertyName: string;
   @Output() onValueChange = new EventEmitter<string>();

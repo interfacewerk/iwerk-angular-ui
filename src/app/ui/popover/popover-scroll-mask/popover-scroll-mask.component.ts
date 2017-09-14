@@ -13,13 +13,16 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class PopoverScrollMaskComponent {
-
-  @Output() public onClick = new EventEmitter<void>();
+  clickOutsideToClose: boolean;
+  onClose = new EventEmitter(true);
 
   @HostListener('click', ['$event'])
-  public $onClick($event: any) {
-    // $event is not used here but AOT complains that the signature is not right ...
-    this.onClick.emit();
+  $onClick($event: MouseEvent) {
+    if (this.clickOutsideToClose) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      this.onClose.emit();
+    }
   }
 
 }
