@@ -53,7 +53,7 @@ describe('PopoverDirective basic features', () => {
 
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(1);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(1);
-    expect(document.body.querySelectorAll('iw-popover-container')[0].textContent.trim()).toBe('popover content should be projected');
+    expect((document.body.querySelectorAll('iw-popover-container')[0].textContent || '').trim()).toBe('popover content should be projected');
   }));
 
   it('closes if iw-popover is destroyed', fakeAsync(() => {
@@ -91,14 +91,13 @@ describe('PopoverDirective basic features', () => {
     <button [iwPopover]="myPopoverTemplate"
       [isOpen]="isPopoverOpen1"
       (shouldClose)="shouldClose()"
-      [escToClose]="escToClose"
       (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover</button>
 
     <ng-template #myPopoverTemplate></ng-template>
   `
 })
 class TestButtonComponentWithNoEsc {
-  escToClose: boolean = undefined;
+  escToClose: boolean;
   isPopoverOpen1 = true;
   shouldClose() {
     this.isPopoverOpen1 = false;
