@@ -9,6 +9,7 @@ import {
 } from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../../ui/ui.module';
+import { PropertyEditPopoverComponent } from './property-edit-popover/property-edit-popover.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,12 @@ import { UiModule } from '../../ui/ui.module';
     PopoverDemoComponent,
     CustomPopoverHeader,
     CustomPopoverContent,
-    CustomPopoverDemoComponent
+    CustomPopoverDemoComponent,
+    PropertyEditPopoverComponent
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  entryComponents: [
+    PropertyEditPopoverComponent
+  ]
 })
 export class PopoverModule { }

@@ -98,3 +98,13 @@ iw-dialog-container {
     }
   }
 }
+
+.popover-simple-demo {
+  background: lightgrey;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 0px #7b7b7b;
+}
+
+.popover-no-arrow {
+  display: none;
+}
