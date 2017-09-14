@@ -11,6 +11,8 @@ export class PopoverDemoComponent implements OnInit {
   editedPerson: Person;
   editedField: string;
   persons: Person[] = [];
+  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];
+  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];
 
   constructor(private popoverService: PopoverService) {
     for (let i = 0; i < 1000; i++) {
@@ -48,12 +50,9 @@ export class PopoverDemoComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];
-  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];
 }
 
-type Person = {
-  first: string
-  last: string
+interface Person {
+  first: string;
+  last: string;
 }

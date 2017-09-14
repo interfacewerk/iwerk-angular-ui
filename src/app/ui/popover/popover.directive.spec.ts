@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { By }              from '@angular/platform-browser';
-import { DebugElement }    from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 import { PopoverModule } from './popover.module';
 
@@ -51,6 +51,7 @@ describe('PopoverDirective basic features', () => {
 
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(1);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(1);
+    // tslint:disable-line:max-line-length
     expect((document.body.querySelectorAll('iw-popover-container')[0].textContent || '').trim()).toBe('popover content should be projected');
   }));
 
@@ -76,7 +77,7 @@ describe('PopoverDirective basic features', () => {
     document.body.querySelectorAll('iw-popover-scroll-mask').item(0).dispatchEvent(new Event('click'));
 
     fixture.detectChanges();
-    
+
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(0);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(0);
   }));
@@ -96,7 +97,7 @@ describe('PopoverDirective basic features', () => {
     </button>
   `
 })
-class TestButtonComponentWithNoEsc {
+class TestButtonComponentWithNoEscComponent {
   escToClose: boolean;
   isPopoverOpen1 = true;
   shouldClose() {
@@ -106,18 +107,18 @@ class TestButtonComponentWithNoEsc {
 
 describe('PopoverDirective basic features', () => {
 
-  let comp:    TestButtonComponentWithNoEsc;
-  let fixture: ComponentFixture<TestButtonComponentWithNoEsc>;
+  let comp:    TestButtonComponentWithNoEscComponent;
+  let fixture: ComponentFixture<TestButtonComponentWithNoEscComponent>;
   let button:      DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestButtonComponentWithNoEsc ],
+      declarations: [ TestButtonComponentWithNoEscComponent ],
       imports: [ PopoverModule ]
     });
-    fixture = TestBed.createComponent(TestButtonComponentWithNoEsc);
+    fixture = TestBed.createComponent(TestButtonComponentWithNoEscComponent);
 
-    comp = fixture.componentInstance; // TestButtonComponentWithNoEsc test instance
+    comp = fixture.componentInstance; // TestButtonComponentWithNoEscComponent test instance
 
     button = fixture.debugElement.query(By.css('button'));
   });
@@ -128,7 +129,7 @@ describe('PopoverDirective basic features', () => {
     fixture.detectChanges();
     tick(0);
     fixture.detectChanges();
-    
+
     window.dispatchEvent(new KeyboardEvent('keyup', {
       key: 'Escape'
     }));
@@ -145,7 +146,7 @@ describe('PopoverDirective basic features', () => {
     fixture.detectChanges();
     tick(0);
     fixture.detectChanges();
-    
+
     window.dispatchEvent(new KeyboardEvent('keyup', {
       key: 'Escape'
     }));

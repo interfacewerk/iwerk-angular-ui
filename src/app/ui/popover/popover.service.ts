@@ -16,7 +16,7 @@ import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll
 export class Popover {
   private __instance: IPopover;
 
-  constructor() {}
+  constructor() { }
 
   close() {
     this.__instance.close();
@@ -31,11 +31,11 @@ export interface IPopover {
   close: () => void;
 }
 
-export type PopoverPosition = {
-  vertical: 'top' | 'bottom'
+export interface PopoverPosition {
+  vertical: 'top' | 'bottom';
 };
 
-export type PopoverHorizontalAlignment = 'leftWithLeft' | undefined;
+export type PopoverHorizontalAlignment = 'leftWithLeft' |  undefined;
 
 export interface PopoverOptions {
   popoverClass?: string;
@@ -63,10 +63,10 @@ export class PopoverService {
 
   open<T>(componentType: Type<T>, target: HTMLElement, options?: PopoverOptions, init?: (component: T) => void): IPopover {
     const reflInj = ReflectiveInjector.resolveAndCreate([Popover], this.injector);
-    
+
     const factory = this.componentFactoryResolver
       .resolveComponentFactory(
-        componentType
+      componentType
       );
     const component = factory.create(reflInj);
     if (init) {
@@ -76,7 +76,7 @@ export class PopoverService {
 
     const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(Object.assign(options, {
       shouldClose: () => {
-        popover.close()
+        popover.close();
       }
     })));
     popover.setInstance(instance);
@@ -91,8 +91,8 @@ export class PopoverService {
       popoverClass: options.popoverClass === undefined ? '' : options.popoverClass,
       scrollMaskClass: options.scrollMaskClass === undefined ? '' : options.scrollMaskClass,
       horizontalAlignment: options.horizontalAlignment,
-      shouldClose: options.shouldClose || (() => {}),
-      popoverPosition: options.popoverPosition || (() => {})
+      shouldClose: options.shouldClose || (() => { }),
+      popoverPosition: options.popoverPosition || (() => { })
     };
   }
 
@@ -103,23 +103,23 @@ export class PopoverService {
     options: PopoverOptions
   ) {
     // create the mask component
-    let scrollMask = this.componentFactoryResolver.resolveComponentFactory(PopoverScrollMaskComponent)
-    .create(this.injector);
+    const scrollMask = this.componentFactoryResolver.resolveComponentFactory(PopoverScrollMaskComponent)
+      .create(this.injector);
     // we bind to the output (which is an observable)
     scrollMask.instance.clickOutsideToClose = options.clickOutsideToClose;
     scrollMask.instance.onClose.subscribe(() => {
       options.shouldClose();
     });
     // create the popover container
-    let container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
+    const container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
       .create(this.injector, componentRef ? [[componentRef.location.nativeElement]] : [embeddedViewRef.rootNodes]);
-      
+
     container.instance.escToClose = options.escToClose;
     container.instance.onClose.subscribe(() => {
       options.shouldClose();
     });
 
-    let arrowElement = document.createElement('div');
+    const arrowElement = document.createElement('div');
     arrowElement.classList.add('iw-popover-arrow-element');
 
     if (componentRef) {
@@ -165,9 +165,9 @@ export class PopoverService {
     arrowElement: HTMLElement
     target: HTMLElement
   }, options: PopoverOptions) {
-    let container: HTMLElement = elements.container;
-    let scrollMask: HTMLElement = elements.scrollMask;
-    let arrowElement: HTMLElement = elements.arrowElement;
+    const container: HTMLElement = elements.container;
+    const scrollMask: HTMLElement = elements.scrollMask;
+    const arrowElement: HTMLElement = elements.arrowElement;
 
     setTimeout(() => {
       container.style.visibility = 'hidden';
@@ -198,12 +198,12 @@ export class PopoverService {
     arrowElement: HTMLElement
     target: HTMLElement
   }, options: PopoverOptions) {
-    let target: HTMLElement = elements.target;
-    let container: HTMLElement = elements.container;
-    let arrowElement: HTMLElement = elements.arrowElement;
+    const target: HTMLElement = elements.target;
+    const container: HTMLElement = elements.container;
+    const arrowElement: HTMLElement = elements.arrowElement;
 
-    let { top, left, bottom, right } = target.getBoundingClientRect();
-    let centerYBody = document.body.getBoundingClientRect().height / 2;
+    const { top, left, bottom, right } = target.getBoundingClientRect();
+    const centerYBody = document.body.getBoundingClientRect().height / 2;
     if (top > centerYBody) {
       container.style.top = (top - container.offsetHeight) + 'px';
       arrowElement.style.top = top + 'px';
@@ -216,14 +216,13 @@ export class PopoverService {
       options.popoverPosition({ vertical: 'bottom' });
     }
 
-    let centerX = 0.5 * (left + right);
+    const centerX = 0.5 * (left + right);
     arrowElement.style.left = `${centerX}px`;
     if (options.horizontalAlignment === 'leftWithLeft') {
-      let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+      const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
       container.style.left = Math.max(0, Math.min(maxLeft, left)) + 'px';
-    }
-    else {
-      let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+    } else {
+      const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
       container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
     }
 
