@@ -1,3 +1,9 @@
 machine:
   node:
     version: 6.9.4
+test:
+  pre:
+  override:
+    - yarn lint
+    - yarn test
+  post:
