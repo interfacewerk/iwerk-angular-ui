@@ -76,7 +76,7 @@ describe('PopoverDirective basic features', () => {
     document.body.querySelectorAll('iw-popover-scroll-mask').item(0).dispatchEvent(new Event('click'));
 
     fixture.detectChanges();
-
+    
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(0);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(0);
   }));

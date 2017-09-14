@@ -172,7 +172,9 @@ export class PopoverService {
     setTimeout(() => {
       container.style.visibility = 'hidden';
       arrowElement.style.visibility = 'hidden';
-      container.classList.add(options.popoverClass);
+      if (options.popoverClass) {
+        container.classList.add(options.popoverClass);
+      }
       if (options.scrollMaskClass) {
         scrollMask.classList.add(options.scrollMaskClass);
       }

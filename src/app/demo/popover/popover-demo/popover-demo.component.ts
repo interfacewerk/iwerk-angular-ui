@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';
 import { PopoverService } from '../../../ui/popover/popover.module';
 

@@ -1,7 +1,6 @@
 import {
   Component,
   HostListener,
-  Output,
   EventEmitter,
   ViewEncapsulation
 } from '@angular/core';
@@ -14,10 +13,10 @@ import {
 })
 export class PopoverScrollMaskComponent {
   clickOutsideToClose: boolean;
-  onClose = new EventEmitter(true);
+  onClose = new EventEmitter(false);
 
   @HostListener('click', ['$event'])
-  $onClick($event: MouseEvent) {
+  onClick($event: MouseEvent) {
     if (this.clickOutsideToClose) {
       $event.preventDefault();
       $event.stopPropagation();
