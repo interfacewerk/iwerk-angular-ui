@@ -7,21 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TooltipDemoComponent implements OnInit {
   value = 0;
-  tooltipHtml1 = `<button [iwTooltip]="tooltipTemplate" (click)="value = value + 1">
+  tooltipHtml1 = `<button (click)="value = value + 1" iwTooltipTarget>
   Increment
+  <ng-template iwTooltip>
+    Click to go from {{value}} to {{value+1}}      
+  </ng-template>
 </button>
 
-<button [iwTooltip]="tooltipTemplate2" (click)="value = 0">
+<button (click)="value = 0" iwTooltipTarget>
   Reset
-</button>
-
-<ng-template #tooltipTemplate>
-  Click to go from {{value}} to {{value+1}}
-</ng-template>
-
-<ng-template #tooltipTemplate2>
-  Reset to 0
-</ng-template>`.trim();
+  <ng-template iwTooltip>
+    Reset to 0
+  </ng-template>
+</button>`.trim();
 
   constructor() {}
 

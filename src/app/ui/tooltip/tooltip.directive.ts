@@ -9,35 +9,49 @@ import {
   EmbeddedViewRef,
   Renderer,
   ComponentFactoryResolver,
-  ComponentRef,
-  HostListener
+  ComponentRef
 } from '@angular/core';
 import {
   TooltipContainerComponent
 } from './tooltip-container/tooltip-container.component';
 
 @Directive({
+  selector: '[iwTooltipTarget]'
+})
+export class TooltipTargetDirective {
+  constructor(public elementRef: ElementRef) {
+
+  }
+}
+
+@Directive({
   selector: '[iwTooltip]'
 })
 export class TooltipDirective implements OnInit {
-  @Input() set iwTooltip(v: TemplateRef<TooltipContext>) {
-    this._templateRef = v;
-  }
+
+  private __parent: HTMLElement;
 
   constructor(
+    private target: TooltipTargetDirective,
     private elementRef: ElementRef,
     private injector: Injector,
     private appRef: ApplicationRef,
     private renderer: Renderer,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private templateRef: TemplateRef<TooltipContext>
   ) { }
 
   ngOnInit() {}
 
-  @HostListener('mouseenter', ['$event'])
+  ngAfterViewInit() {
+    this.__parent = this.target.elementRef.nativeElement;
+    this.__parent.addEventListener('mouseenter', $event => this.onMouseEnter($event));
+    this.__parent.addEventListener('mouseleave', $event => this.onMouseLeave($event));
+  }
+
   onMouseEnter(event: MouseEvent) {
     if (!this._elements) {
-      let content = this._templateRef.createEmbeddedView(this.injector);
+      let content = this.templateRef.createEmbeddedView(this.injector);
       let container = this.componentFactoryResolver
         .resolveComponentFactory(TooltipContainerComponent)
         .create(this.injector, [ content.rootNodes ]);
@@ -63,7 +77,7 @@ export class TooltipDirective implements OnInit {
   _smartPosition() {
     if (!this._elements) return;
     
-    let target: HTMLElement = this.elementRef.nativeElement;
+    let target: HTMLElement = this.__parent;
     let container: HTMLElement = this._elements.container.location.nativeElement;
 
     let targetRect = target.getBoundingClientRect();
@@ -81,7 +95,6 @@ export class TooltipDirective implements OnInit {
     container.style.visibility = 'visible';
   }
 
-  @HostListener('mouseleave', ['$event'])
   onMouseLeave(event: MouseEvent) {
     if (!this._elements) return;
 
@@ -100,8 +113,6 @@ export class TooltipDirective implements OnInit {
     container: ComponentRef<TooltipContainerComponent>
   } | undefined;
   
-  _templateRef: TemplateRef<TooltipContext>;
-
 }
 
 type TooltipContext = {}

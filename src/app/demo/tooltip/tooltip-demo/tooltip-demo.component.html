@@ -1,20 +1,17 @@
 <h1> Tooltip </h1>
 
-<button [iwTooltip]="tooltipTemplate" (click)="value = value + 1">
+<button (click)="value = value + 1" iwTooltipTarget>
   Increment
+  <ng-template iwTooltip>
+    Click to go from {{value}} to {{value+1}}      
+  </ng-template>
 </button>
 
-<button [iwTooltip]="tooltipTemplate2" (click)="value = 0">
+<button (click)="value = 0" iwTooltipTarget>
   Reset
+  <ng-template iwTooltip>
+    Reset to 0
+  </ng-template>
 </button>
 
 <pre>{{tooltipHtml1}}</pre>
-
-<ng-template #tooltipTemplate>
-  Click to go from {{value}} to {{value+1}}
-</ng-template>
-
-<ng-template #tooltipTemplate2>
-  Reset to 0
-</ng-template>
-
