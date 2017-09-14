@@ -1,7 +1,6 @@
 import {
   Directive,
   OnInit,
-  Input,
   TemplateRef,
   ElementRef,
   Injector,
@@ -33,7 +32,6 @@ export class TooltipDirective implements OnInit {
 
   constructor(
     private target: TooltipTargetDirective,
-    private elementRef: ElementRef,
     private injector: Injector,
     private appRef: ApplicationRef,
     private renderer: Renderer,
