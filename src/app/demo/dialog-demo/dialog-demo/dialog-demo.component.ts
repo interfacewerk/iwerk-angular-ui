@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MyDialogComponent } from '../my-dialog/my-dialog.component';
 import { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dialog.module';
 
@@ -7,7 +7,7 @@ import { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dial
   templateUrl: './dialog-demo.component.html',
   styleUrls: ['./dialog-demo.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent implements OnInit, OnDestroy {
   @ViewChild('myDialog1') myDialog1: DialogDirective;
   someValue = 667;
 

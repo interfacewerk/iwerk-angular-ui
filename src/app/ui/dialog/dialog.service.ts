@@ -34,8 +34,10 @@ export class DialogService {
     const factory = this.componentFactoryResolver.resolveComponentFactory<{[key: string]: any}>(componentType);
     const component = factory.create(this.injector);
     const data = _data || {};
-    for (let key in data) {
-      component.instance[key] = data[key];
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        component.instance[key] = data[key];
+      }
     }
     return this.__open(undefined, component, _options);
   }
@@ -52,7 +54,11 @@ export class DialogService {
     }
   }
 
-  private __open<B, C>(embeddedViewRef: EmbeddedViewRef<C> | undefined, componentRef: ComponentRef<B> | undefined, _options?: DialogOptions) {
+  private __open<B, C>(
+    embeddedViewRef: EmbeddedViewRef<C> | undefined,
+    componentRef: ComponentRef<B> | undefined,
+    _options?: DialogOptions
+  ) {
     if (this.__previousDialog) {
       this.__previousDialog.detach();
     }
@@ -65,7 +71,7 @@ export class DialogService {
       container = this.containerFactory.create(this.injector, [[componentRef.location.nativeElement]]);
     }
     if (!container) {
-      throw new Error('To initialize the dialog, one must give an embedded view ref or a component ref')
+      throw new Error('To initialize the dialog, one must give an embedded view ref or a component ref');
     }
     container.instance.dialogOptions = options;
     this.__previousDialog = new DialogRef(container, embeddedViewRef, componentRef, this.appRef);
@@ -117,7 +123,7 @@ class DialogRef<A, B, C> {
     }
     if (this.__embeddedViewRef) {
       this.__appRef.detachView(this.__embeddedViewRef);
-    }      
+    }
     this.__container.destroy();
     if (this.__componentRef) {
       this.__componentRef.destroy();

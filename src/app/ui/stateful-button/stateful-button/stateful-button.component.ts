@@ -37,7 +37,7 @@ export class SBLabelFailureComponent { }
 })
 export class StatefulButtonComponent {
   @HostBinding('attr.class') get elementClass(): string {
-    let always = 'stateful-button ';
+    const always = 'stateful-button ';
     switch (this.buttonState) {
       case 'DOING':
         return always + 'stateful-button--doing';
@@ -59,7 +59,7 @@ export class StatefulButtonComponent {
 
 }
 
-export type ButtonState = 'IDLE' | 'DOING' | 'SUCCESS' | 'FAILURE'
+export type ButtonState = 'IDLE' | 'DOING' | 'SUCCESS' | 'FAILURE';
 
 export function delay(ms: number): Promise<void> {
   return new Promise<void>(resolve => setTimeout(() => resolve(), ms));

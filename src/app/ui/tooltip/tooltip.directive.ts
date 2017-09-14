@@ -8,7 +8,8 @@ import {
   EmbeddedViewRef,
   Renderer,
   ComponentFactoryResolver,
-  ComponentRef
+  ComponentRef,
+  AfterViewInit
 } from '@angular/core';
 import {
   TooltipContainerComponent
@@ -26,9 +27,13 @@ export class TooltipTargetDirective {
 @Directive({
   selector: '[iwTooltip]'
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit, AfterViewInit {
 
   private __parent: HTMLElement;
+  private _elements: {
+    content: EmbeddedViewRef<any>,
+    container: ComponentRef<TooltipContainerComponent>
+  } |  undefined;
 
   constructor(
     private target: TooltipTargetDirective,
@@ -36,10 +41,10 @@ export class TooltipDirective implements OnInit {
     private appRef: ApplicationRef,
     private renderer: Renderer,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private templateRef: TemplateRef<TooltipContext>
+    private templateRef: TemplateRef<any>
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.__parent = this.target.elementRef.nativeElement;
@@ -49,10 +54,10 @@ export class TooltipDirective implements OnInit {
 
   onMouseEnter(event: MouseEvent) {
     if (!this._elements) {
-      let content = this.templateRef.createEmbeddedView(this.injector);
-      let container = this.componentFactoryResolver
+      const content = this.templateRef.createEmbeddedView(this.injector);
+      const container = this.componentFactoryResolver
         .resolveComponentFactory(TooltipContainerComponent)
-        .create(this.injector, [ content.rootNodes ]);
+        .create(this.injector, [content.rootNodes]);
 
       this._elements = {
         content,
@@ -65,52 +70,49 @@ export class TooltipDirective implements OnInit {
       content.detectChanges();
       container.hostView.detectChanges();
 
-      this.renderer.invokeElementMethod(document.body, 'appendChild', [ container.location.nativeElement ]);
+      this.renderer.invokeElementMethod(document.body, 'appendChild', [container.location.nativeElement]);
 
       this._smartPosition();
     }
-    
+
   }
 
   _smartPosition() {
-    if (!this._elements) return;
-    
-    let target: HTMLElement = this.__parent;
-    let container: HTMLElement = this._elements.container.location.nativeElement;
+    if (!this._elements) {
+      return;
+    }
 
-    let targetRect = target.getBoundingClientRect();
-    // let containerRect = target.getBoundingClientRect();
-    let y = targetRect.top;
-    let centerYBody = document.body.getBoundingClientRect().height / 2;
+    const target: HTMLElement = this.__parent;
+    const container: HTMLElement = this._elements.container.location.nativeElement;
+
+    const targetRect = target.getBoundingClientRect();
+    // const containerRect = target.getBoundingClientRect();
+    const y = targetRect.top;
+    const centerYBody = document.body.getBoundingClientRect().height / 2;
     if (y > centerYBody) {
       container.style.top = (target.getBoundingClientRect().top - container.offsetHeight) + 'px';
     } else {
       container.style.top = target.getBoundingClientRect().bottom + 'px';
     }
 
-    let maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
+    const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
     container.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
     container.style.visibility = 'visible';
   }
 
   onMouseLeave(event: MouseEvent) {
-    if (!this._elements) return;
+    if (!this._elements) {
+      return;
+    }
 
     this.appRef.detachView(this._elements.content);
     this.appRef.detachView(this._elements.container.hostView);
     this._elements.container.hostView.detach();
-    
+
     this._elements.content.destroy();
     this._elements.container.destroy();
 
     this._elements = undefined;
   }
 
-  _elements: {
-    content: EmbeddedViewRef<TooltipContext>,
-    container: ComponentRef<TooltipContainerComponent>
-  } | undefined;
-  
 }
-
-type TooltipContext = {}

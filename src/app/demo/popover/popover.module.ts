@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
 import {
-  CustomPopoverHeader,
-  CustomPopoverContent,
+  CustomPopoverHeaderDirective,
+  CustomPopoverContentDirective,
   CustomPopoverDemoComponent
 } from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
@@ -22,8 +22,8 @@ import { PropertyEditPopoverComponent } from './property-edit-popover/property-e
   ],
   declarations: [
     PopoverDemoComponent,
-    CustomPopoverHeader,
-    CustomPopoverContent,
+    CustomPopoverHeaderDirective,
+    CustomPopoverContentDirective,
     CustomPopoverDemoComponent,
     PropertyEditPopoverComponent
   ],
