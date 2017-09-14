@@ -1,0 +1,11 @@
+<h1>Dialog Demo</h1>
+
+<h2>Opening via DialogService</h2>
+<button (click)="openDialog()">Open a dialog with a component</button>
+
+<h2>Declarative way</h2>
+<button (click)="openDialog1()">Open a dialog with a template</button>
+
+<ng-template iwDialogTest #myDialog1="iw-dialog">
+  <app-my-dialog title="Template Dialog"></app-my-dialog>
+</ng-template>
