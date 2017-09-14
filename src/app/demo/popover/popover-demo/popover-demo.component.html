@@ -1,5 +1,61 @@
 <h1> Popover </h1>
 
+<h2>Popover declarative logic</h2>
+
+<p iwPopoverTarget>The popover will appear on this element!
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen3"
+    popoverClass="popover-simple-demo"
+    arrowClass="popover-no-arrow"
+    (shouldClose)="isPopoverOpen3 = false">
+    Helloooo
+  </ng-template>
+</p>
+<hr/>
+<button (click)="isPopoverOpen3 = true">
+  Click to open!
+</button>
+
+<h2>Click outside to close: No, Esc to close: No</h2>
+
+<button (click)="isPopoverOpen2 = true" iwPopoverTarget>
+  Click to open!
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen2"
+    [clickOutsideToClose]="false"
+    [escToClose]="false"
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen2 = false">
+    <app-custom-popover-demo (close)="isPopoverOpen2 = false">
+      <app-custom-popover-header>Popover</app-custom-popover-header>
+      <app-custom-popover-content>    
+        Click, or Esc, I won't close!
+      </app-custom-popover-content>
+    </app-custom-popover-demo>
+  </ng-template>
+</button>
+
+<h2>Declarative way</h2>
+
+<button (click)="isPopoverOpen = true" iwPopoverTarget>
+  Click to open!
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen"
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen = false">
+    <app-custom-popover-demo (close)="isPopoverOpen = false">
+      <app-custom-popover-header>Popover</app-custom-popover-header>
+      <app-custom-popover-content>    
+        Hello World! I'm popping over!
+      </app-custom-popover-content>
+    </app-custom-popover-demo>
+  </ng-template>
+</button>
+
+<h2>Programmatic way</h2>
+
 <table>
   <thead>
     <tr>
@@ -8,45 +64,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let person of persons;">
-      <td class="cell-right-icon" 
-        [iwPopover]="editFirstTemplate"
-        [isOpen]="editedPerson === person && editedField === 'first'"
-        (shouldClose)="editedPerson = null"
-        [popoverClass]="'popover-demo'">
-
-        {{person.first}}
-
-        <button (click)="editedPerson = person; editedField = 'first'">&#x270E;</button>
-      </td>
-      <td class="cell-right-icon" 
-        [iwPopover]="editLastTemplate"
-        [isOpen]="editedPerson === person && editedField === 'last'"
-        (shouldClose)="editedPerson = null"
-        popoverClass="popover-demo">
-        
-        {{person.last}}
-
-        <button (click)="editedPerson = person; editedField = 'last'">&#x270E;</button>          
-      </td>
-    </tr>
+    <ng-template ngFor [ngForOf]="persons" let-person [ngForTrackBy]="trackBy">
+      <tr>
+        <td class="cell-right-icon">
+          {{person.first}}
+          <button (click)="openEditFirstNamePopover(person, $event)">&#x270E;</button>
+        </td>
+        <td class="cell-right-icon">
+          {{person.last}}
+          <button (click)="openEditLastNamePopover(person, $event)">&#x270E;</button>          
+        </td>
+      </tr>
+    </ng-template>
   </tbody>
 </table>
 
-<ng-template #editFirstTemplate>
-  <app-custom-popover-demo (close)="editedPerson = null">
-    <app-custom-popover-header>Edit</app-custom-popover-header>
-    <app-custom-popover-content>
-      First: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.first" type="text"/>    
-    </app-custom-popover-content>
-  </app-custom-popover-demo>
-</ng-template>
-
-<ng-template #editLastTemplate>
-  <app-custom-popover-demo (close)="editedPerson = null">
-    <app-custom-popover-header>Edit</app-custom-popover-header>
-    <app-custom-popover-content>    
-      Last: <input autofocus autocomplete="false" [(ngModel)]="editedPerson.last" type="text"/>
-    </app-custom-popover-content>
-  </app-custom-popover-demo>
-</ng-template>
