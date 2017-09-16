@@ -2,50 +2,35 @@
   Possible States
 </h2>
 
-<iw-stateful-button [buttonState]="'IDLE'">
-  <button disabled>
-    <sb-label-idle>Idle</sb-label-idle>
-    <sb-label-doing>Doing</sb-label-doing>
-    <sb-label-success>Success</sb-label-success>
-    <sb-label-failure>Failure</sb-label-failure>
-  </button>
-</iw-stateful-button>
-
-<iw-stateful-button [buttonState]="'DOING'">
-  <button disabled>
-    <sb-label-idle>Idle</sb-label-idle>
-    <sb-label-doing>Doing</sb-label-doing>
-    <sb-label-success>Success</sb-label-success>
-    <sb-label-failure>Failure</sb-label-failure>
-  </button>
-</iw-stateful-button>
-
-<iw-stateful-button [buttonState]="'SUCCESS'">
-  <button disabled>
-    <sb-label-idle>Idle</sb-label-idle>
-    <sb-label-doing>Doing</sb-label-doing>
-    <sb-label-success>Success</sb-label-success>
-    <sb-label-failure>Failure</sb-label-failure>
-  </button>
-</iw-stateful-button>
-
-<iw-stateful-button [buttonState]="'FAILURE'">
-  <button disabled>
-    <sb-label-idle>Idle</sb-label-idle>
-    <sb-label-doing>Doing</sb-label-doing>
-    <sb-label-success>Success</sb-label-success>
-    <sb-label-failure>Failure</sb-label-failure>
-  </button>
-</iw-stateful-button>
+<button iwStateButton="IDLE">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="DOING">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="SUCCESS">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="FAILURE">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
 
 <h2>Standard Behaviour</h2>
-<iw-stateful-button [buttonState]="myButtonState">
-  <button (click)="do()">
-    <sb-label-idle>Save</sb-label-idle>
-    <sb-label-doing>Saving</sb-label-doing>
-    <sb-label-success>Saved</sb-label-success>
-    <sb-label-failure>Save failed!</sb-label-failure>
-  </button>
-</iw-stateful-button>
-
-
+<button [iwStateButton]="myButtonState" (click)="do()">
+  <ng-template sbIdle>Save</ng-template>
+  <ng-template sbDoing>Saving</ng-template>
+  <ng-template sbSuccess>Saved</ng-template>
+  <ng-template sbFailure>Save failed!</ng-template>
+</button>

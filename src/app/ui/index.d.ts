@@ -8,4 +8,7 @@ declare namespace IWUi {
   interface PopoverPosition {
     vertical: 'top' | 'bottom';
   }
+
+  type ButtonState = 'IDLE' | 'DOING' | 'SUCCESS' | 'FAILURE';
+
 }

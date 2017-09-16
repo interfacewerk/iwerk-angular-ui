@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonState, delay } from '../../../ui/stateful-button/stateful-button.module';
 
 @Component({
   selector: 'app-stateful-button-demo',
@@ -8,7 +7,7 @@ import { ButtonState, delay } from '../../../ui/stateful-button/stateful-button.
 })
 export class StatefulButtonDemoComponent implements OnInit {
 
-  myButtonState: ButtonState = 'IDLE';
+  myButtonState: IWUi.ButtonState = 'IDLE';
 
   constructor() { }
 
@@ -18,8 +17,15 @@ export class StatefulButtonDemoComponent implements OnInit {
   do() {
     this.myButtonState = 'DOING';
 
-    delay(1000).then(() => this.myButtonState = 'SUCCESS')
+    delay(1000)
+      .then(() => this.myButtonState = 'SUCCESS')
       .then(() => delay(1000))
       .then(() => this.myButtonState = 'IDLE');
   }
+}
+
+function delay(ts: number) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), ts);
+  });
 }
