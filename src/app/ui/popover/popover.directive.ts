@@ -27,7 +27,7 @@ export class PopoverDirective implements OnDestroy {
   @Input() escToClose: boolean;
   @Input() clickOutsideToClose: boolean;
   @Input() set isOpen(v: boolean) {
-    this._isOpen = v;
+    this.__isOpen = v;
     this.__update();
   }
 
@@ -35,7 +35,7 @@ export class PopoverDirective implements OnDestroy {
   @Output() popoverPosition = new EventEmitter<IWUi.PopoverPosition>();
 
   private __popoverInstance: IWUi.IPopover;
-  private _isOpen = false;
+  private __isOpen = false;
 
   constructor(
     private popoverService: PopoverService,
@@ -48,9 +48,9 @@ export class PopoverDirective implements OnDestroy {
   }
 
   private __update() {
-    if (this.__popoverInstance && !this._isOpen) {
+    if (this.__popoverInstance && !this.__isOpen) {
       this.__close();
-    } else if (this._isOpen && !this.__popoverInstance) {
+    } else if (this.__isOpen && !this.__popoverInstance) {
       this.__open();
     }
   }
