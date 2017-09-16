@@ -26,6 +26,11 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
   @Input() dialogOptions: DialogOptions;
   @Output() onClose = new EventEmitter();
 
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer,
+  ) { }
+
   @HostListener('window:keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
     if ($event.keyCode === 27 && this.dialogOptions.closeOnEsc) {
@@ -43,10 +48,6 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer,
-  ) { }
 
   ngOnInit() {
   }

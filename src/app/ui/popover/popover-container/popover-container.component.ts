@@ -15,6 +15,8 @@ export class PopoverContainerComponent {
   escToClose: boolean;
   onClose = new EventEmitter(true);
 
+  constructor() {}
+
   @HostListener('window:keydown', ['$event'])
   onKeyDown($event: KeyboardEvent) {
     if (this.escToClose && $event.keyCode === 27) {
@@ -22,7 +24,5 @@ export class PopoverContainerComponent {
       this.onClose.emit();
     }
   }
-
-  constructor() {}
 
 }
