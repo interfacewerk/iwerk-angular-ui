@@ -1,6 +1,6 @@
 declare namespace IWUi {
-  type PopoverHorizontalAlignment = 'leftWithLeft' |  undefined;  
-  
+  type PopoverHorizontalAlignment = 'leftWithLeft' | undefined;
+
   interface IPopover {
     close: () => void;
   }
