@@ -7,14 +7,7 @@ import {
   OnDestroy,
   ElementRef
 } from '@angular/core';
-import {
-  PopoverService,
-  IPopover,
-  PopoverPosition,
-  PopoverHorizontalAlignment
-} from './popover.service';
-
-export type PopoverHorizontalAlignment = 'leftWithLeft' | undefined;
+import { PopoverService } from './popover.service';
 
 @Directive({
   selector: '[iwPopoverTarget]'
@@ -29,7 +22,7 @@ export class PopoverTargetDirective {
 export class PopoverDirective implements OnDestroy {
   @Input() popoverClass: string;
   @Input() arrowClass: string;
-  @Input() horizontalAlignment: PopoverHorizontalAlignment;
+  @Input() horizontalAlignment: IWUi.PopoverHorizontalAlignment;
   @Input() scrollMaskClass: string;
   @Input() escToClose: boolean;
   @Input() clickOutsideToClose: boolean;
@@ -39,9 +32,9 @@ export class PopoverDirective implements OnDestroy {
   }
 
   @Output() shouldClose = new EventEmitter();
-  @Output() popoverPosition = new EventEmitter<PopoverPosition>();
+  @Output() popoverPosition = new EventEmitter<IWUi.PopoverPosition>();
 
-  private __popoverInstance: IPopover;
+  private __popoverInstance: IWUi.IPopover;
   private _isOpen = false;
 
   constructor(

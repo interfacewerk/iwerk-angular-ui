@@ -14,7 +14,7 @@ import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll
 
 @Injectable()
 export class Popover {
-  private __instance: IPopover;
+  private __instance: IWUi.IPopover;
 
   constructor() { }
 
@@ -22,30 +22,20 @@ export class Popover {
     this.__instance.close();
   }
 
-  setInstance(instance: IPopover) {
+  setInstance(instance: IWUi.IPopover) {
     this.__instance = instance;
   }
 }
 
-export interface IPopover {
-  close: () => void;
-}
-
-export interface PopoverPosition {
-  vertical: 'top' | 'bottom';
-};
-
-export type PopoverHorizontalAlignment = 'leftWithLeft' |  undefined;
-
 export interface PopoverOptions {
   popoverClass?: string;
   arrowClass?: string;
-  horizontalAlignment?: PopoverHorizontalAlignment;
+  horizontalAlignment?: IWUi.PopoverHorizontalAlignment;
   scrollMaskClass?: string;
   escToClose?: boolean;
   clickOutsideToClose?: boolean;
   shouldClose?: () => void;
-  popoverPosition?: (p: PopoverPosition) => void;
+  popoverPosition?: (p: IWUi.PopoverPosition) => void;
 }
 
 @Injectable()
@@ -57,11 +47,11 @@ export class PopoverService {
     private appRef: ApplicationRef
   ) { }
 
-  openTemplateRef<T>(templateRef: TemplateRef<T>, target: HTMLElement, options: PopoverOptions): IPopover {
+  openTemplateRef<T>(templateRef: TemplateRef<T>, target: HTMLElement, options: PopoverOptions): IWUi.IPopover {
     return this.__open(null, templateRef.createEmbeddedView(null), target, this.__combineOptionsAndDefaults(options));
   }
 
-  open<T>(componentType: Type<T>, target: HTMLElement, options?: PopoverOptions, init?: (component: T) => void): IPopover {
+  open<T>(componentType: Type<T>, target: HTMLElement, options?: PopoverOptions, init?: (component: T) => void): IWUi.IPopover {
     const reflInj = ReflectiveInjector.resolveAndCreate([Popover], this.injector);
 
     const factory = this.componentFactoryResolver
