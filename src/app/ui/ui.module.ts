@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverModule } from './popover/popover.module';
 import { TooltipModule } from './tooltip/tooltip.module';
-import { StatefulButtonModule } from './stateful-button/stateful-button.module';
+import { StateButtonModule } from './state-button/state-button.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PopoverModule,
     TooltipModule,
-    StatefulButtonModule
+    StateButtonModule
   ],
-  exports: [ PopoverModule, TooltipModule, StatefulButtonModule ]
+  exports: [ PopoverModule, TooltipModule, StateButtonModule ]
 })
 export class UiModule { }
