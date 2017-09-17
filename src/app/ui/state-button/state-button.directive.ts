@@ -14,13 +14,15 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
+export type ButtonState = 'IDLE' | 'DOING' | 'SUCCESS' | 'FAILURE';
+
 @Directive({
   selector: '[iwStateButton]'
 })
 export class StateButtonDirective {
-  state = new BehaviorSubject<IWUi.ButtonState>(undefined);
+  state = new BehaviorSubject<ButtonState>(undefined);
 
-  @Input() set iwStateButton(v: IWUi.ButtonState) {
+  @Input() set iwStateButton(v: ButtonState) {
     this.state.next(v);
   }
 
@@ -54,7 +56,7 @@ class StateDirectiveController implements OnInit, OnDestroy {
   private __subscription: Subscription;
 
   constructor(
-    protected state: IWUi.ButtonState,
+    protected state: ButtonState,
     protected templateRef: TemplateRef<any>,
     protected stateButtonDirective: StateButtonDirective,
     protected viewContainerRef: ViewContainerRef

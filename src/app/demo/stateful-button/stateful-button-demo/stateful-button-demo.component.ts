@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonState } from '../../../ui/state-button/state-button.module';
 
 @Component({
   selector: 'app-stateful-button-demo',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatefulButtonDemoComponent implements OnInit {
 
-  myButtonState: IWUi.ButtonState = 'IDLE';
+  myButtonState: ButtonState = 'IDLE';
 
   constructor() { }
 

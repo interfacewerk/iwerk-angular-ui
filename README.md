@@ -122,9 +122,18 @@ this.popoverService.open(MyComponent, $event.target, {
 
 ## State Button
 
-There are four states `{'IDLE', 'DOING', 'SUCCESS', 'FAILURE'}`. You can refer to the type IWUi.ButtonState to take advantage of type checking.
+There are four states `{'IDLE', 'DOING', 'SUCCESS', 'FAILURE'}`. You can refer to the type ButtonState to take advantage of type checking.
 
 ```
+// in .ts
+import { ButtonState } from 'iwerk-angular-ui';
+
+class MyComponent {
+  ...
+  myButtonState: ButtonState = 'IDLE'
+}
+
+// in .html
 <button [iwStateButton]="myButtonState" (click)="do()">
   <ng-template sbIdle>Save</ng-template>
   <ng-template sbDoing>Saving</ng-template>
