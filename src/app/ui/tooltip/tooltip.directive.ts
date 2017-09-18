@@ -70,8 +70,6 @@ export class TooltipDirective implements OnInit, AfterViewInit {
       content.detectChanges();
       container.hostView.detectChanges();
 
-      this.renderer.invokeElementMethod(document.body, 'appendChild', [container.location.nativeElement]);
-
       this._smartPosition();
     }
 
@@ -84,19 +82,21 @@ export class TooltipDirective implements OnInit, AfterViewInit {
 
     const target: HTMLElement = this.__parent;
     const container: HTMLElement = this._elements.container.location.nativeElement;
-
     const targetRect = target.getBoundingClientRect();
-    // const containerRect = target.getBoundingClientRect();
+
+    // do that after, otherwise it can change the bounding client rect of the target
+    this.renderer.invokeElementMethod(document.body, 'appendChild', [container]);
+
     const y = targetRect.top;
     const centerYBody = document.body.getBoundingClientRect().height / 2;
     if (y > centerYBody) {
-      container.style.top = (target.getBoundingClientRect().top - container.offsetHeight) + 'px';
+      container.style.top = (targetRect.top - container.offsetHeight) + 'px';
     } else {
-      container.style.top = target.getBoundingClientRect().bottom + 'px';
+      container.style.top = targetRect.bottom + 'px';
     }
 
     const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-    container.style.left = Math.min(maxLeft, target.getBoundingClientRect().left) + 'px';
+    container.style.left = Math.min(maxLeft, targetRect.left) + 'px';
     container.style.visibility = 'visible';
   }
 
