@@ -100,25 +100,27 @@ export class PopoverService {
     target: HTMLElement,
     options: PopoverOptions
   ) {
+    const arrowElement = document.createElement('div');
+    arrowElement.classList.add('iw-popover-arrow-element');
+
+    // create the popover container
+    const container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
+      .create(this.injector, componentRef ? [[componentRef.location.nativeElement]] : [embeddedViewRef.rootNodes]);
     // create the mask component
     const scrollMask = this.componentFactoryResolver.resolveComponentFactory(PopoverScrollMaskComponent)
-      .create(this.injector);
+      .create(this.injector, [[container.location.nativeElement, arrowElement]]);
+
     // we bind to the output (which is an observable)
     scrollMask.instance.clickOutsideToClose = options.clickOutsideToClose;
     scrollMask.instance.onClose.subscribe(() => {
       options.shouldClose();
     });
-    // create the popover container
-    const container = this.componentFactoryResolver.resolveComponentFactory(PopoverContainerComponent)
-      .create(this.injector, componentRef ? [[componentRef.location.nativeElement]] : [embeddedViewRef.rootNodes]);
 
     container.instance.escToClose = options.escToClose;
     container.instance.onClose.subscribe(() => {
       options.shouldClose();
     });
 
-    const arrowElement = document.createElement('div');
-    arrowElement.classList.add('iw-popover-arrow-element');
 
     if (componentRef) {
       this.appRef.attachView(componentRef.hostView);
@@ -148,7 +150,6 @@ export class PopoverService {
         }
         this.appRef.detachView(container.hostView);
         this.appRef.detachView(scrollMask.hostView);
-        document.body.removeChild(arrowElement);
         container.destroy();
         scrollMask.destroy();
       }
@@ -180,8 +181,6 @@ export class PopoverService {
         arrowElement.classList.add(options.arrowClass);
       }
       document.body.appendChild(scrollMask);
-      document.body.appendChild(container);
-      document.body.appendChild(arrowElement);
 
       this.__smartPosition(elements, options);
 
