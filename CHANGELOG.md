@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.0.4...v1.1.0) (2017-09-19)
+
+
+### Features
+
+* **dialog:** add close method to dialog directive controller ([c356506](https://github.com/interfacewerk/iwerk-angular-ui/commit/c356506))
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.0.3...v1.0.4) (2017-09-18)
 
