@@ -14,6 +14,11 @@ import {
 export interface DialogOptions {
   closeOnEsc?: boolean;
   closeOnClickOutside?: boolean;
+  onClose?: (dialog: IDialog) => void;
+}
+
+export interface IDialog {
+  close(): void;
 }
 
 @Component({

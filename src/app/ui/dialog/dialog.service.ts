@@ -9,7 +9,12 @@ import {
   TemplateRef,
   EmbeddedViewRef
 } from '@angular/core';
-import { DialogContainerComponent, DialogOptions } from './dialog-container/dialog-container.component';
+import {
+  DialogContainerComponent,
+  DialogOptions,
+  IDialog
+} from './dialog-container/dialog-container.component';
+export { IDialog };
 
 @Injectable()
 export class DialogService {
@@ -17,7 +22,8 @@ export class DialogService {
 
   private __defaultOptions: DialogOptions = {
     closeOnClickOutside: true,
-    closeOnEsc: true
+    closeOnEsc: true,
+    onClose: () => {}
   };
 
   private __previousDialog: DialogRef<DialogContainerComponent, any, any> | undefined;
@@ -42,7 +48,7 @@ export class DialogService {
     return this.__open(undefined, component, _options);
   }
 
-  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, _options?: DialogOptions): IDialog {
+  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, _options: DialogOptions): IDialog {
     const view = templateRef.createEmbeddedView(context);
     return this.__open(view, undefined, _options);
   }
@@ -58,7 +64,7 @@ export class DialogService {
     embeddedViewRef: EmbeddedViewRef<C> | undefined,
     componentRef: ComponentRef<B> | undefined,
     _options?: DialogOptions
-  ) {
+  ): IDialog {
     if (this.__previousDialog) {
       this.__previousDialog.detach();
     }
@@ -75,22 +81,22 @@ export class DialogService {
     }
     container.instance.dialogOptions = options;
     this.__previousDialog = new DialogRef(container, embeddedViewRef, componentRef, this.appRef);
-    container.instance.onClose.subscribe(() => {
-      if (this.__previousDialog) {
-        this.__previousDialog.detach();
-        this.__previousDialog = undefined;
-      }
-    });
-    this.__previousDialog.attach();
-
-    return {
+    const ref = {
       close: () => {
         if (this.__previousDialog) {
+          if (options.onClose) {
+            options.onClose(ref);
+          }
           this.__previousDialog.detach();
           this.__previousDialog = undefined;
         }
       }
     };
+    container.instance.onClose.subscribe(() => {
+      ref.close();
+    });
+    this.__previousDialog.attach();
+    return ref;
   }
 }
 
@@ -134,6 +140,3 @@ class DialogRef<A, B, C> {
   }
 }
 
-export interface IDialog {
-  close(): void;
-}
