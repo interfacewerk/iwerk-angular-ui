@@ -9,7 +9,8 @@ import {
   Renderer,
   ComponentFactoryResolver,
   ComponentRef,
-  AfterViewInit
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import {
   TooltipContainerComponent
@@ -27,7 +28,7 @@ export class TooltipTargetDirective {
 @Directive({
   selector: '[iwTooltip]'
 })
-export class TooltipDirective implements OnInit, AfterViewInit {
+export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, EventListenerObject {
 
   private __parent: HTMLElement;
   private _elements: {
@@ -48,8 +49,23 @@ export class TooltipDirective implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.__parent = this.target.elementRef.nativeElement;
-    this.__parent.addEventListener('mouseenter', $event => this.onMouseEnter($event));
-    this.__parent.addEventListener('mouseleave', $event => this.onMouseLeave($event));
+    this.__parent.addEventListener('mouseenter', this);
+    this.__parent.addEventListener('mouseleave', this);
+  }
+
+  ngOnDestroy() {
+    this.__remove();
+    this.__parent.removeEventListener('mouseenter', this);
+    this.__parent.removeEventListener('mouseleave', this);
+  }
+
+  handleEvent(evt: Event): void {
+    if (evt.type === 'mouseenter') {
+      return this.onMouseEnter(<MouseEvent>evt);
+    }
+    if (evt.type === 'mouseleave') {
+      return this.onMouseLeave(<MouseEvent>evt);
+    }
   }
 
   onMouseEnter(event: MouseEvent) {
@@ -101,6 +117,10 @@ export class TooltipDirective implements OnInit, AfterViewInit {
   }
 
   onMouseLeave(event: MouseEvent) {
+    this.__remove();
+  }
+
+  private __remove() {
     if (!this._elements) {
       return;
     }

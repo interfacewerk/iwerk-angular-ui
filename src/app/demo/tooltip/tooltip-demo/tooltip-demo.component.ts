@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class TooltipDemoComponent implements OnInit {
   value = 0;
 
-  constructor() {}
-
   ngOnInit() {
   }
 

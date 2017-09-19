@@ -7,9 +7,18 @@
   </ng-template>
 </button>
 
-<button (click)="value = 0" iwTooltipTarget>
+<button *ngIf="value > 0" (click)="value = 0" iwTooltipTarget>
   Reset
   <ng-template iwTooltip>
     Reset to 0
   </ng-template>
 </button>
+
+
+<button *ngIf="testVa" iwTooltipTarget>
+  ResetTruc
+  <ng-template iwTooltip>
+    Reset to 0
+  </ng-template>
+</button>
+
