@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.1.0...v1.1.1) (2017-09-19)
+
+
+### Bug Fixes
+
+* **dialog:** fix blocking condition to re-open dialog from directive ([e193dc9](https://github.com/interfacewerk/iwerk-angular-ui/commit/e193dc9))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.0.4...v1.1.0) (2017-09-19)
 
