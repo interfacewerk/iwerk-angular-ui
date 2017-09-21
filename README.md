@@ -53,7 +53,7 @@ The dialog can be used in two ways.
 Import the DialogService, inject it and embed any of your component inside.
 
 ```
-import { DialogService, IDialog } from '../../../ui/dialog/dialog.module';
+import { DialogService, IDialog } from 'iwerk-angular-ui';
 
 @Component({
   selector: 'app-dialog',
