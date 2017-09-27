@@ -1,5 +1,10 @@
 iw-tooltip-container {
-    position: absolute;
-    display: block;
-    z-index: 3;
+  z-index: 6;
+  position: absolute;
+  display: block;
+  background: black;
+  color: white;
+  padding: 5px;
+  font-size: 0.6rem;
+  border-radius: 3px;
 }
