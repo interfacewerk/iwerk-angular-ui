@@ -26,7 +26,10 @@ export class DialogService {
     onClose: () => {}
   };
 
-  private __previousDialog: DialogRef<DialogContainerComponent, any, any> | undefined;
+  private __previousDialog: {
+    instance: DialogRef<DialogContainerComponent, any, any> | undefined
+    ref: IDialog
+  };
 
   constructor(
     private appRef: ApplicationRef,
@@ -55,7 +58,7 @@ export class DialogService {
 
   close() {
     if (this.__previousDialog) {
-      this.__previousDialog.detach();
+      this.__previousDialog.ref.close();
       this.__previousDialog = undefined;
     }
   }
@@ -66,7 +69,8 @@ export class DialogService {
     _options?: DialogOptions
   ): IDialog {
     if (this.__previousDialog) {
-      this.__previousDialog.detach();
+      this.__previousDialog.ref.close();
+      this.__previousDialog = undefined;
     }
     const options = Object.assign({}, this.__defaultOptions, _options);
     let container: ComponentRef<DialogContainerComponent> | undefined = undefined;
@@ -80,14 +84,14 @@ export class DialogService {
       throw new Error('To initialize the dialog, one must give an embedded view ref or a component ref');
     }
     container.instance.dialogOptions = options;
-    this.__previousDialog = new DialogRef(container, embeddedViewRef, componentRef, this.appRef);
+    const instance = new DialogRef(container, embeddedViewRef, componentRef, this.appRef);
     const ref = {
       close: () => {
         if (this.__previousDialog) {
           if (options.onClose) {
             options.onClose(ref);
           }
-          this.__previousDialog.detach();
+          this.__previousDialog.instance.detach();
           this.__previousDialog = undefined;
         }
       }
@@ -95,7 +99,11 @@ export class DialogService {
     container.instance.onClose.subscribe(() => {
       ref.close();
     });
-    this.__previousDialog.attach();
+    this.__previousDialog = {
+      instance,
+      ref
+    };
+    this.__previousDialog.instance.attach();
     return ref;
   }
 }
