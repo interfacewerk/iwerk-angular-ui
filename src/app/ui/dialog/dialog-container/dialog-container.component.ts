@@ -8,7 +8,8 @@ import {
   EventEmitter,
   Renderer,
   AfterViewInit,
-  Input
+  Input,
+  ViewEncapsulation
 } from '@angular/core';
 
 export interface DialogOptions {
@@ -25,7 +26,8 @@ export interface IDialog {
   selector: 'iw-dialog-container',
   templateUrl: './dialog-container.component.html',
   styleUrls: ['./dialog-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class DialogContainerComponent implements OnInit, AfterViewInit {
   @Input() dialogOptions: DialogOptions;
