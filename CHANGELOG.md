@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.1.3...v1.2.0) (2017-09-28)
+
+
+### Bug Fixes
+
+* **dialog:** fix dialog close logic that prevents dialog from re-opening ([d9a3969](https://github.com/interfacewerk/iwerk-angular-ui/commit/d9a3969))
+
+
+### Features
+
+* **tooltip, popover, dialog:** implement default styles ([#17](https://github.com/interfacewerk/iwerk-angular-ui/issues/17)) ([fdcd2c2](https://github.com/interfacewerk/iwerk-angular-ui/commit/fdcd2c2))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.1.2...v1.1.3) (2017-09-19)
 
