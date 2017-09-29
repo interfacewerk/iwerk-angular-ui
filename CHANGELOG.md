@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.3.0...v1.4.0) (2017-09-29)
+
+
+### Features
+
+* **popover:** get rid of iwPopoverTarget ([cc8e072](https://github.com/interfacewerk/iwerk-angular-ui/commit/cc8e072))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.2.2...v1.3.0) (2017-09-29)
 
