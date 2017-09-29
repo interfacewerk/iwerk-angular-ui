@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.4.0...v1.4.1) (2017-09-29)
+
+
+### Bug Fixes
+
+* **state-button:** fix state-button in AOT bug because of inheritance ([44a802d](https://github.com/interfacewerk/iwerk-angular-ui/commit/44a802d))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.3.0...v1.4.0) (2017-09-29)
 
