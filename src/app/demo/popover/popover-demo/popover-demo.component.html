@@ -2,7 +2,7 @@
 
 <h2>Popover declarative logic</h2>
 
-<p iwPopoverTarget>The popover will appear on this element!
+<p>The popover will appear on this element!
   <ng-template iwPopover 
     [isOpen]="isPopoverOpen3"
     arrowClass="popover-no-arrow"
@@ -17,7 +17,7 @@
 
 <h2>Click outside to close: No, Esc to close: No</h2>
 
-<button (click)="isPopoverOpen2 = true" iwPopoverTarget>
+<button (click)="isPopoverOpen2 = true">
   Click to open!
 
   <ng-template iwPopover 
@@ -37,7 +37,7 @@
 
 <h2>Declarative way</h2>
 
-<button (click)="isPopoverOpen = true" iwPopoverTarget>
+<button (click)="isPopoverOpen = true">
   Click to open!
 
   <ng-template iwPopover 

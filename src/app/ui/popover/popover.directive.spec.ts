@@ -8,7 +8,7 @@ import { PopoverModule } from './popover.module';
 @Component({
   selector: 'popoverTestButton',
   template: `
-    <button (click)="isPopoverOpen1 = !isPopoverOpen1" iwPopoverTarget>I open/close a popover
+    <button (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover
       <ng-template iwPopover
         [isOpen]="isPopoverOpen1"
         (shouldClose)="shouldClose()">
@@ -87,7 +87,7 @@ describe('PopoverDirective basic features', () => {
 @Component({
   selector: 'popoverTestButton',
   template: `
-    <button (click)="isPopoverOpen1 = !isPopoverOpen1" iwPopoverTarget>
+    <button (click)="isPopoverOpen1 = !isPopoverOpen1">
       I open/close a popover
       <ng-template iwPopover 
         [isOpen]="isPopoverOpen1"
