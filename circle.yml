@@ -15,5 +15,5 @@ test:
   pre:
   override:
     - yarn lint
-    - yarn test
+    - yarn test-once
   post:
