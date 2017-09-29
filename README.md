@@ -111,7 +111,7 @@ this.popoverService.open(MyComponent, $event.target, {
 ## Tooltip
 
 ```
-<button iwTooltipTarget>
+<button>
   ...
   <ng-template iwTooltip>
     Hey, click me!

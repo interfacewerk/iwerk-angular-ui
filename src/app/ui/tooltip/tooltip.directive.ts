@@ -2,7 +2,6 @@ import {
   Directive,
   OnInit,
   TemplateRef,
-  ElementRef,
   Injector,
   ApplicationRef,
   EmbeddedViewRef,
@@ -10,20 +9,12 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  ViewContainerRef
 } from '@angular/core';
 import {
   TooltipContainerComponent
 } from './tooltip-container/tooltip-container.component';
-
-@Directive({
-  selector: '[iwTooltipTarget]'
-})
-export class TooltipTargetDirective {
-  constructor(public elementRef: ElementRef) {
-
-  }
-}
 
 @Directive({
   selector: '[iwTooltip]'
@@ -37,18 +28,18 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
   } |  undefined;
 
   constructor(
-    private target: TooltipTargetDirective,
     private injector: Injector,
     private appRef: ApplicationRef,
     private renderer: Renderer,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private templateRef: TemplateRef<any>
+    private templateRef: TemplateRef<any>,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-    this.__parent = this.target.elementRef.nativeElement;
+    this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;
     this.__parent.addEventListener('mouseenter', this);
     this.__parent.addEventListener('mouseleave', this);
   }

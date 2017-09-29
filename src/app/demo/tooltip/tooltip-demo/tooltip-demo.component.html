@@ -1,13 +1,13 @@
 <h1> Tooltip </h1>
 
-<button (click)="value = value + 1" iwTooltipTarget>
+<button (click)="value = value + 1">
   Increment
   <ng-template iwTooltip>
     Click to go from {{value}} to {{value+1}}      
   </ng-template>
 </button>
 
-<button *ngIf="value > 0" (click)="value = 0" iwTooltipTarget>
+<button *ngIf="value > 0" (click)="value = 0">
   Reset
   <ng-template iwTooltip>
     Reset to 0
@@ -15,10 +15,16 @@
 </button>
 
 
-<button *ngIf="testVa" iwTooltipTarget>
+<button *ngIf="testVa">
   ResetTruc
   <ng-template iwTooltip>
     Reset to 0
   </ng-template>
 </button>
 
+<button *ngFor="let t of [1,2,3]" (click)="value = t">
+  Set to {{t}}
+  <ng-template iwTooltip>
+    Set to {{t}}
+  </ng-template>
+</button>
