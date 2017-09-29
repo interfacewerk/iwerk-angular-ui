@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/interfacewerk/iwerk-angular-ui.svg?branch=master)](https://travis-ci.org/interfacewerk/iwerk-angular-ui)
+[![Coverage Status](https://coveralls.io/repos/github/interfacewerk/iwerk-angular-ui/badge.svg?branch=ci%2Fcoverage)](https://coveralls.io/github/interfacewerk/iwerk-angular-ui?branch=ci%2Fcoverage)
 
 # Iwerk Angular Ui
 
