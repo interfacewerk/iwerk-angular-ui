@@ -29,7 +29,12 @@
 
 <h2>Standard Behaviour</h2>
 <button [iwStateButton]="myButtonState" (click)="do()">
-  <ng-template sbIdle>Save</ng-template>
+  <ng-template [ngIf]="toggle">
+    <ng-template sbIdle>Save</ng-template>
+  </ng-template>
+  <ng-template [ngIf]="!toggle">
+    <ng-template sbIdle>Save2</ng-template>
+  </ng-template>    
   <ng-template sbDoing>Saving</ng-template>
   <ng-template sbSuccess>Saved</ng-template>
   <ng-template sbFailure>Save failed!</ng-template>

@@ -9,10 +9,12 @@ import { ButtonState } from '../../../ui/state-button/state-button.module';
 export class StatefulButtonDemoComponent implements OnInit {
 
   myButtonState: ButtonState = 'IDLE';
+  toggle = false;
 
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => this.toggle = !this.toggle, 500);
   }
 
   do() {

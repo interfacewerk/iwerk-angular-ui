@@ -14,14 +14,6 @@
   </ng-template>
 </button>
 
-
-<button *ngIf="testVa">
-  ResetTruc
-  <ng-template iwTooltip>
-    Reset to 0
-  </ng-template>
-</button>
-
 <button *ngFor="let t of [1,2,3]" (click)="value = t">
   Set to {{t}}
   <ng-template iwTooltip>

@@ -13,6 +13,9 @@ export class PopoverDemoComponent implements OnInit {
   persons: Person[] = [];
   firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];
   lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];
+  isPopoverOpen3 = false;
+  isPopoverOpen2 = false;
+  isPopoverOpen = false;
 
   constructor(private popoverService: PopoverService) {
     for (let i = 0; i < 1000; i++) {
