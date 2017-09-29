@@ -5,7 +5,7 @@ import {
   EventEmitter,
   TemplateRef,
   OnDestroy,
-  ElementRef
+  ViewContainerRef
 } from '@angular/core';
 import {
   PopoverService,
@@ -13,12 +13,6 @@ import {
   IPopover
 } from './popover.service';
 
-@Directive({
-  selector: '[iwPopoverTarget]'
-})
-export class PopoverTargetDirective {
-  constructor(public elementRef: ElementRef) {}
-}
 
 @Directive({
   selector: '[iwPopover]'
@@ -43,8 +37,8 @@ export class PopoverDirective implements OnDestroy {
 
   constructor(
     private popoverService: PopoverService,
-    private target: PopoverTargetDirective,
-    private templateRef: TemplateRef<any>
+    private templateRef: TemplateRef<any>,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
   ngOnDestroy() {
@@ -62,7 +56,7 @@ export class PopoverDirective implements OnDestroy {
   private __open() {
     this.__popoverInstance = this.popoverService.openTemplateRef(
       this.templateRef,
-      this.target.elementRef.nativeElement, {
+      (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement, {
         arrowClass: this.arrowClass,
         horizontalAlignment: this.horizontalAlignment,
         popoverClass: this.popoverClass,
