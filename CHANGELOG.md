@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.2.2...v1.3.0) (2017-09-29)
+
+
+### Features
+
+* **tooltip:** get rid of iwTooltipTarget ([3fd759b](https://github.com/interfacewerk/iwerk-angular-ui/commit/3fd759b))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.2.1...v1.2.2) (2017-09-29)
 
