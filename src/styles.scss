@@ -58,35 +58,6 @@ iw-popover-container.popover-demo {
   }
 }
 
-iw-dialog-container {
-  position: fixed;
-  opacity: 0;
-  background: rgba(192, 192, 192, 0.67);
-  transition: opacity 0.5s;
-
-  .dialog-container__content {
-    position: absolute;
-    top: 100px;
-    left: 20%;
-    width: 60%;
-    background: white;
-    max-height: calc(100% - 200px);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.5s;
-    transform: translateY(-100%);
-    box-shadow: 2px 2px 4px 1px gray;
-  }
-
-  &.iw-dialog-container--visible {
-    opacity: 1;
-    .dialog-container__content {
-      transform: translateY(0);
-    }
-  }
-}
-
 .popover-simple-demo {
   background: lightgrey;
   padding: 10px;
