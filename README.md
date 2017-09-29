@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/interfacewerk/iwerk-angular-ui/tree/master.svg?style=svg)](https://circleci.com/gh/interfacewerk/iwerk-angular-ui/tree/master)
+[![Build Status](https://travis-ci.org/interfacewerk/iwerk-angular-ui.svg?branch=master)](https://travis-ci.org/interfacewerk/iwerk-angular-ui)
 
 # Iwerk Angular Ui
 
