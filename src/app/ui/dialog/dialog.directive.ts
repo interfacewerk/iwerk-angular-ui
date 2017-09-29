@@ -2,7 +2,7 @@ import { Directive, TemplateRef, Input, OnDestroy } from '@angular/core';
 import { DialogService, IDialog } from './dialog.service';
 
 @Directive({
-  selector: '[iwDialogTest]',
+  selector: '[iwDialog]',
   exportAs: 'iw-dialog'
 })
 export class DialogDirective implements OnDestroy {

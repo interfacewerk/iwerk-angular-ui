@@ -43,7 +43,7 @@ The dialog can be used in two ways.
 ```
 <button (click)="myDialog.open()">Open a dialog with a template</button>
 ...
-<ng-template iwDialogTest #myDialog="iw-dialog">
+<ng-template iwDialog #myDialog="iw-dialog">
   Here is my dialog!
 </ng-template>
 ```
