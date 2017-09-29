@@ -84,7 +84,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 ### Declarative way
 
 ```
-<button (click)="isPopoverOpen = true" iwPopoverTarget>
+<button (click)="isPopoverOpen = true">
   Click to open!
 
   <ng-template iwPopover 
