@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.4.1...v2.0.0) (2017-09-30)
+
+
+### Code Refactoring
+
+* **dialog:** rename dialog options properties to match directive input names ([342e13e](https://github.com/interfacewerk/iwerk-angular-ui/commit/342e13e))
+
+
+### Features
+
+* **dialog:** add a container class property ([53d68f5](https://github.com/interfacewerk/iwerk-angular-ui/commit/53d68f5))
+* **dialog:** add dialog config injectable value ([b48aa78](https://github.com/interfacewerk/iwerk-angular-ui/commit/b48aa78))
+* **popover:** add popover config injectable value ([5b65c13](https://github.com/interfacewerk/iwerk-angular-ui/commit/5b65c13))
+* **tooltip:** add containerClass to directive and config can be provided ([344dc81](https://github.com/interfacewerk/iwerk-angular-ui/commit/344dc81))
+
+
+### BREAKING CHANGES
+
+* **dialog:** Typescript can complain about wrong types but that's an easy fix
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.4.0...v1.4.1) (2017-09-29)
 
