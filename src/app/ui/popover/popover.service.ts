@@ -7,10 +7,14 @@ import {
   ApplicationRef,
   EmbeddedViewRef,
   Type,
-  ReflectiveInjector
+  ReflectiveInjector,
+  Optional,
+  Inject
 } from '@angular/core';
 import { PopoverContainerComponent } from './popover-container/popover-container.component';
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
+import { IW_POPOVER_CONFIG } from './popover.config';
+import { PopoverConfig } from './popover-config.interface';
 
 export interface IPopover {
   close: () => void;
@@ -52,7 +56,8 @@ export class PopoverService {
   constructor(
     private injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    @Optional() @Inject(IW_POPOVER_CONFIG) private popoverConfig: PopoverConfig
   ) { }
 
   openTemplateRef<T>(templateRef: TemplateRef<T>, target: HTMLElement, options: PopoverOptions): IPopover {
@@ -82,16 +87,26 @@ export class PopoverService {
   }
 
   private __combineOptionsAndDefaults(options: PopoverOptions): PopoverOptions {
-    return {
-      escToClose: options.escToClose === undefined ? true : options.escToClose,
-      clickOutsideToClose: options.clickOutsideToClose === undefined ? true : options.clickOutsideToClose,
-      arrowClass: options.arrowClass === undefined ? '' : options.arrowClass,
-      popoverClass: options.popoverClass === undefined ? '' : options.popoverClass,
-      scrollMaskClass: options.scrollMaskClass === undefined ? '' : options.scrollMaskClass,
-      horizontalAlignment: options.horizontalAlignment,
+    const config = this.popoverConfig || {};
+    const defaultOptions = {
+      escToClose: config.escToClose === undefined ? true : config.escToClose,
+      clickOutsideToClose: config.clickOutsideToClose === undefined ? true : config.clickOutsideToClose,
+      arrowClass: config.arrowClass === undefined ? '' : config.arrowClass,
+      popoverClass: config.popoverClass === undefined ? '' : config.popoverClass,
+      scrollMaskClass: config.scrollMaskClass === undefined ? '' : config.scrollMaskClass,
+      horizontalAlignment: config.horizontalAlignment
+    };
+    const result = {
+      escToClose: options.escToClose === undefined ? defaultOptions.escToClose : options.escToClose,
+      clickOutsideToClose: options.clickOutsideToClose === undefined ? defaultOptions.clickOutsideToClose : options.clickOutsideToClose,
+      arrowClass: (options.arrowClass || '') + ' ' + defaultOptions.arrowClass,
+      popoverClass: (options.popoverClass || '') + ' ' + defaultOptions.popoverClass,
+      scrollMaskClass: (options.scrollMaskClass || '') + ' ' + defaultOptions.scrollMaskClass,
+      horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
       shouldClose: options.shouldClose || (() => { }),
       popoverPosition: options.popoverPosition || (() => { })
     };
+    return result;
   }
 
   private __open<T>(
@@ -171,15 +186,9 @@ export class PopoverService {
     setTimeout(() => {
       container.style.visibility = 'hidden';
       arrowElement.style.visibility = 'hidden';
-      if (options.popoverClass) {
-        container.classList.add(options.popoverClass);
-      }
-      if (options.scrollMaskClass) {
-        scrollMask.classList.add(options.scrollMaskClass);
-      }
-      if (options.arrowClass) {
-        arrowElement.classList.add(options.arrowClass);
-      }
+      addClasses(container, options.popoverClass);
+      addClasses(scrollMask, options.scrollMaskClass);
+      addClasses(arrowElement, options.arrowClass);
       document.body.appendChild(scrollMask);
 
       this.__smartPosition(elements, options);
@@ -226,4 +235,8 @@ export class PopoverService {
     container.style.visibility = 'visible';
     arrowElement.style.visibility = 'visible';
   }
+}
+
+function addClasses(element: HTMLElement, str: string) {
+  (str || '').split(' ').filter(s => !!s).forEach(c => element.classList.add(c));
 }

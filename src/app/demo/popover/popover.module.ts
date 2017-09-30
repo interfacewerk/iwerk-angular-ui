@@ -8,8 +8,14 @@ import {
   CustomPopoverDemoComponent
 } from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
-import { UiModule } from '../../ui/ui.module';
+import { PopoverModule as UiPopModule, IW_POPOVER_CONFIG, PopoverConfig } from '../../ui/popover/popover.module';
 import { PropertyEditPopoverComponent } from './property-edit-popover/property-edit-popover.component';
+
+const config: PopoverConfig = {
+  escToClose: true,
+  clickOutsideToClose: true,
+  popoverClass: 'popover-demo-from-config'
+};
 
 @NgModule({
   imports: [
@@ -17,7 +23,7 @@ import { PropertyEditPopoverComponent } from './property-edit-popover/property-e
     RouterModule.forChild([
       { path: '', component: PopoverDemoComponent }
     ]),
-    UiModule,
+    UiPopModule,
     FormsModule
   ],
   declarations: [
@@ -30,6 +36,9 @@ import { PropertyEditPopoverComponent } from './property-edit-popover/property-e
   exports: [RouterModule],
   entryComponents: [
     PropertyEditPopoverComponent
-  ]
+  ],
+  providers: [{
+    provide: IW_POPOVER_CONFIG, useValue: config
+  }]
 })
 export class PopoverModule { }

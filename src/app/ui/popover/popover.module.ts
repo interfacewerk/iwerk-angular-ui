@@ -5,6 +5,8 @@ import { PopoverContainerComponent } from './popover-container/popover-container
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 import { PopoverService, Popover } from './popover.service';
 export { PopoverService, Popover };
+export { IW_POPOVER_CONFIG } from './popover.config';
+export { PopoverConfig } from './popover-config.interface';
 
 @NgModule({
   entryComponents: [ PopoverContainerComponent, PopoverScrollMaskComponent ],
