@@ -28,8 +28,8 @@ export class DialogDirective implements OnDestroy {
       return;
     }
     this.__dialogInstance = this.dialogService.openTemplateRef(this.templateRef, null, {
-      closeOnClickOutside: this.clickToClose === undefined ? true : this.clickToClose,
-      closeOnEsc: this.escToClose === undefined ? true : this.escToClose,
+      clickToClose: this.clickToClose === undefined ? true : this.clickToClose,
+      escToClose: this.escToClose === undefined ? true : this.escToClose,
       onClose: (dialog) => {
         if (this.__dialogInstance === dialog) {
           this.__dialogInstance = undefined;

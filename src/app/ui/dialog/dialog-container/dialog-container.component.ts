@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 
 export interface DialogOptions {
-  closeOnEsc?: boolean;
-  closeOnClickOutside?: boolean;
+  escToClose?: boolean;
+  clickToClose?: boolean;
   onClose?: (dialog: IDialog) => void;
 }
 
@@ -40,7 +40,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
-    if ($event.keyCode === 27 && this.dialogOptions.closeOnEsc) {
+    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {
       this.onClose.emit();
       $event.preventDefault();
     }
@@ -48,7 +48,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
   @HostListener('click', ['$event'])
   onClick($event: MouseEvent) {
-    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.closeOnClickOutside) {
+    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {
       this.onClose.emit();
       $event.preventDefault();
       $event.stopPropagation();

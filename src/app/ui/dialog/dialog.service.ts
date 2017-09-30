@@ -24,8 +24,8 @@ export class DialogService {
   containerFactory: ComponentFactory<DialogContainerComponent>;
 
   private __defaultOptions: DialogOptions = {
-    closeOnClickOutside: true,
-    closeOnEsc: true,
+    clickToClose: true,
+    escToClose: true,
     onClose: () => {}
   };
 
