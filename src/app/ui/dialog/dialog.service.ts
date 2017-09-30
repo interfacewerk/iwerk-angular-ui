@@ -5,9 +5,7 @@ import {
   Type,
   Injector,
   ApplicationRef,
-  ComponentRef,
   TemplateRef,
-  EmbeddedViewRef,
   Inject,
   Optional
 } from '@angular/core';
@@ -18,6 +16,7 @@ import {
 } from './dialog-container/dialog-container.component';
 import { IW_DIALOG_CONFIG } from './dialog.config';
 import { DialogConfig } from './dialog-config.interface';
+import { DialogRef } from './dialog-ref.class';
 export { IDialog };
 
 @Injectable()
@@ -30,10 +29,7 @@ export class DialogService {
     onClose: () => {}
   };
 
-  private __previousDialog: {
-    instance: DialogRef<DialogContainerComponent, any, any> | undefined
-    ref: IDialog
-  };
+  private __previousDialog: DialogRef;
 
   constructor(
     private appRef: ApplicationRef,
@@ -44,112 +40,78 @@ export class DialogService {
     this.containerFactory = this.componentFactoryResolver.resolveComponentFactory(DialogContainerComponent);
   }
 
-  open<T>(componentType: Type<T>, _options?: DialogOptions, _data?: {[key: string]: any}): IDialog {
+  /**
+   * Open a dialog that embeds an entry component.
+   * @param componentType the component class to embed into the dialog
+   * @param options the options to use with the dialog
+   * @param data the data to pass to the embedded component
+   */
+  open<T>(componentType: Type<T>, options?: DialogOptions, data?: {[key: string]: any}): IDialog {
     const factory = this.componentFactoryResolver.resolveComponentFactory<{[key: string]: any}>(componentType);
     const component = factory.create(this.injector);
-    const data = _data || {};
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        component.instance[key] = data[key];
+    const _data = data || {};
+    for (const key in _data) {
+      if (_data.hasOwnProperty(key)) {
+        component.instance[key] = _data[key];
       }
     }
-    return this.__open(undefined, component, _options);
+    const dialogRef = new DialogRef(
+      this.containerFactory.create(this.injector, [[component.location.nativeElement]]),
+      component.hostView,
+      this.appRef,
+      () => {
+        this.__close(dialogRef);
+      },
+      this.__createOptions(options)
+    );
+    return this.__open(dialogRef);
   }
 
-  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, _options: DialogOptions): IDialog {
+  /**
+   * Open a dialog that loads a template.
+   * @param templateRef the template to load inside the dialog
+   * @param context the context to associate with the template
+   * @param options the options to use with the dialog
+   */
+  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions): IDialog {
     const view = templateRef.createEmbeddedView(context);
-    return this.__open(view, undefined, _options);
+    const dialogRef = new DialogRef(
+      this.containerFactory.create(this.injector, [view.rootNodes]),
+      view,
+      this.appRef,
+      () => {
+        this.__close(dialogRef);
+      },
+      this.__createOptions(options)
+    );
+    return this.__open(dialogRef);
   }
 
+  /**
+   * Close the currently opened dialog, if any
+   */
   close() {
     if (this.__previousDialog) {
-      this.__previousDialog.ref.close();
+      this.__close(this.__previousDialog);
+    }
+  }
+
+  private __close(dialogRef: DialogRef) {
+    if (this.__previousDialog === dialogRef) {
+      this.__previousDialog.detach();
       this.__previousDialog = undefined;
     }
   }
 
-  private __open<B, C>(
-    embeddedViewRef: EmbeddedViewRef<C> | undefined,
-    componentRef: ComponentRef<B> | undefined,
-    _options?: DialogOptions
-  ): IDialog {
-    if (this.__previousDialog) {
-      this.__previousDialog.ref.close();
-      this.__previousDialog = undefined;
-    }
-    const options = Object.assign({}, this.__defaultOptions, (this.dialogConfig || {}), _options);
-    let container: ComponentRef<DialogContainerComponent> | undefined = undefined;
-    if (embeddedViewRef) {
-      container = this.containerFactory.create(this.injector, [embeddedViewRef.rootNodes]);
-    }
-    if (componentRef) {
-      container = this.containerFactory.create(this.injector, [[componentRef.location.nativeElement]]);
-    }
-    if (!container) {
-      throw new Error('To initialize the dialog, one must give an embedded view ref or a component ref');
-    }
-    container.instance.dialogOptions = options;
-    const instance = new DialogRef(container, embeddedViewRef, componentRef, this.appRef);
-    const ref = {
-      close: () => {
-        if (this.__previousDialog) {
-          if (options.onClose) {
-            options.onClose(ref);
-          }
-          this.__previousDialog.instance.detach();
-          this.__previousDialog = undefined;
-        }
-      }
-    };
-    container.instance.onClose.subscribe(() => {
-      ref.close();
-    });
-    this.__previousDialog = {
-      instance,
-      ref
-    };
-    this.__previousDialog.instance.attach();
-    return ref;
-  }
-}
-
-class DialogRef<A, B, C> {
-  constructor(
-    private __container: ComponentRef<A>,
-    private __embeddedViewRef: EmbeddedViewRef<C> | undefined,
-    private __componentRef: ComponentRef<B> | undefined,
-    private __appRef: ApplicationRef
-  ) {
-
+  private __open(dialogRef: DialogRef): IDialog {
+    this.close();
+    this.__previousDialog = dialogRef;
+    dialogRef.attach();
+    return dialogRef;
   }
 
-  attach() {
-    document.body.appendChild(this.__container.location.nativeElement);
-    this.__appRef.attachView(this.__container.hostView);
-    if (this.__componentRef) {
-      this.__appRef.attachView(this.__componentRef.hostView);
-    }
-    if (this.__embeddedViewRef) {
-      this.__appRef.attachView(this.__embeddedViewRef);
-    }
-  }
-
-  detach() {
-    document.body.removeChild(this.__container.location.nativeElement);
-    this.__appRef.detachView(this.__container.hostView);
-    if (this.__componentRef) {
-      this.__appRef.detachView(this.__componentRef.hostView);
-    }
-    if (this.__embeddedViewRef) {
-      this.__appRef.detachView(this.__embeddedViewRef);
-    }
-    this.__container.destroy();
-    if (this.__componentRef) {
-      this.__componentRef.destroy();
-    }
-    if (this.__embeddedViewRef) {
-      this.__embeddedViewRef.destroy();
-    }
+  private __createOptions(_options?: DialogOptions) {
+    return Object.assign({}, this.__defaultOptions, (this.dialogConfig || {}), _options);
   }
 }
 
