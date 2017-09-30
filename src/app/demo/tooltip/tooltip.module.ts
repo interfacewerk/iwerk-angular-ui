@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UiModule } from '../../ui/ui.module';
+import { TooltipModule as UiTooltipModule, IW_TOOLTIP_CONFIG, TooltipConfig } from '../../ui/tooltip/tooltip.module';
+
+const config: TooltipConfig = {
+  containerClass: 'demo-tooltip'
+};
 
 @NgModule({
   imports: [
@@ -11,10 +15,11 @@ import { UiModule } from '../../ui/ui.module';
     RouterModule.forChild([
       { path: '', component: TooltipDemoComponent }
     ]),
-    UiModule,
+    UiTooltipModule,
     FormsModule
   ],
   declarations: [TooltipDemoComponent],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [{provide: IW_TOOLTIP_CONFIG, useValue: config}]
 })
 export class TooltipModule { }

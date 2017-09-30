@@ -10,7 +10,8 @@ import {
   ComponentRef,
   AfterViewInit,
   OnDestroy,
-  ViewContainerRef
+  ViewContainerRef,
+  Input
 } from '@angular/core';
 import {
   TooltipContainerComponent
@@ -20,6 +21,7 @@ import {
   selector: '[iwTooltip]'
 })
 export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, EventListenerObject {
+  @Input() containerClass: string;
 
   private __parent: HTMLElement;
   private _elements: {
@@ -65,6 +67,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       const container = this.componentFactoryResolver
         .resolveComponentFactory(TooltipContainerComponent)
         .create(this.injector, [content.rootNodes]);
+      container.instance.containerClass = this.containerClass;
 
       this._elements = {
         content,
