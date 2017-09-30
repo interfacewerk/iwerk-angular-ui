@@ -16,7 +16,9 @@ describe('DialogContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogContainerComponent);
     component = fixture.componentInstance;
-    component.dialogOptions = {};
+    component.dialogOptions = {
+      containerClass: ''
+    };
     fixture.detectChanges();
   });
 
