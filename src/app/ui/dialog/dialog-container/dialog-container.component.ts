@@ -35,7 +35,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer,
+    private renderer: Renderer
   ) { }
 
   @HostListener('window:keydown', ['$event'])

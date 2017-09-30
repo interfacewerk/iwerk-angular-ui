@@ -6,6 +6,6 @@
 <h2>Declarative way</h2>
 <button (click)="openDialog1()">Open a dialog with a template</button>
 
-<ng-template iwDialog #myDialog1="iw-dialog">
+<ng-template iwDialog #myDialog1="iw-dialog" [escToClose]="true">
   <app-my-dialog title="Template Dialog"></app-my-dialog>
 </ng-template>

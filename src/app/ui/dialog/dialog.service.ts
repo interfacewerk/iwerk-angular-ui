@@ -7,13 +7,17 @@ import {
   ApplicationRef,
   ComponentRef,
   TemplateRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  Inject,
+  Optional
 } from '@angular/core';
 import {
   DialogContainerComponent,
   DialogOptions,
   IDialog
 } from './dialog-container/dialog-container.component';
+import { IW_DIALOG_CONFIG } from './dialog.config';
+import { DialogConfig } from './dialog-config.interface';
 export { IDialog };
 
 @Injectable()
@@ -34,7 +38,8 @@ export class DialogService {
   constructor(
     private appRef: ApplicationRef,
     private injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    @Optional() @Inject(IW_DIALOG_CONFIG) private dialogConfig: DialogConfig
   ) {
     this.containerFactory = this.componentFactoryResolver.resolveComponentFactory(DialogContainerComponent);
   }
@@ -72,7 +77,7 @@ export class DialogService {
       this.__previousDialog.ref.close();
       this.__previousDialog = undefined;
     }
-    const options = Object.assign({}, this.__defaultOptions, _options);
+    const options = Object.assign({}, this.__defaultOptions, (this.dialogConfig || {}), _options);
     let container: ComponentRef<DialogContainerComponent> | undefined = undefined;
     if (embeddedViewRef) {
       container = this.containerFactory.create(this.injector, [embeddedViewRef.rootNodes]);

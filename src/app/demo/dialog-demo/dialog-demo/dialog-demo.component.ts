@@ -25,7 +25,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   openDialog() {
-    this.__dialogInstance = this.dialog.open(MyDialogComponent, undefined, {
+    this.__dialogInstance = this.dialog.open(MyDialogComponent, {
+      closeOnEsc: true
+    }, {
       title: 'Programmatic Dialog'
     });
   }
