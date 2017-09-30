@@ -15,6 +15,7 @@ import {
 export interface DialogOptions {
   escToClose?: boolean;
   clickToClose?: boolean;
+  containerClass?: string;
   onClose?: (dialog: IDialog) => void;
 }
 
@@ -57,6 +58,10 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);
+    for (const c of classes) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, c, true);
+    }
   }
 
   ngAfterViewInit() {

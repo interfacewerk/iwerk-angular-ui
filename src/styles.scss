@@ -67,3 +67,11 @@ iw-popover-container.popover-demo {
 .popover-no-arrow {
   display: none;
 }
+
+iw-dialog-container.dialog-config-demo {
+  border: dashed 1px red;
+}
+
+iw-dialog-container.double-config-demo {
+  transform: scale(0.5);
+}

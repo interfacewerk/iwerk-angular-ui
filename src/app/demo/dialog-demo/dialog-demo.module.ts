@@ -7,7 +7,8 @@ import { DialogModule, IW_DIALOG_CONFIG, DialogConfig } from '../../ui/dialog/di
 
 const dialogConfig: DialogConfig = {
   closeOnClickOutside: true,
-  closeOnEsc: false
+  closeOnEsc: false,
+  containerClass: 'dialog-config-demo'
 };
 
 @NgModule({

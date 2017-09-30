@@ -24,6 +24,7 @@ export class DialogService {
   containerFactory: ComponentFactory<DialogContainerComponent>;
 
   private __defaultOptions: DialogOptions = {
+    containerClass: '',
     clickToClose: true,
     escToClose: true,
     onClose: () => {}
@@ -111,7 +112,9 @@ export class DialogService {
   }
 
   private __createOptions(_options?: DialogOptions) {
-    return Object.assign({}, this.__defaultOptions, (this.dialogConfig || {}), _options);
+    return Object.assign({}, this.__defaultOptions, (this.dialogConfig || {}), _options, {
+      containerClass: (this.dialogConfig.containerClass || '') + ' ' + (_options.containerClass || '')
+    });
   }
 }
 

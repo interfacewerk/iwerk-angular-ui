@@ -8,6 +8,7 @@ import { DialogService, IDialog } from './dialog.service';
 export class DialogDirective implements OnDestroy {
   @Input() escToClose: boolean;
   @Input() clickToClose: boolean;
+  @Input() containerClass: string;
 
   private __dialogInstance: IDialog;
 
@@ -29,6 +30,7 @@ export class DialogDirective implements OnDestroy {
     }
     this.__dialogInstance = this.dialogService.openTemplateRef(this.templateRef, null, {
       clickToClose: this.clickToClose === undefined ? true : this.clickToClose,
+      containerClass: this.containerClass || '',
       escToClose: this.escToClose === undefined ? true : this.escToClose,
       onClose: (dialog) => {
         if (this.__dialogInstance === dialog) {
