@@ -113,8 +113,9 @@ export class DialogService {
 
   private __createOptions(_options?: DialogOptions) {
     const dialogConfig = this.dialogConfig || {};
-    return Object.assign({}, this.__defaultOptions, dialogConfig, _options, {
-      containerClass: (dialogConfig.containerClass || '') + ' ' + (_options.containerClass || '')
+    const options = _options || {};
+    return Object.assign({}, this.__defaultOptions, dialogConfig, options, {
+      containerClass: (dialogConfig.containerClass || '') + ' ' + (options.containerClass || '')
     });
   }
 }
