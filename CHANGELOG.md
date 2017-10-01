@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v2.0.0...v2.0.1) (2017-10-01)
+
+
+### Bug Fixes
+
+* **dialog:** does not throw an exception if no option is provided ([aa3a03e](https://github.com/interfacewerk/iwerk-angular-ui/commit/aa3a03e))
+* **dialog:** does not throw an exception if no option is provided ([#22](https://github.com/interfacewerk/iwerk-angular-ui/issues/22)) ([0b27d5e](https://github.com/interfacewerk/iwerk-angular-ui/commit/0b27d5e))
+* **dialog:** fix dialog that does not open if a config is not provided ([#21](https://github.com/interfacewerk/iwerk-angular-ui/issues/21)) ([314afac](https://github.com/interfacewerk/iwerk-angular-ui/commit/314afac))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v1.4.1...v2.0.0) (2017-09-30)
 
