@@ -5,11 +5,10 @@ import {
   SbIdleDirective,
   SbDoingDirective,
   SbFailureDirective,
-  SbSuccessDirective,
-  ButtonState
+  SbSuccessDirective
 } from './state-button.directive';
 
-export { ButtonState };
+export { ButtonState } from './button-state';
 
 @NgModule({
   declarations: [

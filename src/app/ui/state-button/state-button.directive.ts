@@ -13,8 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
-
-export type ButtonState = 'IDLE' | 'DOING' | 'SUCCESS' | 'FAILURE';
+import { ButtonState } from './button-state';
 
 @Directive({
   selector: '[iwStateButton]'
