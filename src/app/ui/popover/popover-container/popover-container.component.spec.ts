@@ -23,4 +23,15 @@ describe('PopoverContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call the onClose emitter if escToClose=true and user presses ESC', () => {
+    component.escToClose = true;
+    spyOn(component.onClose, 'emit');
+    const event = document.createEvent('Event');
+    (<{keyCode: number}><any>event).keyCode = 27;
+    event.initEvent('keydown', true, true);
+    window.dispatchEvent(event);
+    fixture.detectChanges();
+    expect(component.onClose.emit).toHaveBeenCalled();
+  });
 });
