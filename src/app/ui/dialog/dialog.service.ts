@@ -19,9 +19,15 @@ import { DialogConfig } from './dialog-config.interface';
 import { DialogRef } from './dialog-ref.class';
 export { IDialog };
 
+export interface IDialogService {
+  open: <T>(componentType: Type<T>, options?: DialogOptions, data?: {[key: string]: any}) => IDialog;
+  openTemplateRef: <T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions) => IDialog;
+  close: () => void;
+}
+
 @Injectable()
-export class DialogService {
-  containerFactory: ComponentFactory<DialogContainerComponent>;
+export class DialogService implements IDialogService {
+  private __containerFactory: ComponentFactory<DialogContainerComponent>;
 
   private __defaultOptions: DialogOptions = {
     containerClass: '',
@@ -38,7 +44,7 @@ export class DialogService {
     private componentFactoryResolver: ComponentFactoryResolver,
     @Optional() @Inject(IW_DIALOG_CONFIG) private dialogConfig: DialogConfig
   ) {
-    this.containerFactory = this.componentFactoryResolver.resolveComponentFactory(DialogContainerComponent);
+    this.__containerFactory = this.componentFactoryResolver.resolveComponentFactory(DialogContainerComponent);
   }
 
   /**
@@ -57,7 +63,7 @@ export class DialogService {
       }
     }
     const dialogRef = new DialogRef(
-      this.containerFactory.create(this.injector, [[component.location.nativeElement]]),
+      this.__containerFactory.create(this.injector, [[component.location.nativeElement]]),
       component.hostView,
       this.appRef,
       () => {
@@ -77,7 +83,7 @@ export class DialogService {
   openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions): IDialog {
     const view = templateRef.createEmbeddedView(context);
     const dialogRef = new DialogRef(
-      this.containerFactory.create(this.injector, [view.rootNodes]),
+      this.__containerFactory.create(this.injector, [view.rootNodes]),
       view,
       this.appRef,
       () => {

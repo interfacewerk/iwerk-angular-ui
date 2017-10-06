@@ -1,26 +1,91 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { DialogService, IDialogService } from './dialog.service';
 import { DialogDirective } from './dialog.directive';
+import { TemplateRef } from '@angular/core';
+import { DialogOptions } from './dialog-container/dialog-container.component';
+
+@Component({
+  template: `
+  <ng-template iwDialog #myDialog="iw-dialog">My dialog works!</ng-template>
+  `
+})
+class TestComponent {
+  @ViewChild('myDialog') dialog: DialogDirective;
+}
 
 describe('DialogDirective', () => {
-  let directive: DialogDirective;
-  let fixture: ComponentFixture<DialogDirective>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DialogDirective ]
-    })
-    .compileComponents();
-  }));
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
+  let mockService: IDialogService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogDirective);
-    directive = fixture.componentInstance;
+    TestBed.configureTestingModule({
+      declarations: [ DialogDirective, TestComponent ],
+      providers: [{
+        provide: DialogService,
+        useClass: MockDialogService
+      }]
+    });
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    mockService = fixture.debugElement.injector.get(DialogService);
+    spyOn(mockService, 'openTemplateRef').and.callThrough();
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('exports via iw-dialog', () => {
+    expect(component.dialog).toBeTruthy();
+  });
+
+  it('calls the openTemplateRef method of the dialog service only once', () => {
+    component.dialog.open();
+    component.dialog.open();
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls the openTemplateRef method twice', () => {
+    component.dialog.open();
+    component.dialog.close();
+    component.dialog.open();
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(2);
+  });
+
+  it('calls the openTemplateRef method twice if it has been closed somewhere else in between', () => {
+    component.dialog.open();
+    mockService.close();
+    component.dialog.open();
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(2);
+  });
 });
+
+class MockDialogService implements IDialogService {
+  private __dialogInstance: {
+    close: Function
+  };
+
+  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions) {
+    this.close();
+    const result = {
+      close: () => {
+        options.onClose(result);
+      }
+    };
+    this.__dialogInstance = result;
+    return result;
+  }
+
+  open() {
+    return {
+      close: () => {}
+    };
+  }
+
+  close() {
+    if (this.__dialogInstance) {
+      this.__dialogInstance.close();
+      this.__dialogInstance = undefined;
+    }
+  }
+}
