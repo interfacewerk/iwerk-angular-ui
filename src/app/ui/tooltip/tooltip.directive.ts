@@ -24,7 +24,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
   @Input() containerClass: string;
 
   private __parent: HTMLElement;
-  private _elements: {
+  private __elements: {
     content: EmbeddedViewRef<any>,
     container: ComponentRef<TooltipContainerComponent>
   } |  undefined;
@@ -54,22 +54,22 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
 
   handleEvent(evt: Event): void {
     if (evt.type === 'mouseenter') {
-      return this.onMouseEnter(<MouseEvent>evt);
+      return this.__onMouseEnter(<MouseEvent>evt);
     }
     if (evt.type === 'mouseleave') {
-      return this.onMouseLeave(<MouseEvent>evt);
+      return this.__onMouseLeave(<MouseEvent>evt);
     }
   }
 
-  onMouseEnter(event: MouseEvent) {
-    if (!this._elements) {
+  private __onMouseEnter(event: MouseEvent) {
+    if (!this.__elements) {
       const content = this.templateRef.createEmbeddedView(this.injector);
       const container = this.componentFactoryResolver
         .resolveComponentFactory(TooltipContainerComponent)
         .create(this.injector, [content.rootNodes]);
       container.instance.containerClass = this.containerClass;
 
-      this._elements = {
+      this.__elements = {
         content,
         container
       };
@@ -80,18 +80,22 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       content.detectChanges();
       container.hostView.detectChanges();
 
-      this._smartPosition();
+      this.__smartPosition();
     }
 
   }
 
-  _smartPosition() {
-    if (!this._elements) {
+  private __onMouseLeave(event: MouseEvent) {
+    this.__remove();
+  }
+
+  private __smartPosition() {
+    if (!this.__elements) {
       return;
     }
 
     const target: HTMLElement = this.__parent;
-    const container: HTMLElement = this._elements.container.location.nativeElement;
+    const container: HTMLElement = this.__elements.container.location.nativeElement;
     const targetRect = target.getBoundingClientRect();
 
     // do that after, otherwise it can change the bounding client rect of the target
@@ -110,23 +114,19 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
     container.style.visibility = 'visible';
   }
 
-  onMouseLeave(event: MouseEvent) {
-    this.__remove();
-  }
-
   private __remove() {
-    if (!this._elements) {
+    if (!this.__elements) {
       return;
     }
 
-    this.appRef.detachView(this._elements.content);
-    this.appRef.detachView(this._elements.container.hostView);
-    this._elements.container.hostView.detach();
+    this.appRef.detachView(this.__elements.content);
+    this.appRef.detachView(this.__elements.container.hostView);
+    this.__elements.container.hostView.detach();
 
-    this._elements.content.destroy();
-    this._elements.container.destroy();
+    this.__elements.content.destroy();
+    this.__elements.container.destroy();
 
-    this._elements = undefined;
+    this.__elements = undefined;
   }
 
 }
