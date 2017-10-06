@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/interfacewerk/iwerk-angular-ui.svg?branch=master)](https://travis-ci.org/interfacewerk/iwerk-angular-ui)
-[![Coverage Status](https://coveralls.io/repos/github/interfacewerk/iwerk-angular-ui/badge.svg?branch=ci%2Fcoverage)](https://coveralls.io/github/interfacewerk/iwerk-angular-ui?branch=ci%2Fcoverage)
+[![Coverage Status](https://coveralls.io/repos/github/interfacewerk/iwerk-angular-ui/badge.svg?branch=master)](https://coveralls.io/github/interfacewerk/iwerk-angular-ui?branch=ci%2Fcoverage)
 [![npm monthly downloads](https://img.shields.io/npm/dm/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 [![current version](https://img.shields.io/npm/v/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 
