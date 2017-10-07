@@ -56,4 +56,14 @@ describe('PopoverService', () => {
     popover.close();
     expect(document.querySelector('iw-popover-container')).toBeNull();
   }));
+
+  it('does not throw an error if no options are provided', fakeAsync(() => {
+    const fixture = TestBed.createComponent(Test2Component);
+    const popoverService = fixture.debugElement.injector.get(PopoverService);
+    expect(() => {
+      const popover = popoverService.open(TestComponent, fixture.nativeElement);
+      tick(0);
+      popover.close();
+    }).not.toThrow();
+  }));
 });
