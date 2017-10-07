@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/interfacewerk/iwerk-angular-ui/compare/v2.0.3...v2.0.4) (2017-10-07)
+
+
+### Bug Fixes
+
+* **popover.service:** accepts an undefined options argument on open method ([93f3bd7](https://github.com/interfacewerk/iwerk-angular-ui/commit/93f3bd7))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v2.0.2...v2.0.3) (2017-10-06)
 
