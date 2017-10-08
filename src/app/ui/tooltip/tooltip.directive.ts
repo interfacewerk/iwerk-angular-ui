@@ -16,6 +16,8 @@ import {
 import {
   TooltipContainerComponent
 } from './tooltip-container/tooltip-container.component';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Directive({
   selector: '[iwTooltip]'
@@ -35,21 +37,26 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
     private renderer: Renderer,
     private componentFactoryResolver: ComponentFactoryResolver,
     private templateRef: TemplateRef<any>,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    @Inject(PLATFORM_ID) private platformId: string
   ) { }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-    this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;
-    this.__parent.addEventListener('mouseenter', this);
-    this.__parent.addEventListener('mouseleave', this);
+    if (isPlatformBrowser(this.platformId)) {
+      this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;
+      this.__parent.addEventListener('mouseenter', this);
+      this.__parent.addEventListener('mouseleave', this);
+    }
   }
 
   ngOnDestroy() {
-    this.__remove();
-    this.__parent.removeEventListener('mouseenter', this);
-    this.__parent.removeEventListener('mouseleave', this);
+    if (isPlatformBrowser(this.platformId)) {
+      this.__remove();
+      this.__parent.removeEventListener('mouseenter', this);
+      this.__parent.removeEventListener('mouseleave', this);
+    }
   }
 
   handleEvent(evt: Event): void {
