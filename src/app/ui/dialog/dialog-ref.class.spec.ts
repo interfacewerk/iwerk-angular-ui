@@ -76,7 +76,7 @@ describe('dialog-ref.class', () => {
     const component = fixture.componentInstance;
     const view = component.directive.template.createEmbeddedView(null);
     const options = {
-      onClose: () => {}
+      onClose: () => { }
     };
     spyOn(options, 'onClose');
     const ref = new DialogRef(
@@ -89,5 +89,27 @@ describe('dialog-ref.class', () => {
     ref.attach();
     ref.detach();
     expect(options.onClose).toHaveBeenCalled();
+  }));
+
+  it('calls the __close callback when the container calls onClose', inject([ApplicationRef], (appRef: ApplicationRef) => {
+    const fixture = TestBed.createComponent(TestComponent);
+    const container = TestBed.createComponent(DialogContainerComponent);
+    const component = fixture.componentInstance;
+    const view = component.directive.template.createEmbeddedView(null);
+    const spied = {
+      close: () => { }
+    };
+    spyOn(spied, 'close');
+    const ref = new DialogRef(
+      container.componentRef,
+      view,
+      appRef,
+      spied.close,
+      {}
+    );
+    ref.attach();
+    ref.detach();
+    container.componentInstance.onClose.emit();
+    expect(spied.close).toHaveBeenCalled();
   }));
 });
