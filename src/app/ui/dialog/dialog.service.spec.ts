@@ -105,4 +105,12 @@ describe('dialog.service', () => {
     expect(document.body.querySelectorAll('iw-dialog-container').length).toBe(0);
   });
 
+  it('opens with a TemplateRef given and closes it with the IDialog reference', () => {
+    const fixture = TestBed.createComponent(DialogServiceTest2Component);
+    const component = fixture.componentInstance;
+    const dialog = dialogService.openTemplateRef(component.directive.template, null, {});
+    dialog.close();
+    expect(document.body.querySelectorAll('iw-dialog-container').length).toBe(0);
+  });
+
 });
