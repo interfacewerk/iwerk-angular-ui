@@ -3,22 +3,17 @@ import {
   Input,
   ViewContainerRef,
   TemplateRef,
-  EmbeddedViewRef,
-  OnInit,
   HostBinding,
-  OnDestroy
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
 import { ButtonState } from './button-state';
+import { StateTemplate } from './state-template.class';
+import { IStateButtonDirective } from './state-button-directive.interface';
 
 @Directive({
   selector: '[iwStateButton]'
 })
-export class StateButtonDirective {
+export class StateButtonDirective implements IStateButtonDirective {
   state = new BehaviorSubject<ButtonState>(undefined);
 
   @Input() set iwStateButton(v: ButtonState) {
@@ -53,155 +48,75 @@ export class StateButtonDirective {
 @Directive({
   selector: '[sbIdle]'
 })
-export class SbIdleDirective implements OnInit, OnDestroy {
-  private __previousEmbedded: EmbeddedViewRef<any>;
-  private __subscription: Subscription;
+export class SbIdleDirective extends StateTemplate {
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private stateButtonDirective: StateButtonDirective
+    protected viewContainerRef: ViewContainerRef,
+    protected templateRef: TemplateRef<any>,
+    protected stateButtonDirective: StateButtonDirective
   ) {
-  }
-
-  ngOnInit() {
-    const distinct = this.stateButtonDirective.state.asObservable()
-      .map(s => s === 'IDLE')
-      .distinctUntilChanged();
-    this.__subscription = distinct.subscribe(b => {
-      if (b) {
-        this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
-      } else {
-        if (this.__previousEmbedded) {
-          this.__previousEmbedded.destroy();
-          this.viewContainerRef.remove(0);
-        }
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.__subscription.unsubscribe();
-    if (this.__previousEmbedded) {
-      this.__previousEmbedded.destroy();
-      this.viewContainerRef.remove(0);
-    }
+    super(
+      'IDLE',
+      viewContainerRef,
+      templateRef,
+      stateButtonDirective
+    );
   }
 }
 
 @Directive({
   selector: '[sbSuccess]'
 })
-export class SbSuccessDirective implements OnInit, OnDestroy {
-  private __previousEmbedded: EmbeddedViewRef<any>;
-  private __subscription: Subscription;
+export class SbSuccessDirective extends StateTemplate {
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private stateButtonDirective: StateButtonDirective
+    protected viewContainerRef: ViewContainerRef,
+    protected templateRef: TemplateRef<any>,
+    protected stateButtonDirective: StateButtonDirective
   ) {
-  }
-
-  ngOnInit() {
-    const distinct = this.stateButtonDirective.state.asObservable()
-      .map(s => s === 'SUCCESS')
-      .distinctUntilChanged();
-    this.__subscription = distinct.subscribe(b => {
-      if (b) {
-        this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
-      } else {
-        if (this.__previousEmbedded) {
-          this.__previousEmbedded.destroy();
-          this.viewContainerRef.remove(0);
-        }
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.__subscription.unsubscribe();
-    if (this.__previousEmbedded) {
-      this.__previousEmbedded.destroy();
-      this.viewContainerRef.remove(0);
-    }
+    super(
+      'SUCCESS',
+      viewContainerRef,
+      templateRef,
+      stateButtonDirective
+    );
   }
 }
 
 @Directive({
   selector: '[sbDoing]'
 })
-export class SbDoingDirective implements OnInit, OnDestroy {
-  private __previousEmbedded: EmbeddedViewRef<any>;
-  private __subscription: Subscription;
+export class SbDoingDirective extends StateTemplate {
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private stateButtonDirective: StateButtonDirective
+    protected viewContainerRef: ViewContainerRef,
+    protected templateRef: TemplateRef<any>,
+    protected stateButtonDirective: StateButtonDirective
   ) {
-  }
-
-  ngOnInit() {
-    const distinct = this.stateButtonDirective.state.asObservable()
-      .map(s => s === 'DOING')
-      .distinctUntilChanged();
-    this.__subscription = distinct.subscribe(b => {
-      if (b) {
-        this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
-      } else {
-        if (this.__previousEmbedded) {
-          this.__previousEmbedded.destroy();
-          this.viewContainerRef.remove(0);
-        }
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.__subscription.unsubscribe();
-    if (this.__previousEmbedded) {
-      this.__previousEmbedded.destroy();
-      this.viewContainerRef.remove(0);
-    }
+    super(
+      'DOING',
+      viewContainerRef,
+      templateRef,
+      stateButtonDirective
+    );
   }
 }
 
 @Directive({
   selector: '[sbFailure]'
 })
-export class SbFailureDirective implements OnInit, OnDestroy {
-  private __previousEmbedded: EmbeddedViewRef<any>;
-  private __subscription: Subscription;
+export class SbFailureDirective extends StateTemplate {
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private stateButtonDirective: StateButtonDirective
+    protected viewContainerRef: ViewContainerRef,
+    protected templateRef: TemplateRef<any>,
+    protected stateButtonDirective: StateButtonDirective
   ) {
-  }
-
-  ngOnInit() {
-    const distinct = this.stateButtonDirective.state.asObservable()
-      .map(s => s === 'FAILURE')
-      .distinctUntilChanged();
-    this.__subscription = distinct.subscribe(b => {
-      if (b) {
-        this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
-      } else {
-        if (this.__previousEmbedded) {
-          this.__previousEmbedded.destroy();
-          this.viewContainerRef.remove(0);
-        }
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.__subscription.unsubscribe();
-    if (this.__previousEmbedded) {
-      this.__previousEmbedded.destroy();
-      this.viewContainerRef.remove(0);
-    }
+    super(
+      'FAILURE',
+      viewContainerRef,
+      templateRef,
+      stateButtonDirective
+    );
   }
 }
