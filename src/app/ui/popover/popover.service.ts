@@ -15,13 +15,13 @@ import { PopoverContainerComponent } from './popover-container/popover-container
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 import { IW_POPOVER_CONFIG } from './popover.config';
 import { PopoverConfig } from './popover-config.interface';
+import { smartPosition, addClasses } from './helpers';
+import { PopoverOptions } from './popover-options.interface';
+export { PopoverPosition } from './popover-position.interface';
+export { PopoverOptions };
 
 export interface IPopover {
   close: () => void;
-}
-
-export interface PopoverPosition {
-  vertical: 'top' | 'bottom';
 }
 
 @Injectable()
@@ -37,17 +37,6 @@ export class Popover {
   setInstance(instance: IPopover) {
     this.__instance = instance;
   }
-}
-
-export interface PopoverOptions {
-  popoverClass?: string;
-  arrowClass?: string;
-  horizontalAlignment?: 'leftWithLeft' | undefined;
-  scrollMaskClass?: string;
-  escToClose?: boolean;
-  clickOutsideToClose?: boolean;
-  shouldClose?: () => void;
-  popoverPosition?: (p: PopoverPosition) => void;
 }
 
 @Injectable()
@@ -191,52 +180,12 @@ export class PopoverService {
       addClasses(arrowElement, options.arrowClass);
       document.body.appendChild(scrollMask);
 
-      this.__smartPosition(elements, options);
+      smartPosition(elements, options);
 
       container.classList.add('iw-popover-container--visible');
       arrowElement.classList.add('iw-popover-arrow-element--visible');
     }, 0);
   }
 
-  private __smartPosition(elements: {
-    container: HTMLElement
-    scrollMask: HTMLElement
-    arrowElement: HTMLElement
-    target: HTMLElement
-  }, options: PopoverOptions) {
-    const target: HTMLElement = elements.target;
-    const container: HTMLElement = elements.container;
-    const arrowElement: HTMLElement = elements.arrowElement;
-
-    const { top, left, bottom, right } = target.getBoundingClientRect();
-    const centerYBody = document.body.getBoundingClientRect().height / 2;
-    if (top > centerYBody) {
-      container.style.top = (top - container.offsetHeight) + 'px';
-      arrowElement.style.top = top + 'px';
-      arrowElement.classList.add('from-the-top');
-      options.popoverPosition({ vertical: 'top' });
-    } else {
-      container.style.top = bottom + 'px';
-      arrowElement.style.top = container.style.top;
-      arrowElement.classList.add('from-the-bottom');
-      options.popoverPosition({ vertical: 'bottom' });
-    }
-
-    const centerX = 0.5 * (left + right);
-    arrowElement.style.left = `${centerX}px`;
-    if (options.horizontalAlignment === 'leftWithLeft') {
-      const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-      container.style.left = Math.max(0, Math.min(maxLeft, left)) + 'px';
-    } else {
-      const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-      container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
-    }
-
-    container.style.visibility = 'visible';
-    arrowElement.style.visibility = 'visible';
-  }
 }
 
-function addClasses(element: HTMLElement, str: string) {
-  (str || '').split(' ').filter(s => !!s).forEach(c => element.classList.add(c));
-}
