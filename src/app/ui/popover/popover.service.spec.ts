@@ -66,4 +66,15 @@ describe('PopoverService', () => {
       popover.close();
     }).not.toThrow();
   }));
+
+  it('creates a copy of the options argument', () => {
+    const target = TestBed.createComponent(TestComponent);
+    const popoverService = target.debugElement.injector.get(PopoverService);
+    const options: any = {
+      shouldClose: undefined
+    };
+    popoverService.open(TestComponent, target.debugElement.nativeElement, options);
+    expect(options.shouldClose).toBe(undefined);
+  });
+
 });

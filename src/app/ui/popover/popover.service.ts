@@ -66,7 +66,7 @@ export class PopoverService {
     }
     const popover: Popover = reflInj.get(Popover);
 
-    const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(Object.assign(options || {}, {
+    const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(Object.assign({}, options || {}, {
       shouldClose: () => {
         popover.close();
       }
