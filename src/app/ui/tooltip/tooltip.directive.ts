@@ -18,6 +18,7 @@ import {
 } from './tooltip-container/tooltip-container.component';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { smartPosition } from './helpers';
 
 @Directive({
   selector: '[iwTooltip]'
@@ -87,38 +88,13 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       content.detectChanges();
       container.hostView.detectChanges();
 
-      this.__smartPosition();
+      smartPosition(this.__parent, this.__elements.container.location.nativeElement, this.renderer);
     }
 
   }
 
   private __onMouseLeave(event: MouseEvent) {
     this.__remove();
-  }
-
-  private __smartPosition() {
-    if (!this.__elements) {
-      return;
-    }
-
-    const target: HTMLElement = this.__parent;
-    const container: HTMLElement = this.__elements.container.location.nativeElement;
-    const targetRect = target.getBoundingClientRect();
-
-    // do that after, otherwise it can change the bounding client rect of the target
-    this.renderer.invokeElementMethod(document.body, 'appendChild', [container]);
-
-    const y = targetRect.top;
-    const centerYBody = document.body.getBoundingClientRect().height / 2;
-    if (y > centerYBody) {
-      container.style.top = (targetRect.top - container.offsetHeight) + 'px';
-    } else {
-      container.style.top = targetRect.bottom + 'px';
-    }
-
-    const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
-    container.style.left = Math.min(maxLeft, targetRect.left) + 'px';
-    container.style.visibility = 'visible';
   }
 
   private __remove() {
