@@ -68,16 +68,17 @@ describe('PopoverService', () => {
     }).not.toThrow();
   }));
 
-  it('creates a copy of the options argument', () => {
+  it('creates a copy of the options argument', fakeAsync(() => {
     const target = TestBed.createComponent(TestComponent);
     const popoverService = target.debugElement.injector.get(PopoverService);
     const options: any = {
       shouldClose: undefined
     };
     const popover = popoverService.open(TestComponent, target.debugElement.nativeElement, options);
+    tick(0);
     expect(options.shouldClose).toBe(undefined);
     popover.close();
-  });
+  }));
 
   it('calls the init function if provided', fakeAsync(() => {
     const target = TestBed.createComponent(TestComponent);

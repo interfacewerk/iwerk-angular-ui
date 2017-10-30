@@ -14,6 +14,12 @@ describe('smartPosition', () => {
     arrowElement = document.createElement('div');
   });
 
+  afterEach(() => {
+    document.body.removeChild(target);
+    document.body.removeChild(container);
+    document.body.removeChild(arrowElement);
+  });
+
   it('aligns the popover with the bottom left corner of the target', () => {
     addInBody(target, { top: 10, left: 400, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 200 });

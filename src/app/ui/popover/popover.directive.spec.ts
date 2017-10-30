@@ -51,8 +51,8 @@ describe('PopoverDirective basic features', () => {
 
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(1);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(1);
-    // tslint:disable-line:max-line-length
-    expect((document.body.querySelectorAll('iw-popover-container')[0].textContent || '').trim()).toBe('popover content should be projected');
+    expect((document.body.querySelectorAll('iw-popover-container')[0].textContent || '').trim())
+      .toBe('popover content should be projected');
   }));
 
   it('closes if iw-popover is destroyed', fakeAsync(() => {
