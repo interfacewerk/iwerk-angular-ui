@@ -24,10 +24,27 @@ describe('smartPosition', () => {
       target,
     }, <PopoverOptions>{
       horizontalAlignment: 'leftWithLeft',
-      popoverPosition: () => {}
+      popoverPosition: () => { }
     });
     expect(arrowElement.style.left).toBe('425px');
     expect(container.style.top).toBe('40px');
+    expect(container.style.left).toBe('400px');
+  });
+
+  it('aligns the popover with the top left corner of the target', () => {
+    addInBody(target, { top: 800, left: 400, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      horizontalAlignment: 'leftWithLeft',
+      popoverPosition: () => { }
+    });
+    expect(arrowElement.style.left).toBe('425px');
+    expect(container.style.top).toBe('600px');
     expect(container.style.left).toBe('400px');
   });
 
@@ -40,7 +57,7 @@ describe('smartPosition', () => {
       container,
       target,
     }, <PopoverOptions>{
-      popoverPosition: () => {}
+      popoverPosition: () => { }
     });
     expect(arrowElement.style.left).toBe('425px');
     expect(container.style.top).toBe('40px');
@@ -69,7 +86,7 @@ describe('addClasses', () => {
   });
 });
 
-function addInBody(element: HTMLElement, space: { top: number, left: number, width: number, height: number}) {
+function addInBody(element: HTMLElement, space: { top: number, left: number, width: number, height: number }) {
   document.body.appendChild(element);
   element.style.display = 'block';
   element.style.border = 'none';

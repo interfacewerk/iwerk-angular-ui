@@ -65,12 +65,15 @@ export class PopoverService {
       init(component.instance);
     }
     const popover: Popover = reflInj.get(Popover);
-
-    const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(Object.assign({}, options || {}, {
-      shouldClose: () => {
-        popover.close();
+    const popoverOptions: PopoverOptions = Object.assign({}, options || {});
+    popoverOptions.shouldClose = () => {
+      if (options.shouldClose) {
+        options.shouldClose();
       }
-    })));
+      popover.close();
+    };
+
+    const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(popoverOptions));
     popover.setInstance(instance);
     return instance;
   }
