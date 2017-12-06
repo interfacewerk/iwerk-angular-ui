@@ -70,6 +70,42 @@ describe('smartPosition', () => {
     expect(container.style.left).toBe('325px');
   });
 
+  it('aligns the popover on the right', () => {
+    addInBody(target, { top: 10, left: 400, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      popoverPosition: () => { },
+      direction: 'horizontal'
+    });
+    expect(arrowElement.style.top).toBe('25px');
+    expect(arrowElement.style.left).toBe('450px');
+    expect(container.style.top).toBe('0px');
+    expect(container.style.left).toBe('450px');
+  });
+
+  it('aligns the popover on the left', () => {
+    addInBody(target, { top: 10, left: 500, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      popoverPosition: () => { },
+      direction: 'horizontal'
+    });
+    expect(arrowElement.style.top).toBe('25px');
+    expect(arrowElement.style.left).toBe('500px');
+    expect(container.style.top).toBe('0px');
+    expect(container.style.left).toBe('300px');
+  });
+
 });
 
 describe('addClasses', () => {

@@ -51,6 +51,16 @@ iw-popover-container.popover-demo {
     background-color: lightgrey;
   }
 
+  &.from-the-left {
+    transform:  translate(-15px, -5px) rotateZ(45deg);
+    background-color: white;
+  }
+  
+  &.from-the-right {
+    transform:  translate(5px, -5px) rotateZ(-135deg);
+    background-color: white;
+  }
+
   &.from-the-top {
     transform: translate(-5px, -15px) rotateZ(135deg);
     background-color: white;

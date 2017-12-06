@@ -21,6 +21,9 @@ export class PopoverDirective implements OnDestroy {
   @Input() popoverClass: string;
   @Input() arrowClass: string;
   @Input() horizontalAlignment: 'leftWithLeft' | undefined;
+  @Input() set direction(v: 'vertical' | 'horizontal' | undefined) {
+    this.__direction = v || 'vertical';
+  }
   @Input() scrollMaskClass: string;
   @Input() escToClose: boolean;
   @Input() clickOutsideToClose: boolean;
@@ -34,6 +37,7 @@ export class PopoverDirective implements OnDestroy {
 
   private __popoverInstance: IPopover;
   private __isOpen = false;
+  private __direction: 'vertical' | 'horizontal' = 'vertical';
 
   constructor(
     private popoverService: PopoverService,
@@ -68,7 +72,8 @@ export class PopoverDirective implements OnDestroy {
           this.popoverPosition.emit(p);
         },
         escToClose: this.escToClose,
-        clickOutsideToClose: this.clickOutsideToClose
+        clickOutsideToClose: this.clickOutsideToClose,
+        direction: this.__direction
       });
   }
 

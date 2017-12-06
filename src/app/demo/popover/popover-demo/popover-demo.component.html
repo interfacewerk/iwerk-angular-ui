@@ -1,5 +1,25 @@
 <h1> Popover </h1>
 
+<h2>Direction: vertical or horizontal</h2>
+
+<button (click)="isPopoverOpen4 = true">
+  Click to open!
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen4"
+    [clickOutsideToClose]="true"
+    [escToClose]="true"
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen4 = false"
+    direction="horizontal">
+    <app-custom-popover-demo (close)="isPopoverOpen4 = false">
+      <app-custom-popover-header>Popover</app-custom-popover-header>
+      <app-custom-popover-content>    
+        Click, or Esc, I won't close!
+      </app-custom-popover-content>
+    </app-custom-popover-demo>
+  </ng-template>
+</button>
 <h2>Popover declarative logic</h2>
 
 <p>The popover will appear on this element!
@@ -77,4 +97,3 @@
     </ng-template>
   </tbody>
 </table>
-

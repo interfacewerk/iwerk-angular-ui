@@ -6,4 +6,5 @@ export interface PopoverConfig {
   scrollMaskClass?: string;
   escToClose?: boolean;
   clickOutsideToClose?: boolean;
+  direction?: 'vertical' | 'horizontal';
 }

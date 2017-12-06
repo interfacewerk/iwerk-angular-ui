@@ -86,7 +86,8 @@ export class PopoverService {
       arrowClass: config.arrowClass === undefined ? '' : config.arrowClass,
       popoverClass: config.popoverClass === undefined ? '' : config.popoverClass,
       scrollMaskClass: config.scrollMaskClass === undefined ? '' : config.scrollMaskClass,
-      horizontalAlignment: config.horizontalAlignment
+      horizontalAlignment: config.horizontalAlignment,
+      direction: config.direction === undefined ? 'vertical' : config.direction
     };
     const result = {
       escToClose: options.escToClose === undefined ? defaultOptions.escToClose : options.escToClose,
@@ -96,7 +97,8 @@ export class PopoverService {
       scrollMaskClass: (options.scrollMaskClass || '') + ' ' + defaultOptions.scrollMaskClass,
       horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
       shouldClose: options.shouldClose || (() => { }),
-      popoverPosition: options.popoverPosition || (() => { })
+      popoverPosition: options.popoverPosition || (() => { }),
+      direction: options.direction || defaultOptions.direction
     };
     return result;
   }
