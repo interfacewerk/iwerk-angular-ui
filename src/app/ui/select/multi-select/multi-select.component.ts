@@ -35,7 +35,7 @@ import { LeftRightNavigationDirective } from '../left-right-navigation.directive
   }],
 })
 export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
-  @Input() options: Keyp.Select.Option[];
+  @Input() options: IwerkUi.Select.Option[];
   @Input() placeholder: string;
 
   @ViewChildren(SelectionItemComponent) selectionItems: QueryList<SelectionItemComponent>;
@@ -43,13 +43,13 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
   @ViewChild(SelectSearchInputDirective) searchInput: SelectSearchInputDirective;
 
   displayOptions = new BehaviorSubject(false);
-  selection = new BehaviorSubject<Keyp.Select.Option[]>([]);
-  highlightedOption = new BehaviorSubject<Keyp.Select.Option>(undefined);
+  selection = new BehaviorSubject<IwerkUi.Select.Option[]>([]);
+  highlightedOption = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
   search = new BehaviorSubject('');
-  optionsToShow: Observable<Keyp.Select.Option[]>;
+  optionsToShow: Observable<IwerkUi.Select.Option[]>;
   navigationEvent = new Subject<-1 | 1>();
 
-  private __options = new BehaviorSubject<Keyp.Select.Option[]>(undefined);
+  private __options = new BehaviorSubject<IwerkUi.Select.Option[]>(undefined);
   private onChangeCb: Function;
   private onTouchedCb: Function;
 
@@ -83,7 +83,7 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     this.__options.next(this.options);
   }
 
-  isHighlighted(option: Keyp.Select.Option) {
+  isHighlighted(option: IwerkUi.Select.Option) {
     return this.highlightedOption.value === option;
   }
 
@@ -128,13 +128,13 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     });
   }
 
-  select(option: Keyp.Select.Option) {
+  select(option: IwerkUi.Select.Option) {
     this.changeValue(this.selection.value.concat(option));
     this.highlightedOption.next(undefined);
     this.searchInput.focus();
   }
 
-  onDelete(option: Keyp.Select.Option) {
+  onDelete(option: IwerkUi.Select.Option) {
     const index = this.selection.value.indexOf(option);
     if (index === -1) {
       throw new Error('Item not found!');
@@ -149,12 +149,12 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     }
   }
 
-  onLeft(option: Keyp.Select.Option) {
+  onLeft(option: IwerkUi.Select.Option) {
     const index = this.selection.value.indexOf(option);
     this.leftRightNavigation.toArray()[Math.max(0, index - 1)].focus();
   }
 
-  onRight(option: Keyp.Select.Option) {
+  onRight(option: IwerkUi.Select.Option) {
     const index = this.selection.value.indexOf(option);
     if (index === this.selection.value.length - 1) {
       this.searchInput.focus();
@@ -167,7 +167,7 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
    * Implements ControlValueAccessor:writeValue
    * @param obj the new selection
    */
-  writeValue(obj: Keyp.Select.Option[]): void {
+  writeValue(obj: IwerkUi.Select.Option[]): void {
     this.selection.next(obj || []);
   }
 
@@ -195,7 +195,7 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     alert();
   }
 
-  private changeValue(value: Keyp.Select.Option[]) {
+  private changeValue(value: IwerkUi.Select.Option[]) {
     this.selection.next(value || []);
     this.onChangeCb(this.selection.value);
   }

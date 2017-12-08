@@ -13,7 +13,7 @@ import { SelectOptionListItemDirective } from './select-option-list-item.directi
   selector: '[appSelectOptionList]'
 })
 export class SelectOptionListDirective implements AfterViewInit, OnChanges {
-  @Input() highlightedOption: Keyp.Select.Option;
+  @Input() highlightedOption: IwerkUi.Select.Option;
   @ContentChildren(SelectOptionListItemDirective) items: QueryList<SelectOptionListItemDirective>;
 
   private element: HTMLElement;

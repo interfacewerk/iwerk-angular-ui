@@ -32,20 +32,20 @@ import { SelectLabelDirective } from '../select-label.directive';
   }],
 })
 export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor {
-  @Input() options: Keyp.Select.Option[];
+  @Input() options: IwerkUi.Select.Option[];
   @Input() placeholder: string;
   @Input() autocomplete: boolean;
 
   @ViewChild(SelectLabelDirective) label: SelectLabelDirective;
 
-  selection = new BehaviorSubject<Keyp.Select.Option>(undefined);
+  selection = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
   displayOptions = new BehaviorSubject(false);
   search = new BehaviorSubject('');
-  optionsToShow: Observable<Keyp.Select.Option[]>;
+  optionsToShow: Observable<IwerkUi.Select.Option[]>;
   navigationEvent = new Subject<-1 | 1>();
-  highlightedOption = new BehaviorSubject<Keyp.Select.Option>(undefined);
+  highlightedOption = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
 
-  private __options = new BehaviorSubject<Keyp.Select.Option[]>(undefined);
+  private __options = new BehaviorSubject<IwerkUi.Select.Option[]>(undefined);
   private onChangeCb: Function;
   private onTouchedCb: Function;
 
@@ -81,7 +81,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.__options.next(this.options);
   }
 
-  isHighlighted(option: Keyp.Select.Option) {
+  isHighlighted(option: IwerkUi.Select.Option) {
     return this.highlightedOption.value === option;
   }
 
@@ -110,7 +110,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
     }
   }
 
-  select(option: Keyp.Select.Option) {
+  select(option: IwerkUi.Select.Option) {
     this.changeValue(option);
     this.highlightedOption.next(undefined);
     this.closeAndFocusLabel();
@@ -142,7 +142,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
    * Implements ControlValueAccessor:writeValue
    * @param obj the new selection
    */
-  writeValue(obj: Keyp.Select.Option): void {
+  writeValue(obj: IwerkUi.Select.Option): void {
     this.selection.next(obj);
   }
 
@@ -170,7 +170,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
     alert();
   }
 
-  private changeValue(value: Keyp.Select.Option) {
+  private changeValue(value: IwerkUi.Select.Option) {
     this.selection.next(value);
     this.onChangeCb(this.selection.value);
   }

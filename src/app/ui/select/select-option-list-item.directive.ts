@@ -4,7 +4,7 @@ import { Directive, Input, ElementRef, OnInit } from '@angular/core';
   selector: '[appSelectOptionListItem]'
 })
 export class SelectOptionListItemDirective implements OnInit {
-  @Input() appSelectOptionListItem: Keyp.Select.Option;
+  @Input() appSelectOptionListItem: IwerkUi.Select.Option;
 
   element: HTMLElement;
 

@@ -1,4 +1,4 @@
-declare namespace Keyp {
+declare namespace IwerkUi {
   namespace Select {
 
     type Option = {

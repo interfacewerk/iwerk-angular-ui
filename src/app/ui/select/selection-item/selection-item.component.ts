@@ -13,7 +13,7 @@ import { LeftRightNavigationDirective } from '../left-right-navigation.directive
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectionItemComponent {
-  @Input() item: Keyp.Select.Option;
+  @Input() item: IwerkUi.Select.Option;
 
   constructor(private leftRightNavigation: LeftRightNavigationDirective) {}
 
