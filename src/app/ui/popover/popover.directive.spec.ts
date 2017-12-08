@@ -216,5 +216,5 @@ describe('PopoverDirective direction input', () => {
   basicDirectionInputTest('vertical', 'vertical');
   basicDirectionInputTest('horizontal', 'horizontal');
   basicDirectionInputTest(undefined, 'vertical');
-  
+
 });
