@@ -1,0 +1,42 @@
+<div class="form-control">
+  <ul class="select__selection-list">
+    <ng-template ngFor [ngForOf]="selection | async" let-item>
+      <li class="select__selection-list__item">
+        <app-selection-item [item]="item" 
+          [attr.tabindex]="-1"
+          appLeftRightNavigation
+          (delete)="onDelete(item)"
+          (left)="onLeft(item)"
+          (right)="onRight(item)"></app-selection-item>
+      </li>
+    </ng-template>
+  </ul>
+
+  <input type="text" [ngModel]="search | async"
+    (ngModelChange)="onSearchChange($event)"
+    appSelectSearchInput
+    (back)="onBack()"
+    appSelectHighlightCtrl
+    (up)="onUp()"
+    (down)="onDown()"
+    (enter)="onEnter()"
+    (focus)="onFocus()"
+    (blur)="onBlur($event)"
+    appLeftRightNavigation
+    (left)="onBack()"
+    [placeholder]="placeholder"
+  />
+</div>
+<ng-template [ngIf]="displayOptions | async">
+  <ul class="list-group select__options-list" appSelectOptionList [highlightedOption]="highlightedOption | async">
+    <ng-template ngFor [ngForOf]="optionsToShow | async" let-option>
+      <li [appSelectOptionListItem]="option"
+        class="list-group-item select__options-list__item"
+        [class.active]="isHighlighted(option)"
+        [attr.tabindex]="-1"
+        (focus)="select(option)">
+        {{option.label}}
+      </li>
+    </ng-template>
+  </ul>
+</ng-template>

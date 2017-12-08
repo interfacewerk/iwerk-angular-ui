@@ -1,0 +1,38 @@
+@import '../../../variables.sass'
+
+\:host
+  display: block
+  position: relative
+
+  input
+    appearance: none
+    border: none
+    outline: none
+
+  .select__selection-list
+    display: inline
+    margin: 0
+    padding: 0
+    list-style: none
+
+    .select__selection-list__item
+      display: inline-block
+  
+  .select__options-list
+    position: absolute
+    top: 100%
+    left: 0
+    width: 100%
+    z-index: 10
+    max-height: 200px
+    overflow: auto
+
+  .select__options-list__item
+    cursor: pointer
+
+    &:not(.active):hover
+      background: $light-grey
+      border-color: $light-grey
+
+  &>.form-control
+    height: auto !important
