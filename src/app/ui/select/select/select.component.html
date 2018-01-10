@@ -1,25 +1,31 @@
-<div class="form-control" tabindex="0"
-  appSelectLabel
+<div tabindex="0"
+  iwSelectLabel
   (open)="onLabelClick()"
-  appSelectHighlightCtrl
+  iwSelectHighlightCtrl
   [highlightCtrlDisabled]="!(displayOptions | async)"
   (blur)="onBlurLabel()"
   (up)="onUp()"
   (down)="onDown()"
   (enter)="onEnter()">
-  <ng-template [ngIf]="selection | async">{{(selection | async).label}}</ng-template>
+  <ng-template [ngIf]="selection | async">
+    <ng-template [ngIf]="labelTemplate">
+      <ng-container *ngTemplateOutlet="labelTemplate; context: getLabelTemplateContext(selection | async)"></ng-container>        
+    </ng-template>
+    <ng-template [ngIf]="!labelTemplate">
+      {{(selection | async).label}}
+    </ng-template>        
+  </ng-template>
   <ng-template [ngIf]="!(selection | async)">{{placeholder}}</ng-template>
 </div>
 
 <ng-template [ngIf]="displayOptions | async">
   <ng-template [ngIf]="autocomplete">
     <input type="text"
-      class="form-control"
       [ngModel]="search | async"
       (ngModelChange)="onSearchChange($event)"
-      appSelectSearchInput
-      [appAutofocusInput]="true"
-      appSelectHighlightCtrl
+      iwSelectSearchInput
+      [iwAutofocusInput]="true"
+      iwSelectHighlightCtrl
       (up)="onUp()"
       (down)="onDown()"
       (enter)="onEnter()"
@@ -27,14 +33,18 @@
       [placeholder]="placeholder"
     />
   </ng-template>
-  <ul class="list-group select__options-list" appSelectOptionList [highlightedOption]="highlightedOption | async">
+  <ul class="iw-select__options-list" iwSelectOptionList>
     <ng-template ngFor [ngForOf]="optionsToShow | async" let-option>
-      <li [appSelectOptionListItem]="option"
-        class="list-group-item select__options-list__item"
-        [class.active]="isHighlighted(option)"
-        [attr.tabindex]="-1"
+      <li [iwSelectOptionListItem]="option"
+        class="iw-select__options-list__item"
+        highlightedClass="active"
         (focus)="select(option)">
-        {{option.label}}
+        <ng-template [ngIf]="!optionListItemTemplate">
+          {{option.label}}
+        </ng-template>
+        <ng-template [ngIf]="optionListItemTemplate">
+          <ng-container *ngTemplateOutlet="optionListItemTemplate; context: getLabelTemplateContext(option)"></ng-container>
+        </ng-template>
       </li>
     </ng-template>
   </ul>

@@ -1,39 +1,35 @@
 import {
   Directive,
-  Input,
   AfterViewInit,
-  OnChanges,
   QueryList,
   ElementRef,
   ContentChildren,
 } from '@angular/core';
 import { SelectOptionListItemDirective } from './select-option-list-item.directive';
+import { ListNavigationService } from './list-navigation.service';
 
 @Directive({
-  selector: '[appSelectOptionList]'
+  selector: '[iwSelectOptionList]'
 })
-export class SelectOptionListDirective implements AfterViewInit, OnChanges {
-  @Input() highlightedOption: IwerkUi.Select.Option;
+export class SelectOptionListDirective implements AfterViewInit {
   @ContentChildren(SelectOptionListItemDirective) items: QueryList<SelectOptionListItemDirective>;
 
   private element: HTMLElement;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(
+    private elementRef: ElementRef,
+    private listNavigation: ListNavigationService
+  ) { }
 
   ngAfterViewInit() {
     this.element = this.elementRef.nativeElement;
-    this.scrollToHighlighted();
+    this.listNavigation.highlightedOption.subscribe(o => {
+      this.scrollToHighlighted(o);
+    });
   }
 
-  ngOnChanges() {
-    if (!this.element) {
-      return;
-    }
-    this.scrollToHighlighted();
-  }
-
-  private scrollToHighlighted() {
-    const item = this.items.toArray().find(i => i.appSelectOptionListItem === this.highlightedOption);
+  private scrollToHighlighted(highlighted: IWUI.Select.Option) {
+    const item = this.items.toArray().find(i => i.iwSelectOptionListItem === highlighted);
     if (!item) {
       this.element.scrollTop = 0;
       return;

@@ -8,10 +8,15 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appSelectLabel]'
+  selector: '[iwSelectLabel]'
 })
 export class SelectLabelDirective {
   @Output() open = new EventEmitter();
+
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer
+  ) { }
 
   @HostListener('click', ['$event'])
   onClick($event: MouseEvent) {
@@ -34,11 +39,6 @@ export class SelectLabelDirective {
       this.open.emit();
     }
   }
-
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer
-  ) { }
 
   focus() {
     this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus');

@@ -4,7 +4,9 @@ import {
   OnChanges,
   Input,
   ViewChild,
-  forwardRef
+  forwardRef,
+  TemplateRef,
+  ViewEncapsulation
 } from '@angular/core';
 
 import {
@@ -13,43 +15,44 @@ import {
 } from '@angular/forms';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/withLatestFrom';
 
 import { SelectLabelDirective } from '../select-label.directive';
+import { ListNavigationService } from '../list-navigation.service';
 
 @Component({
-  selector: 'app-select',
+  selector: 'iw-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.sass'],
+  encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectComponent),
     multi: true
-  }],
+  }, ListNavigationService]
 })
 export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor {
-  @Input() options: IwerkUi.Select.Option[];
+  @Input() options: IWUI.Select.Option[];
   @Input() placeholder: string;
   @Input() autocomplete: boolean;
+  @Input() optionListItemTemplate: TemplateRef<IWUI.Select.Option>;
+  @Input() labelTemplate: TemplateRef<IWUI.Select.Option>;
 
   @ViewChild(SelectLabelDirective) label: SelectLabelDirective;
 
-  selection = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
+  selection = new BehaviorSubject<IWUI.Select.Option>(undefined);
   displayOptions = new BehaviorSubject(false);
   search = new BehaviorSubject('');
-  optionsToShow: Observable<IwerkUi.Select.Option[]>;
-  navigationEvent = new Subject<-1 | 1>();
-  highlightedOption = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
+  optionsToShow: Observable<IWUI.Select.Option[]>;
 
-  private __options = new BehaviorSubject<IwerkUi.Select.Option[]>(undefined);
+  private __options = new BehaviorSubject<IWUI.Select.Option[]>(undefined);
   private onChangeCb: Function;
   private onTouchedCb: Function;
 
-  constructor() {
+  constructor(private listNavigation: ListNavigationService) {
+    this.onChangeCb = this.onTouchedCb = () => {};
     this.optionsToShow = Observable.combineLatest(this.__options, this.search)
       .map(([options, search]) => {
         if (!options) {
@@ -60,18 +63,7 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
             return option.label.toLowerCase().indexOf(search.toLowerCase()) > -1;
           });
       });
-    this.navigationEvent.withLatestFrom(this.optionsToShow, (a, b) => {
-      const index = b.indexOf(this.highlightedOption.value);
-      if (index === -1) {
-        if (a === -1) {
-          return b[b.length - 1];
-        } else if (a === 1) {
-          return b[0];
-        }
-      } else {
-        return b[(index + a + b.length) % b.length];
-      }
-    }).subscribe(highlighted => this.highlightedOption.next(highlighted));
+    this.optionsToShow.subscribe(options => this.listNavigation.optionsToShow = options);
   }
 
   ngOnInit() {
@@ -81,12 +73,8 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.__options.next(this.options);
   }
 
-  isHighlighted(option: IwerkUi.Select.Option) {
-    return this.highlightedOption.value === option;
-  }
-
   onLabelClick() {
-    this.displayOptions.next(true);
+    this.openOptions();
   }
 
   onSearchChange($event: string) {
@@ -94,55 +82,57 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
   }
 
   onUp() {
-    this.navigationEvent.next(-1);
+    this.listNavigation.up();
   }
 
   onDown() {
-    this.navigationEvent.next(1);
+    this.listNavigation.down();
   }
 
   onEnter() {
-    if (this.highlightedOption.value) {
-      this.changeValue(this.highlightedOption.value);
+    const highlighted = this.listNavigation.getHighlightedOption();
+    if (highlighted) {
+      this.changeValue(highlighted);
       this.search.next('');
-      this.highlightedOption.next(undefined);
+      this.listNavigation.unHighlight();
       this.closeAndFocusLabel();
     }
   }
 
-  select(option: IwerkUi.Select.Option) {
+  select(option: IWUI.Select.Option) {
     this.changeValue(option);
-    this.highlightedOption.next(undefined);
+    this.listNavigation.unHighlight();
     this.closeAndFocusLabel();
   }
 
   onBlurLabel() {
     if (this.autocomplete) {
+      this.onTouchedCb();
       return;
     }
     window.requestAnimationFrame(() => {
-      this.displayOptions.next(false);
+      this.closeAndTouch();
     });
   }
 
   onBlur() {
     window.requestAnimationFrame(() => {
-      this.displayOptions.next(false);
+      this.closeAndTouch();
     });
   }
 
-  private closeAndFocusLabel() {
-    window.requestAnimationFrame(() => {
-      this.displayOptions.next(false);
-      this.label.focus();
-    });
+  getLabelTemplateContext() {
+    return {
+      option: this.selection.value
+    };
   }
+
 
   /**
    * Implements ControlValueAccessor:writeValue
    * @param obj the new selection
    */
-  writeValue(obj: IwerkUi.Select.Option): void {
+  writeValue(obj: IWUI.Select.Option): void {
     this.selection.next(obj);
   }
 
@@ -170,7 +160,24 @@ export class SelectComponent implements OnInit, OnChanges, ControlValueAccessor 
     alert();
   }
 
-  private changeValue(value: IwerkUi.Select.Option) {
+  private openOptions() {
+    this.displayOptions.next(true);
+    this.search.next('');
+  }
+
+  private closeAndTouch() {
+    this.displayOptions.next(false);
+    this.onTouchedCb();
+  }
+
+  private closeAndFocusLabel() {
+    window.requestAnimationFrame(() => {
+      this.displayOptions.next(false);
+      this.label.focus();
+    });
+  }
+
+  private changeValue(value: IWUI.Select.Option) {
     this.selection.next(value);
     this.onChangeCb(this.selection.value);
   }

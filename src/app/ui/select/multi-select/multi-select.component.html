@@ -1,41 +1,48 @@
-<div class="form-control">
-  <ul class="select__selection-list">
-    <ng-template ngFor [ngForOf]="selection | async" let-item>
-      <li class="select__selection-list__item">
-        <app-selection-item [item]="item" 
-          [attr.tabindex]="-1"
-          appLeftRightNavigation
-          (delete)="onDelete(item)"
-          (left)="onLeft(item)"
-          (right)="onRight(item)"></app-selection-item>
-      </li>
-    </ng-template>
-  </ul>
+<ul class="iw-select__selection-list">
+  <ng-template ngFor [ngForOf]="selection | async" let-item>
+    <li class="iw-select__selection-list__item"
+      iwMultiSelectItem
+      [attr.tabindex]="-1"
+      iwLeftRightNavigation
+      (delete)="onDelete(item)"
+      (left)="onLeft(item)"
+      (right)="onRight(item)">
+      <ng-template [ngIf]="selectedItemTemplate">
+        <ng-container *ngTemplateOutlet="selectedItemTemplate; context: getSelectedItemContext(item)"></ng-container>            
+      </ng-template>
+      <ng-template [ngIf]="!selectedItemTemplate">
+        <span (click)="onDelete(item)" [attr.tabIndex]="-1">x</span> {{item.label}}
+      </ng-template>            
+    </li>
+  </ng-template>
+</ul>
 
-  <input type="text" [ngModel]="search | async"
-    (ngModelChange)="onSearchChange($event)"
-    appSelectSearchInput
-    (back)="onBack()"
-    appSelectHighlightCtrl
-    (up)="onUp()"
-    (down)="onDown()"
-    (enter)="onEnter()"
-    (focus)="onFocus()"
-    (blur)="onBlur($event)"
-    appLeftRightNavigation
-    (left)="onBack()"
-    [placeholder]="placeholder"
-  />
-</div>
+<input type="text" [ngModel]="search | async"
+  (ngModelChange)="onSearchChange($event)"
+  iwSelectSearchInput
+  (back)="onBack()"
+  iwSelectHighlightCtrl
+  (up)="onUp()"
+  (down)="onDown()"
+  (enter)="onEnter()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  [placeholder]="placeholder"
+/>
+
 <ng-template [ngIf]="displayOptions | async">
-  <ul class="list-group select__options-list" appSelectOptionList [highlightedOption]="highlightedOption | async">
+  <ul class="iw-select__options-list" iwSelectOptionList>
     <ng-template ngFor [ngForOf]="optionsToShow | async" let-option>
-      <li [appSelectOptionListItem]="option"
-        class="list-group-item select__options-list__item"
-        [class.active]="isHighlighted(option)"
-        [attr.tabindex]="-1"
+      <li class="iw-select__options-list__item"
+        [iwSelectOptionListItem]="option"
+        highlightedClass="active"
         (focus)="select(option)">
-        {{option.label}}
+        <ng-template [ngIf]="!optionListItemTemplate">
+          {{option.label}}
+        </ng-template>
+        <ng-template [ngIf]="optionListItemTemplate">
+          <ng-container *ngTemplateOutlet="optionListItemTemplate; context: getOptionItemTemplateContext(option)"></ng-container>
+        </ng-template>
       </li>
     </ng-template>
   </ul>

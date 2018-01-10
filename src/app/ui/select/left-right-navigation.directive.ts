@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appLeftRightNavigation]'
+  selector: '[iwLeftRightNavigation]'
 })
 export class LeftRightNavigationDirective implements AfterViewInit {
   @Output() delete = new EventEmitter();
@@ -17,9 +17,10 @@ export class LeftRightNavigationDirective implements AfterViewInit {
 
   private element: HTMLElement;
 
+  constructor(private elementRef: ElementRef) { }
+
   @HostListener('keyup', ['$event'])
   onKeyup($event: KeyboardEvent) {
-    console.log($event.keyCode);
     if ($event.target !== this.element) {
       return;
     }
@@ -35,7 +36,6 @@ export class LeftRightNavigationDirective implements AfterViewInit {
     }
   }
 
-  constructor(private elementRef: ElementRef) {}
 
   ngAfterViewInit() {
     this.element = this.elementRef.nativeElement;

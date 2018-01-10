@@ -1,22 +1,11 @@
-@import '../../../variables.sass'
-
-\:host
+iw-select
   display: block
   position: relative
 
-  [appSelectLabel]
+  [iwSelectLabel]
     cursor: pointer
 
-  .select__selection-list
-    display: inline
-    margin: 0
-    padding: 0
-    list-style: none
-
-    .select__selection-list__item
-      display: inline-block
-  
-  .select__options-list
+  .iw-select__options-list
     position: absolute
     top: 100%
     left: 0
@@ -24,13 +13,29 @@
     z-index: 10
     max-height: 200px
     overflow: auto
+    margin: 0
+    padding: 0
+    list-style: none
+    border: 1px solid black
+    background: white
 
-  .select__options-list__item
+  .iw-select__options-list__item__icon
+    position: absolute
+    left: 5px
+    width: 20px
+    top: 50%
+    transform: translateY(-50%)
+
+  .iw-select__options-list__item
     cursor: pointer
 
+    &.active
+      background: black
+      color: white
+
     &:not(.active):hover
-      background: $light-grey
-      border-color: $light-grey
+      background: lightgrey
+      border-color: lightgrey
 
   &>.form-control
     height: auto !important

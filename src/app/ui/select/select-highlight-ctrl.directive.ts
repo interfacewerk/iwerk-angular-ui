@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appSelectHighlightCtrl]'
+  selector: '[iwSelectHighlightCtrl]'
 })
 export class SelectHighlightCtrlDirective {
   @Input() highlightCtrlDisabled: boolean;
@@ -15,6 +15,8 @@ export class SelectHighlightCtrlDirective {
   @Output() up = new EventEmitter();
   @Output() down = new EventEmitter();
   @Output() enter = new EventEmitter();
+
+  constructor() { }
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent) {
@@ -37,6 +39,5 @@ export class SelectHighlightCtrlDirective {
     // console.log(event.keyCode);
   }
 
-  constructor() { }
 
 }

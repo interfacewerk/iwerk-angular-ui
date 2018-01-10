@@ -1,4 +1,4 @@
-declare namespace IwerkUi {
+declare namespace IWUI {
   namespace Select {
 
     type Option = {

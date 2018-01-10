@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appAutofocusInput]'
+  selector: '[iwAutofocusInput]'
 })
 export class AutofocusInputDirective implements AfterViewInit {
-  @Input() appAutofocusInput: boolean;
+  @Input() iwAutofocusInput: boolean;
 
   constructor(
     private elementRef: ElementRef,
@@ -18,7 +18,7 @@ export class AutofocusInputDirective implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    if (this.appAutofocusInput) {
+    if (this.iwAutofocusInput) {
       this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus');
     }
   }

@@ -5,86 +5,86 @@ import {
   ViewChildren,
   QueryList,
   ViewChild,
-  forwardRef
+  forwardRef,
+  TemplateRef,
+  ViewEncapsulation
 } from '@angular/core';
 
 import {
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR,
+  Validator,
+  NG_VALIDATORS,
+  FormControl,
+  ValidationErrors
 } from '@angular/forms';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/withLatestFrom';
 
-import { SelectionItemComponent } from '../selection-item/selection-item.component';
+import { MultiSelectItemDirective } from '../multi-select-item.directive';
 import { SelectSearchInputDirective } from '../select-search-input.directive';
 import { LeftRightNavigationDirective } from '../left-right-navigation.directive';
+import { ListNavigationService } from '../list-navigation.service';
 
 @Component({
-  selector: 'app-multi-select',
+  selector: 'iw-multi-select',
   templateUrl: './multi-select.component.html',
   styleUrls: ['./multi-select.component.sass'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => MultiSelectComponent),
     multi: true
-  }],
+  }, {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => MultiSelectComponent),
+    multi: true
+  }, ListNavigationService],
+  encapsulation: ViewEncapsulation.None
 })
-export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
-  @Input() options: IwerkUi.Select.Option[];
+export class MultiSelectComponent implements OnChanges, ControlValueAccessor, Validator {
+  @Input() options: any[];
   @Input() placeholder: string;
+  @Input() optionListItemTemplate: TemplateRef<any>;
+  @Input() selectedItemTemplate: TemplateRef<any>;
+  @Input() minLength: number;
+  @Input() maxLength: number;
+  @Input() indexBy: (option: any) => any;
 
-  @ViewChildren(SelectionItemComponent) selectionItems: QueryList<SelectionItemComponent>;
+  @ViewChildren(MultiSelectItemDirective) selectedItems: QueryList<MultiSelectItemDirective>;
   @ViewChildren(LeftRightNavigationDirective) leftRightNavigation: QueryList<LeftRightNavigationDirective>;
   @ViewChild(SelectSearchInputDirective) searchInput: SelectSearchInputDirective;
 
   displayOptions = new BehaviorSubject(false);
-  selection = new BehaviorSubject<IwerkUi.Select.Option[]>([]);
-  highlightedOption = new BehaviorSubject<IwerkUi.Select.Option>(undefined);
+  selection = new BehaviorSubject<any[]>([]);
   search = new BehaviorSubject('');
-  optionsToShow: Observable<IwerkUi.Select.Option[]>;
-  navigationEvent = new Subject<-1 | 1>();
+  optionsToShow: Observable<any[]>;
 
-  private __options = new BehaviorSubject<IwerkUi.Select.Option[]>(undefined);
+  private __options = new BehaviorSubject<any[]>(undefined);
   private onChangeCb: Function;
   private onTouchedCb: Function;
 
-  constructor() {
+  constructor(private listNavigation: ListNavigationService) {
+    this.onChangeCb = this.onTouchedCb = () => {};
     this.optionsToShow = Observable.combineLatest(this.__options, this.search, this.selection)
       .map(([options, search, selection]) => {
         if (!options) {
           return [];
         }
         return (options || [])
-          .filter(option => selection.indexOf(option) === -1)
+          // exclude from the list the items that are already selected
+          .filter(option => selection.map(o => this.indexBy(o)).indexOf(this.indexBy(option)) === -1)
           .filter(option => {
             return option.label.toLowerCase().indexOf(search.toLowerCase()) > -1;
           });
       });
-    this.navigationEvent.withLatestFrom(this.optionsToShow, (a, b) => {
-      const index = b.indexOf(this.highlightedOption.value);
-      if (index === -1) {
-        if (a === -1) {
-          return b[b.length - 1];
-        } else if (a === 1) {
-          return b[0];
-        }
-      } else {
-        return b[(index + a + b.length) % b.length];
-      }
-    }).subscribe(highlighted => this.highlightedOption.next(highlighted));
+    this.optionsToShow.subscribe(options => this.listNavigation.optionsToShow = options);
   }
 
   ngOnChanges() {
     this.__options.next(this.options);
-  }
-
-  isHighlighted(option: IwerkUi.Select.Option) {
-    return this.highlightedOption.value === option;
   }
 
   onSearchChange($event: string) {
@@ -92,56 +92,52 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
   }
 
   onUp() {
-    this.navigationEvent.next(-1);
+    this.listNavigation.up();
   }
 
   onDown() {
-    this.navigationEvent.next(1);
+    this.listNavigation.down();
   }
 
   onEnter() {
-    const value = this.highlightedOption.value;
+    const value = this.listNavigation.getHighlightedOption();
     if (!value) {
       return;
     }
     this.search.next('');
-    this.highlightedOption.next(undefined);
+    this.listNavigation.unHighlight();
     this.changeValue(this.selection.value.concat(value));
   }
 
   onBack() {
-    const last = this.selectionItems.last;
+    const last = this.selectedItems.last;
     if (last) {
       last.focus();
     }
   }
 
   onFocus() {
-    window.requestAnimationFrame(() => {
-      this.displayOptions.next(true);
-    });
+    this.displayOptions.next(true);
   }
 
-  onBlur($event: Event) {
-    window.requestAnimationFrame(() => {
-      this.displayOptions.next(false);
-    });
+  onBlur() {
+    this.closeAndTouch();
   }
 
-  select(option: IwerkUi.Select.Option) {
+  select(option: any) {
     this.changeValue(this.selection.value.concat(option));
-    this.highlightedOption.next(undefined);
+    this.listNavigation.unHighlight();
     this.searchInput.focus();
   }
 
-  onDelete(option: IwerkUi.Select.Option) {
+  onDelete(option: any) {
     const index = this.selection.value.indexOf(option);
     if (index === -1) {
       throw new Error('Item not found!');
     }
     this.selection.value.splice(index, 1);
     this.changeValue(this.selection.value.slice(0));
-    const focusOn = this.selectionItems.toArray()[index - 1];
+    const focusOn = this.selectedItems.toArray()[index - 1];
     if (focusOn) {
       focusOn.focus();
     } else {
@@ -149,12 +145,12 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     }
   }
 
-  onLeft(option: IwerkUi.Select.Option) {
+  onLeft(option: any) {
     const index = this.selection.value.indexOf(option);
     this.leftRightNavigation.toArray()[Math.max(0, index - 1)].focus();
   }
 
-  onRight(option: IwerkUi.Select.Option) {
+  onRight(option: any) {
     const index = this.selection.value.indexOf(option);
     if (index === this.selection.value.length - 1) {
       this.searchInput.focus();
@@ -163,11 +159,42 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     }
   }
 
+  getOptionItemTemplateContext(option: any) {
+    return {
+      option
+    };
+  }
+
+  getSelectedItemContext(option: any) {
+    return {
+      option,
+      delete: () => {
+        this.onDelete(option);
+      }
+    };
+  }
+
+  validate(control: FormControl): ValidationErrors {
+    if (this.minLength === undefined && this.maxLength === undefined) {
+      return null;
+    }
+    const errors: ValidationErrors = {};
+    const length = this.selection.value.length;
+    if (this.minLength > length) {
+      errors['minLength'] = true;
+    }
+    if (this.maxLength < length) {
+      errors['maxLength'] = true;
+    }
+    console.log(errors);
+    return errors;
+  }
+
   /**
    * Implements ControlValueAccessor:writeValue
    * @param obj the new selection
    */
-  writeValue(obj: IwerkUi.Select.Option[]): void {
+  writeValue(obj: any[]): void {
     this.selection.next(obj || []);
   }
 
@@ -195,8 +222,14 @@ export class MultiSelectComponent implements OnChanges, ControlValueAccessor {
     alert();
   }
 
-  private changeValue(value: IwerkUi.Select.Option[]) {
+  private closeAndTouch() {
+    this.displayOptions.next(false);
+    this.onTouchedCb();
+  }
+
+  private changeValue(value: any[]) {
     this.selection.next(value || []);
+    this.onTouchedCb();
     this.onChangeCb(this.selection.value);
   }
 }

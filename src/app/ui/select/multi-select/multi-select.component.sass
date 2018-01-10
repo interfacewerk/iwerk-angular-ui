@@ -1,6 +1,4 @@
-@import '../../../variables.sass'
-
-\:host
+iw-multi-select
   display: block
   position: relative
 
@@ -9,16 +7,23 @@
     border: none
     outline: none
 
-  .select__selection-list
+  .iw-select__selection-list
     display: inline
     margin: 0
     padding: 0
     list-style: none
 
-    .select__selection-list__item
-      display: inline-block
+  .iw-select__selection-list__item
+    display: inline-block
+    background: black
+    color: white
+    padding: 0.2em
+    outline: none
+
+    &:focus
+      background: darkgrey
   
-  .select__options-list
+  .iw-select__options-list
     position: absolute
     top: 100%
     left: 0
@@ -26,13 +31,34 @@
     z-index: 10
     max-height: 200px
     overflow: auto
+    list-style: none
+    padding: 0
+    margin: 0
+    border 1px solid black
 
-  .select__options-list__item
+  .iw-select__options-list__item
     cursor: pointer
 
+    &.active
+      background: black
+      color: white
+  
     &:not(.active):hover
-      background: $light-grey
-      border-color: $light-grey
+      background: lightgrey
+      border-color: lightgrey
 
   &>.form-control
     height: auto !important
+  
+  [appMultiSelectItem]
+    display: inline-block
+    border: 1px solid lightgrey
+    padding: 0.2em
+    border-radius: 4px
+    margin-bottom: 0.2em
+    cursor: pointer
+
+    &:focus
+      background: blue
+      border-color: blue
+      color: white
