@@ -31,4 +31,8 @@ iw-dialog-container {
       transform: translateY(0);
     }
   }
+
+  .dialog-container__focus-trap {
+    opacity: 0;
+  }
 }
