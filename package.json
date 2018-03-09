@@ -11,7 +11,7 @@
     "build-aot": "ng build --aot=true",
     "start": "ng serve",
     "lint": "ng lint",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "test-once": "ng test --watch=false",
     "test-ci": "ng test --watch=false --code-coverage",
     "send-coverage": "cat coverage/lcov.info | coveralls",
