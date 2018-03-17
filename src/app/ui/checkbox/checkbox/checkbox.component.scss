@@ -1,6 +1,6 @@
 iw-checkbox {
   display: inline-block;
-  line-height: 25px;
+  line-height: 15px;
   
   &:not(.checkbox--disabled) {
     cursor: pointer;
@@ -16,38 +16,40 @@ iw-checkbox {
   }
 
   &:not(.checkbox--disabled):not(.checkbox--checked):hover {
-    .checkbox__checkbox::after {
-      border-color: red;
+    .checkbox__checkbox {
+      border-color: grey;
     }
   }
 
-  &.checkbox--checked .checkbox__checkbox::after {
-    border-color: red;
-    transform: translate(-50%, -50%) rotate(-45deg) scaleY(0.6) scaleX(1);
-    transform-origin: center;    
-    border-top-color: transparent;
-    border-right-color: transparent;
+  &.checkbox--checked {
+    .checkbox__checkbox {
+      border-color: black;
+    }
+    
+    .checkbox__checkbox svg {
+      opacity: 1;
+    }
   }
 
   .checkbox__checkbox {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     position: relative;
     margin: 0 3px;
     display: inline-block;
     float: left;
+    transition: border-color 0.3s;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
 
-    &::after {
-      content: '';
-      width: 20px;
-      height: 20px;
+    svg {
       position: absolute;
       left: 50%;
       top: 50%;
+      width: 75%;
       transform: translate(-50%, -50%);
-      transform-origin: center;
-      transition: border 0.7s, transform 0.7s;
-      border: 2px solid grey;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
   }
 
