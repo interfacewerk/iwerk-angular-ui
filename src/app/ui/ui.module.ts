@@ -3,14 +3,21 @@ import { CommonModule } from '@angular/common';
 import { PopoverModule } from './popover/popover.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { StateButtonModule } from './state-button/state-button.module';
+import { CheckboxModule } from './checkbox/checkbox.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PopoverModule,
     TooltipModule,
-    StateButtonModule
+    StateButtonModule,
+    CheckboxModule
   ],
-  exports: [ PopoverModule, TooltipModule, StateButtonModule ]
+  exports: [
+    PopoverModule,
+    TooltipModule,
+    StateButtonModule,
+    CheckboxModule
+  ]
 })
 export class UiModule { }

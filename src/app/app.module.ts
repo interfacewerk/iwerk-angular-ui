@@ -12,6 +12,7 @@ const appRoutes: Routes = [
   { path: 'tooltip', loadChildren: 'app/demo/tooltip/tooltip.module#TooltipModule' },
   { path: 'stateful-button', loadChildren: 'app/demo/stateful-button/stateful-button.module#StatefulButtonDemoModule' },
   { path: 'dialog', loadChildren: 'app/demo/dialog-demo/dialog-demo.module#DialogDemoModule' },
+  { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
 ];
 
 @NgModule({
