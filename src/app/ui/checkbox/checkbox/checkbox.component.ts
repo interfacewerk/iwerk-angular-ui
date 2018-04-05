@@ -5,7 +5,9 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   HostListener,
-  HostBinding
+  HostBinding,
+  Input,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -25,6 +27,8 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class CheckboxComponent implements OnInit, ControlValueAccessor {
+  @Input() tabindex: number;
+
   @HostBinding('class.checkbox--checked')
   value: boolean;
   onChangeCb: (newValue: boolean) => any;
@@ -32,21 +36,29 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @HostBinding('class.checkbox--disabled')
   isDisabled: boolean;
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.onChangeCb = this.onTouchedCb = () => {};
   }
 
   ngOnInit() {
   }
 
+  onKeyup($event: KeyboardEvent) {
+    if ($event.keyCode === 32) {
+      this.userToggle();
+    }
+  }
+
+  getTabIndex(): number {
+    if (this.isDisabled) {
+      return -1;
+    }
+    return this.tabindex || 0;
+  }
+
   @HostListener('click', ['$event'])
   onClick($event: MouseEvent) {
-    if (this.isDisabled) {
-      return;
-    }
-    this.value = !this.value;
-    this.onTouchedCb();
-    this.onChangeCb(this.value);
+    this.userToggle();
   }
 
   /**
@@ -79,5 +91,15 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
    */
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  private userToggle() {
+    if (this.isDisabled) {
+      return;
+    }
+    this.value = !this.value;
+    this.onTouchedCb();
+    this.onChangeCb(this.value);
   }
 }

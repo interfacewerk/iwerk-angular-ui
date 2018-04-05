@@ -41,6 +41,7 @@ iw-checkbox {
     transition: border-color 0.3s;
     border: 1px solid lightgrey;
     border-radius: 2px;
+    overflow: hidden;
 
     svg {
       position: absolute;

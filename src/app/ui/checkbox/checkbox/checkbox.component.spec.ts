@@ -49,4 +49,38 @@ describe('CheckboxComponent', () => {
     component.onClick(undefined);
     expect(component.value).toBe(true);
   });
+
+  it('getTabIndex() returns -1 if it is disabled', () => {
+    component.setDisabledState(true);
+    expect(component.getTabIndex()).toBe(-1);
+  });
+
+  it('getTabIndex() returns 0 if it is enabled', () => {
+    expect(component.getTabIndex()).toBe(0);
+  });
+
+  it('getTabIndex() returns the tabindex attribute', () => {
+    component.tabindex = 10;
+    expect(component.getTabIndex()).toBe(10);
+  });
+
+  it('changes the value when hitting Space on the checkbox', () => {
+    component.onKeyup({
+      keyCode: 32
+    } as KeyboardEvent);
+    expect(component.value).toBe(true);
+  });
+
+  it('does not change the value when hitting something else than Space on the checkbox', () => {
+    component.onKeyup({
+      keyCode: 3
+    } as KeyboardEvent);
+    expect(component.value).toBeFalsy();
+  });
+
+  it('triggers the change detection when disabling the component', () => {
+    spyOn((component as any).changeDetectorRef, 'detectChanges');
+    component.setDisabledState(true);
+    expect((component as any).changeDetectorRef.detectChanges).toHaveBeenCalled();
+  });
 });
