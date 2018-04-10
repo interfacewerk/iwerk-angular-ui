@@ -1,0 +1,30 @@
+<h1>Checkboxes</h1>
+
+<h2>Basic usage</h2>
+
+<iw-checkbox [(ngModel)]="someValue">Yoooo</iw-checkbox>
+<iw-checkbox [(ngModel)]="someValue" [disabled]="true">Ya</iw-checkbox>
+<iw-checkbox>Yu</iw-checkbox>
+<iw-checkbox>Yi</iw-checkbox>
+
+<h2>Custom styles</h2>
+
+<iw-checkbox class="checkbox-style-1">Some checkbox</iw-checkbox>
+
+<style>
+  .checkbox-style-1 {
+    line-height: 30px;
+  }
+
+  .checkbox-style-1 .checkbox__checkbox {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border-color: blue;
+    border-width: 3px;
+  }
+
+  .checkbox-style-1 svg {
+    fill: red;
+  }
+</style>
