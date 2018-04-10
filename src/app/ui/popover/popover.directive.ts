@@ -5,7 +5,11 @@ import {
   EventEmitter,
   TemplateRef,
   OnDestroy,
-  ViewContainerRef
+  ViewContainerRef,
+  SimpleChanges,
+  OnChanges,
+  NgZone,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   PopoverService,
@@ -17,59 +21,76 @@ import {
 @Directive({
   selector: '[iwPopover]'
 })
-export class PopoverDirective implements OnDestroy {
+export class PopoverDirective implements OnDestroy, OnChanges {
   @Input() popoverClass: string;
   @Input() arrowClass: string;
   @Input() horizontalAlignment: 'leftWithLeft' | undefined;
   @Input() scrollMaskClass: string;
   @Input() escToClose: boolean;
   @Input() clickOutsideToClose: boolean;
-  @Input() set isOpen(v: boolean) {
-    this.__isOpen = v;
-    this.__update();
-  }
+  @Input() isOpen: boolean;
 
   @Output() shouldClose = new EventEmitter();
   @Output() popoverPosition = new EventEmitter<PopoverPosition>();
 
   private __popoverInstance: IPopover;
-  private __isOpen = false;
 
   constructor(
     private popoverService: PopoverService,
     private templateRef: TemplateRef<any>,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnDestroy() {
     this.__close();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isOpen']) {
+      this.__update();
+    }
+  }
+
   private __update() {
-    if (this.__popoverInstance && !this.__isOpen) {
+    if (this.__popoverInstance && !this.isOpen) {
       this.__close();
-    } else if (this.__isOpen && !this.__popoverInstance) {
+    } else if (this.isOpen && !this.__popoverInstance) {
       this.__open();
     }
   }
 
   private __open() {
-    this.__popoverInstance = this.popoverService.openTemplateRef(
-      this.templateRef,
-      (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement, {
-        arrowClass: this.arrowClass,
-        horizontalAlignment: this.horizontalAlignment,
-        popoverClass: this.popoverClass,
-        scrollMaskClass: this.scrollMaskClass,
-        shouldClose: () => {
-          this.shouldClose.emit();
-        },
-        popoverPosition: p => {
-          this.popoverPosition.emit(p);
-        },
-        escToClose: this.escToClose,
-        clickOutsideToClose: this.clickOutsideToClose
-      });
+    // get out of the zone to avoid triggering another zone run
+    this.zone.runOutsideAngular(() => {
+      // wait till the current stack is finished to avoid ExpressionChangedAfterItHasBeenCheckedError
+      setTimeout(() => {
+        // go back to the zone
+        this.zone.run(() => {
+          // create the popover
+          this.__popoverInstance = this.popoverService.openTemplateRef(
+            this.templateRef,
+            (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement, {
+              arrowClass: this.arrowClass,
+              horizontalAlignment: this.horizontalAlignment,
+              popoverClass: this.popoverClass,
+              scrollMaskClass: this.scrollMaskClass,
+              shouldClose: () => {
+                this.shouldClose.emit();
+              },
+              popoverPosition: p => {
+                this.popoverPosition.emit(p);
+              },
+              escToClose: this.escToClose,
+              clickOutsideToClose: this.clickOutsideToClose
+            });
+          // run the change detection
+          this.changeDetectorRef.detectChanges();
+          this.changeDetectorRef.markForCheck();
+        });
+      }, 0);
+    });
   }
 
   private __close() {

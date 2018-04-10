@@ -53,6 +53,19 @@
   </ng-template>
 </button>
 
+<h2>ExpressionChangedAfterItHasBeenCheckedError
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen4"
+    (shouldClose)="isPopoverOpen4 = false">
+    {{isPopoverOpen4}}
+  </ng-template>
+</h2>
+
+<button (click)="isPopoverOpen4 = true" id="ExpressionChangedAfterItHasBeenCheckedErrorButton">
+  Click to open!
+</button>
+
 <h2>Programmatic way</h2>
 
 <table>
