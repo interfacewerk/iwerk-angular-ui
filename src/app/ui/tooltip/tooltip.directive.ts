@@ -102,6 +102,8 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       return;
     }
 
+    this.renderer.invokeElementMethod(document.body, 'removeChild', [this.__elements.container.location.nativeElement]);
+
     this.appRef.detachView(this.__elements.content);
     this.appRef.detachView(this.__elements.container.hostView);
     this.__elements.container.hostView.detach();
