@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.0...v3.1.1) (2018-04-16)
+
+
+### Bug Fixes
+
+* **tooltip:** manualy remove container ([1fbface](https://github.com/interfacewerk/iwerk-angular-ui/commit/1fbface))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.0.1...v3.1.0) (2018-04-10)
 
