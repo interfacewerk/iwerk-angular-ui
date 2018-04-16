@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.1...v3.1.2) (2018-04-16)
+
+
+### Bug Fixes
+
+* **checkbox:** export checkbox module ([07c4b55](https://github.com/interfacewerk/iwerk-angular-ui/commit/07c4b55))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.0...v3.1.1) (2018-04-16)
 
