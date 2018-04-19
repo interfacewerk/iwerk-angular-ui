@@ -36,4 +36,22 @@ describe('PopoverContainerComponent', () => {
     expect(event.preventDefault).toHaveBeenCalled();
     expect(component.onClose.emit).toHaveBeenCalled();
   });
+
+  it('should not call onClose if escToClose = false', () => {
+    component.escToClose = false;
+    spyOn(component.onClose, 'emit');
+    component.onKeyDown(<KeyboardEvent>{
+      keyCode: 27
+    });
+    expect(component.onClose.emit).not.toHaveBeenCalled();
+  });
+
+  it('should not call onClose if escToClose = true but the event is not ESC', () => {
+    component.escToClose = true;
+    spyOn(component.onClose, 'emit');
+    component.onKeyDown(<KeyboardEvent>{
+      keyCode: 26
+    });
+    expect(component.onClose.emit).not.toHaveBeenCalled();
+  });
 });
