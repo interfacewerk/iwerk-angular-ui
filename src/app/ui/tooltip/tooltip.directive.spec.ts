@@ -49,9 +49,4 @@ describe('TooltipDirective', () => {
     fixture.destroy();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
   });
-
-  it('projects the content', () => {
-    (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
-    expect(document.body.querySelectorAll('iw-tooltip-container').item(0).textContent).toBe('Here is my tooltip');
-  });
 });

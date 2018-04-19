@@ -16,8 +16,10 @@ export function smartPosition(options: {
   const centerYBody = bodyRect.height / 2;
   if (y > centerYBody) {
     options.container.style.top = (targetRect.top - options.container.offsetHeight) + 'px';
+    options.container.classList.add('iw-tooltip-container--top');
   } else {
     options.container.style.top = targetRect.bottom + 'px';
+    options.container.classList.add('iw-tooltip-container--bottom');
   }
 
   const containerWidth = options.container.offsetWidth;
