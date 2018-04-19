@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PopoverModule } from './popover.module';
+import { PopoverModule, PopoverService } from './popover.module';
+import { PopoverDirective } from './popover.directive';
 
 @Component({
   selector: 'popoverTestButton',
@@ -19,6 +20,8 @@ import { PopoverModule } from './popover.module';
 class TestButtonComponent {
   isPopoverOpen1 = false;
   myText = 'popover content should be projected';
+  otherVariable = 1;
+
   shouldClose() {
     this.isPopoverOpen1 = false;
   }
@@ -26,9 +29,8 @@ class TestButtonComponent {
 
 describe('PopoverDirective basic features', () => {
 
-  let comp:    TestButtonComponent;
   let fixture: ComponentFixture<TestButtonComponent>;
-  let button:      DebugElement;
+  let button: DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,8 +38,6 @@ describe('PopoverDirective basic features', () => {
       imports: [ PopoverModule ]
     });
     fixture = TestBed.createComponent(TestButtonComponent);
-
-    comp = fixture.componentInstance; // TestButtonComponent test instance
 
     button = fixture.debugElement.query(By.css('button'));
   });
@@ -155,5 +155,61 @@ describe('PopoverDirective basic features', () => {
 
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(1);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(1);
+  }));
+});
+
+
+describe('PopoverDirective behavior', () => {
+  it('updates if and only if isOpen changes', fakeAsync(() => {
+    const mockService = <PopoverService><any>{
+      openTemplateRef: () => {}
+    };
+    const directive = new PopoverDirective(mockService, undefined, <ViewContainerRef>{
+      element: {
+        nativeElement: {
+          parentElement: undefined
+        }
+      }
+    }, <NgZone>{
+      run: cb => { cb(); },
+      runOutsideAngular: cb => { setTimeout(cb, 0); },
+    }, <ChangeDetectorRef>{
+      detectChanges: () => {},
+      markForCheck: () => {}
+    });
+    spyOn(mockService, 'openTemplateRef');
+    directive.isOpen = true;
+    directive.ngOnChanges({
+      isOpen: {
+        currentValue: true,
+        previousValue: false,
+        firstChange: true,
+        isFirstChange: () => true
+      }
+    });
+    tick(0);
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(1);
+    directive.isOpen = false;
+    directive.ngOnChanges({
+      isOpen: {
+        currentValue: false,
+        previousValue: true,
+        firstChange: false,
+        isFirstChange: () => false
+      }
+    });
+    tick(0);
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(1);
+    directive.popoverClass = 'some class';
+    directive.ngOnChanges({
+      popoverClass: {
+        currentValue: false,
+        previousValue: true,
+        firstChange: false,
+        isFirstChange: () => false
+      }
+    });
+    tick(0);
+    expect(mockService.openTemplateRef).toHaveBeenCalledTimes(1);
   }));
 });
