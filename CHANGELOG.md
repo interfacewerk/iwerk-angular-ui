@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.2...v3.2.0) (2018-04-19)
+
+
+### Bug Fixes
+
+* **popover:** fix call to undefined variable ([e23961a](https://github.com/interfacewerk/iwerk-angular-ui/commit/e23961a))
+
+
+### Features
+
+* **tooltip:** add arrow by default ([10d9b35](https://github.com/interfacewerk/iwerk-angular-ui/commit/10d9b35))
+* **tooltip:** center tooltip horizontally ([e6b336a](https://github.com/interfacewerk/iwerk-angular-ui/commit/e6b336a))
+
+
+
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.1...v3.1.2) (2018-04-16)
 
