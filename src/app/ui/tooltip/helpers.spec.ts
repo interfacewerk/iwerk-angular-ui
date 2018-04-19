@@ -24,9 +24,9 @@ describe('tooltip/helpers', () => {
   it('smartly puts the tooltip above the target if it is in the lowest part of the body', () => {
     addInBody(target, { top: 800, left: 400, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
-    smartPosition(target, container, renderer);
+    smartPosition({ target, container, renderer });
     expect(container.style.top).toBe('780px');
-    expect(container.style.left).toBe('400px');
+    expect(container.style.left).toBe('325px');
   });
 });
 

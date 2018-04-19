@@ -88,7 +88,11 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       content.detectChanges();
       container.hostView.detectChanges();
 
-      smartPosition(this.__parent, this.__elements.container.location.nativeElement, this.renderer);
+      smartPosition({
+        target: this.__parent,
+        container: this.__elements.container.location.nativeElement,
+        renderer: this.renderer
+      });
     }
 
   }
