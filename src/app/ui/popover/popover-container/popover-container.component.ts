@@ -20,7 +20,7 @@ export class PopoverContainerComponent {
   @HostListener('window:keydown', ['$event'])
   onKeyDown($event: KeyboardEvent) {
     if (this.escToClose && $event.keyCode === 27) {
-      event.preventDefault();
+      $event.preventDefault();
       this.onClose.emit();
     }
   }
