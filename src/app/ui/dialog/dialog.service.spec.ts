@@ -14,7 +14,7 @@ import {
   template: 'some dialog {{someVariable}}'
 })
 class DialogServiceTestComponent {
-  someVariable: string;
+  someVariable = 'default string';
 }
 
 @Directive({
@@ -46,6 +46,9 @@ class TestModule {
 
 }
 
+class TestClass {
+  someVariable() {}
+}
 
 describe('dialog.service', () => {
   let dialogService: DialogService;
@@ -111,6 +114,21 @@ describe('dialog.service', () => {
     const dialog = dialogService.openTemplateRef(component.directive.template, null, {});
     dialog.close();
     expect(document.body.querySelectorAll('iw-dialog-container').length).toBe(0);
+  });
+
+  it('excludes non property values', () => {
+    dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+    const appRef: ApplicationRef = TestBed.get(ApplicationRef);
+    appRef.tick();
+    expect(document.body.querySelectorAll('iw-dialog-container').item(0).textContent.trim()).toBe('some dialog default string');
+  });
+
+  it('does not throw when calling close on an already closed dialog', () => {
+    expect(() => {
+      const ref1 = dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+      dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+      ref1.close();
+    }).not.toThrow();
   });
 
 });
