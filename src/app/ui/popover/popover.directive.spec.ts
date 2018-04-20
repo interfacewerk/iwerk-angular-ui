@@ -130,7 +130,7 @@ describe('PopoverDirective basic features', () => {
     tick(0);
     fixture.detectChanges();
 
-    window.dispatchEvent(new KeyboardEvent('keyup', {
+    document.body.dispatchEvent(new KeyboardEvent('keyup', {
       key: 'Escape'
     }));
 
@@ -147,7 +147,7 @@ describe('PopoverDirective basic features', () => {
     tick(0);
     fixture.detectChanges();
 
-    window.dispatchEvent(new KeyboardEvent('keyup', {
+    document.body.dispatchEvent(new KeyboardEvent('keyup', {
       key: 'Escape'
     }));
 

@@ -58,10 +58,10 @@ describe('DialogContainerComponent', () => {
       escToClose: true
     };
     component.onClose.subscribe(spyOn(obj, 'toCall'));
-    const event = document.createEvent('Event');
-    (<{keyCode: number}><any>event).keyCode = 27;
-    event.initEvent('keydown', true, true);
-    window.dispatchEvent(event);
+    component.onKeydown(<KeyboardEvent>{
+      keyCode: 27,
+      preventDefault: () => {}
+    });
     expect(obj.toCall).toHaveBeenCalled();
   });
 
@@ -73,10 +73,10 @@ describe('DialogContainerComponent', () => {
       escToClose: false
     };
     component.onClose.subscribe(spyOn(obj, 'toCall'));
-    const event = document.createEvent('Event');
-    (<{keyCode: number}><any>event).keyCode = 27;
-    event.initEvent('keydown', true, true);
-    window.dispatchEvent(event);
+    component.onKeydown(<KeyboardEvent>{
+      keyCode: 27,
+      preventDefault: () => {}
+    });
     expect(obj.toCall).not.toHaveBeenCalled();
   });
 

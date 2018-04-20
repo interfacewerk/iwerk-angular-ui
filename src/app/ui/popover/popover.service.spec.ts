@@ -136,7 +136,7 @@ describe('PopoverService', () => {
       const event = document.createEvent('Event');
       (<{keyCode: number}><any>event).keyCode = 27;
       event.initEvent('keydown', true, true);
-      window.dispatchEvent(event);
+      document.body.dispatchEvent(event);
       tick(0);
     }).not.toThrow();
   }));
