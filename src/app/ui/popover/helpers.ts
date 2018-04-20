@@ -1,4 +1,5 @@
 import { PopoverOptions } from './popover-options.interface';
+import { PopoverConfig } from 'public_api';
 
 export function smartPosition(elements: {
   container: HTMLElement
@@ -39,4 +40,27 @@ export function smartPosition(elements: {
 
 export function addClasses(element: HTMLElement, str: string) {
   (str || '').split(' ').filter(s => !!s).forEach(c => element.classList.add(c));
+}
+
+export function combineOptionsAndDefaults(providedConfig: PopoverConfig, options: PopoverOptions): PopoverOptions {
+  const config = providedConfig || {};
+  const defaultOptions = {
+    escToClose: config.escToClose === undefined ? true : config.escToClose,
+    clickOutsideToClose: config.clickOutsideToClose === undefined ? true : config.clickOutsideToClose,
+    arrowClass: config.arrowClass === undefined ? '' : config.arrowClass,
+    popoverClass: config.popoverClass === undefined ? '' : config.popoverClass,
+    scrollMaskClass: config.scrollMaskClass === undefined ? '' : config.scrollMaskClass,
+    horizontalAlignment: config.horizontalAlignment
+  };
+  const result = {
+    escToClose: options.escToClose === undefined ? defaultOptions.escToClose : options.escToClose,
+    clickOutsideToClose: options.clickOutsideToClose === undefined ? defaultOptions.clickOutsideToClose : options.clickOutsideToClose,
+    arrowClass: (options.arrowClass || '') + ' ' + defaultOptions.arrowClass,
+    popoverClass: (options.popoverClass || '') + ' ' + defaultOptions.popoverClass,
+    scrollMaskClass: (options.scrollMaskClass || '') + ' ' + defaultOptions.scrollMaskClass,
+    horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
+    shouldClose: options.shouldClose || (() => { }),
+    popoverPosition: options.popoverPosition || (() => { })
+  };
+  return result;
 }

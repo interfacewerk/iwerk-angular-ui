@@ -22,6 +22,10 @@ describe('DialogContainerComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    fixture.destroy();
+  });
+
   it('emits an onClose event if user clicks on it and clickToClose=true', () => {
     const obj = {
       toCall: () => {}
