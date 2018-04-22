@@ -9,7 +9,6 @@ dependencies:
     - sudo apt-get update -qq
     - sudo apt-get install -y -qq yarn
     - sudo apt-get install google-chrome-stable
-
   override:
     - sudo rm -fr ~/.cache/yarn
     - yarn install
