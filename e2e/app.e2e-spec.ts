@@ -7,8 +7,8 @@ describe('iwerk-angular-ui App', function() {
     page = new IwerkAngularUiPage();
   });
 
-  it('should display message saying app works', () => {
+  it('displays Welcome', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome!');
   });
 });
