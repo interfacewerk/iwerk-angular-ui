@@ -9,11 +9,6 @@ before_install:
   - sudo apt-get install google-chrome-stable
 addons:
 apt:
-  sources:
-    - google-chrome
-  packages:
-    - google-chrome-stable
-    - google-chrome-beta
 install:
   - yarn install
 script:
