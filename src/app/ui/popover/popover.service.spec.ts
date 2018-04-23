@@ -1,6 +1,6 @@
 import { TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { Component, NgModule, ElementRef } from '@angular/core';
-import { PopoverService } from './popover.service';
+import { PopoverService, IPopover } from './popover.service';
 import { PopoverContainerComponent } from './popover-container/popover-container.component';
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 import { PopoverOptions } from './popover-options.interface';
@@ -33,6 +33,10 @@ class TestModule {
 
 }
 
+function cleanBody() {
+  document.body.innerHTML = '';
+}
+
 describe('PopoverService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,6 +44,7 @@ describe('PopoverService', () => {
       imports: [TestModule],
       declarations: []
     });
+    cleanBody();
   });
 
   it('adds the popover container to the body', fakeAsync(() => {
@@ -66,6 +71,22 @@ describe('PopoverService', () => {
       tick(0);
       popover.close();
     }).not.toThrow();
+  }));
+
+  it('calls shouldClose', fakeAsync(() => {
+    const fixture = TestBed.createComponent(Test2Component);
+    const popoverService = fixture.debugElement.injector.get(PopoverService);
+    let popover: IPopover;
+    const options = {
+      shouldClose: () => {
+        popover.close();
+      }
+    };
+    spyOn(options, 'shouldClose').and.callThrough();
+    popover = popoverService.open(TestComponent, fixture.nativeElement, options);
+    tick(0);
+    document.querySelector('iw-popover-scroll-mask').dispatchEvent(new MouseEvent('click'));
+    expect(options.shouldClose).toHaveBeenCalled();
   }));
 
   it('creates a copy of the options argument', fakeAsync(() => {
@@ -106,22 +127,18 @@ describe('PopoverService', () => {
     popover.close();
   }));
 
-  it('calls the optional shouldClose function if provided when pressing ESC', fakeAsync(() => {
-    const fixture = TestBed.createComponent(Test2Component);
-    const popoverService = fixture.debugElement.injector.get(PopoverService);
-    const options: PopoverOptions = {
-      shouldClose: () => {}
-    };
-    spyOn(options, 'shouldClose');
-    const popover = popoverService.open(TestComponent, fixture.nativeElement, options);
-    tick(0);
-    const event = document.createEvent('Event');
-    (<{keyCode: number}><any>event).keyCode = 27;
-    event.initEvent('keydown', true, true);
-    window.dispatchEvent(event);
-    tick(0);
-    expect(options.shouldClose).toHaveBeenCalled();
-    popover.close();
+  it('does not call the optional shouldClose function if not provided when pressing ESC', fakeAsync(() => {
+    expect(() => {
+      const fixture = TestBed.createComponent(Test2Component);
+      const popoverService = fixture.debugElement.injector.get(PopoverService);
+      popoverService.open(TestComponent, fixture.nativeElement);
+      tick(0);
+      const event = document.createEvent('Event');
+      (<{keyCode: number}><any>event).keyCode = 27;
+      event.initEvent('keydown', true, true);
+      document.body.dispatchEvent(event);
+      tick(0);
+    }).not.toThrow();
   }));
 
 });

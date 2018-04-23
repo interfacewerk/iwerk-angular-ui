@@ -1,4 +1,4 @@
-import { addClasses, smartPosition } from './helpers';
+import { addClasses, smartPosition, combineOptionsAndDefaults } from './helpers';
 import { PopoverOptions } from './popover-options.interface';
 
 describe('smartPosition', () => {
@@ -88,6 +88,41 @@ describe('addClasses', () => {
     expect(() => {
       addClasses(element, undefined);
       addClasses(element, '');
+    }).not.toThrow();
+  });
+});
+
+describe('creates popover options from options and config', () => {
+  it('case #1', () => {
+    const options = combineOptionsAndDefaults({
+      escToClose: false,
+      clickOutsideToClose: false,
+      arrowClass: 'arrow',
+      popoverClass: 'popover',
+      scrollMaskClass: 'scroll-mask'
+    }, {});
+    expect(options.arrowClass).toBe(' arrow');
+    expect(options.popoverClass).toBe(' popover');
+    expect(options.scrollMaskClass).toBe(' scroll-mask');
+    expect(options.escToClose).toBe(false);
+    expect(options.clickOutsideToClose).toBe(false);
+  });
+  it('case #2', () => {
+    const options = combineOptionsAndDefaults({
+      clickOutsideToClose: true,
+    }, {});
+    expect(options.clickOutsideToClose).toBe(true);
+  });
+  it('case #3', () => {
+    const options = combineOptionsAndDefaults({}, {
+      clickOutsideToClose: true
+    });
+    expect(options.clickOutsideToClose).toBe(true);
+  });
+  it('case #4', () => {
+    const options = combineOptionsAndDefaults({}, {});
+    expect(() => {
+      options.shouldClose();
     }).not.toThrow();
   });
 });

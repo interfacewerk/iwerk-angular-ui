@@ -27,11 +27,31 @@ describe('PopoverContainerComponent', () => {
   it('should call the onClose emitter if escToClose=true and user presses ESC', () => {
     component.escToClose = true;
     spyOn(component.onClose, 'emit');
-    const event = document.createEvent('Event');
-    (<{keyCode: number}><any>event).keyCode = 27;
-    event.initEvent('keydown', true, true);
-    window.dispatchEvent(event);
-    fixture.detectChanges();
+    const event = <KeyboardEvent>{
+      keyCode: 27,
+      preventDefault: () => {}
+    };
+    spyOn(event, 'preventDefault');
+    component.onKeyDown(event);
+    expect(event.preventDefault).toHaveBeenCalled();
     expect(component.onClose.emit).toHaveBeenCalled();
+  });
+
+  it('should not call onClose if escToClose = false', () => {
+    component.escToClose = false;
+    spyOn(component.onClose, 'emit');
+    component.onKeyDown(<KeyboardEvent>{
+      keyCode: 27
+    });
+    expect(component.onClose.emit).not.toHaveBeenCalled();
+  });
+
+  it('should not call onClose if escToClose = true but the event is not ESC', () => {
+    component.escToClose = true;
+    spyOn(component.onClose, 'emit');
+    component.onKeyDown(<KeyboardEvent>{
+      keyCode: 26
+    });
+    expect(component.onClose.emit).not.toHaveBeenCalled();
   });
 });

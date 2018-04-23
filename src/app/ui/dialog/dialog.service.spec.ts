@@ -14,7 +14,7 @@ import {
   template: 'some dialog {{someVariable}}'
 })
 class DialogServiceTestComponent {
-  someVariable: string;
+  someVariable = 'default string';
 }
 
 @Directive({
@@ -46,6 +46,9 @@ class TestModule {
 
 }
 
+class TestClass {
+  someVariable() {}
+}
 
 describe('dialog.service', () => {
   let dialogService: DialogService;
@@ -57,6 +60,10 @@ describe('dialog.service', () => {
       imports: [TestModule]
     });
     dialogService = TestBed.get(DialogService);
+  });
+
+  afterEach(() => {
+    expect(document.body.querySelectorAll('iw-dialog-container').length).toBe(0);
   });
 
   it('appends a container to the body and is able to remove it', () => {
@@ -111,6 +118,23 @@ describe('dialog.service', () => {
     const dialog = dialogService.openTemplateRef(component.directive.template, null, {});
     dialog.close();
     expect(document.body.querySelectorAll('iw-dialog-container').length).toBe(0);
+  });
+
+  it('excludes non property values', () => {
+    const dialog = dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+    const appRef: ApplicationRef = TestBed.get(ApplicationRef);
+    appRef.tick();
+    expect(document.body.querySelectorAll('iw-dialog-container').item(0).textContent.trim()).toBe('some dialog default string');
+    dialog.close();
+  });
+
+  it('does not throw when calling close on an already closed dialog', () => {
+    expect(() => {
+      const dialog = dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+      const dialog2 = dialogService.open(DialogServiceTestComponent, {}, new TestClass());
+      dialog.close();
+      dialog2.close();
+    }).not.toThrow();
   });
 
 });

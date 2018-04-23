@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ViewContainerRef, TemplateRef, ComponentFactoryResolver, ApplicationRef, Renderer } from '@angular/core';
 import { TooltipDirective } from './tooltip.directive';
 import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
 
@@ -19,7 +19,6 @@ class TestComponent {
 class TestModule {}
 
 describe('TooltipDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
@@ -28,7 +27,6 @@ describe('TooltipDirective', () => {
       imports: [TestModule]
     });
     fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -49,9 +47,151 @@ describe('TooltipDirective', () => {
     fixture.destroy();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
   });
+});
 
-  it('projects the content', () => {
-    (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
-    expect(document.body.querySelectorAll('iw-tooltip-container').item(0).textContent).toBe('Here is my tooltip');
+describe('TooltipDirective behavior', () => {
+  let viewContainerRef: ViewContainerRef;
+  let templateRef: TemplateRef<any>;
+  let componentFactoryResolver: ComponentFactoryResolver;
+  let appRef: ApplicationRef;
+
+  beforeEach(() => {
+    viewContainerRef = <ViewContainerRef>{
+      element: {
+        nativeElement: {
+          parentElement: document.createElement('div')
+        }
+      }
+    };
+
+    templateRef = <TemplateRef<any>><any>{
+      createEmbeddedView: () => {
+        return {
+          detectChanges: () => {},
+          rootNodes: [document.createElement('div')],
+          destroy: () => {}
+        };
+      }
+    };
+
+    componentFactoryResolver = <ComponentFactoryResolver><any>{
+      resolveComponentFactory: () => {
+        return {
+          create: () => {
+            return {
+              hostView: {
+                detectChanges: () => {},
+                detach: () => {}
+              },
+              location: {
+                nativeElement: document.createElement('div')
+              },
+              instance: new TooltipContainerComponent(undefined, undefined, undefined),
+              destroy: () => {}
+            };
+          }
+        };
+      }
+    };
+
+    appRef = <ApplicationRef><any>{
+      attachView: () => {},
+      detachView: () => {}
+    };
+  });
+
+  it('attaches events only if platform=browser', () => {
+    const directive = new TooltipDirective(undefined, undefined, undefined, undefined, undefined, viewContainerRef, 'browser');
+    spyOn(viewContainerRef.element.nativeElement.parentElement, 'addEventListener');
+    spyOn(viewContainerRef.element.nativeElement.parentElement, 'removeEventListener');
+    directive.ngAfterViewInit();
+    expect(viewContainerRef.element.nativeElement.parentElement.addEventListener).toHaveBeenCalledTimes(2);
+    directive.ngOnDestroy();
+    expect(viewContainerRef.element.nativeElement.parentElement.removeEventListener).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not attach events only if platform !== browser', () => {
+    const directive = new TooltipDirective(undefined, undefined, undefined, undefined, undefined, viewContainerRef, 'server');
+    spyOn(viewContainerRef.element.nativeElement.parentElement, 'addEventListener');
+    spyOn(viewContainerRef.element.nativeElement.parentElement, 'removeEventListener');
+    directive.ngAfterViewInit();
+    expect(viewContainerRef.element.nativeElement.parentElement.addEventListener).toHaveBeenCalledTimes(0);
+    directive.ngOnDestroy();
+    expect(viewContainerRef.element.nativeElement.parentElement.removeEventListener).toHaveBeenCalledTimes(0);
+  });
+
+  it('does not do anything if tooltip is already open', () => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: () => {},
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser'
+    );
+    spyOn(templateRef, 'createEmbeddedView').and.callThrough();
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'mouseenter' });
+    directive.handleEvent(<Event>{ type: 'mouseenter' });
+    expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(1);
+  });
+
+  it('closes te tooltip on mouseleave', () => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: () => {},
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser'
+    );
+    spyOn(templateRef, 'createEmbeddedView').and.callThrough();
+    spyOn(appRef, 'detachView').and.callThrough();
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'mouseenter' });
+    expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(1);
+    directive.handleEvent(<Event>{ type: 'mouseleave' });
+    expect(appRef.detachView).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not do anything if tooltip is not open', () => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: () => {},
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser'
+    );
+    spyOn(templateRef, 'createEmbeddedView').and.callThrough();
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'mouseleave' });
+  });
+
+  it('does not do anything if event is not enter or mouse', () => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: () => {},
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser'
+    );
+    spyOn(templateRef, 'createEmbeddedView').and.callThrough();
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'aaa' });
+    expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(0);
   });
 });

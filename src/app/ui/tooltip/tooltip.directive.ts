@@ -1,6 +1,5 @@
 import {
   Directive,
-  OnInit,
   TemplateRef,
   Injector,
   ApplicationRef,
@@ -23,7 +22,7 @@ import { smartPosition } from './helpers';
 @Directive({
   selector: '[iwTooltip]'
 })
-export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, EventListenerObject {
+export class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {
   @Input() containerClass: string;
 
   private __parent: HTMLElement;
@@ -41,8 +40,6 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
     private viewContainerRef: ViewContainerRef,
     @Inject(PLATFORM_ID) private platformId: string
   ) { }
-
-  ngOnInit() { }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -88,7 +85,11 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
       content.detectChanges();
       container.hostView.detectChanges();
 
-      smartPosition(this.__parent, this.__elements.container.location.nativeElement, this.renderer);
+      smartPosition({
+        target: this.__parent,
+        container: this.__elements.container.location.nativeElement,
+        renderer: this.renderer
+      });
     }
 
   }
@@ -101,6 +102,8 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy, Event
     if (!this.__elements) {
       return;
     }
+
+    this.renderer.invokeElementMethod(document.body, 'removeChild', [this.__elements.container.location.nativeElement]);
 
     this.appRef.detachView(this.__elements.content);
     this.appRef.detachView(this.__elements.container.hostView);

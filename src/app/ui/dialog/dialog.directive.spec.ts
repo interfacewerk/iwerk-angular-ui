@@ -19,6 +19,7 @@ describe('DialogDirective', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let mockService: IDialogService;
+  let openSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,7 +32,7 @@ describe('DialogDirective', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     mockService = fixture.debugElement.injector.get(DialogService);
-    spyOn(mockService, 'openTemplateRef').and.callThrough();
+    openSpy = spyOn(mockService, 'openTemplateRef').and.callThrough();
     fixture.detectChanges();
   });
 
@@ -57,6 +58,22 @@ describe('DialogDirective', () => {
     mockService.close();
     component.dialog.open();
     expect(mockService.openTemplateRef).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not fail when calling .close twice', () => {
+    expect(() => {
+      component.dialog.open();
+      component.dialog.close();
+      component.dialog.close();
+    }).not.toThrow();
+  });
+
+  it('uses input values when calling openTemplateRef', () => {
+    component.dialog.clickToClose = false;
+    component.dialog.escToClose = false;
+    component.dialog.open();
+    expect(openSpy.calls.mostRecent().args[2].clickToClose).toBe(false);
+    expect(openSpy.calls.mostRecent().args[2].escToClose).toBe(false);
   });
 });
 

@@ -39,7 +39,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
     private renderer: Renderer
   ) { }
 
-  @HostListener('window:keydown', ['$event'])
+  @HostListener('body:keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
     if ($event.keyCode === 27 && this.dialogOptions.escToClose) {
       this.onClose.emit();

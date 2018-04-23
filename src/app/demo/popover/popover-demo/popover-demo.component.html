@@ -11,13 +11,13 @@
   </ng-template>
 </p>
 <hr/>
-<button (click)="isPopoverOpen3 = true">
+<button (click)="isPopoverOpen3 = true" id="pop1">
   Click to open!
 </button>
 
 <h2>Click outside to close: No, Esc to close: No</h2>
 
-<button (click)="isPopoverOpen2 = true">
+<button (click)="isPopoverOpen2 = true" id="pop2">
   Click to open!
 
   <ng-template iwPopover 
@@ -51,6 +51,19 @@
       </app-custom-popover-content>
     </app-custom-popover-demo>
   </ng-template>
+</button>
+
+<h2>ExpressionChangedAfterItHasBeenCheckedError
+
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen4"
+    (shouldClose)="isPopoverOpen4 = false">
+    {{isPopoverOpen4}}
+  </ng-template>
+</h2>
+
+<button (click)="isPopoverOpen4 = true" id="ExpressionChangedAfterItHasBeenCheckedErrorButton">
+  Click to open!
 </button>
 
 <h2>Programmatic way</h2>

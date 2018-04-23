@@ -15,13 +15,46 @@ import { PopoverContainerComponent } from './popover-container/popover-container
 import { PopoverScrollMaskComponent } from './popover-scroll-mask/popover-scroll-mask.component';
 import { IW_POPOVER_CONFIG } from './popover.config';
 import { PopoverConfig } from './popover-config.interface';
-import { smartPosition, addClasses } from './helpers';
+import { smartPosition, addClasses, combineOptionsAndDefaults } from './helpers';
 import { PopoverOptions } from './popover-options.interface';
 export { PopoverPosition } from './popover-position.interface';
 export { PopoverOptions };
 
 export interface IPopover {
   close: () => void;
+}
+
+class PopoverImpl implements IPopover {
+  private isClosed = false;
+
+  constructor(
+    private embeddedViewRef: EmbeddedViewRef<any>,
+    private appRef: ApplicationRef,
+    private componentRef: ComponentRef<any>,
+    private container: ComponentRef<PopoverContainerComponent>,
+    private scrollMask: ComponentRef<PopoverScrollMaskComponent>
+  ) {
+
+  }
+
+  close() {
+    if (this.isClosed) {
+      return;
+    }
+    this.isClosed = true;
+    if (this.embeddedViewRef) {
+      this.embeddedViewRef.destroy();
+      this.appRef.detachView(this.embeddedViewRef);
+    }
+    if (this.componentRef) {
+      this.componentRef.destroy();
+      this.appRef.detachView(this.componentRef.hostView);
+    }
+    this.appRef.detachView(this.container.hostView);
+    this.appRef.detachView(this.scrollMask.hostView);
+    this.container.destroy();
+    this.scrollMask.destroy();
+  }
 }
 
 @Injectable()
@@ -50,16 +83,18 @@ export class PopoverService {
   ) { }
 
   openTemplateRef<T>(templateRef: TemplateRef<T>, target: HTMLElement, options: PopoverOptions): IPopover {
-    return this.__open(null, templateRef.createEmbeddedView(null), target, this.__combineOptionsAndDefaults(options));
+    return this.__open(
+      null,
+      templateRef.createEmbeddedView(null),
+      target,
+      combineOptionsAndDefaults(this.popoverConfig, options)
+    );
   }
 
   open<T>(componentType: Type<T>, target: HTMLElement, options?: PopoverOptions, init?: (component: T) => void): IPopover {
     const reflInj = ReflectiveInjector.resolveAndCreate([Popover], this.injector);
 
-    const factory = this.componentFactoryResolver
-      .resolveComponentFactory(
-      componentType
-      );
+    const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
     const component = factory.create(reflInj);
     if (init) {
       init(component.instance);
@@ -67,38 +102,20 @@ export class PopoverService {
     const popover: Popover = reflInj.get(Popover);
     const popoverOptions: PopoverOptions = Object.assign({}, options || {});
     popoverOptions.shouldClose = () => {
-      if (options.shouldClose) {
+      if (options && options.shouldClose) {
         options.shouldClose();
       }
       popover.close();
     };
 
-    const instance = this.__open(component, null, target, this.__combineOptionsAndDefaults(popoverOptions));
+    const instance = this.__open(
+      component,
+      null,
+      target,
+      combineOptionsAndDefaults(this.popoverConfig, popoverOptions)
+    );
     popover.setInstance(instance);
     return instance;
-  }
-
-  private __combineOptionsAndDefaults(options: PopoverOptions): PopoverOptions {
-    const config = this.popoverConfig || {};
-    const defaultOptions = {
-      escToClose: config.escToClose === undefined ? true : config.escToClose,
-      clickOutsideToClose: config.clickOutsideToClose === undefined ? true : config.clickOutsideToClose,
-      arrowClass: config.arrowClass === undefined ? '' : config.arrowClass,
-      popoverClass: config.popoverClass === undefined ? '' : config.popoverClass,
-      scrollMaskClass: config.scrollMaskClass === undefined ? '' : config.scrollMaskClass,
-      horizontalAlignment: config.horizontalAlignment
-    };
-    const result = {
-      escToClose: options.escToClose === undefined ? defaultOptions.escToClose : options.escToClose,
-      clickOutsideToClose: options.clickOutsideToClose === undefined ? defaultOptions.clickOutsideToClose : options.clickOutsideToClose,
-      arrowClass: (options.arrowClass || '') + ' ' + defaultOptions.arrowClass,
-      popoverClass: (options.popoverClass || '') + ' ' + defaultOptions.popoverClass,
-      scrollMaskClass: (options.scrollMaskClass || '') + ' ' + defaultOptions.scrollMaskClass,
-      horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
-      shouldClose: options.shouldClose || (() => { }),
-      popoverPosition: options.popoverPosition || (() => { })
-    };
-    return result;
   }
 
   private __open<T>(
@@ -145,24 +162,13 @@ export class PopoverService {
       target
     }, options);
 
-    const instance = {
-      close: () => {
-        if (embeddedViewRef) {
-          embeddedViewRef.destroy();
-          this.appRef.detachView(embeddedViewRef);
-        }
-        if (componentRef) {
-          componentRef.destroy();
-          this.appRef.detachView(componentRef.hostView);
-        }
-        this.appRef.detachView(container.hostView);
-        this.appRef.detachView(scrollMask.hostView);
-        container.destroy();
-        scrollMask.destroy();
-      }
-    };
-
-    return instance;
+    return new PopoverImpl(
+      embeddedViewRef,
+      this.appRef,
+      componentRef,
+      container,
+      scrollMask
+    );
   }
 
   private __showPopover(elements: {
