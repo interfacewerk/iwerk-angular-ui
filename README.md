@@ -18,3 +18,24 @@ npm install iwerk-angular-ui --save
 ## Usage
 
 [Check the demo page](https://interfacewerk.github.io/iwerk-angular-ui-demo)
+
+## Contributing
+
+### Start the "app"
+
+```
+yarn start
+```
+
+### Run E2E Tests
+
+```
+yarn e2e
+```
+
+### Run Unit Tests
+
+```
+yarn test
+```
+

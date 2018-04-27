@@ -39,7 +39,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
     private renderer: Renderer
   ) { }
 
-  @HostListener('window:keydown', ['$event'])
+  @HostListener('body:keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
     if ($event.keyCode === 27 && this.dialogOptions.escToClose) {
       this.onClose.emit();
@@ -65,9 +65,14 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'tabindex', '0');
+    this.focus();
     setTimeout(() => {
       this.renderer.setElementClass(this.elementRef.nativeElement, 'iw-dialog-container--visible', true);
     }, 0);
   }
 
+  focus() {
+    this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus');
+  }
 }

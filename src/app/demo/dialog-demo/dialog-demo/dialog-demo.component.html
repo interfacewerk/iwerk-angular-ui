@@ -1,5 +1,10 @@
 <h1>Dialog Demo</h1>
 
+<h2 tabindex="2">Focus is captured</h2>
+
+<button (click)="myDialog2.open()">Open</button>
+<input type="" placeholder="You can't focus here when the dialog is open"/>
+
 <h2>Opening via DialogService</h2>
 <button (click)="openDialog()">Open a dialog with a component</button>
 
@@ -8,4 +13,11 @@
 
 <ng-template iwDialog #myDialog1="iw-dialog" [escToClose]="true" containerClass="double-config-demo">
   <app-my-dialog title="Template Dialog"></app-my-dialog>
+</ng-template>
+
+<ng-template iwDialog #myDialog2="iw-dialog" [escToClose]="true">
+  <h2>Focus is captured</h2>
+  <input type="text" />
+  <input type="text" />
+  <input type="text" />
 </ng-template>

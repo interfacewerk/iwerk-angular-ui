@@ -8,6 +8,7 @@ iw-dialog-container {
   opacity: 0;
   background: rgba(192, 192, 192, 0.67);
   transition: opacity 0.5s;
+  outline: none;
 
   .dialog-container__content {
     position: absolute;
@@ -30,5 +31,9 @@ iw-dialog-container {
     .dialog-container__content {
       transform: translateY(0);
     }
+  }
+
+  .dialog-container__focus-trap {
+    opacity: 0;
   }
 }
