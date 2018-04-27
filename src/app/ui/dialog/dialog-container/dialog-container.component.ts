@@ -65,9 +65,14 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'tabindex', '0');
+    this.focus();
     setTimeout(() => {
       this.renderer.setElementClass(this.elementRef.nativeElement, 'iw-dialog-container--visible', true);
     }, 0);
   }
 
+  focus() {
+    this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus');
+  }
 }
