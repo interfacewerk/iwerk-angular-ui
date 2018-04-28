@@ -89,7 +89,7 @@ describe('PopoverDirective basic features', () => {
   template: `
     <button (click)="isPopoverOpen1 = !isPopoverOpen1">
       I open/close a popover
-      <ng-template iwPopover 
+      <ng-template iwPopover
         [isOpen]="isPopoverOpen1"
         (shouldClose)="shouldClose()"
         [escToClose]="escToClose">

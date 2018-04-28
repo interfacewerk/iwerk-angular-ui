@@ -27,10 +27,10 @@
     popoverClass="popover-demo"
     (shouldClose)="isPopoverOpen2 = false">
     <app-custom-popover-demo (close)="isPopoverOpen2 = false">
-      <app-custom-popover-header>Popover</app-custom-popover-header>
-      <app-custom-popover-content>    
+      <div appCustomPopoverHeader>Popover</div>
+      <div appCustomPopoverContent>    
         Click, or Esc, I won't close!
-      </app-custom-popover-content>
+      </div>
     </app-custom-popover-demo>
   </ng-template>
 </button>
@@ -45,10 +45,10 @@
     popoverClass="popover-demo"
     (shouldClose)="isPopoverOpen = false">
     <app-custom-popover-demo (close)="isPopoverOpen = false">
-      <app-custom-popover-header>Popover</app-custom-popover-header>
-      <app-custom-popover-content>    
+      <div appCustomPopoverHeader>Popover</div>
+      <div appCustomPopoverContent>    
         Hello World! I'm popping over!
-      </app-custom-popover-content>
+      </div>
     </app-custom-popover-demo>
   </ng-template>
 </button>
