@@ -24,18 +24,18 @@ npm install iwerk-angular-ui --save
 ### Start the "app"
 
 ```
-yarn start
+npm start
 ```
 
 ### Run E2E Tests
 
 ```
-yarn e2e
+npm run e2e
 ```
 
 ### Run Unit Tests
 
 ```
-yarn test
+npm run test
 ```
 
