@@ -1,10 +1,39 @@
 
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ViewChild } from '@angular/core';
-import { DialogService, IDialogService } from './dialog.service';
-import { DialogDirective } from './dialog.directive';
-import { TemplateRef } from '@angular/core';
 import { DialogOptions } from './dialog-container/dialog-container.component';
+import { DialogDirective } from './dialog.directive';
+import { DialogService, IDialogService } from './dialog.service';
+
+class MockDialogService implements IDialogService {
+  private __dialogInstance: {
+    close: Function
+  };
+
+  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions) {
+    this.close();
+    const result = {
+      close: () => {
+        options.onClose(result);
+      }
+    };
+    this.__dialogInstance = result;
+    return result;
+  }
+
+  open() {
+    return {
+      close: () => { }
+    };
+  }
+
+  close() {
+    if (this.__dialogInstance) {
+      this.__dialogInstance.close();
+      this.__dialogInstance = undefined;
+    }
+  }
+}
 
 @Component({
   template: `
@@ -23,7 +52,7 @@ describe('DialogDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogDirective, TestComponent ],
+      declarations: [DialogDirective, TestComponent],
       providers: [{
         provide: DialogService,
         useClass: MockDialogService
@@ -76,33 +105,3 @@ describe('DialogDirective', () => {
     expect(openSpy.calls.mostRecent().args[2].escToClose).toBe(false);
   });
 });
-
-class MockDialogService implements IDialogService {
-  private __dialogInstance: {
-    close: Function
-  };
-
-  openTemplateRef<T>(templateRef: TemplateRef<T>, context: T, options: DialogOptions) {
-    this.close();
-    const result = {
-      close: () => {
-        options.onClose(result);
-      }
-    };
-    this.__dialogInstance = result;
-    return result;
-  }
-
-  open() {
-    return {
-      close: () => {}
-    };
-  }
-
-  close() {
-    if (this.__dialogInstance) {
-      this.__dialogInstance.close();
-      this.__dialogInstance = undefined;
-    }
-  }
-}
