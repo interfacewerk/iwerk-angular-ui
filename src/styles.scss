@@ -75,3 +75,19 @@ iw-dialog-container.dialog-config-demo {
 iw-dialog-container.double-config-demo {
   transform: scale(0.5);
 }
+
+iw-tooltip-container.demo-tooltip {
+  font-size: 8px;
+
+  .tooltip-container__content {
+    background: red;
+  }
+
+  &.iw-tooltip-container--bottom:after {
+    border-bottom-color: red;
+  }
+
+  &.iw-tooltip-container--top:after {
+    border-bottom-color: red;
+  }
+}
