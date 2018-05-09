@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.2.4"></a>
+## [3.2.4](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.3...v3.2.4) (2018-05-09)
+
+
+### Bug Fixes
+
+* **dialog:** export dialog module ([de24375](https://github.com/interfacewerk/iwerk-angular-ui/commit/de24375))
+
+
+
 <a name="3.2.3"></a>
 ## [3.2.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.2...v3.2.3) (2018-04-27)
 
