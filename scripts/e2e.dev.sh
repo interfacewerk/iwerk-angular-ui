@@ -1,7 +1,7 @@
 #!/bin/sh
 
-yarn run pree2e
-yarn run nodemon \
+npm run pree2e
+node ./node_modules/.bin/nodemon \
   -e js,css,html,ts \
   -w e2e -w src \
-  -x "yarn ng e2e --webdriver-update=false"
+  -x "npm run ng -- e2e --webdriver-update=false"

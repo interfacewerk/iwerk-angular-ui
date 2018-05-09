@@ -14,5 +14,5 @@ export class DialogFocusTrapDirective {
   @HostListener('focus', ['$event'])
   onFocus($event: FocusEvent) {
     this.container.focus();
-  };
+  }
 }
