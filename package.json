@@ -6,7 +6,6 @@
   "author": "interfacewerk GmbH",
   "main": "npm run ng s",
   "release": {
-    "dryRun": true
   },
   "repository": {
     "type": "git",
