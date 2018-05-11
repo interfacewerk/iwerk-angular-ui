@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckboxComponent } from './checkbox.component';
+import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
+import { CheckboxConfig } from '../checkbox-config.interface';
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
@@ -8,7 +10,12 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxComponent ]
+      declarations: [ CheckboxComponent ],
+      providers: [{
+        provide: IW_CHECKBOX_CONFIG, useValue: <CheckboxConfig> {
+          containerClass: 'checkbox-test-class'
+        }
+      }]
     })
     .compileComponents();
   }));
@@ -82,5 +89,32 @@ describe('CheckboxComponent', () => {
     spyOn((component as any).changeDetectorRef, 'detectChanges');
     component.setDisabledState(true);
     expect((component as any).changeDetectorRef.detectChanges).toHaveBeenCalled();
+  });
+});
+
+describe('Checkbox component global config', () => {
+  it('adds the containerClass provided as global config', () => {
+    TestBed.configureTestingModule({
+      declarations: [ CheckboxComponent ],
+      providers: [{
+        provide: IW_CHECKBOX_CONFIG, useValue: <CheckboxConfig> {
+          containerClass: 'checkbox-test-class'
+        }
+      }]
+    })
+    .compileComponents();
+    const fixture = TestBed.createComponent(CheckboxComponent);
+    fixture.detectChanges();
+    expect(fixture.debugElement.classes['checkbox-test-class']).toBe(true);
+  });
+
+  it('does not add the containerClass provided as global config', () => {
+    TestBed.configureTestingModule({
+      declarations: [ CheckboxComponent ]
+    })
+    .compileComponents();
+    const fixture = TestBed.createComponent(CheckboxComponent);
+    fixture.detectChanges();
+    expect(fixture.debugElement.classes['checkbox-test-class']).toBeFalsy();
   });
 });
