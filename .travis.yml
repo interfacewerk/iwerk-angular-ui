@@ -1,4 +1,9 @@
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
@@ -14,3 +19,12 @@ script:
   - npm run send-coverage
   - npm run e2e-ci
   - npm run build
+node_js:
+  - '9'
+  - '8'
+  - '6'
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
