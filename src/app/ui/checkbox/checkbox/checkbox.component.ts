@@ -7,12 +7,18 @@ import {
   HostListener,
   HostBinding,
   Input,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Optional,
+  Inject,
+  Renderer,
+  ElementRef
 } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
+import { CheckboxConfig } from '../checkbox-config.interface';
+import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 
 @Component({
   selector: 'iw-checkbox',
@@ -36,11 +42,23 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @HostBinding('class.checkbox--disabled')
   isDisabled: boolean;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(
+    private renderer: Renderer,
+    private elementRef: ElementRef,
+    private changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(IW_CHECKBOX_CONFIG) private checkboxConfig: CheckboxConfig
+  ) {
     this.onChangeCb = this.onTouchedCb = () => {};
   }
 
   ngOnInit() {
+    if (this.checkboxConfig && this.checkboxConfig.containerClass) {
+      this.renderer.setElementClass(
+        this.elementRef.nativeElement,
+        this.checkboxConfig.containerClass,
+        true
+      );
+    }
   }
 
   onKeyup($event: KeyboardEvent) {
