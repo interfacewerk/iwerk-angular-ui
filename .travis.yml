@@ -16,14 +16,13 @@ install:
 script:
   - npm run lint
   - npm run test-ci
-  - npm run send-coverage
   - npm run e2e-ci
   - npm run build
 node_js:
   - '9'
   - '8'
-  - '6'
 after_success:
+  - npm run send-coverage
   - npm run travis-deploy-once "npm run semantic-release"
 branches:
   except:
