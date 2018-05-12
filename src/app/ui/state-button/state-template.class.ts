@@ -8,9 +8,7 @@ import {
 import { Subscription } from 'rxjs';
 import { ButtonState } from './button-state';
 import { IStateButtonDirective } from './state-button-directive.interface';
-
-
-
+import { map, distinctUntilChanged } from 'rxjs/operators';
 
 
 export class StateTemplate implements OnInit, OnDestroy {
@@ -27,8 +25,9 @@ export class StateTemplate implements OnInit, OnDestroy {
 
   ngOnInit() {
     const distinct = this.stateButtonDirective.state.asObservable()
-      .map(s => s === this.triggeringState)
-      .distinctUntilChanged();
+      .pipe(map(s => s === this.triggeringState))
+      .pipe(distinctUntilChanged());
+
     this.__subscription = distinct.subscribe(b => {
       if (b) {
         this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
