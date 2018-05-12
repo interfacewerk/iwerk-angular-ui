@@ -11,6 +11,7 @@
     "url": "https://github.com/interfacewerk/iwerk-angular-ui.git"
   },
   "scripts": {
+    "commit": "git-cz",
     "ng": "ng",
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
@@ -43,6 +44,7 @@
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^6.0.60",
     "codelyzer": "^4.3.0",
+    "commitizen": "^2.9.6",
     "core-js": "^2.4.1",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
