@@ -5,13 +5,13 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ButtonState } from './button-state';
 import { IStateButtonDirective } from './state-button-directive.interface';
 
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
+
+
+
 
 export class StateTemplate implements OnInit, OnDestroy {
   private __previousEmbedded: EmbeddedViewRef<any>;
