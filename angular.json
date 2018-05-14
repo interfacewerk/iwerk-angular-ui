@@ -70,6 +70,7 @@
             "styles": [
               "src/styles.scss"
             ],
+            "tsConfig": "src/tsconfig.json",
             "assets": [
               "src/assets",
               "src/favicon.ico"
