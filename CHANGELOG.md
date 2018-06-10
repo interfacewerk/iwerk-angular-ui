@@ -2,6 +2,92 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.2.4"></a>
+## [3.2.4](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.3...v3.2.4) (2018-05-09)
+
+
+### Bug Fixes
+
+* **dialog:** export dialog module ([de24375](https://github.com/interfacewerk/iwerk-angular-ui/commit/de24375))
+
+
+
+<a name="3.2.3"></a>
+## [3.2.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.2...v3.2.3) (2018-04-27)
+
+
+
+<a name="3.2.2"></a>
+## [3.2.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.1...v3.2.2) (2018-04-20)
+
+
+
+<a name="3.2.1"></a>
+## [3.2.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.2.0...v3.2.1) (2018-04-19)
+
+
+
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.2...v3.2.0) (2018-04-19)
+
+
+### Bug Fixes
+
+* **popover:** fix call to undefined variable ([e23961a](https://github.com/interfacewerk/iwerk-angular-ui/commit/e23961a))
+
+
+### Features
+
+* **tooltip:** add arrow by default ([10d9b35](https://github.com/interfacewerk/iwerk-angular-ui/commit/10d9b35))
+* **tooltip:** center tooltip horizontally ([e6b336a](https://github.com/interfacewerk/iwerk-angular-ui/commit/e6b336a))
+
+
+
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.1...v3.1.2) (2018-04-16)
+
+
+### Bug Fixes
+
+* **checkbox:** export checkbox module ([07c4b55](https://github.com/interfacewerk/iwerk-angular-ui/commit/07c4b55))
+
+
+
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.1.0...v3.1.1) (2018-04-16)
+
+
+### Bug Fixes
+
+* **tooltip:** manualy remove container ([1fbface](https://github.com/interfacewerk/iwerk-angular-ui/commit/1fbface))
+
+
+
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.0.1...v3.1.0) (2018-04-10)
+
+
+
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.0.0...v3.0.1) (2018-04-10)
+
+
+### Bug Fixes
+
+* **popover:** fix ExpressionChangedAfterItHasBeenCheckedError issue when opening popover ([c551c24](https://github.com/interfacewerk/iwerk-angular-ui/commit/c551c24))
+
+
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v2.0.5...v3.0.0) (2018-04-05)
+
+
+### Bug Fixes
+
+* **popover.service:** create a copy of the options argument passed to the open function ([085aaec](https://github.com/interfacewerk/iwerk-angular-ui/commit/085aaec))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/interfacewerk/iwerk-angular-ui/compare/v2.0.4...v2.0.5) (2017-10-08)
 
