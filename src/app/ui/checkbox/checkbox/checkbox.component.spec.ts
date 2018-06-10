@@ -1,8 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
 
 import { CheckboxComponent } from './checkbox.component';
 import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 import { CheckboxConfig } from '../checkbox-config.interface';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CheckboxModule } from '../checkbox.module';
+import { FormsModule } from '@angular/forms';
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
@@ -84,12 +87,34 @@ describe('CheckboxComponent', () => {
     } as KeyboardEvent);
     expect(component.value).toBeFalsy();
   });
+});
 
-  it('triggers the change detection when disabling the component', () => {
-    spyOn((component as any).changeDetectorRef, 'detectChanges');
-    component.setDisabledState(true);
-    expect((component as any).changeDetectorRef.detectChanges).toHaveBeenCalled();
-  });
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <iw-checkbox [(ngModel)]="someValue" [disabled]="true"></iw-checkbox>
+  `
+})
+class TestComponent {
+
+}
+
+describe('Checkbox integration tests', () => {
+
+  it('applies disabled style when disabled', fakeAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ TestComponent ],
+      imports: [ CheckboxModule, FormsModule ]
+    })
+    .compileComponents();
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    // somehow, this test needs a flush
+    flush();
+    fixture.detectChanges();
+    const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
+    expect(checkbox.classList.contains('checkbox--disabled')).toBe(true);
+  }));
 });
 
 describe('Checkbox component global config', () => {

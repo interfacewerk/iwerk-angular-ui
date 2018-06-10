@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef,
   Optional,
   Inject,
-  Renderer,
+  Renderer2,
   ElementRef
 } from '@angular/core';
 import {
@@ -43,7 +43,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   isDisabled: boolean;
 
   constructor(
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(IW_CHECKBOX_CONFIG) private checkboxConfig: CheckboxConfig
@@ -53,10 +53,9 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     if (this.checkboxConfig && this.checkboxConfig.containerClass) {
-      this.renderer.setElementClass(
+      this.renderer.addClass(
         this.elementRef.nativeElement,
         this.checkboxConfig.containerClass,
-        true
       );
     }
   }
@@ -109,7 +108,8 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
    */
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
-    this.changeDetectorRef.detectChanges();
+    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
+    this.changeDetectorRef.markForCheck();
   }
 
   private userToggle() {
