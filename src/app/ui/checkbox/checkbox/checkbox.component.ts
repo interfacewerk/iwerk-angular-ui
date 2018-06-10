@@ -67,11 +67,11 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  getTabIndex(): number {
+  getTabIndex(): string {
     if (this.isDisabled) {
-      return -1;
+      return '';
     }
-    return this.tabindex || 0;
+    return String(this.tabindex || 0);
   }
 
   @HostListener('click', ['$event'])

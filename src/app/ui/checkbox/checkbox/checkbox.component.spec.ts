@@ -57,18 +57,18 @@ describe('CheckboxComponent', () => {
     expect(component.value).toBe(true);
   });
 
-  it('getTabIndex() returns -1 if it is disabled', () => {
+  it('getTabIndex() returns "" if it is disabled', () => {
     component.setDisabledState(true);
-    expect(component.getTabIndex()).toBe(-1);
+    expect(component.getTabIndex()).toBe('');
   });
 
   it('getTabIndex() returns 0 if it is enabled', () => {
-    expect(component.getTabIndex()).toBe(0);
+    expect(component.getTabIndex()).toBe('0');
   });
 
   it('getTabIndex() returns the tabindex attribute', () => {
     component.tabindex = 10;
-    expect(component.getTabIndex()).toBe(10);
+    expect(component.getTabIndex()).toBe('10');
   });
 
   it('changes the value when hitting Space on the checkbox', () => {
