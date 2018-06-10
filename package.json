@@ -5,7 +5,14 @@
   "angular-cli": {},
   "author": "interfacewerk GmbH",
   "main": "npm run ng s",
-  "release": {},
+  "release": {
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      }
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/interfacewerk/iwerk-angular-ui.git"
