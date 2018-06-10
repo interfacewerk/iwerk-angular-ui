@@ -1,7 +1,7 @@
 import { StateTemplate } from './state-template.class';
 import { ViewContainerRef } from '@angular/core';
 import { IStateButtonDirective } from './state-button-directive.interface';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ButtonState } from './button-state';
 
 describe('state-template.class', () => {

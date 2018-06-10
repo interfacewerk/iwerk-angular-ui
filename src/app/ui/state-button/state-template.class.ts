@@ -5,11 +5,13 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { ButtonState } from './button-state';
 import { IStateButtonDirective } from './state-button-directive.interface';
-import { map, distinctUntilChanged } from 'rxjs/operators';
 
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 export class StateTemplate implements OnInit, OnDestroy {
   private __previousEmbedded: EmbeddedViewRef<any>;
@@ -25,9 +27,8 @@ export class StateTemplate implements OnInit, OnDestroy {
 
   ngOnInit() {
     const distinct = this.stateButtonDirective.state.asObservable()
-      .pipe(map(s => s === this.triggeringState))
-      .pipe(distinctUntilChanged());
-
+      .map(s => s === this.triggeringState)
+      .distinctUntilChanged();
     this.__subscription = distinct.subscribe(b => {
       if (b) {
         this.__previousEmbedded = this.viewContainerRef.createEmbeddedView(this.templateRef);
