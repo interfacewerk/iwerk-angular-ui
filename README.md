@@ -6,6 +6,8 @@
 
 # Iwerk Angular Ui
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/interfacewerk/iwerk-angular-ui.svg)](https://greenkeeper.io/)
+
 This project is a collection of useful Angular 2 directives and components. The implemented UI concepts (stateful buttons, popovers, tooltips) are very opinionated and are the basic blocks to provide the best UX as possible to users. For instance, the popovers and tooltips are always put in the body and positioned relatively to the target element according to a very simple heuristics.
 
 We decided to take this implementation inside a bigger library to make it easier to maintain and it should not have any influence on your bundle size as you can import the modules you want!

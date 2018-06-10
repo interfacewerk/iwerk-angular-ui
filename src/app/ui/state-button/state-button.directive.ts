@@ -5,7 +5,7 @@ import {
   TemplateRef,
   HostBinding,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { ButtonState } from './button-state';
 import { StateTemplate } from './state-template.class';
 import { IStateButtonDirective } from './state-button-directive.interface';
