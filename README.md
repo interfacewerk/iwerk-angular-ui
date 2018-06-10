@@ -3,10 +3,10 @@
 [![npm monthly downloads](https://img.shields.io/npm/dm/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 [![current version](https://img.shields.io/npm/v/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/interfacewerk/iwerk-angular-ui.svg)](https://greenkeeper.io/)
 
 # Iwerk Angular Ui
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/interfacewerk/iwerk-angular-ui.svg)](https://greenkeeper.io/)
 
 This project is a collection of useful Angular 2 directives and components. The implemented UI concepts (stateful buttons, popovers, tooltips) are very opinionated and are the basic blocks to provide the best UX as possible to users. For instance, the popovers and tooltips are always put in the body and positioned relatively to the target element according to a very simple heuristics.
 
