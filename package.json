@@ -62,7 +62,7 @@
     "karma-cli": "^1.0.1",
     "karma-coverage-istanbul-reporter": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "ng-packagr": "^2.4.1",
+    "ng-packagr": "^3.0.2",
     "nodemon": "^1.17.3",
     "protractor": "~5.1.2",
     "rxjs": "^5.5.0",
