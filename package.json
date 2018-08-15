@@ -55,7 +55,7 @@
     "core-js": "^2.4.1",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
-    "jasmine-core": "3.2.0",
+    "jasmine-core": "3.2.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "3.0.0",
     "karma-chrome-launcher": "^2.0.0",
