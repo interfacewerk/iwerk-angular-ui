@@ -24,6 +24,7 @@ import { smartPosition } from './helpers';
 })
 export class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {
   @Input() containerClass: string;
+  @Input() horizontal = false;
 
   private __parent: HTMLElement;
   private __elements: {
@@ -89,7 +90,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
         target: this.__parent,
         container: this.__elements.container.location.nativeElement,
         renderer: this.renderer
-      });
+      }, this.horizontal ? 'horizontal' : 'vertical');
     }
 
   }

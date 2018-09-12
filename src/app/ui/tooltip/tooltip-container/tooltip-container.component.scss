@@ -14,23 +14,39 @@ iw-tooltip-container {
   }
 
   &:after {
-    left: 50%;
     border: $inner-padding solid transparent;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
-    margin-left: -$inner-padding;
   }
 
   &.iw-tooltip-container--bottom:after {
+    left: 50%;
     bottom: calc(100% - #{$inner-padding});
     border-bottom-color: black;
+    margin-left: -$inner-padding;
   }
 
   &.iw-tooltip-container--top:after {
+    left: 50%;
     top: calc(100% - #{$inner-padding});
     border-top-color: black;
+    margin-left: -$inner-padding;
+  }
+
+  &.iw-tooltip-container--right:after {
+    top: 50%;
+    right: calc(100% - #{$inner-padding});
+    border-right-color: black;
+    margin-top: -$inner-padding;
+  }
+
+  &.iw-tooltip-container--left:after {
+    top: 50%;
+    left: calc(100% - #{$inner-padding});
+    border-left-color: black;
+    margin-top: -$inner-padding;
   }
 }

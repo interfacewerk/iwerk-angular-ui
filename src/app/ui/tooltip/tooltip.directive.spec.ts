@@ -194,4 +194,26 @@ describe('TooltipDirective behavior', () => {
     directive.handleEvent(<Event>{ type: 'aaa' });
     expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(0);
   });
+
+  it('positions the tooltip horizontally', () => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: (element: HTMLElement, method: string, args: any[]) => {
+          if (method === 'appendChild') {
+            (args || []).forEach(el => element.appendChild(el));
+          }
+        },
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser'
+    );
+    directive.horizontal = true;
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'mouseenter' });
+    expect(document.body.querySelector('.iw-tooltip-container--right')).not.toBeNull();
+  });
 });
