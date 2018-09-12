@@ -1,5 +1,5 @@
+import { PopoverConfig } from './popover-config.interface';
 import { PopoverOptions } from './popover-options.interface';
-import { PopoverConfig } from 'public_api';
 
 export function smartPosition(elements: {
   container: HTMLElement
