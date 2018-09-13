@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 import { TooltipModule as UiTooltipModule, IW_TOOLTIP_CONFIG, TooltipConfig } from '../../ui/tooltip/tooltip.module';
 
 const config: TooltipConfig = {
-  containerClass: 'demo-tooltip'
+  containerClass: 'demo-tooltip',
+  horizontal: false
 };
 
 @NgModule({
