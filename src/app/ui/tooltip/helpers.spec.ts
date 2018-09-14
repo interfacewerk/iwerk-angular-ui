@@ -25,7 +25,7 @@ describe('tooltip/helpers', () => {
     addInBody(target, { top: 800, left: 400, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
     smartPosition({ target, container, renderer });
-    expect(container.style.top).toBe('780px');
+    expect(container.style.top).toBe('779px');
     expect(container.style.left).toBe('325px');
   });
 
@@ -34,7 +34,7 @@ describe('tooltip/helpers', () => {
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
     smartPosition({ target, container, renderer }, 'horizontal');
     expect(container.style.top).toBe('805px');
-    expect(container.style.left).toBe('150px');
+    expect(container.style.left).toBe('151px');
   });
 
   it('smartly puts the tooltip at the left of the target', () => {
@@ -42,7 +42,7 @@ describe('tooltip/helpers', () => {
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
     smartPosition({ target, container, renderer }, 'horizontal');
     expect(container.style.top).toBe('805px');
-    expect(container.style.left).toBe('600px');
+    expect(container.style.left).toBe('599px');
   });
 });
 

@@ -33,10 +33,10 @@ function verticalSmartPosition(options: {
   const y = targetRect.top;
   const centerYBody = bodyRect.height / 2;
   if (y > centerYBody) {
-    options.container.style.top = (targetRect.top - options.container.offsetHeight) + 'px';
+    options.container.style.top = (targetRect.top - options.container.offsetHeight - 1) + 'px';
     options.container.classList.add('iw-tooltip-container--top');
   } else {
-    options.container.style.top = targetRect.bottom + 'px';
+    options.container.style.top = (1 + targetRect.bottom) + 'px';
     options.container.classList.add('iw-tooltip-container--bottom');
   }
 
@@ -62,10 +62,10 @@ function horizontalSmartPosition(options: {
   const x = targetRect.left;
   const centerXBody = bodyRect.width / 2;
   if (x > centerXBody) {
-    options.container.style.left = (targetRect.left - options.container.offsetWidth) + 'px';
+    options.container.style.left = (targetRect.left - options.container.offsetWidth - 1) + 'px';
     options.container.classList.add('iw-tooltip-container--left');
   } else {
-    options.container.style.left = targetRect.right + 'px';
+    options.container.style.left = (1 + targetRect.right) + 'px';
     options.container.classList.add('iw-tooltip-container--right');
   }
 
