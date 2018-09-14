@@ -1,14 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
-import {
-  CustomPopoverHeaderDirective,
-  CustomPopoverContentDirective,
-  CustomPopoverDemoComponent
-} from './custom-popover-demo/custom-popover-demo.component';
 import { RouterModule } from '@angular/router';
-import { PopoverModule as UiPopModule, IW_POPOVER_CONFIG, PopoverConfig } from '../../ui/popover/popover.module';
+import { IW_POPOVER_CONFIG, PopoverConfig, PopoverModule as UiPopModule } from '../../ui/popover/popover.module';
+import { CustomPopoverDemoComponent } from './custom-popover-demo/custom-popover-demo.component';
+import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
 import { PropertyEditPopoverComponent } from './property-edit-popover/property-edit-popover.component';
 
 const config: PopoverConfig = {
@@ -28,8 +24,6 @@ const config: PopoverConfig = {
   ],
   declarations: [
     PopoverDemoComponent,
-    CustomPopoverHeaderDirective,
-    CustomPopoverContentDirective,
     CustomPopoverDemoComponent,
     PropertyEditPopoverComponent
   ],
