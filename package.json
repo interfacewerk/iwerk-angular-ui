@@ -6,6 +6,16 @@
   "author": "interfacewerk GmbH",
   "main": "npm run ng s",
   "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
     "publish": [
       {
         "path": "@semantic-release/npm"
@@ -21,7 +31,7 @@
     "ng": "ng",
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
-    "build": "ng-packagr -p package.json",
+    "build": "ng-packagr -p package.json && cp CHANGELOG.md dist/",
     "start": "ng serve",
     "lint": "ng lint",
     "test": "ng test --code-coverage",
@@ -46,6 +56,8 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@semantic-release/changelog": "^3.0.0",
+    "@semantic-release/git": "^7.0.4",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^10.3.3",
@@ -65,7 +77,7 @@
     "nodemon": "^1.17.3",
     "protractor": "~5.4.0",
     "rxjs": "^5.5.0",
-    "semantic-release": "^15.4.0",
+    "semantic-release": "^15.8.0",
     "travis-deploy-once": "^5.0.0",
     "ts-node": "~7.0.1",
     "tsickle": "0.27.5",
