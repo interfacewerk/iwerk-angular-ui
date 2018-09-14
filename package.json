@@ -8,8 +8,7 @@
   "release": {
     "publish": [
       {
-        "path": "@semantic-release/npm",
-        "pkgRoot": "dist"
+        "path": "@semantic-release/npm"
       }
     ]
   },
