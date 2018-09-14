@@ -1,6 +1,6 @@
 <app-custom-popover-demo (close)="close()">
-  <div appCustomPopoverHeader>Edit</div>
-  <div appCustomPopoverContent>    
+  <div custom-popover-header>Edit</div>
+  <div custom-popover-content>    
     {{propertyName}}: <input autofocus autocomplete="false" [ngModel]="value" (ngModelChange)="onValueChange.emit($event)" type="text"/>
   </div>
 </app-custom-popover-demo>
