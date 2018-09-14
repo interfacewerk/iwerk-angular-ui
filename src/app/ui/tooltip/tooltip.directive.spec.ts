@@ -101,7 +101,16 @@ describe('TooltipDirective behavior', () => {
   });
 
   it('attaches events only if platform=browser', () => {
-    const directive = new TooltipDirective(undefined, undefined, undefined, undefined, undefined, viewContainerRef, 'browser');
+    const directive = new TooltipDirective(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      viewContainerRef,
+      'browser',
+      {}
+    );
     spyOn(viewContainerRef.element.nativeElement.parentElement, 'addEventListener');
     spyOn(viewContainerRef.element.nativeElement.parentElement, 'removeEventListener');
     directive.ngAfterViewInit();
@@ -111,7 +120,15 @@ describe('TooltipDirective behavior', () => {
   });
 
   it('does not attach events only if platform !== browser', () => {
-    const directive = new TooltipDirective(undefined, undefined, undefined, undefined, undefined, viewContainerRef, 'server');
+    const directive = new TooltipDirective(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      viewContainerRef,
+      'server',
+    {});
     spyOn(viewContainerRef.element.nativeElement.parentElement, 'addEventListener');
     spyOn(viewContainerRef.element.nativeElement.parentElement, 'removeEventListener');
     directive.ngAfterViewInit();
@@ -130,7 +147,8 @@ describe('TooltipDirective behavior', () => {
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
-      'browser'
+      'browser',
+      {}
     );
     spyOn(templateRef, 'createEmbeddedView').and.callThrough();
     directive.ngAfterViewInit();
@@ -149,7 +167,8 @@ describe('TooltipDirective behavior', () => {
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
-      'browser'
+      'browser',
+      {}
     );
     spyOn(templateRef, 'createEmbeddedView').and.callThrough();
     spyOn(appRef, 'detachView').and.callThrough();
@@ -170,7 +189,8 @@ describe('TooltipDirective behavior', () => {
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
-      'browser'
+      'browser',
+      {}
     );
     spyOn(templateRef, 'createEmbeddedView').and.callThrough();
     directive.ngAfterViewInit();
@@ -187,7 +207,8 @@ describe('TooltipDirective behavior', () => {
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
-      'browser'
+      'browser',
+      {}
     );
     spyOn(templateRef, 'createEmbeddedView').and.callThrough();
     directive.ngAfterViewInit();
@@ -209,7 +230,8 @@ describe('TooltipDirective behavior', () => {
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
-      'browser'
+      'browser',
+      {}
     );
     directive.horizontal = true;
     directive.ngAfterViewInit();

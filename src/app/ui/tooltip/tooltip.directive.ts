@@ -10,7 +10,8 @@ import {
   AfterViewInit,
   OnDestroy,
   ViewContainerRef,
-  Input
+  Input,
+  Optional
 } from '@angular/core';
 import {
   TooltipContainerComponent
@@ -18,13 +19,15 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { smartPosition } from './helpers';
+import { IW_TOOLTIP_CONFIG } from './tooltip.config';
+import { TooltipConfig } from './tooltip-config.interface';
 
 @Directive({
   selector: '[iwTooltip]'
 })
 export class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {
   @Input() containerClass: string;
-  @Input() horizontal = false;
+  @Input() horizontal: boolean;
 
   private __parent: HTMLElement;
   private __elements: {
@@ -39,7 +42,8 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     private componentFactoryResolver: ComponentFactoryResolver,
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
-    @Inject(PLATFORM_ID) private platformId: string
+    @Inject(PLATFORM_ID) private platformId: string,
+    @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig
   ) { }
 
   ngAfterViewInit() {
@@ -90,9 +94,16 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
         target: this.__parent,
         container: this.__elements.container.location.nativeElement,
         renderer: this.renderer
-      }, this.horizontal ? 'horizontal' : 'vertical');
+      }, this.__isHorizontal ? 'horizontal' : 'vertical');
     }
 
+  }
+
+  private get __isHorizontal(): boolean {
+    if (this.horizontal === undefined) {
+      return !!(this.tooltipConfig ? this.tooltipConfig.horizontal : false);
+    }
+    return this.horizontal;
   }
 
   private __onMouseLeave(event: MouseEvent) {
