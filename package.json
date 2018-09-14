@@ -14,12 +14,13 @@
     "prepare": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      {
+        "path": "@semantic-release/git",
+        "assets": ["CHANGELOG.md"]
+      }
     ],
     "publish": [
-      {
-        "path": "@semantic-release/npm"
-      }
+      "@semantic-release/npm"
     ]
   },
   "repository": {
