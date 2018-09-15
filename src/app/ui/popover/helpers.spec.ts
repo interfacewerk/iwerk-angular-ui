@@ -161,6 +161,10 @@ describe('creates popover options from options and config', () => {
       options.shouldClose();
     }).not.toThrow();
   });
+  it('case #5', () => {
+    expect(combineOptionsAndDefaults({}, {}).horizontal).toBe(false);
+    expect(combineOptionsAndDefaults({ horizontal: true }, {}).horizontal).toBe(true);
+  });
 });
 
 function addInBody(element: HTMLElement, space: { top: number, left: number, width: number, height: number }) {
