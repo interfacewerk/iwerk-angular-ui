@@ -70,6 +70,42 @@ describe('smartPosition', () => {
     expect(container.style.left).toBe('325px');
   });
 
+  it('puts the popover to the right', () => {
+    addInBody(target, { top: 400, left: 400, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      popoverPosition: () => { },
+      horizontal: true
+    });
+    expect(arrowElement.style.left).toBe('450px');
+    expect(arrowElement.style.top).toBe('415px');
+    expect(container.style.left).toBe('450px');
+    expect(container.style.top).toBe('315px');
+  });
+
+  it('puts the popover to the left', () => {
+    addInBody(target, { top: 400, left: 800, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      popoverPosition: () => { },
+      horizontal: true
+    });
+    expect(arrowElement.style.left).toBe('800px');
+    expect(arrowElement.style.top).toBe('415px');
+    expect(container.style.left).toBe('600px');
+    expect(container.style.top).toBe('315px');
+  });
+
 });
 
 describe('addClasses', () => {
@@ -124,6 +160,13 @@ describe('creates popover options from options and config', () => {
     expect(() => {
       options.shouldClose();
     }).not.toThrow();
+  });
+  it('case #5', () => {
+    expect(combineOptionsAndDefaults({}, {}).horizontal).toBe(false);
+    expect(combineOptionsAndDefaults({}, { horizontal: true }).horizontal).toBe(true);
+    expect(combineOptionsAndDefaults({ horizontal: false }, { horizontal: true }).horizontal).toBe(true);
+    expect(combineOptionsAndDefaults({ horizontal: true }, { horizontal: false }).horizontal).toBe(false);
+    expect(combineOptionsAndDefaults({ horizontal: true }, {}).horizontal).toBe(true);
   });
 });
 

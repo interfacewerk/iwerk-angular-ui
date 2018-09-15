@@ -6,6 +6,21 @@ export function smartPosition(elements: {
   arrowElement: HTMLElement
   target: HTMLElement
 }, options: PopoverOptions) {
+  if (options.horizontal) {
+    horizontalSmartPosition(elements, options);
+  } else {
+    verticalSmartPosition(elements, options);
+  }
+
+  elements.container.style.visibility = 'visible';
+  elements.arrowElement.style.visibility = 'visible';
+}
+
+function verticalSmartPosition(elements: {
+  container: HTMLElement
+  arrowElement: HTMLElement
+  target: HTMLElement
+}, options: PopoverOptions) {
   const target: HTMLElement = elements.target;
   const container: HTMLElement = elements.container;
   const arrowElement: HTMLElement = elements.arrowElement;
@@ -33,9 +48,35 @@ export function smartPosition(elements: {
     const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
     container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
   }
+}
 
-  container.style.visibility = 'visible';
-  arrowElement.style.visibility = 'visible';
+function horizontalSmartPosition(elements: {
+  container: HTMLElement
+  arrowElement: HTMLElement
+  target: HTMLElement
+}, options: PopoverOptions) {
+  const target: HTMLElement = elements.target;
+  const container: HTMLElement = elements.container;
+  const arrowElement: HTMLElement = elements.arrowElement;
+
+  const { top, left, bottom, right } = target.getBoundingClientRect();
+  const centerXBody = document.body.getBoundingClientRect().width / 2;
+  if (left > centerXBody) {
+    container.style.left = (left - container.offsetWidth) + 'px';
+    arrowElement.style.left = left + 'px';
+    arrowElement.classList.add('from-the-left');
+    options.popoverPosition({ horizontal: 'left' });
+  } else {
+    container.style.left = right + 'px';
+    arrowElement.style.left = container.style.left;
+    arrowElement.classList.add('from-the-right');
+    options.popoverPosition({ horizontal: 'right' });
+  }
+
+  const centerY = 0.5 * (top + bottom);
+  arrowElement.style.top = `${centerY}px`;
+  const maxTop = document.body.getBoundingClientRect().height - container.offsetHeight;
+  container.style.top = Math.max(0, Math.min(maxTop, centerY - 0.5 * container.offsetHeight)) + 'px';
 }
 
 export function addClasses(element: HTMLElement, str: string) {
@@ -50,7 +91,8 @@ export function combineOptionsAndDefaults(providedConfig: PopoverConfig, options
     arrowClass: config.arrowClass === undefined ? '' : config.arrowClass,
     popoverClass: config.popoverClass === undefined ? '' : config.popoverClass,
     scrollMaskClass: config.scrollMaskClass === undefined ? '' : config.scrollMaskClass,
-    horizontalAlignment: config.horizontalAlignment
+    horizontalAlignment: config.horizontalAlignment,
+    horizontal: config.horizontal === undefined ? false : config.horizontal
   };
   const result = {
     escToClose: options.escToClose === undefined ? defaultOptions.escToClose : options.escToClose,
@@ -60,7 +102,8 @@ export function combineOptionsAndDefaults(providedConfig: PopoverConfig, options
     scrollMaskClass: (options.scrollMaskClass || '') + ' ' + defaultOptions.scrollMaskClass,
     horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
     shouldClose: options.shouldClose || (() => { }),
-    popoverPosition: options.popoverPosition || (() => { })
+    popoverPosition: options.popoverPosition || (() => { }),
+    horizontal: options.hasOwnProperty('horizontal') ? options.horizontal : defaultOptions.horizontal
   };
   return result;
 }

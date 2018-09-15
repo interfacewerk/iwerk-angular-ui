@@ -29,6 +29,7 @@ export class PopoverDirective implements OnDestroy, OnChanges {
   @Input() escToClose: boolean;
   @Input() clickOutsideToClose: boolean;
   @Input() isOpen: boolean;
+  @Input() horizontal: boolean;
 
   @Output() shouldClose = new EventEmitter();
   @Output() popoverPosition = new EventEmitter<PopoverPosition>();
@@ -72,6 +73,7 @@ export class PopoverDirective implements OnDestroy, OnChanges {
           this.__popoverInstance = this.popoverService.openTemplateRef(
             this.templateRef,
             (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement, {
+              horizontal: this.__getHorizontal(),
               arrowClass: this.arrowClass,
               horizontalAlignment: this.horizontalAlignment,
               popoverClass: this.popoverClass,
@@ -98,6 +100,13 @@ export class PopoverDirective implements OnDestroy, OnChanges {
       this.__popoverInstance.close();
       this.__popoverInstance = undefined;
     }
+  }
+
+  private __getHorizontal(): boolean {
+    if (this.horizontal === undefined) {
+      return false;
+    }
+    return this.horizontal;
   }
 
 }

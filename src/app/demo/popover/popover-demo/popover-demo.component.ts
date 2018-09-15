@@ -17,6 +17,7 @@ export class PopoverDemoComponent implements OnInit {
   isPopoverOpen2 = false;
   isPopoverOpen = false;
   isPopoverOpen4 = false;
+  isPopoverOpen5 = false;
 
   constructor(private popoverService: PopoverService) {
     for (let i = 0; i < 1000; i++) {
