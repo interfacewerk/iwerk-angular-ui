@@ -56,6 +56,18 @@ iw-popover-container.popover-demo {
     background-color: white;
     box-shadow: 4px -4px 6px -1px #7b7b7b;
   }
+
+  &.from-the-left {
+    background-color: white;
+    box-shadow: 4px -4px 6px -1px #7b7b7b;
+    transform: translate(-15px, -5px) rotate(45deg);
+  }
+
+  &.from-the-right {
+    background-color: white;
+    box-shadow: 4px -4px 6px -1px #7b7b7b;
+    transform: translate(5px, -5px) rotate(-135deg)
+  }
 }
 
 .popover-simple-demo {

@@ -1,4 +1,5 @@
 export interface PopoverPosition {
-  vertical: 'top' | 'bottom';
+  vertical?: 'top' | 'bottom';
+  horizontal?: 'left' | 'right';
 }
 
