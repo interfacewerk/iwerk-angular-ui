@@ -53,6 +53,25 @@
   </ng-template>
 </button>
 
+<h2>Horizontal</h2>
+
+<button (click)="isPopoverOpen5 = true">
+  Click to open!
+
+  <ng-template iwPopover 
+    [horizontal]="true"
+    [isOpen]="isPopoverOpen5"
+    popoverClass="popover-demo"
+    (shouldClose)="isPopoverOpen5 = false">
+    <app-custom-popover-demo (close)="isPopoverOpen5 = false">
+      <div custom-popover-header>Popover</div>
+      <div custom-popover-content>    
+        On the left/right!
+      </div>
+    </app-custom-popover-demo>
+  </ng-template>
+</button>
+
 <h2>ExpressionChangedAfterItHasBeenCheckedError
 
   <ng-template iwPopover 
@@ -90,4 +109,6 @@
     </ng-template>
   </tbody>
 </table>
+
+
 
