@@ -11,6 +11,7 @@ import { PopoverDirective } from './popover.directive';
   template: `
     <button (click)="isPopoverOpen1 = !isPopoverOpen1">I open/close a popover
       <ng-template iwPopover
+        [horizontal]="horizontal"
         [isOpen]="isPopoverOpen1"
         (shouldClose)="shouldClose()">
         {{myText}}
@@ -21,6 +22,7 @@ class TestButtonComponent {
   isPopoverOpen1 = false;
   myText = 'popover content should be projected';
   otherVariable = 1;
+  horizontal = false;
 
   shouldClose() {
     this.isPopoverOpen1 = false;
@@ -31,6 +33,7 @@ describe('PopoverDirective basic features', () => {
 
   let fixture: ComponentFixture<TestButtonComponent>;
   let button: DebugElement;
+  let popoverService: PopoverService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,7 +41,7 @@ describe('PopoverDirective basic features', () => {
       imports: [ PopoverModule ]
     });
     fixture = TestBed.createComponent(TestButtonComponent);
-
+    popoverService = TestBed.get(PopoverService);
     button = fixture.debugElement.query(By.css('button'));
   });
 
@@ -80,6 +83,17 @@ describe('PopoverDirective basic features', () => {
 
     expect(document.body.querySelectorAll('iw-popover-container').length).toBe(0);
     expect(document.body.querySelectorAll('iw-popover-scroll-mask').length).toBe(0);
+  }));
+
+  it('calls the service with horizontal: true', fakeAsync(() => {
+    const spy: jasmine.Spy = spyOn(popoverService, 'openTemplateRef').and.callThrough();
+    fixture.componentInstance.horizontal = true;
+    fixture.detectChanges();
+    button.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    tick(0);
+    fixture.detectChanges();
+    expect(spy.calls.mostRecent().args[2].horizontal).toBe(true);
   }));
 
 });
