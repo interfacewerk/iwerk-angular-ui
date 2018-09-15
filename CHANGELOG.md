@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.6.0...v3.6.1) (2018-09-14)
+
+
+### Bug Fixes
+
+* **tooltip:** fix flickering issue when mouse is at edge of element ([108f5de](https://github.com/interfacewerk/iwerk-angular-ui/commit/108f5de))
+
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

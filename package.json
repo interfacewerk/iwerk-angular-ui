@@ -16,7 +16,9 @@
       "@semantic-release/npm",
       {
         "path": "@semantic-release/git",
-        "assets": ["CHANGELOG.md"]
+        "assets": [
+          "../CHANGELOG.md"
+        ]
       }
     ],
     "publish": [
@@ -32,7 +34,7 @@
     "ng": "ng",
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
-    "build": "ng-packagr -p package.json && cp CHANGELOG.md dist/",
+    "build": "ng-packagr -p package.json",
     "start": "ng serve",
     "lint": "ng lint",
     "test": "ng test --code-coverage",
