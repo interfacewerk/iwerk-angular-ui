@@ -163,6 +163,9 @@ describe('creates popover options from options and config', () => {
   });
   it('case #5', () => {
     expect(combineOptionsAndDefaults({}, {}).horizontal).toBe(false);
+    expect(combineOptionsAndDefaults({}, { horizontal: true }).horizontal).toBe(true);
+    expect(combineOptionsAndDefaults({ horizontal: false }, { horizontal: true }).horizontal).toBe(true);
+    expect(combineOptionsAndDefaults({ horizontal: true }, { horizontal: false }).horizontal).toBe(false);
     expect(combineOptionsAndDefaults({ horizontal: true }, {}).horizontal).toBe(true);
   });
 });
