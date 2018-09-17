@@ -7,7 +7,8 @@ import { TooltipModule as UiTooltipModule, IW_TOOLTIP_CONFIG, TooltipConfig } fr
 
 const config: TooltipConfig = {
   containerClass: 'demo-tooltip',
-  horizontal: false
+  horizontal: false,
+  delay: 0,
 };
 
 @NgModule({

@@ -28,7 +28,9 @@ import { TooltipConfig } from './tooltip-config.interface';
 export class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {
   @Input() containerClass: string;
   @Input() horizontal: boolean;
+  @Input() delay: number;
 
+  private __timerId: NodeJS.Timer;
   private __parent: HTMLElement;
   private __elements: {
     content: EmbeddedViewRef<any>,
@@ -56,6 +58,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
+      clearTimeout(this.__timerId);
       this.__remove();
       this.__parent.removeEventListener('mouseenter', this);
       this.__parent.removeEventListener('mouseleave', this);
@@ -64,9 +67,12 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
 
   handleEvent(evt: Event): void {
     if (evt.type === 'mouseenter') {
-      return this.__onMouseEnter(<MouseEvent>evt);
+      this.__timerId = setTimeout(() => {
+        return this.__onMouseEnter(<MouseEvent>evt);
+      }, this.__delay);
     }
     if (evt.type === 'mouseleave') {
+      clearTimeout(this.__timerId);
       return this.__onMouseLeave(<MouseEvent>evt);
     }
   }
@@ -104,6 +110,13 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
       return !!(this.tooltipConfig ? this.tooltipConfig.horizontal : false);
     }
     return this.horizontal;
+  }
+
+  private get __delay(): number {
+    if (this.delay === undefined) {
+      return this.tooltipConfig ? this.tooltipConfig.delay : 0;
+    }
+    return this.delay;
   }
 
   private __onMouseLeave(event: MouseEvent) {
