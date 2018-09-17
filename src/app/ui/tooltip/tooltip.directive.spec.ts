@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component, NgModule, ViewContainerRef, TemplateRef, ComponentFactoryResolver, ApplicationRef, Renderer } from '@angular/core';
 import { TooltipDirective } from './tooltip.directive';
 import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
@@ -30,23 +30,26 @@ describe('TooltipDirective', () => {
     fixture.detectChanges();
   });
 
-  it('appends the tooltip to the body when the mouse enters the element', () => {
+  it('appends the tooltip to the body when the mouse enters the element', fakeAsync(() => {
     (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
+    tick();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(1);
-  });
+  }));
 
-  it('removes the tooltip when the mouse enters and leaves the element', () => {
+  it('removes the tooltip when the mouse enters and leaves the element', fakeAsync(() => {
     (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
     (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseleave'));
+    tick();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
-  });
+  }));
 
-  it('removes the tooltip when the mouse enters and the directive is destroyed', () => {
+  it('removes the tooltip when the mouse enters and the directive is destroyed', fakeAsync(() => {
     (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
+    tick();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(1);
     fixture.destroy();
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
-  });
+  }));
 });
 
 describe('TooltipDirective behavior', () => {
@@ -137,7 +140,7 @@ describe('TooltipDirective behavior', () => {
     expect(viewContainerRef.element.nativeElement.parentElement.removeEventListener).toHaveBeenCalledTimes(0);
   });
 
-  it('does not do anything if tooltip is already open', () => {
+  it('does not do anything if tooltip is already open', fakeAsync(() => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
@@ -154,10 +157,11 @@ describe('TooltipDirective behavior', () => {
     directive.ngAfterViewInit();
     directive.handleEvent(<Event>{ type: 'mouseenter' });
     directive.handleEvent(<Event>{ type: 'mouseenter' });
+    tick();
     expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(1);
-  });
+  }));
 
-  it('closes te tooltip on mouseleave', () => {
+  it('closes the tooltip on mouseleave', fakeAsync(() => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
@@ -174,10 +178,12 @@ describe('TooltipDirective behavior', () => {
     spyOn(appRef, 'detachView').and.callThrough();
     directive.ngAfterViewInit();
     directive.handleEvent(<Event>{ type: 'mouseenter' });
+    tick();
     expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(1);
     directive.handleEvent(<Event>{ type: 'mouseleave' });
+    tick();
     expect(appRef.detachView).toHaveBeenCalledTimes(2);
-  });
+  }));
 
   it('does not do anything if tooltip is not open', () => {
     const directive = new TooltipDirective(
@@ -216,7 +222,7 @@ describe('TooltipDirective behavior', () => {
     expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(0);
   });
 
-  it('positions the tooltip horizontally', () => {
+  it('positions the tooltip horizontally', fakeAsync(() => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
@@ -236,6 +242,7 @@ describe('TooltipDirective behavior', () => {
     directive.horizontal = true;
     directive.ngAfterViewInit();
     directive.handleEvent(<Event>{ type: 'mouseenter' });
+    tick();
     expect(document.body.querySelector('.iw-tooltip-container--right')).not.toBeNull();
-  });
+  }));
 });
