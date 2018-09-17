@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.7.0...v3.8.0) (2018-09-17)
+
+
+### Features
+
+* **tooltip:** add delay option ([#71](https://github.com/interfacewerk/iwerk-angular-ui/issues/71)) ([c7f3cfa](https://github.com/interfacewerk/iwerk-angular-ui/commit/c7f3cfa))
+
 ## [3.6.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.6.0...v3.6.1) (2018-09-14)
 
 
