@@ -3,7 +3,7 @@
 <button (click)="value = value + 1">
   Increment
   <ng-template iwTooltip>
-    Click to go from {{value}} to {{value+1}}      
+    Click to go from {{value}} to {{value+1}}
   </ng-template>
 </button>
 
@@ -31,8 +31,16 @@
 
 <h2>Horizontal</h2>
 <button>
-  horizontal 
+  horizontal
   <ng-template iwTooltip containerClass="custom-tooltip-container" [horizontal]="true">
     horizontal
+  </ng-template>
+</button>
+
+<h2>Delay (1 sec)</h2>
+<button>
+  delay
+  <ng-template iwTooltip containerClass="custom-tooltip-container" [delay]="1000">
+    delay
   </ng-template>
 </button>
