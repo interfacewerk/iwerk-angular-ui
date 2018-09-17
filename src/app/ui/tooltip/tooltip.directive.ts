@@ -58,6 +58,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
+      clearTimeout(this.__timerId);
       this.__remove();
       this.__parent.removeEventListener('mouseenter', this);
       this.__parent.removeEventListener('mouseleave', this);
