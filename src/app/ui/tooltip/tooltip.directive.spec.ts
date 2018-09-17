@@ -38,8 +38,8 @@ describe('TooltipDirective', () => {
 
   it('removes the tooltip when the mouse enters and leaves the element', fakeAsync(() => {
     (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseenter'));
-    (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseleave'));
     tick();
+    (<HTMLElement>(fixture.nativeElement)).dispatchEvent(new MouseEvent('mouseleave'));
     expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
   }));
 
@@ -181,7 +181,6 @@ describe('TooltipDirective behavior', () => {
     tick();
     expect(templateRef.createEmbeddedView).toHaveBeenCalledTimes(1);
     directive.handleEvent(<Event>{ type: 'mouseleave' });
-    tick();
     expect(appRef.detachView).toHaveBeenCalledTimes(2);
   }));
 
@@ -245,4 +244,29 @@ describe('TooltipDirective behavior', () => {
     tick();
     expect(document.body.querySelector('.iw-tooltip-container--right')).not.toBeNull();
   }));
+
+  it('append the tooltip with 1 second delay', fakeAsync(() => {
+    const directive = new TooltipDirective(
+      undefined,
+      appRef,
+      <Renderer><any>{
+        invokeElementMethod: (element: HTMLElement, method: string, args: any[]) => {
+          if (method === 'appendChild') {
+            (args || []).forEach(el => element.appendChild(el));
+          }
+        },
+      },
+      componentFactoryResolver,
+      templateRef,
+      viewContainerRef,
+      'browser',
+      {}
+    );
+    directive.delay = 1000;
+    directive.ngAfterViewInit();
+    directive.handleEvent(<Event>{ type: 'mouseenter' });
+    tick(1000);
+    expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
+  }));
+
 });
