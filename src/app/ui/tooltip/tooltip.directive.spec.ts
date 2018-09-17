@@ -266,7 +266,7 @@ describe('TooltipDirective behavior', () => {
     directive.ngAfterViewInit();
     directive.handleEvent(<Event>{ type: 'mouseenter' });
     tick(1000);
-    expect(document.body.querySelectorAll('iw-tooltip-container').length).toBe(0);
+    expect(document.body.querySelector('.iw-tooltip-container--bottom')).not.toBeNull();
   }));
 
 });
