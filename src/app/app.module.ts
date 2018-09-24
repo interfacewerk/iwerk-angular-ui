@@ -13,7 +13,6 @@ const appRoutes: Routes = [
   { path: 'stateful-button', loadChildren: 'app/demo/stateful-button/stateful-button.module#StatefulButtonDemoModule' },
   { path: 'dialog', loadChildren: 'app/demo/dialog-demo/dialog-demo.module#DialogDemoModule' },
   { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
-  { path: 'form-control', loadChildren: 'app/demo/form-control-demo/form-control-demo.module#FormControlDemoModule' },
 ];
 
 @NgModule({
