@@ -1,0 +1,15 @@
+<label><ng-content select="[form-control-label]"></ng-content></label>
+
+<div *ngIf="showErrors">Error</div>
+
+<ng-content select="[form-control-input]"></ng-content>
+
+<ul *ngIf="showErrors">
+  <ng-template ngFor [ngForOf]="errorKeys" let-key>
+    <li>
+      <ng-container *ngTemplateOutlet="getErrorTemplate(key); context: getErrorContext(key)"></ng-container>
+    </li>
+  </ng-template>
+</ul>
+
+<ng-template #defaultErrorTemplate let-key="key" let-error>Invalid: {{key}}</ng-template>
