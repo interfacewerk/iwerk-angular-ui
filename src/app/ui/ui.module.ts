@@ -4,6 +4,7 @@ import { PopoverModule } from './popover/popover.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { StateButtonModule } from './state-button/state-button.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { FormControlModule } from './form-control/form-control.module';
 
 @NgModule({
   imports: [
@@ -11,13 +12,15 @@ import { CheckboxModule } from './checkbox/checkbox.module';
     PopoverModule,
     TooltipModule,
     StateButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    FormControlModule
   ],
   exports: [
     PopoverModule,
     TooltipModule,
     StateButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    FormControlModule
   ]
 })
 export class UiModule { }

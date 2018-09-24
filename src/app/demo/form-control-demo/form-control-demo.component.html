@@ -1,0 +1,10 @@
+<h1>Form Controls</h1>
+
+<iw-form-control [formControl]="control1">
+  <ng-container form-control-label>Hello</ng-container>
+
+  <input type="text" form-control-input minlength="1" required [formControl]="control1" />
+
+  <ng-template iwFormControlError="required">Required!</ng-template>
+  <ng-template iwFormControlError="minlength" let-error>{{error.actualLength}} < {{error.requiredLength}}</ng-template>
+</iw-form-control>
