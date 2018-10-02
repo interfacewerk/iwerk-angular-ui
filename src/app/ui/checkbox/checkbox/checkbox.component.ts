@@ -84,6 +84,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
    */
   writeValue(obj: boolean): void {
     this.value = obj;
+    this.changeDetectorRef.markForCheck();
   }
 
   /**

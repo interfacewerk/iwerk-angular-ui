@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
-
-import { CheckboxComponent } from './checkbox.component';
-import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
-import { CheckboxConfig } from '../checkbox-config.interface';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CheckboxModule } from '../checkbox.module';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { CheckboxConfig } from '../checkbox-config.interface';
+import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
+import { CheckboxModule } from '../checkbox.module';
+import { CheckboxComponent } from './checkbox.component';
+
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
@@ -27,10 +28,6 @@ describe('CheckboxComponent', () => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('sets the value when calling writeValue', () => {
@@ -90,18 +87,24 @@ describe('CheckboxComponent', () => {
 });
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <iw-checkbox [(ngModel)]="someValue" [disabled]="true"></iw-checkbox>
   `
 })
 class TestComponent {
+  someValue = false;
+}
 
+@Component({
+  template: `<iw-checkbox [(ngModel)]="someValue"></iw-checkbox>`
+})
+class Test2Component {
+  someValue = false;
 }
 
 describe('Checkbox integration tests', () => {
 
-  it('applies disabled style when disabled', fakeAsync(() => {
+  it('applies disabled style when disabled', async () => {
     TestBed.configureTestingModule({
       declarations: [ TestComponent ],
       imports: [ CheckboxModule, FormsModule ]
@@ -109,12 +112,30 @@ describe('Checkbox integration tests', () => {
     .compileComponents();
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
-    // somehow, this test needs a flush
-    flush();
+    await fixture.whenRenderingDone();
     fixture.detectChanges();
     const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
     expect(checkbox.classList.contains('checkbox--disabled')).toBe(true);
-  }));
+  });
+
+  it('sets the value and updates inner DOM', async () => {
+    TestBed.configureTestingModule({
+      declarations: [ Test2Component ],
+      imports: [ CheckboxModule, FormsModule, CommonModule ]
+    })
+    .compileComponents();
+    const fixture = TestBed.createComponent(Test2Component);
+    const checkChecked = async (checked: boolean) => {
+      const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
+      fixture.componentInstance.someValue = true;
+      fixture.detectChanges();
+      await fixture.whenRenderingDone();
+      fixture.detectChanges();
+      expect(checkbox.classList.contains('checkbox--checked')).toBe(true);
+    };
+    await checkChecked(false);
+    await checkChecked(true);
+  });
 });
 
 describe('Checkbox component global config', () => {
