@@ -88,11 +88,12 @@ describe('CheckboxComponent', () => {
 
 @Component({
   template: `
-    <iw-checkbox [(ngModel)]="someValue" [disabled]="true"></iw-checkbox>
+    <iw-checkbox [ngModel]="someValue" [disabled]="disabled"></iw-checkbox>
   `
 })
 class TestComponent {
   someValue = false;
+  disabled = false;
 }
 
 @Component({
@@ -105,16 +106,22 @@ class Test2Component {
 describe('Checkbox integration tests', () => {
 
   it('applies disabled style when disabled', async () => {
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       declarations: [ TestComponent ],
-      imports: [ CheckboxModule, FormsModule ]
+      imports: [ CheckboxModule, FormsModule, CommonModule ]
     })
     .compileComponents();
     const fixture = TestBed.createComponent(TestComponent);
-    fixture.detectChanges();
-    await fixture.whenRenderingDone();
-    const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
-    expect(checkbox.classList.contains('checkbox--disabled')).toBe(true);
+    const checkDisabled = async (disabled: boolean) => {
+      const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
+      fixture.componentInstance.disabled = disabled;
+      fixture.detectChanges();
+      await fixture.whenRenderingDone();
+      expect(checkbox.classList.contains('checkbox--disabled')).toBe(disabled);
+    };
+    await checkDisabled(false);
+    await checkDisabled(true);
+    await checkDisabled(false);
   });
 
   it('sets the value and updates inner DOM', async () => {
@@ -126,10 +133,10 @@ describe('Checkbox integration tests', () => {
     const fixture = TestBed.createComponent(Test2Component);
     const checkChecked = async (checked: boolean) => {
       const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
-      fixture.componentInstance.someValue = true;
+      fixture.componentInstance.someValue = checked;
       fixture.detectChanges();
       await fixture.whenRenderingDone();
-      expect(checkbox.classList.contains('checkbox--checked')).toBe(true);
+      expect(checkbox.classList.contains('checkbox--checked')).toBe(checked);
     };
     await checkChecked(false);
     await checkChecked(true);
