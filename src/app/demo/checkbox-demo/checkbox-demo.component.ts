@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@
   encapsulation: ViewEncapsulation.None
 })
 export class CheckboxDemoComponent implements OnInit {
+  value1 = false;
 
   constructor() { }
 
