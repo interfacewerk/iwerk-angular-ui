@@ -1,11 +1,13 @@
-<label><ng-content select="[form-control-label]"></ng-content></label>
+<label class="iw-form-control__label"><ng-content select="[form-control-label]"></ng-content></label>
+
+<div class="iw-form-control__helper"><ng-content select="[form-control-helper]"></ng-content></div>
 
 <div *ngIf="showErrors">Error</div>
 
 <ng-content select="[form-control-input]"></ng-content>
 
 <ul *ngIf="showErrors">
-  <ng-template ngFor [ngForOf]="errorKeys" let-key>
+  <ng-template ngFor [ngForOf]="errorKeys" let-key [ngForTrackBy]="trackByErrorKey">
     <li>
       <ng-container *ngTemplateOutlet="getErrorTemplate(key); context: getErrorContext(key)"></ng-container>
     </li>

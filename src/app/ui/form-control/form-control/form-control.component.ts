@@ -8,7 +8,8 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  TrackByFunction
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormControlErrorDirective } from '../form-control-error/form-control-error.directive';
@@ -35,6 +36,10 @@ export class FormControlComponent implements OnInit, OnChanges {
   }
 
   constructor() { }
+
+  trackByErrorKey: TrackByFunction<string> = (_index, key: string) => {
+    return key;
+  }
 
   ngOnInit() {
   }

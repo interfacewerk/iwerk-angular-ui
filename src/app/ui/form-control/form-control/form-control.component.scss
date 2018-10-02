@@ -13,7 +13,7 @@ iw-form-control {
     }
 }
 
-iw-form-control label {
+iw-form-control .iw-form-control__label {
     position: absolute;
     top: 0;
     transform: translateY(-50%);
@@ -23,4 +23,8 @@ iw-form-control label {
     text-overflow: ellipsis;
     background: white;
     padding: 2px;
+}
+
+iw-form-control .iw-form-control__helper {
+    color: grey;
 }
