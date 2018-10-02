@@ -113,7 +113,6 @@ describe('Checkbox integration tests', () => {
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
     await fixture.whenRenderingDone();
-    fixture.detectChanges();
     const checkbox: HTMLElement = fixture.debugElement.nativeElement.querySelector('iw-checkbox');
     expect(checkbox.classList.contains('checkbox--disabled')).toBe(true);
   });
@@ -130,7 +129,6 @@ describe('Checkbox integration tests', () => {
       fixture.componentInstance.someValue = true;
       fixture.detectChanges();
       await fixture.whenRenderingDone();
-      fixture.detectChanges();
       expect(checkbox.classList.contains('checkbox--checked')).toBe(true);
     };
     await checkChecked(false);

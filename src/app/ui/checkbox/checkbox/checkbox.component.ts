@@ -1,22 +1,16 @@
 import {
   Component,
-  OnInit,
+  ElementRef,
   forwardRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
   HostListener,
-  HostBinding,
-  Input,
-  ChangeDetectorRef,
-  Optional,
   Inject,
+  Input,
+  OnInit,
+  Optional,
   Renderer2,
-  ElementRef
+  ViewEncapsulation
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxConfig } from '../checkbox-config.interface';
 import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 
@@ -24,7 +18,6 @@ import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
   selector: 'iw-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CheckboxComponent),
@@ -35,17 +28,38 @@ import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() tabindex: number;
 
-  @HostBinding('class.checkbox--checked')
-  value: boolean;
+  set value(v: boolean) {
+    this.__value = v;
+    if (v) {
+      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--checked');
+    } else {
+      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--checked');
+    }
+  }
+  get value() {
+    return this.__value;
+  }
   onChangeCb: (newValue: boolean) => any;
   onTouchedCb: Function;
-  @HostBinding('class.checkbox--disabled')
-  isDisabled: boolean;
+  set isDisabled(v: boolean) {
+    this.__isDisabled = v;
+    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', v);
+    if (v) {
+      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--disabled');
+    } else {
+      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--disabled');
+    }
+  }
+  get isDisabled() {
+    return this.__isDisabled;
+  }
+
+  private __value = false;
+  private __isDisabled = false;
 
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
-    private changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(IW_CHECKBOX_CONFIG) private checkboxConfig: CheckboxConfig
   ) {
     this.onChangeCb = this.onTouchedCb = () => {};
@@ -84,7 +98,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
    */
   writeValue(obj: boolean): void {
     this.value = obj;
-    this.changeDetectorRef.markForCheck();
   }
 
   /**
@@ -109,8 +122,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
    */
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
-    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
-    this.changeDetectorRef.markForCheck();
   }
 
   private userToggle() {
