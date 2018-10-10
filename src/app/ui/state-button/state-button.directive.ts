@@ -1,14 +1,9 @@
-import {
-  Directive,
-  Input,
-  ViewContainerRef,
-  TemplateRef,
-  HostBinding,
-} from '@angular/core';
+import { Directive, HostBinding, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { ButtonState } from './button-state';
-import { StateTemplate } from './state-template.class';
 import { IStateButtonDirective } from './state-button-directive.interface';
+import { StateTemplate } from './state-template.class';
 
 @Directive({
   selector: '[iwStateButton]'
@@ -16,7 +11,7 @@ import { IStateButtonDirective } from './state-button-directive.interface';
 export class StateButtonDirective implements IStateButtonDirective {
   private __state = new BehaviorSubject<ButtonState>(undefined);
 
-  get state() {
+  get state(): Observable<ButtonState> {
     return this.__state.asObservable();
   }
 
