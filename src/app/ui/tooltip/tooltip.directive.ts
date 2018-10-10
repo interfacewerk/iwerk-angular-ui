@@ -29,7 +29,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
   @Input() horizontal: boolean;
   @Input() delay: number;
 
-  private __timerId: NodeJS.Timer;
+  private __timerId: any;
   private __parent: HTMLElement;
   private __elements: {
     content: EmbeddedViewRef<any>,
