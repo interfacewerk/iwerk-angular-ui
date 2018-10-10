@@ -1,12 +1,11 @@
-import { StateTemplate } from './state-template.class';
 import { ViewContainerRef } from '@angular/core';
-import { IStateButtonDirective } from './state-button-directive.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ButtonState } from './button-state';
+import { StateTemplate } from './state-template.class';
 
 describe('state-template.class', () => {
   let viewContainer: ViewContainerRef;
-  let stateButton: IStateButtonDirective;
+  let stateButton: any;
 
   beforeEach(() => {
     stateButton = {

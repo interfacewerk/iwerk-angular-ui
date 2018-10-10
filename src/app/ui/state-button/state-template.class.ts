@@ -26,7 +26,7 @@ export class StateTemplate implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const distinct = this.stateButtonDirective.state.asObservable()
+    const distinct = this.stateButtonDirective.state
       .map(s => s === this.triggeringState)
       .distinctUntilChanged();
     this.__subscription = distinct.subscribe(b => {

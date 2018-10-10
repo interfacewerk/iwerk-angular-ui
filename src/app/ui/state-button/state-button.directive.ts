@@ -1,23 +1,22 @@
-import {
-  Directive,
-  Input,
-  ViewContainerRef,
-  TemplateRef,
-  HostBinding,
-} from '@angular/core';
+import { Directive, HostBinding, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { ButtonState } from './button-state';
-import { StateTemplate } from './state-template.class';
 import { IStateButtonDirective } from './state-button-directive.interface';
+import { StateTemplate } from './state-template.class';
 
 @Directive({
   selector: '[iwStateButton]'
 })
 export class StateButtonDirective implements IStateButtonDirective {
-  state = new BehaviorSubject<ButtonState>(undefined);
+  private __state = new BehaviorSubject<ButtonState>(undefined);
+
+  get state(): Observable<ButtonState> {
+    return this.__state.asObservable();
+  }
 
   @Input() set iwStateButton(v: ButtonState) {
-    this.state.next(v);
+    this.__state.next(v);
   }
 
   @HostBinding('class.iw-state-button')
@@ -25,22 +24,22 @@ export class StateButtonDirective implements IStateButtonDirective {
 
   @HostBinding('class.sb--idle')
   get isIdle() {
-    return this.state.value === 'IDLE';
+    return this.__state.value === 'IDLE';
   }
 
   @HostBinding('class.sb--doing')
   get isDoing() {
-    return this.state.value === 'DOING';
+    return this.__state.value === 'DOING';
   }
 
   @HostBinding('class.sb--success')
   get isSuccess() {
-    return this.state.value === 'SUCCESS';
+    return this.__state.value === 'SUCCESS';
   }
 
   @HostBinding('class.sb--failure')
   get isFailure() {
-    return this.state.value === 'FAILURE';
+    return this.__state.value === 'FAILURE';
   }
 
 }
