@@ -6,7 +6,7 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  Renderer,
+  Renderer2,
   AfterViewInit,
   Input,
   ViewEncapsulation
@@ -36,7 +36,7 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer
+    private renderer: Renderer2
   ) { }
 
   @HostListener('body:keydown', ['$event'])
@@ -60,19 +60,20 @@ export class DialogContainerComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);
     for (const c of classes) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, c, true);
+      this.renderer.addClass(this.elementRef.nativeElement, c);
     }
   }
 
   ngAfterViewInit() {
-    this.renderer.setElementAttribute(this.elementRef.nativeElement, 'tabindex', '0');
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');
     this.focus();
     setTimeout(() => {
-      this.renderer.setElementClass(this.elementRef.nativeElement, 'iw-dialog-container--visible', true);
+      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');
     }, 0);
   }
 
   focus() {
-    this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus');
+    const element = <HTMLElement>this.elementRef.nativeElement;
+    element.focus();
   }
 }

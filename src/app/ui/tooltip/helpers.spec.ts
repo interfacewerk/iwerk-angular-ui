@@ -1,14 +1,9 @@
 import { smartPosition } from './helpers';
-import { Renderer } from '@angular/core';
 
 describe('tooltip/helpers', () => {
   let target: HTMLElement;
   let container: HTMLElement;
-  const renderer = <Renderer>{
-    invokeElementMethod: (el: any, methodName: string, args?: any[]) => {
-      document.body.appendChild(args[0]);
-    }
-  };
+
   beforeEach(() => {
     document.body.style.width = '900px';
     document.body.style.height = '900px';
@@ -24,7 +19,7 @@ describe('tooltip/helpers', () => {
   it('smartly puts the tooltip above the target if it is in the lowest part of the body', () => {
     addInBody(target, { top: 800, left: 400, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
-    smartPosition({ target, container, renderer });
+    smartPosition({ target, container });
     expect(container.style.top).toBe('779px');
     expect(container.style.left).toBe('325px');
   });
@@ -32,7 +27,7 @@ describe('tooltip/helpers', () => {
   it('smartly puts the tooltip at the right of the target', () => {
     addInBody(target, { top: 800, left: 100, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
-    smartPosition({ target, container, renderer }, 'horizontal');
+    smartPosition({ target, container }, 'horizontal');
     expect(container.style.top).toBe('805px');
     expect(container.style.left).toBe('151px');
   });
@@ -40,7 +35,7 @@ describe('tooltip/helpers', () => {
   it('smartly puts the tooltip at the left of the target', () => {
     addInBody(target, { top: 800, left: 800, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 20 });
-    smartPosition({ target, container, renderer }, 'horizontal');
+    smartPosition({ target, container }, 'horizontal');
     expect(container.style.top).toBe('805px');
     expect(container.style.left).toBe('599px');
   });

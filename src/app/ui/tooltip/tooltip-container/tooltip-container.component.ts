@@ -3,7 +3,7 @@ import {
   OnInit,
   ViewEncapsulation,
   Input,
-  Renderer,
+  Renderer2,
   ElementRef,
   Optional,
   Inject
@@ -21,20 +21,19 @@ export class TooltipContainerComponent implements OnInit {
   @Input() containerClass: string;
 
   constructor(
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private elementRef: ElementRef,
     @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig
   ) { }
 
   ngOnInit() {
     if (this.containerClass) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this.containerClass, true);
+      this.renderer.addClass(this.elementRef.nativeElement, this.containerClass);
     }
     if (this.tooltipConfig && this.tooltipConfig.containerClass) {
-      this.renderer.setElementClass(
+      this.renderer.addClass(
         this.elementRef.nativeElement,
-        this.tooltipConfig.containerClass,
-        true
+        this.tooltipConfig.containerClass
       );
     }
   }

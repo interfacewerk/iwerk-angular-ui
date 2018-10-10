@@ -7,7 +7,6 @@ import {
   ApplicationRef,
   EmbeddedViewRef,
   Type,
-  ReflectiveInjector,
   Optional,
   Inject
 } from '@angular/core';
@@ -92,7 +91,7 @@ export class PopoverService {
   }
 
   open<T>(componentType: Type<T>, target: HTMLElement, options?: PopoverOptions, init?: (component: T) => void): IPopover {
-    const reflInj = ReflectiveInjector.resolveAndCreate([Popover], this.injector);
+    const reflInj = Injector.create([{provide: Popover, deps: []}], this.injector);
 
     const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
     const component = factory.create(reflInj);
