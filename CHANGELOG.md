@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.8.1...v3.9.0) (2018-10-10)
+
+
+### Features
+
+* **angular:** update to Angular 6 ([#78](https://github.com/interfacewerk/iwerk-angular-ui/issues/78)) ([#79](https://github.com/interfacewerk/iwerk-angular-ui/issues/79)) ([7f646c6](https://github.com/interfacewerk/iwerk-angular-ui/commit/7f646c6))
+
 ## [3.8.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.8.0...v3.8.1) (2018-10-10)
 
 
