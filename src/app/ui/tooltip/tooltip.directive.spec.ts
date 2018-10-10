@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { Component, NgModule, ViewContainerRef, TemplateRef, ComponentFactoryResolver, ApplicationRef, Renderer } from '@angular/core';
-import { TooltipDirective } from './tooltip.directive';
+import { ApplicationRef, Component, ComponentFactoryResolver, NgModule, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TooltipContainerComponent } from './tooltip-container/tooltip-container.component';
+import { TooltipDirective } from './tooltip.directive';
 
 @Component({
   template: '<ng-template iwTooltip>Here is my tooltip</ng-template>'
@@ -109,7 +109,6 @@ describe('TooltipDirective behavior', () => {
       undefined,
       undefined,
       undefined,
-      undefined,
       viewContainerRef,
       'browser',
       {}
@@ -124,7 +123,6 @@ describe('TooltipDirective behavior', () => {
 
   it('does not attach events only if platform !== browser', () => {
     const directive = new TooltipDirective(
-      undefined,
       undefined,
       undefined,
       undefined,
@@ -144,9 +142,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: () => {},
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
@@ -165,9 +160,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: () => {},
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
@@ -188,9 +180,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: () => {},
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
@@ -206,9 +195,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: () => {},
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
@@ -225,13 +211,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: (element: HTMLElement, method: string, args: any[]) => {
-          if (method === 'appendChild') {
-            (args || []).forEach(el => element.appendChild(el));
-          }
-        },
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,
@@ -249,13 +228,6 @@ describe('TooltipDirective behavior', () => {
     const directive = new TooltipDirective(
       undefined,
       appRef,
-      <Renderer><any>{
-        invokeElementMethod: (element: HTMLElement, method: string, args: any[]) => {
-          if (method === 'appendChild') {
-            (args || []).forEach(el => element.appendChild(el));
-          }
-        },
-      },
       componentFactoryResolver,
       templateRef,
       viewContainerRef,

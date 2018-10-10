@@ -4,7 +4,6 @@ import {
   Injector,
   ApplicationRef,
   EmbeddedViewRef,
-  Renderer,
   ComponentFactoryResolver,
   ComponentRef,
   AfterViewInit,
@@ -30,7 +29,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
   @Input() horizontal: boolean;
   @Input() delay: number;
 
-  private __timerId: NodeJS.Timer;
+  private __timerId: any;
   private __parent: HTMLElement;
   private __elements: {
     content: EmbeddedViewRef<any>,
@@ -40,7 +39,6 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
   constructor(
     private injector: Injector,
     private appRef: ApplicationRef,
-    private renderer: Renderer,
     private componentFactoryResolver: ComponentFactoryResolver,
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
@@ -98,8 +96,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
 
       smartPosition({
         target: this.__parent,
-        container: this.__elements.container.location.nativeElement,
-        renderer: this.renderer
+        container: this.__elements.container.location.nativeElement
       }, this.__isHorizontal ? 'horizontal' : 'vertical');
     }
 
@@ -128,7 +125,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
       return;
     }
 
-    this.renderer.invokeElementMethod(document.body, 'removeChild', [this.__elements.container.location.nativeElement]);
+    document.body.removeChild(this.__elements.container.location.nativeElement);
 
     this.appRef.detachView(this.__elements.content);
     this.appRef.detachView(this.__elements.container.hostView);

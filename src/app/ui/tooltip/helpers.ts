@@ -1,9 +1,7 @@
-import { Renderer } from '@angular/core';
 
 export function smartPosition(options: {
   target: HTMLElement,
   container: HTMLElement,
-  renderer: Renderer,
 },
   type: 'horizontal' | 'vertical' = 'vertical'
 ) {
@@ -21,14 +19,13 @@ export function smartPosition(options: {
 function verticalSmartPosition(options: {
   target: HTMLElement,
   container: HTMLElement,
-  renderer: Renderer,
 }) {
   const targetRect = options.target.getBoundingClientRect();
   const bodyRect = document.body.getBoundingClientRect();
   options.container.style.visibility = 'hidden';
 
   // do that after, otherwise it can change the bounding client rect of the target
-  options.renderer.invokeElementMethod(document.body, 'appendChild', [options.container]);
+  document.body.appendChild(options.container);
 
   const y = targetRect.top;
   const centerYBody = bodyRect.height / 2;
@@ -50,14 +47,13 @@ function verticalSmartPosition(options: {
 function horizontalSmartPosition(options: {
   target: HTMLElement,
   container: HTMLElement,
-  renderer: Renderer,
 }) {
   const targetRect = options.target.getBoundingClientRect();
   const bodyRect = document.body.getBoundingClientRect();
   options.container.style.visibility = 'hidden';
 
   // do that after, otherwise it can change the bounding client rect of the target
-  options.renderer.invokeElementMethod(document.body, 'appendChild', [options.container]);
+  document.body.appendChild(options.container);
 
   const x = targetRect.left;
   const centerXBody = bodyRect.width / 2;
