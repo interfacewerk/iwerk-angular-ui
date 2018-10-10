@@ -1,6 +1,5 @@
 import { Directive, HostBinding, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ButtonState } from './button-state';
 import { IStateButtonDirective } from './state-button-directive.interface';
 import { StateTemplate } from './state-template.class';

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ButtonState } from './button-state';
 
 export interface IStateButtonDirective {
