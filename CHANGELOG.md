@@ -1,3 +1,11 @@
+## [3.8.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.8.0...v3.8.1) (2018-10-10)
+
+
+### Bug Fixes
+
+* **checkbox:** fix write value that does not trigger change detection ([#76](https://github.com/interfacewerk/iwerk-angular-ui/issues/76)) ([9c7967c](https://github.com/interfacewerk/iwerk-angular-ui/commit/9c7967c))
+* **state-button:** do not expose a behavior subject ([#77](https://github.com/interfacewerk/iwerk-angular-ui/issues/77)) ([e7a6525](https://github.com/interfacewerk/iwerk-angular-ui/commit/e7a6525))
+
 # [3.8.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.7.0...v3.8.0) (2018-09-17)
 
 
