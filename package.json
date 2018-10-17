@@ -64,7 +64,7 @@
     "@angular/platform-browser-dynamic": "6.1.9",
     "@angular/router": "6.1.9",
     "@semantic-release/changelog": "^3.0.0",
-    "@semantic-release/git": "^7.0.4",
+    "@semantic-release/git": "^7.0.5",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^10.3.3",
