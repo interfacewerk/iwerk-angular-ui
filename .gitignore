@@ -4,6 +4,8 @@
 /dist
 /tmp
 dist.tgz
+/documentation
+/projects/demo/src/assets/documentation
 
 # dependencies
 /node_modules

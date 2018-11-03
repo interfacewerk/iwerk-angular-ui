@@ -49,11 +49,12 @@
     "e2e": "./scripts/e2e.dev.sh",
     "build:dev": "./scripts/watch-build.dev.sh",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "compodoc": "./node_modules/.bin/compodoc -w --output projects/demo/src/assets/documentation -p src/tsconfig.app.json --exportFormat json"
   },
   "dependencies": {},
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.10.0",
+    "@angular-devkit/build-angular": "0.10.4",
     "@angular/cli": "^6.2.4",
     "@angular/common": "6.1.9",
     "@angular/compiler": "6.1.9",
@@ -63,6 +64,7 @@
     "@angular/platform-browser": "6.1.9",
     "@angular/platform-browser-dynamic": "6.1.9",
     "@angular/router": "6.1.9",
+    "@compodoc/compodoc": "^1.1.6",
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.4",
     "@types/jasmine": "~2.8.3",
