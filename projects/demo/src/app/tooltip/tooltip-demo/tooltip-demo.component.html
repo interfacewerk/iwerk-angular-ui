@@ -1,0 +1,31 @@
+<h1> Tooltip </h1>
+
+<p>
+  The tooltip component can be used to display an extra piece of information to an element of an user interface. This piece appears when the mouse is over this element.
+  Add a template that adds the <code class="inline-code">iwTooltip</code> directive inside the element where you want the tooltip to appear.
+</p>
+
+<h2>Positionning</h2>
+
+<p>
+  The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.
+  It will be at the bottom of the target if the target is on the top half of the screen.
+</p>
+
+<!-- CODESAMPLE TOOLTIP#EXAMPLE -->
+<button class="two" (click)="value = value + 1">
+  +1
+  <ng-template iwTooltip>
+    Click to go from {{value}} to {{value+1}}
+  </ng-template>
+</button>
+<!-- _CODESAMPLE -->
+
+<button class="five" (click)="value = 0">
+  Reset
+  <ng-template iwTooltip>
+    Reset to 0
+  </ng-template>
+</button>
+
+<code>{{ 'TOOLTIP#EXAMPLE' | codeSample }}</code>
