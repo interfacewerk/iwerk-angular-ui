@@ -10,7 +10,7 @@ const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'popover', loadChildren: './popover/popover.module#PopoverDemoModule' },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
-  { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
+  // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
   { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' }
 ];
 

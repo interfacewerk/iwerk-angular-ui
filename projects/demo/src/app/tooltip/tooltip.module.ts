@@ -3,8 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TooltipModule } from 'src/public_api';
-import { CodeSampleModule } from '../code-sample/code-sample.module';
-import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
+import { CoreModule } from '../core/core.module';
+import {
+  TooltipDemoComponent,
+  Example1TooltipComponent,
+  Example2TooltipComponent,
+  Example3TooltipComponent
+} from './tooltip-demo/tooltip-demo.component';
 
 @NgModule({
   imports: [
@@ -14,9 +19,14 @@ import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
     ]),
     TooltipModule,
     FormsModule,
-    CodeSampleModule
+    CoreModule
   ],
-  declarations: [TooltipDemoComponent],
+  declarations: [
+    TooltipDemoComponent,
+    Example1TooltipComponent,
+    Example2TooltipComponent,
+    Example3TooltipComponent
+  ],
   exports: [RouterModule]
 })
 export class TooltipDemoModule { }

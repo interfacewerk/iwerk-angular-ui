@@ -1,4 +1,5 @@
 import { Directive, Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Directive({
   selector: '[appCustomPopoverHeader]'
@@ -17,6 +18,7 @@ export class CustomPopoverContentDirective {}
 })
 export class CustomPopoverDemoComponent implements OnInit {
   @Output() close = new EventEmitter();
+  faTimes = faTimes;
 
   constructor() { }
 

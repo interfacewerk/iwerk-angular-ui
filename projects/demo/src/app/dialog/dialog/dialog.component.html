@@ -1,11 +1,12 @@
-<h1>Dialog</h1>
-
-<p>
-  The dialog component is meant to focus user's attention on one particular task or content. It should be displayed
-  on top of the page.
-</p>
-
-<code>{{ 'DIALOG#IMPORT' | codeSample }}</code>
+<app-component-documentation
+  [componentTitle]="'Dialog'"
+  [componentId]="'DialogDirective'"
+  [componentType]="'directives'"
+>
+  <ng-template appComponentExample="Simple example" [source]="example1">
+    <app-dialog-example1></app-dialog-example1>
+  </ng-template>
+</app-component-documentation>
 
 <h2>Embed a component into a dialog</h2>
 <button (click)="openDialog()">Embed a component</button>
@@ -13,17 +14,7 @@
 
 <h2>Declarative way</h2>
 <!-- CODESAMPLE DIALOG#EXAMPLE_2 -->
-<button (click)="myDialog1.open()">Open a dialog</button>
 
-<ng-template iwDialog #myDialog1="iw-dialog">
-  <h1>Here is my dialog</h1>
-
-  <ul>
-    <li>Press ESC to close it</li>
-    <li>You can also click outside</li>
-    <li>or <a (click)="myDialog1.close()">here</a></li>
-  </ul>
-</ng-template>
 <!-- _CODESAMPLE -->
 
 <code>{{ 'DIALOG#EXAMPLE_2' | codeSample }}</code>

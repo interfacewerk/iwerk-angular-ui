@@ -1,0 +1,31 @@
+<div class="header">
+  <h1>{{componentTitle}}</h1>
+
+  <ol>
+    <li [class.active]="isOverview$ | async" (click)="select('overview')">Overview</li>
+    <li [class.active]="isExamples$ | async" (click)="select('examples')">Examples</li>
+    <li [class.active]="isApi$ | async" (click)="select('api')">API</li>
+  </ol>
+</div>
+
+<div class="content" [appAnchorContainer]="tab$ | async">
+  <app-component-description
+    appAnchor="overview"
+    [componentId]="componentId"
+    [componentType]="'directives'"
+  ></app-component-description>
+
+  <h2 appAnchor="examples">Examples</h2>
+  <ng-template ngFor [ngForOf]="examples" let-example>
+    <app-component-example [example]="example"></app-component-example>
+  </ng-template>
+
+  <h2 appAnchor="api">API</h2>
+  
+  <app-component-api
+    [componentId]="componentId"
+    [componentType]="'directives'"
+  ></app-component-api>
+  
+</div>
+

@@ -2,6 +2,17 @@ import { Component } from '@angular/core';
 import { PopoverService } from 'src/public_api';
 import { PropertyEditPopoverComponent } from './property-edit-popover/property-edit-popover.component';
 
+export const popoverExample2 = `import { PopoverService } from 'iwerk-angular-ui';
+
+constructor(private popoverService: PopoverService) {
+  …
+}
+
+openPopover() {
+  this.popoverService.open(MyComponent, …)
+}
+`;
+
 @Component({
   selector: 'app-popover-example2',
   templateUrl: './popover-example2.component.html',
@@ -46,7 +57,6 @@ export class PopoverExample2Component {
     });
   }
 }
-// _CODESAMPLE
 
 interface Person {
   first: string;

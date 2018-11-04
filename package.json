@@ -50,9 +50,13 @@
     "build:dev": "./scripts/watch-build.dev.sh",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
-    "compodoc": "./node_modules/.bin/compodoc -w --output projects/demo/src/assets/documentation -p src/tsconfig.app.json --exportFormat json"
+    "compodoc": "./node_modules/.bin/compodoc --output projects/demo/src/assets/documentation -p src/tsconfig.app.json --exportFormat json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.10.4",
     "@angular/cli": "^6.2.4",

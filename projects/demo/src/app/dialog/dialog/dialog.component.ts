@@ -2,7 +2,24 @@ import { Component, OnDestroy } from '@angular/core';
 import { MyDialogComponent } from '../my-dialog/my-dialog.component';
 import { DialogService, IDialog } from 'src/public_api';
 
-// CODESAMPLE DIALOG#EXAMPLE_1
+const example1 = `<button (click)="myDialog1.open()">Open a dialog</button>
+
+<ng-template iwDialog #myDialog1="iw-dialog" [escToClose]="true" [clickToClose]="true">
+  <h1>Here is my dialog</h1>
+
+  <ul>
+    <li>Press ESC to close it</li>
+    <li>You can also click outside</li>
+    <li>or <a (click)="myDialog1.close()">here</a></li>
+  </ul>
+</ng-template>`;
+
+@Component({
+  selector: 'app-dialog-example1',
+  template: example1
+})
+export class DialogExample1Component {}
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -11,6 +28,7 @@ import { DialogService, IDialog } from 'src/public_api';
 export class DialogComponent implements OnDestroy {
   styleCode = BASIC_STYLE;
   __dialogInstance: IDialog;
+  example1 = example1;
 
   constructor(private dialog: DialogService) { }
 

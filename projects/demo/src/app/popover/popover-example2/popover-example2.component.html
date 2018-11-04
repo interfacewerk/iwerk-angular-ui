@@ -1,5 +1,3 @@
-<h3>Programmatic way</h3>
-
 <p>
   You can embed any of your components inside a popover. This can be very helpful to keep your templates light as well as refactoring.
   To do so, declare the component class you want to embed as an entry component of your module.
@@ -13,7 +11,6 @@
     </tr>
   </thead>
   <tbody>
-    <!-- CODESAMPLE POPOVER#EXAMPLE_2_HTML -->
     <ng-template ngFor [ngForOf]="persons" let-person [ngForTrackBy]="trackBy">
       <tr>
         <td class="cell-right-icon">
@@ -26,12 +23,5 @@
         </td>
       </tr>
     </ng-template>
-    <!-- _CODESAMPLE-->
   </tbody>
 </table>
-
-<h4>Typescript</h4>
-<code>{{ 'POPOVER#EXAMPLE_2_TS' | codeSample }}</code>
-
-<h4>HTML</h4>
-<code>{{ 'POPOVER#EXAMPLE_2_HTML' | codeSample }}</code>

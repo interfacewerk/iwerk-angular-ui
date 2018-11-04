@@ -73,25 +73,44 @@ iw-popover-container.demo-popover {
   }
 }
 
-p, ul {
+p, ul, ol, th, td {
   font-size: 1.6rem;
 }
 
-code:not(.inline-code) {
-  border: #7a7272 1px solid;
-  border-radius: 5px;
-  display: block;
-  white-space: pre;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 1.4rem;
-  background: whitesmoke;
-  color: #7a7272;
-  overflow: auto;
+h1 {
+  font-size: 2rem;
 }
 
-code.inline-code {
-  color: $color-two;
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+
+code {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: rgb(81, 172, 235);
+}
+
+pre {
+  code {
+    border: #7a7272 1px solid;
+    border-radius: 5px;
+    display: block;
+    white-space: pre;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    background: whitesmoke;
+    color: #7a7272;
+    overflow: auto;
+  }
 }
 
 .iw-state-button {

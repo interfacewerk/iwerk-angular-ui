@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogComponent } from './dialog/dialog.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DialogModule, PopoverModule, TooltipModule } from 'src/public_api';
+import { CoreModule } from '../core/core.module';
+import { DialogComponent, DialogExample1Component } from './dialog/dialog.component';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
-import { CodeSampleModule } from '../code-sample/code-sample.module';
-import { DialogModule, TooltipModule, PopoverModule } from 'src/public_api';
 
 @NgModule({
   imports: [
@@ -15,9 +15,9 @@ import { DialogModule, TooltipModule, PopoverModule } from 'src/public_api';
     DialogModule,
     TooltipModule,
     PopoverModule,
-    CodeSampleModule
+    CoreModule
   ],
-  declarations: [DialogComponent, MyDialogComponent],
+  declarations: [DialogComponent, MyDialogComponent, DialogExample1Component],
   entryComponents: [ MyDialogComponent ]
 })
 export class DialogDemoModule { }

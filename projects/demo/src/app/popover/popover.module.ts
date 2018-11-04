@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PopoverModule } from 'src/public_api';
-import { CodeSampleModule } from '../code-sample/code-sample.module';
+import { CoreModule } from '../core/core.module';
 import {
   CustomPopoverContentDirective,
   CustomPopoverDemoComponent,
@@ -22,7 +22,7 @@ import { PropertyEditPopoverComponent } from './popover-example2/property-edit-p
     ]),
     PopoverModule,
     FormsModule,
-    CodeSampleModule
+    CoreModule
   ],
   declarations: [
     PopoverDemoComponent,

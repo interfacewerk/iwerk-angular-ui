@@ -14,6 +14,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxConfig } from '../checkbox-config.interface';
 import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 
+/**
+ * A checkbox component is great!
+ */
 @Component({
   selector: 'iw-checkbox',
   templateUrl: './checkbox.component.html',

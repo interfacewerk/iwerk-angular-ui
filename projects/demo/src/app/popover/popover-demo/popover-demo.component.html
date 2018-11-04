@@ -1,35 +1,12 @@
-<h1> Popover </h1>
-
-<p>
-  The popover component can be used to display extra piece of information or more user interface elements.
-  The popover consists in a <code class="inline-code">iw-popover-container</code> that is added directly to the body. It automatically adds a scroll mask element and an arrow element.
-</p>
-
-<h2>Positionning</h2>
-
-<p>
-  By default and if possible, the popover is horizontally centered with its target's center. If the popover goes out of bounds, its horizontal position is adjusted to stay in bounds.
-  It is possible to set this horizontal alignment behaviour by setting the <code class="inline-code">horizontalAlignment</code> input to <code class="inline-code">'leftWithLeft'</code>.
-</p>
-
-<p>By default, the popover puts itself on top of the target if the target is on the bottom-half of the screen, on the bottom if the target is on the top-half of the screen.</p>
-
-<h2>Scroll mask and arrow elements</h2>
-
-<p>
-  The popover component automatically appends a scroll mask and an arrow elements to the body. You can adjust their style to your convenience. 
-</p>
-<ul>
-  <li>
-    The arrow is automatically positionned to point at the target element. This element has the class <code class="inline-code">.iw-popover-arrow-element</code>.
-  </li>
-  <li>
-    The scroll mask <code class="inline-code">&lt;iw-popover-scroll-mask&gt;</code> is meant to prevent the user from scrolling and to intercept clicks oustide of the popover and to dismiss the popover.
-  </li>
-</ul>
-
-<h2>Usage and examples</h2>
-
-<app-popover-example1></app-popover-example1>
-
-<app-popover-example2></app-popover-example2>
+<app-component-documentation
+  [componentTitle]="'Popover'"
+  [componentId]="'PopoverDirective'"
+  [componentType]="'directives'"
+>
+  <ng-template appComponentExample="From the template" [source]="popoverExample1">
+    <app-popover-example1></app-popover-example1>
+  </ng-template>
+  <ng-template appComponentExample="From the service" [source]="popoverExample2">
+    <app-popover-example2></app-popover-example2>
+  </ng-template>
+</app-component-documentation>

@@ -1,0 +1,68 @@
+<h2>Selector: <code>{{selector$ | async}}</code></h2>
+
+<ng-template [ngIf]="hasInputs$ | async">
+  <h3>Inputs</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="name">Input</th>
+        <th class="type">Type</th>
+        <th class="description">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor [ngForOf]="inputs$ | async" let-input>
+        <tr>
+          <td><code>{{input.name}}</code></td>
+          <td><code>{{input.type}}</code></td>
+          <td [innerHTML]="input.description"></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template [ngIf]="hasOutputs$ | async">
+  <h3>Outputs</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="name">Output</th>
+        <th class="type">Type</th>
+        <th class="description">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor [ngForOf]="outputs$ | async" let-output>
+        <tr>
+          <td><code>{{output.name}}</code></td>
+          <td><code>{{output.defaultValue}}</code></td>
+          <td [innerHTML]="output.description"></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template [ngIf]="hasMethods$ | async">
+  <h3>Methods</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="name">Method</th>
+        <th class="description">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor [ngForOf]="methods$ | async" let-output>
+        <tr>
+          <td><code>{{output.name}}</code></td>
+          <td [innerHTML]="output.description"></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</ng-template>
