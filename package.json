@@ -38,6 +38,7 @@
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
     "build": "ng-packagr -p package.json",
+    "build:docs": "npm run compodoc && npm run ng build demo",
     "start": "ng serve",
     "lint": "ng lint",
     "test": "ng test --code-coverage",
