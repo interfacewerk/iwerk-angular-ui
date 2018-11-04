@@ -14,38 +14,6 @@ const example1 = `<button (click)="myDialog1.open()">Open a dialog</button>
   </ul>
 </ng-template>`;
 
-@Component({
-  selector: 'app-dialog-example1',
-  template: example1
-})
-export class DialogExample1Component {}
-
-@Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
-})
-export class DialogComponent implements OnDestroy {
-  styleCode = BASIC_STYLE;
-  __dialogInstance: IDialog;
-  example1 = example1;
-
-  constructor(private dialog: DialogService) { }
-
-  ngOnDestroy() {
-    if (this.__dialogInstance) {
-      this.__dialogInstance.close();
-      this.__dialogInstance = undefined;
-    }
-  }
-
-  openDialog() {
-    this.__dialogInstance = this.dialog.open(MyDialogComponent);
-  }
-
-}
-// _CODESAMPLE
-
 const BASIC_STYLE = `iw-dialog-container {
   position: fixed;
   top: 0;
@@ -81,3 +49,33 @@ const BASIC_STYLE = `iw-dialog-container {
   }
 }
 `;
+@Component({
+  selector: 'app-dialog-example1',
+  template: example1
+})
+export class DialogExample1Component {}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
+})
+export class DialogComponent implements OnDestroy {
+  styleCode = BASIC_STYLE;
+  __dialogInstance: IDialog;
+  example1 = example1;
+
+  constructor(private dialog: DialogService) { }
+
+  ngOnDestroy() {
+    if (this.__dialogInstance) {
+      this.__dialogInstance.close();
+      this.__dialogInstance = undefined;
+    }
+  }
+
+  openDialog() {
+    this.__dialogInstance = this.dialog.open(MyDialogComponent);
+  }
+
+}
