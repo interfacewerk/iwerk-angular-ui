@@ -5,8 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { ComponentDocumentationComponent } from './component-documentation/component-documentation.component';
-import { ComponentExampleComponent } from './component-example/component-example.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -20,9 +18,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
-    ComponentDocumentationComponent,
-    ComponentExampleComponent
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
