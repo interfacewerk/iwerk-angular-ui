@@ -1,0 +1,26 @@
+pre {
+    margin: 20px 0;
+    padding: 0;
+    
+    code {
+        margin: 0;
+    }
+}
+
+.source {
+    position: relative;
+}
+
+.copy {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    color: grey;
+
+    &:hover {
+        color: black;
+    }
+}

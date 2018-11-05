@@ -1,0 +1,37 @@
+<h2>
+  Possible States
+</h2>
+
+<button iwStateButton="IDLE">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="DOING">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="SUCCESS">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+<button iwStateButton="FAILURE">
+  <ng-template sbIdle>Idle</ng-template>
+  <ng-template sbDoing>Doing</ng-template>
+  <ng-template sbSuccess>Success</ng-template>
+  <ng-template sbFailure>Failure</ng-template>
+</button>
+
+<h2>Standard Behaviour</h2>
+<button [iwStateButton]="myButtonState" (click)="do()">
+  <ng-template sbIdle>Save</ng-template>
+  <ng-template sbDoing>Saving</ng-template>
+  <ng-template sbSuccess>Saved</ng-template>
+  <ng-template sbFailure>Save failed!</ng-template>
+</button>
+  

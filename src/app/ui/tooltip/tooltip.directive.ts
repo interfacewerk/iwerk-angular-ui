@@ -21,12 +21,30 @@ import { smartPosition } from './helpers';
 import { IW_TOOLTIP_CONFIG } from './tooltip.config';
 import { TooltipConfig } from './tooltip-config.interface';
 
+/**
+ * The tooltip component can be used to display an extra piece of information to an element of an user interface.
+ * This piece appears when the mouse is over this element.
+ * Add a template that adds the `iwTooltip` directive inside the element where you want the tooltip to appear.
+ *
+ * ## Positionning
+ * The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.
+ * It will be at the bottom of the target if the target is on the top half of the screen.
+ */
 @Directive({
   selector: '[iwTooltip]'
 })
 export class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {
+  /**
+   * A class for the tooltip container.
+   */
   @Input() containerClass: string;
+  /**
+   * Whether the tooltip should be positionned horizontally. (default: `false`)
+   */
   @Input() horizontal: boolean;
+  /**
+   * A delay before the tooltip appears. (default: `0`)
+   */
   @Input() delay: number;
 
   private __timerId: any;
@@ -46,6 +64,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig
   ) { }
 
+  /**
+   * @ignore
+   */
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;
@@ -54,6 +75,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     }
   }
 
+  /**
+   * @ignore
+   */
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
       clearTimeout(this.__timerId);
@@ -63,6 +87,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     }
   }
 
+  /**
+   * @ignore
+   */
   handleEvent(evt: Event): void {
     if (evt.type === 'mouseenter') {
       this.__timerId = setTimeout(() => {
@@ -75,6 +102,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     }
   }
 
+  /**
+   * @ignore
+   */
   private __onMouseEnter(event: MouseEvent) {
     if (!this.__elements) {
       const content = this.templateRef.createEmbeddedView(this.injector);
@@ -102,6 +132,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
 
   }
 
+  /**
+   * @ignore
+   */
   private get __isHorizontal(): boolean {
     if (this.horizontal === undefined) {
       return !!(this.tooltipConfig ? this.tooltipConfig.horizontal : false);
@@ -109,6 +142,9 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     return this.horizontal;
   }
 
+  /**
+   * @ignore
+   */
   private get __delay(): number {
     if (this.delay === undefined) {
       return this.tooltipConfig ? this.tooltipConfig.delay : 0;
@@ -116,10 +152,16 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
     return this.delay;
   }
 
+  /**
+   * @ignore
+   */
   private __onMouseLeave(event: MouseEvent) {
     this.__remove();
   }
 
+  /**
+   * @ignore
+   */
   private __remove() {
     if (!this.__elements) {
       return;

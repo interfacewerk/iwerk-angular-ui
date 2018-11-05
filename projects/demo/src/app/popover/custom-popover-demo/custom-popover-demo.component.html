@@ -1,0 +1,10 @@
+<div class="custom-popover--header">
+  <div class="custom-popover--header-content">
+    <ng-content select="[appCustomPopoverHeader]"></ng-content>
+  </div>
+  <a class="custom-popover--close-button" (click)="_close()"><fa-icon [icon]="faTimes"></fa-icon></a>
+</div>
+
+<div class="custom-popover--content">
+  <ng-content select="[appCustomPopoverContent]"></ng-content>
+</div>
