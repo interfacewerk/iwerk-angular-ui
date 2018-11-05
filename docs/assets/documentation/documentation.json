@@ -4497,17 +4497,17 @@
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/tooltip/tooltip.module.ts",
-                "type": "TooltipConfig",
-                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
+                "file": "src/app/demo/popover/popover.module.ts",
+                "type": "PopoverConfig",
+                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
             },
             {
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/popover/popover.module.ts",
-                "type": "PopoverConfig",
-                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
+                "file": "src/app/demo/tooltip/tooltip.module.ts",
+                "type": "TooltipConfig",
+                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
             },
             {
                 "name": "dialogConfig",
@@ -4647,6 +4647,35 @@
             },
             {
                 "name": "horizontalSmartPosition",
+                "file": "src/app/ui/popover/helpers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "elements"
+                    },
+                    {
+                        "name": "options"
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "elements",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "options",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "horizontalSmartPosition",
                 "file": "src/app/ui/tooltip/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4666,7 +4695,7 @@
                 ]
             },
             {
-                "name": "horizontalSmartPosition",
+                "name": "smartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4724,7 +4753,7 @@
                 ]
             },
             {
-                "name": "smartPosition",
+                "name": "verticalSmartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4771,35 +4800,6 @@
                         }
                     }
                 ]
-            },
-            {
-                "name": "verticalSmartPosition",
-                "file": "src/app/ui/popover/helpers.ts",
-                "ctype": "miscellaneous",
-                "subtype": "function",
-                "description": "",
-                "args": [
-                    {
-                        "name": "elements"
-                    },
-                    {
-                        "name": "options"
-                    }
-                ],
-                "jsdoctags": [
-                    {
-                        "name": "elements",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "options",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
             }
         ],
         "typealiases": [
@@ -4815,16 +4815,6 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "src/app/demo/tooltip/tooltip.module.ts": [
-                {
-                    "name": "config",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/demo/tooltip/tooltip.module.ts",
-                    "type": "TooltipConfig",
-                    "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
-                }
-            ],
             "src/app/demo/popover/popover.module.ts": [
                 {
                     "name": "config",
@@ -4833,6 +4823,16 @@
                     "file": "src/app/demo/popover/popover.module.ts",
                     "type": "PopoverConfig",
                     "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
+                }
+            ],
+            "src/app/demo/tooltip/tooltip.module.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/demo/tooltip/tooltip.module.ts",
+                    "type": "TooltipConfig",
+                    "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
                 }
             ],
             "src/app/demo/dialog-demo/dialog-demo.module.ts": [
