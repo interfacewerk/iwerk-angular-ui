@@ -38,22 +38,28 @@
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
     "build": "ng-packagr -p package.json",
+    "build:docs": "npm run compodoc && npm run ng -- build demo --output-path=docs --base-href https://interfacewerk.github.io/iwerk-angular-ui/",
     "start": "ng serve",
+    "start:docs": "ng serve demo",
     "lint": "ng lint",
     "test": "ng test --code-coverage",
-    "test-once": "ng test --watch=false",
-    "test-ci": "ng test --watch=false --code-coverage",
+    "test-ci": "ng test --code-coverage",
     "send-coverage": "cat coverage/lcov.info | coveralls",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e-ci": "ng e2e",
     "e2e": "./scripts/e2e.dev.sh",
     "build:dev": "./scripts/watch-build.dev.sh",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "compodoc": "./node_modules/.bin/compodoc --output projects/demo/src/assets/documentation -p src/tsconfig.app.json --exportFormat json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0"
+  },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.8.0",
+    "@angular-devkit/build-angular": "0.10.4",
     "@angular/cli": "^6.2.4",
     "@angular/common": "6.1.9",
     "@angular/compiler": "6.1.9",
@@ -63,6 +69,7 @@
     "@angular/platform-browser": "6.1.9",
     "@angular/platform-browser-dynamic": "6.1.9",
     "@angular/router": "6.1.9",
+    "@compodoc/compodoc": "^1.1.6",
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.4",
     "@types/jasmine": "~2.8.3",
@@ -111,6 +118,12 @@
   "ngPackage": {
     "lib": {
       "entryFile": "src/public_api.ts"
-    }
+    },
+    "whitelistedNonPeerDependencies": [
+      "tslib",
+      "@fortawesome/angular-fontawesome",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons"
+    ]
   }
 }

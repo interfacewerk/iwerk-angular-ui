@@ -1,0 +1,8 @@
+<h3>{{example.appComponentExample}}</h3>
+
+<ng-container [ngTemplateOutlet]="example.template"></ng-container>
+
+<div class="source">
+  <pre *ngIf="example.source"><code #code>{{ example.source }}</code></pre>
+  <button class="copy" (click)="copy()"><fa-icon [icon]="faCopy"></fa-icon></button>
+</div>
