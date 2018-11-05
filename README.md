@@ -18,7 +18,7 @@ npm install iwerk-angular-ui --save
 
 ## Usage
 
-[Check the demo page](https://interfacewerk.github.io/iwerk-angular-ui-demo)
+[Check the demo page](https://interfacewerk.github.io/iwerk-angular-ui)
 
 ## Contributing
 
