@@ -1,3 +1,15 @@
+# [3.12.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.11.0...v3.12.0) (2018-11-10)
+
+
+### Bug Fixes
+
+* **multiline-ellipsis:** export module in public api ([b231113](https://github.com/interfacewerk/iwerk-angular-ui/commit/b231113))
+
+
+### Features
+
+* **multiline-ellipsis:** implement multi-line ellipsis feature ([#92](https://github.com/interfacewerk/iwerk-angular-ui/issues/92)) ([f0a6279](https://github.com/interfacewerk/iwerk-angular-ui/commit/f0a6279))
+
 # [3.11.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.10.0...v3.11.0) (2018-11-10)
 
 
