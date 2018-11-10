@@ -1422,30 +1422,30 @@
     "directives": [
         {
             "name": "DialogDirective",
-            "id": "directive-DialogDirective-cb1538d7a469164cddb86b984f34eb86",
+            "id": "directive-DialogDirective-d63366f59cd8a13d4f8fecc61660d47e",
             "file": "src/app/ui/dialog/dialog.directive.ts",
             "type": "directive",
-            "description": "<p>The dialog component is meant to focus user&#39;s attention on one particular task or content.\nIt is displayed on top of the rest.</p>\n",
-            "sourceCode": "import { Directive, TemplateRef, Input, OnDestroy } from '@angular/core';\nimport { DialogService, IDialog } from './dialog.service';\n\n/**\n * The dialog component is meant to focus user's attention on one particular task or content.\n * It is displayed on top of the rest.\n */\n@Directive({\n  selector: '[iwDialog]',\n  exportAs: 'iw-dialog'\n})\nexport class DialogDirective implements OnDestroy {\n  /**\n   * User can press Escape to close the dialog.\n   */\n  @Input() escToClose: boolean;\n  /**\n   * User can click outside of the dialog to close it.\n   */\n  @Input() clickToClose: boolean;\n  /**\n   * A class that is added to the container.\n   */\n  @Input() containerClass: string;\n\n  private __dialogInstance: IDialog;\n\n  constructor(\n    private dialogService: DialogService,\n    private templateRef: TemplateRef<any>\n  ) { }\n\n  /**\n   * @ignore\n   */\n  ngOnDestroy() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n      this.__dialogInstance = undefined;\n    }\n  }\n\n  /**\n   * Open the dialog.\n   */\n  open() {\n    if (this.__dialogInstance) {\n      return;\n    }\n    this.__dialogInstance = this.dialogService.openTemplateRef(this.templateRef, null, {\n      clickToClose: this.clickToClose === undefined ? true : this.clickToClose,\n      containerClass: this.containerClass || '',\n      escToClose: this.escToClose === undefined ? true : this.escToClose,\n      onClose: (dialog) => {\n        if (this.__dialogInstance === dialog) {\n          this.__dialogInstance = undefined;\n        }\n      }\n    });\n  }\n\n  /**\n   * Close the dialog.\n   */\n  close() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n      this.__dialogInstance = undefined;\n    }\n  }\n}\n",
+            "description": "<p>The dialog component is meant to focus user&#39;s attention on one particular task or content.\nIt is displayed on top of the rest.</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { DialogModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
+            "sourceCode": "import { Directive, TemplateRef, Input, OnDestroy } from '@angular/core';\nimport { DialogService, IDialog } from './dialog.service';\n\n/**\n * The dialog component is meant to focus user's attention on one particular task or content.\n * It is displayed on top of the rest.\n ```ts\n import { DialogModule } from 'iwerk-angular-ui';\n ```\n */\n@Directive({\n  selector: '[iwDialog]',\n  exportAs: 'iw-dialog'\n})\nexport class DialogDirective implements OnDestroy {\n  /**\n   * User can press Escape to close the dialog.\n   */\n  @Input() escToClose: boolean;\n  /**\n   * User can click outside of the dialog to close it.\n   */\n  @Input() clickToClose: boolean;\n  /**\n   * A class that is added to the container.\n   */\n  @Input() containerClass: string;\n\n  private __dialogInstance: IDialog;\n\n  constructor(\n    private dialogService: DialogService,\n    private templateRef: TemplateRef<any>\n  ) { }\n\n  /**\n   * @ignore\n   */\n  ngOnDestroy() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n      this.__dialogInstance = undefined;\n    }\n  }\n\n  /**\n   * Open the dialog.\n   */\n  open() {\n    if (this.__dialogInstance) {\n      return;\n    }\n    this.__dialogInstance = this.dialogService.openTemplateRef(this.templateRef, null, {\n      clickToClose: this.clickToClose === undefined ? true : this.clickToClose,\n      containerClass: this.containerClass || '',\n      escToClose: this.escToClose === undefined ? true : this.escToClose,\n      onClose: (dialog) => {\n        if (this.__dialogInstance === dialog) {\n          this.__dialogInstance = undefined;\n        }\n      }\n    });\n  }\n\n  /**\n   * Close the dialog.\n   */\n  close() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n      this.__dialogInstance = undefined;\n    }\n  }\n}\n",
             "selector": "[iwDialog]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "clickToClose",
                     "description": "<p>User can click outside of the dialog to close it.</p>\n",
-                    "line": 20,
+                    "line": 23,
                     "type": "boolean"
                 },
                 {
                     "name": "containerClass",
                     "description": "<p>A class that is added to the container.</p>\n",
-                    "line": 24,
+                    "line": 27,
                     "type": "string"
                 },
                 {
                     "name": "escToClose",
                     "description": "<p>User can press Escape to close the dialog.</p>\n",
-                    "line": 16,
+                    "line": 19,
                     "type": "boolean"
                 }
             ],
@@ -1458,7 +1458,7 @@
                     "type": "IDialog",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 29,
                     "modifierKind": [
                         112
                     ]
@@ -1471,7 +1471,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 68,
                     "description": "<p>Close the dialog.</p>\n"
                 },
                 {
@@ -1480,7 +1480,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 46,
+                    "line": 49,
                     "description": "<p>Open the dialog.</p>\n"
                 }
             ],
@@ -1500,7 +1500,7 @@
                         "type": "TemplateRef<any>"
                     }
                 ],
-                "line": 26,
+                "line": 29,
                 "jsdoctags": [
                     {
                         "name": "dialogService",
@@ -2180,30 +2180,30 @@
         },
         {
             "name": "TooltipDirective",
-            "id": "directive-TooltipDirective-8f0725aed496393104cf052393d903f9",
+            "id": "directive-TooltipDirective-7796532e5c29b0fb73d58179b8ed9482",
             "file": "src/app/ui/tooltip/tooltip.directive.ts",
             "type": "directive",
-            "description": "<p>The tooltip component can be used to display an extra piece of information to an element of an user interface.\nThis piece appears when the mouse is over this element.\nAdd a template that adds the <code>iwTooltip</code> directive inside the element where you want the tooltip to appear.</p>\n<h2 id=\"positionning\">Positionning</h2>\n<p>The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.\nIt will be at the bottom of the target if the target is on the top half of the screen.</p>\n",
-            "sourceCode": "import {\n  Directive,\n  TemplateRef,\n  Injector,\n  ApplicationRef,\n  EmbeddedViewRef,\n  ComponentFactoryResolver,\n  ComponentRef,\n  AfterViewInit,\n  OnDestroy,\n  ViewContainerRef,\n  Input,\n  Optional\n} from '@angular/core';\nimport {\n  TooltipContainerComponent\n} from './tooltip-container/tooltip-container.component';\nimport { isPlatformBrowser } from '@angular/common';\nimport { Inject, PLATFORM_ID } from '@angular/core';\nimport { smartPosition } from './helpers';\nimport { IW_TOOLTIP_CONFIG } from './tooltip.config';\nimport { TooltipConfig } from './tooltip-config.interface';\n\n/**\n * The tooltip component can be used to display an extra piece of information to an element of an user interface.\n * This piece appears when the mouse is over this element.\n * Add a template that adds the `iwTooltip` directive inside the element where you want the tooltip to appear.\n *\n * ## Positionning\n * The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.\n * It will be at the bottom of the target if the target is on the top half of the screen.\n */\n@Directive({\n  selector: '[iwTooltip]'\n})\nexport class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {\n  /**\n   * A class for the tooltip container.\n   */\n  @Input() containerClass: string;\n  /**\n   * Whether the tooltip should be positionned horizontally. (default: `false`)\n   */\n  @Input() horizontal: boolean;\n  /**\n   * A delay before the tooltip appears. (default: `0`)\n   */\n  @Input() delay: number;\n\n  private __timerId: any;\n  private __parent: HTMLElement;\n  private __elements: {\n    content: EmbeddedViewRef<any>,\n    container: ComponentRef<TooltipContainerComponent>\n  } |  undefined;\n\n  constructor(\n    private injector: Injector,\n    private appRef: ApplicationRef,\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private templateRef: TemplateRef<any>,\n    private viewContainerRef: ViewContainerRef,\n    @Inject(PLATFORM_ID) private platformId: string,\n    @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig\n  ) { }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewInit() {\n    if (isPlatformBrowser(this.platformId)) {\n      this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;\n      this.__parent.addEventListener('mouseenter', this);\n      this.__parent.addEventListener('mouseleave', this);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnDestroy() {\n    if (isPlatformBrowser(this.platformId)) {\n      clearTimeout(this.__timerId);\n      this.__remove();\n      this.__parent.removeEventListener('mouseenter', this);\n      this.__parent.removeEventListener('mouseleave', this);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  handleEvent(evt: Event): void {\n    if (evt.type === 'mouseenter') {\n      this.__timerId = setTimeout(() => {\n        return this.__onMouseEnter(<MouseEvent>evt);\n      }, this.__delay);\n    }\n    if (evt.type === 'mouseleave') {\n      clearTimeout(this.__timerId);\n      return this.__onMouseLeave(<MouseEvent>evt);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  private __onMouseEnter(event: MouseEvent) {\n    if (!this.__elements) {\n      const content = this.templateRef.createEmbeddedView(this.injector);\n      const container = this.componentFactoryResolver\n        .resolveComponentFactory(TooltipContainerComponent)\n        .create(this.injector, [content.rootNodes]);\n      container.instance.containerClass = this.containerClass;\n\n      this.__elements = {\n        content,\n        container\n      };\n\n      this.appRef.attachView(content);\n      this.appRef.attachView(container.hostView);\n\n      content.detectChanges();\n      container.hostView.detectChanges();\n\n      smartPosition({\n        target: this.__parent,\n        container: this.__elements.container.location.nativeElement\n      }, this.__isHorizontal ? 'horizontal' : 'vertical');\n    }\n\n  }\n\n  /**\n   * @ignore\n   */\n  private get __isHorizontal(): boolean {\n    if (this.horizontal === undefined) {\n      return !!(this.tooltipConfig ? this.tooltipConfig.horizontal : false);\n    }\n    return this.horizontal;\n  }\n\n  /**\n   * @ignore\n   */\n  private get __delay(): number {\n    if (this.delay === undefined) {\n      return this.tooltipConfig ? this.tooltipConfig.delay : 0;\n    }\n    return this.delay;\n  }\n\n  /**\n   * @ignore\n   */\n  private __onMouseLeave(event: MouseEvent) {\n    this.__remove();\n  }\n\n  /**\n   * @ignore\n   */\n  private __remove() {\n    if (!this.__elements) {\n      return;\n    }\n\n    document.body.removeChild(this.__elements.container.location.nativeElement);\n\n    this.appRef.detachView(this.__elements.content);\n    this.appRef.detachView(this.__elements.container.hostView);\n    this.__elements.container.hostView.detach();\n\n    this.__elements.content.destroy();\n    this.__elements.container.destroy();\n\n    this.__elements = undefined;\n  }\n\n}\n",
+            "description": "<p>The tooltip component can be used to display an extra piece of information to an element of an user interface.\nThis piece appears when the mouse is over this element.\nAdd a template that adds the <code>iwTooltip</code> directive inside the element where you want the tooltip to appear.</p>\n<h2 id=\"positionning\">Positionning</h2>\n<p>The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.\nIt will be at the bottom of the target if the target is on the top half of the screen.</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { TooltipModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
+            "sourceCode": "import {\n  Directive,\n  TemplateRef,\n  Injector,\n  ApplicationRef,\n  EmbeddedViewRef,\n  ComponentFactoryResolver,\n  ComponentRef,\n  AfterViewInit,\n  OnDestroy,\n  ViewContainerRef,\n  Input,\n  Optional\n} from '@angular/core';\nimport {\n  TooltipContainerComponent\n} from './tooltip-container/tooltip-container.component';\nimport { isPlatformBrowser } from '@angular/common';\nimport { Inject, PLATFORM_ID } from '@angular/core';\nimport { smartPosition } from './helpers';\nimport { IW_TOOLTIP_CONFIG } from './tooltip.config';\nimport { TooltipConfig } from './tooltip-config.interface';\n\n/**\n * The tooltip component can be used to display an extra piece of information to an element of an user interface.\n * This piece appears when the mouse is over this element.\n * Add a template that adds the `iwTooltip` directive inside the element where you want the tooltip to appear.\n *\n * ## Positionning\n * The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.\n * It will be at the bottom of the target if the target is on the top half of the screen.\n ```ts\n import { TooltipModule } from 'iwerk-angular-ui';\n ```\n */\n@Directive({\n  selector: '[iwTooltip]'\n})\nexport class TooltipDirective implements AfterViewInit, OnDestroy, EventListenerObject {\n  /**\n   * A class for the tooltip container.\n   */\n  @Input() containerClass: string;\n  /**\n   * Whether the tooltip should be positionned horizontally. (default: `false`)\n   */\n  @Input() horizontal: boolean;\n  /**\n   * A delay before the tooltip appears. (default: `0`)\n   */\n  @Input() delay: number;\n\n  private __timerId: any;\n  private __parent: HTMLElement;\n  private __elements: {\n    content: EmbeddedViewRef<any>,\n    container: ComponentRef<TooltipContainerComponent>\n  } |  undefined;\n\n  constructor(\n    private injector: Injector,\n    private appRef: ApplicationRef,\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private templateRef: TemplateRef<any>,\n    private viewContainerRef: ViewContainerRef,\n    @Inject(PLATFORM_ID) private platformId: string,\n    @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig\n  ) { }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewInit() {\n    if (isPlatformBrowser(this.platformId)) {\n      this.__parent = (<HTMLElement>this.viewContainerRef.element.nativeElement).parentElement;\n      this.__parent.addEventListener('mouseenter', this);\n      this.__parent.addEventListener('mouseleave', this);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnDestroy() {\n    if (isPlatformBrowser(this.platformId)) {\n      clearTimeout(this.__timerId);\n      this.__remove();\n      this.__parent.removeEventListener('mouseenter', this);\n      this.__parent.removeEventListener('mouseleave', this);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  handleEvent(evt: Event): void {\n    if (evt.type === 'mouseenter') {\n      this.__timerId = setTimeout(() => {\n        return this.__onMouseEnter(<MouseEvent>evt);\n      }, this.__delay);\n    }\n    if (evt.type === 'mouseleave') {\n      clearTimeout(this.__timerId);\n      return this.__onMouseLeave(<MouseEvent>evt);\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  private __onMouseEnter(event: MouseEvent) {\n    if (!this.__elements) {\n      const content = this.templateRef.createEmbeddedView(this.injector);\n      const container = this.componentFactoryResolver\n        .resolveComponentFactory(TooltipContainerComponent)\n        .create(this.injector, [content.rootNodes]);\n      container.instance.containerClass = this.containerClass;\n\n      this.__elements = {\n        content,\n        container\n      };\n\n      this.appRef.attachView(content);\n      this.appRef.attachView(container.hostView);\n\n      content.detectChanges();\n      container.hostView.detectChanges();\n\n      smartPosition({\n        target: this.__parent,\n        container: this.__elements.container.location.nativeElement\n      }, this.__isHorizontal ? 'horizontal' : 'vertical');\n    }\n\n  }\n\n  /**\n   * @ignore\n   */\n  private get __isHorizontal(): boolean {\n    if (this.horizontal === undefined) {\n      return !!(this.tooltipConfig ? this.tooltipConfig.horizontal : false);\n    }\n    return this.horizontal;\n  }\n\n  /**\n   * @ignore\n   */\n  private get __delay(): number {\n    if (this.delay === undefined) {\n      return this.tooltipConfig ? this.tooltipConfig.delay : 0;\n    }\n    return this.delay;\n  }\n\n  /**\n   * @ignore\n   */\n  private __onMouseLeave(event: MouseEvent) {\n    this.__remove();\n  }\n\n  /**\n   * @ignore\n   */\n  private __remove() {\n    if (!this.__elements) {\n      return;\n    }\n\n    document.body.removeChild(this.__elements.container.location.nativeElement);\n\n    this.appRef.detachView(this.__elements.content);\n    this.appRef.detachView(this.__elements.container.hostView);\n    this.__elements.container.hostView.detach();\n\n    this.__elements.content.destroy();\n    this.__elements.container.destroy();\n\n    this.__elements = undefined;\n  }\n\n}\n",
             "selector": "[iwTooltip]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "containerClass",
                     "description": "<p>A class for the tooltip container.</p>\n",
-                    "line": 40,
+                    "line": 43,
                     "type": "string"
                 },
                 {
                     "name": "delay",
                     "description": "<p>A delay before the tooltip appears. (default: <code>0</code>)</p>\n",
-                    "line": 48,
+                    "line": 51,
                     "type": "number"
                 },
                 {
                     "name": "horizontal",
                     "description": "<p>Whether the tooltip should be positionned horizontally. (default: <code>false</code>)</p>\n",
-                    "line": 44,
+                    "line": 47,
                     "type": "boolean"
                 }
             ],
@@ -2216,7 +2216,7 @@
                     "type": "literal type | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 52,
+                    "line": 55,
                     "modifierKind": [
                         112
                     ]
@@ -2226,7 +2226,7 @@
                     "type": "HTMLElement",
                     "optional": false,
                     "description": "",
-                    "line": 51,
+                    "line": 54,
                     "modifierKind": [
                         112
                     ]
@@ -2236,7 +2236,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 50,
+                    "line": 53,
                     "modifierKind": [
                         112
                     ]
@@ -2281,7 +2281,7 @@
                         "type": "TooltipConfig"
                     }
                 ],
-                "line": 55,
+                "line": 58,
                 "jsdoctags": [
                     {
                         "name": "injector",

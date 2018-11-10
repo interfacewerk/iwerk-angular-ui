@@ -29,6 +29,9 @@ import { TooltipConfig } from './tooltip-config.interface';
  * ## Positionning
  * The tooltip is smartly positionned. It will be on top of the target if the target is on the bottom half of the screen.
  * It will be at the bottom of the target if the target is on the top half of the screen.
+ ```ts
+ import { TooltipModule } from 'iwerk-angular-ui';
+ ```
  */
 @Directive({
   selector: '[iwTooltip]'

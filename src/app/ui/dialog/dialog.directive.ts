@@ -4,6 +4,9 @@ import { DialogService, IDialog } from './dialog.service';
 /**
  * The dialog component is meant to focus user's attention on one particular task or content.
  * It is displayed on top of the rest.
+ ```ts
+ import { DialogModule } from 'iwerk-angular-ui';
+ ```
  */
 @Directive({
   selector: '[iwDialog]',
