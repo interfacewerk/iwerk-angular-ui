@@ -11,7 +11,6 @@ var map = {
 	"./dialog/dialog.module": [
 		"./src/app/dialog/dialog.module.ts",
 		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
-		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"dialog-dialog-module"
 	],
 	"./ellipsis/ellipsis.module": [
@@ -22,13 +21,11 @@ var map = {
 	"./popover/popover.module": [
 		"./src/app/popover/popover.module.ts",
 		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
-		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"popover-popover-module"
 	],
 	"./tooltip/tooltip.module": [
 		"./src/app/tooltip/tooltip.module.ts",
 		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
-		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"tooltip-tooltip-module"
 	]
 };

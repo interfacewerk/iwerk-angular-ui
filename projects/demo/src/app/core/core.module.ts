@@ -11,12 +11,14 @@ import {
     AnchorDirective
 } from './component-documentation/component-documentation.component';
 import { ComponentExampleComponent } from './component-example/component-example.component';
+import { TooltipModule } from 'src/public_api';
 
 @NgModule({
     imports: [
         CodeSampleModule,
         CommonModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        TooltipModule
     ],
     exports: [
         CodeSampleModule,
