@@ -11,7 +11,8 @@ const appRoutes: Routes = [
   { path: 'popover', loadChildren: './popover/popover.module#PopoverDemoModule' },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
   // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
-  { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' }
+  { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' },
+  { path: 'ellipsis', loadChildren: './ellipsis/ellipsis.module#EllipsisDemoModule' }
 ];
 
 @NgModule({
