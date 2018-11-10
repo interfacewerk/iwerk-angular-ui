@@ -5,9 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { EllipsisComponent } from './demo/ellipsis/ellipsis.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
+  { path: 'ellipsis', component: EllipsisComponent },
   { path: 'popover', loadChildren: 'app/demo/popover/popover.module#PopoverModule' },
   { path: 'tooltip', loadChildren: 'app/demo/tooltip/tooltip.module#TooltipModule' },
   { path: 'stateful-button', loadChildren: 'app/demo/stateful-button/stateful-button.module#StatefulButtonDemoModule' },
@@ -18,7 +20,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EllipsisComponent
   ],
   imports: [
     BrowserModule,

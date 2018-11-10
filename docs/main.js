@@ -10,16 +10,24 @@
 var map = {
 	"./dialog/dialog.module": [
 		"./src/app/dialog/dialog.module.ts",
+		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
 		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"dialog-dialog-module"
 	],
+	"./ellipsis/ellipsis.module": [
+		"./src/app/ellipsis/ellipsis.module.ts",
+		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
+		"ellipsis-ellipsis-module"
+	],
 	"./popover/popover.module": [
 		"./src/app/popover/popover.module.ts",
+		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
 		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"popover-popover-module"
 	],
 	"./tooltip/tooltip.module": [
 		"./src/app/tooltip/tooltip.module.ts",
+		"default~dialog-dialog-module~ellipsis-ellipsis-module~popover-popover-module~tooltip-tooltip-module",
 		"default~dialog-dialog-module~popover-popover-module~tooltip-tooltip-module",
 		"tooltip-tooltip-module"
 	]
@@ -53,7 +61,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<aside>\n  <ul>\n    <li class=\"app__logo\"><a></a></li>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <!-- <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li> -->\n    <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n    <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
+module.exports = "<aside>\n  <ul>\n    <li class=\"app__logo\"><a></a></li>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <!-- <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li> -->\n    <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n    <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
 
 /***/ }),
 
@@ -138,7 +146,8 @@ var appRoutes = [
     { path: 'popover', loadChildren: './popover/popover.module#PopoverDemoModule' },
     { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
     // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
-    { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' }
+    { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' },
+    { path: 'ellipsis', loadChildren: './ellipsis/ellipsis.module#EllipsisDemoModule' }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
