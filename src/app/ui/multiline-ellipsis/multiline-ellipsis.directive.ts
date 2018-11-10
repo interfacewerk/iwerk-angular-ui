@@ -5,7 +5,7 @@ import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, In
  * text with an ellipsis character at the end if the text is too long.
  *
  ```ts
- import { PopoverModule } from 'iwerk-angular-ui';
+ import { MultilineEllipsisModule } from 'iwerk-angular-ui';
  ```
  */
 @Directive({

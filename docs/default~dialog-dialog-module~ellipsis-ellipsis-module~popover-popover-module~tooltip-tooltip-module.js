@@ -5200,7 +5200,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * text with an ellipsis character at the end if the text is too long.
  *
  ```ts
- import { PopoverModule } from 'iwerk-angular-ui';
+ import { MultilineEllipsisModule } from 'iwerk-angular-ui';
  ```
  */
 var MultilineEllipsisDirective = /** @class */ (function () {
