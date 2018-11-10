@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CoreModule } from './core/core.module';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CoreModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       preloadingStrategy: PreloadAllModules

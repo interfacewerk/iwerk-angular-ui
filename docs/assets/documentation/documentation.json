@@ -4405,6 +4405,45 @@
             "children": [
                 {
                     "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CustomPopoverDemoComponent"
+                        },
+                        {
+                            "name": "PopoverDemoComponent"
+                        },
+                        {
+                            "name": "PropertyEditPopoverComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PopoverModule",
+            "children": [
+                {
+                    "type": "providers",
                     "elements": [
                         {
                             "name": "PopoverService"
@@ -4436,45 +4475,6 @@
                             "name": "PopoverDirective"
                         }
                     ]
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "PopoverModule",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "CustomPopoverDemoComponent"
-                        },
-                        {
-                            "name": "PopoverDemoComponent"
-                        },
-                        {
-                            "name": "PropertyEditPopoverComponent"
-                        }
-                    ]
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -4595,10 +4595,7 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "TooltipContainerComponent"
-                        },
-                        {
-                            "name": "TooltipDirective"
+                            "name": "TooltipDemoComponent"
                         }
                     ]
                 },
@@ -4608,11 +4605,7 @@
                 },
                 {
                     "type": "exports",
-                    "elements": [
-                        {
-                            "name": "TooltipDirective"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -4635,7 +4628,10 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "TooltipDemoComponent"
+                            "name": "TooltipContainerComponent"
+                        },
+                        {
+                            "name": "TooltipDirective"
                         }
                     ]
                 },
@@ -4645,7 +4641,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "TooltipDirective"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
