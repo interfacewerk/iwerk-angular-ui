@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.10.0...v3.11.0) (2018-11-10)
+
+
+### Features
+
+* **multiline-ellipsis:** implement multi-line ellipsis feature ([#92](https://github.com/interfacewerk/iwerk-angular-ui/issues/92)) ([#93](https://github.com/interfacewerk/iwerk-angular-ui/issues/93)) ([954e80a](https://github.com/interfacewerk/iwerk-angular-ui/commit/954e80a))
+
 # [3.10.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.9.0...v3.10.0) (2018-11-05)
 
 
