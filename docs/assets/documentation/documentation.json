@@ -1577,18 +1577,18 @@
         },
         {
             "name": "MultilineEllipsisDirective",
-            "id": "directive-MultilineEllipsisDirective-17f65c1b864dece3d6f480c3c2a0c038",
+            "id": "directive-MultilineEllipsisDirective-997b5bca4f98f6bb10a1c2a4109dbc19",
             "file": "src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts",
             "type": "directive",
-            "description": "<p>The multiline ellipsis directive can be used to display multi-line\ntext with an ellipsis character at the end if the text is too long.</p>\n",
-            "sourceCode": "import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\n\n/**\n * The multiline ellipsis directive can be used to display multi-line\n * text with an ellipsis character at the end if the text is too long.\n */\n@Directive({\n  selector: '[iwMultilineEllipsis]'\n})\nexport class MultilineEllipsisDirective implements AfterViewChecked, OnInit {\n\n  /**\n   * The text to display.\n   */\n  @Input() iwMultilineEllipsis: string;\n  /**\n   * An event that is emitted that indicates whether the text is truncated.\n   */\n  @Output() truncated = new EventEmitter<boolean>();\n\n  /**\n   * A boolean that indicates if the text overflows.\n   */\n  get isOverflowing(): boolean {\n    return this.__isOverflowing;\n  }\n\n  private __isOverflowing: boolean;\n  private needsAdjust: boolean;\n  private oldText: string;\n  private oldHeight: number;\n  private oldWidth: number;\n\n  constructor(\n    private elementRef: ElementRef\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.classList.add('multiline-ellipsis');\n  }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewChecked() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    if (this.iwMultilineEllipsis !== this.oldText || this.oldHeight !== self.offsetHeight || this.oldWidth !== self.offsetWidth) {\n      this.oldText = this.iwMultilineEllipsis;\n      this.oldHeight = self.offsetHeight;\n      this.oldWidth = self.offsetWidth;\n      this.needsAdjust = true;\n    }\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  @HostListener('window:resize', [])\n  onResize() {\n    this.needsAdjust = true;\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  private adjustInner() {\n    if (!this.needsAdjust) {\n      return;\n    }\n    this.needsAdjust = false;\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.innerHTML = this.iwMultilineEllipsis || '';\n    const height = self.clientHeight;\n    const contentHeight = self.scrollHeight;\n    let overflow = height < contentHeight;\n    const ellipsis = document.createElement('span');\n    ellipsis.classList.add('ellipsis');\n    ellipsis.innerText = '…';\n    if (!overflow) {\n      this.truncated.emit(false);\n      this.__isOverflowing = false;\n      return;\n    }\n    this.truncated.emit(true);\n    this.__isOverflowing = true;\n    self.appendChild(ellipsis);\n    if (self.childNodes.length > 1) {\n      const child = self.childNodes.item(self.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        self.removeChild(child);\n      }\n    }\n    while (overflow) {\n      if (this.removeLastByte(self)) {\n        break;\n      }\n      overflow = self.offsetHeight < self.scrollHeight;\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByte(element: HTMLElement): boolean {\n    if (element.childNodes.length > 1) {\n      const child = element.childNodes.item(element.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        element.removeChild(child);\n      }\n    }\n    return element.childNodes.length === 1;\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByteAux(element: Node): boolean {\n    // true to remove\n    if (element.nodeType === Node.TEXT_NODE) {\n      const split = element.textContent.split(' ');\n      split.pop();\n      element.textContent = split.join(' ');\n      return element.textContent === '';\n    }\n    if (element.nodeType === Node.ELEMENT_NODE) {\n      if (element.hasChildNodes()) {\n        const last = element.childNodes.item(element.childNodes.length - 1);\n        const result = this.removeLastByteAux(last);\n        if (result) {\n          element.removeChild(last);\n          return this.removeLastByteAux(element);\n        } else {\n          return false;\n        }\n      } else {\n        return true;\n      }\n    }\n    throw new Error('This node type is not handled');\n  }\n\n}\n",
+            "description": "<p>The multiline ellipsis directive can be used to display multi-line\ntext with an ellipsis character at the end if the text is too long.</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { PopoverModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
+            "sourceCode": "import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\n\n/**\n * The multiline ellipsis directive can be used to display multi-line\n * text with an ellipsis character at the end if the text is too long.\n *\n ```ts\n import { PopoverModule } from 'iwerk-angular-ui';\n ```\n */\n@Directive({\n  selector: '[iwMultilineEllipsis]'\n})\nexport class MultilineEllipsisDirective implements AfterViewChecked, OnInit {\n\n  /**\n   * The text to display.\n   */\n  @Input() iwMultilineEllipsis: string;\n  /**\n   * An event that is emitted that indicates whether the text is truncated.\n   */\n  @Output() truncated = new EventEmitter<boolean>();\n\n  /**\n   * A boolean that indicates if the text overflows.\n   */\n  get isOverflowing(): boolean {\n    return this.__isOverflowing;\n  }\n\n  private __isOverflowing: boolean;\n  private needsAdjust: boolean;\n  private oldText: string;\n  private oldHeight: number;\n  private oldWidth: number;\n\n  constructor(\n    private elementRef: ElementRef\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.classList.add('multiline-ellipsis');\n  }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewChecked() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    if (this.iwMultilineEllipsis !== this.oldText || this.oldHeight !== self.offsetHeight || this.oldWidth !== self.offsetWidth) {\n      this.oldText = this.iwMultilineEllipsis;\n      this.oldHeight = self.offsetHeight;\n      this.oldWidth = self.offsetWidth;\n      this.needsAdjust = true;\n    }\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  @HostListener('window:resize', [])\n  onResize() {\n    this.needsAdjust = true;\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  private adjustInner() {\n    if (!this.needsAdjust) {\n      return;\n    }\n    this.needsAdjust = false;\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.innerHTML = this.iwMultilineEllipsis || '';\n    const height = self.clientHeight;\n    const contentHeight = self.scrollHeight;\n    let overflow = height < contentHeight;\n    const ellipsis = document.createElement('span');\n    ellipsis.classList.add('ellipsis');\n    ellipsis.innerText = '…';\n    if (!overflow) {\n      this.truncated.emit(false);\n      this.__isOverflowing = false;\n      return;\n    }\n    this.truncated.emit(true);\n    this.__isOverflowing = true;\n    self.appendChild(ellipsis);\n    if (self.childNodes.length > 1) {\n      const child = self.childNodes.item(self.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        self.removeChild(child);\n      }\n    }\n    while (overflow) {\n      if (this.removeLastByte(self)) {\n        break;\n      }\n      overflow = self.offsetHeight < self.scrollHeight;\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByte(element: HTMLElement): boolean {\n    if (element.childNodes.length > 1) {\n      const child = element.childNodes.item(element.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        element.removeChild(child);\n      }\n    }\n    return element.childNodes.length === 1;\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByteAux(element: Node): boolean {\n    // true to remove\n    if (element.nodeType === Node.TEXT_NODE) {\n      const split = element.textContent.split(' ');\n      split.pop();\n      element.textContent = split.join(' ');\n      return element.textContent === '';\n    }\n    if (element.nodeType === Node.ELEMENT_NODE) {\n      if (element.hasChildNodes()) {\n        const last = element.childNodes.item(element.childNodes.length - 1);\n        const result = this.removeLastByteAux(last);\n        if (result) {\n          element.removeChild(last);\n          return this.removeLastByteAux(element);\n        } else {\n          return false;\n        }\n      } else {\n        return true;\n      }\n    }\n    throw new Error('This node type is not handled');\n  }\n\n}\n",
             "selector": "[iwMultilineEllipsis]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "iwMultilineEllipsis",
                     "description": "<p>The text to display.</p>\n",
-                    "line": 15,
+                    "line": 19,
                     "type": "string"
                 }
             ],
@@ -1597,7 +1597,7 @@
                     "name": "truncated",
                     "defaultValue": "new EventEmitter<boolean>()",
                     "description": "<p>An event that is emitted that indicates whether the text is truncated.</p>\n",
-                    "line": 19,
+                    "line": 23,
                     "type": "EventEmitter"
                 }
             ],
@@ -1609,7 +1609,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 28,
+                    "line": 32,
                     "modifierKind": [
                         112
                     ]
@@ -1619,7 +1619,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 33,
                     "modifierKind": [
                         112
                     ]
@@ -1629,7 +1629,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 35,
                     "modifierKind": [
                         112
                     ]
@@ -1639,7 +1639,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 34,
                     "modifierKind": [
                         112
                     ]
@@ -1649,7 +1649,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 36,
                     "modifierKind": [
                         112
                     ]
@@ -1669,7 +1669,7 @@
                         "type": "ElementRef"
                     }
                 ],
-                "line": 32,
+                "line": 36,
                 "jsdoctags": [
                     {
                         "name": "elementRef",
@@ -1687,7 +1687,7 @@
                         "name": "isOverflowing",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 24,
+                        "line": 28,
                         "description": "<p>A boolean that indicates if the text overflows.</p>\n"
                     }
                 }
