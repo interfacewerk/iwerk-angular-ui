@@ -21,6 +21,7 @@ describe('MultilineEllipsisDirective', () => {
 
   beforeEach(() => {
     document.body.style.width = '250px';
+    document.body.style.fontFamily = 'Arial, Helvetica, sans-serif';
     TestBed.configureTestingModule({
       declarations: [EllipsisComponent],
       imports: [MultilineEllipsisModule]
@@ -33,7 +34,7 @@ describe('MultilineEllipsisDirective', () => {
 
   it('should cut the text', () => {
     expect(fixture.componentInstance.p1.nativeElement.innerHTML).toBe(
-      'cut the text around here<span class="ellipsis">…</span>'
+      'cut the text around here please<span class="ellipsis">…</span>'
     );
   });
 
@@ -41,7 +42,7 @@ describe('MultilineEllipsisDirective', () => {
     fixture.detectChanges();
     fixture.detectChanges();
     expect(fixture.componentInstance.p1.nativeElement.innerHTML).toBe(
-      'cut the text around here<span class="ellipsis">…</span>'
+      'cut the text around here please<span class="ellipsis">…</span>'
     );
   });
 
@@ -53,7 +54,7 @@ describe('MultilineEllipsisDirective', () => {
     fixture.componentInstance.maxHeight = '60px';
     fixture.detectChanges();
     expect(fixture.componentInstance.p1.nativeElement.innerHTML).toBe(
-      'cut the text around here please sdkfjlk sjlk <span class="ellipsis">…</span>'
+      'cut the text around here please sdkfjlk sjlk <span>fsklkjsf</span> qlksdj flkqkqsf'
     );
   });
 
