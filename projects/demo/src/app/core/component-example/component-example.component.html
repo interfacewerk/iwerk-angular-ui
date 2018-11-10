@@ -4,5 +4,8 @@
 
 <div class="source">
   <pre *ngIf="example.source"><code #code>{{ example.source }}</code></pre>
-  <button class="copy" (click)="copy()"><fa-icon [icon]="faCopy"></fa-icon></button>
+  <button class="copy" (click)="copy()">
+    <fa-icon [icon]="faCopy"></fa-icon>
+    <ng-template iwTooltip [horizontal]="true">Copy this code sample</ng-template>
+  </button>
 </div>
