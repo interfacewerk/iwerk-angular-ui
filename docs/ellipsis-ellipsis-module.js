@@ -76,7 +76,7 @@ module.exports = "<app-component-documentation\n  [componentTitle]=\"'Multi-line
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "p.ellipsis {\n  padding: 3px;\n  border: 1px solid grey; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2ttcGVhY2gvZGV2L2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvYXBwL2VsbGlwc2lzL2VsbGlwc2lzL2VsbGlwc2lzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBWTtFQUNaLHVCQUFzQixFQUN6QiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvZWxsaXBzaXMvZWxsaXBzaXMvZWxsaXBzaXMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJwLmVsbGlwc2lzIHtcbiAgICBwYWRkaW5nOiAzcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgZ3JleTsgICBcbn0iXX0= */"
+module.exports = "p.ellipsis {\n  padding: 3px;\n  border: 1px solid grey; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9lbGxpcHNpcy9lbGxpcHNpcy9lbGxpcHNpcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQVk7RUFDWix1QkFBc0IsRUFDekIiLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL2VsbGlwc2lzL2VsbGlwc2lzL2VsbGlwc2lzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsicC5lbGxpcHNpcyB7XG4gICAgcGFkZGluZzogM3B4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGdyZXk7ICAgXG59Il19 */"
 
 /***/ }),
 
