@@ -91,7 +91,7 @@
     "nodemon": "^1.17.3",
     "protractor": "~5.4.0",
     "rxjs": "^6.3.3",
-    "semantic-release": "^15.12.0",
+    "semantic-release": "^15.12.3",
     "travis-deploy-once": "^5.0.0",
     "ts-node": "~7.0.1",
     "tsickle": "0.27.5",
