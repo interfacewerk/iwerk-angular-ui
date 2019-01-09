@@ -94,7 +94,7 @@
     "semantic-release": "^15.13.0",
     "travis-deploy-once": "^5.0.0",
     "ts-node": "~7.0.1",
-    "tsickle": "0.27.5",
+    "tsickle": "0.34.0",
     "tslib": "1.9.3",
     "tslint": "^5.0.0",
     "typescript": "2.9.2",
