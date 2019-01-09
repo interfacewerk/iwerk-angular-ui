@@ -4,6 +4,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "strictNullChecks": false,
