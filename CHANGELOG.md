@@ -1,3 +1,10 @@
+# [3.13.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.12.0...v3.13.0) (2019-01-09)
+
+
+### Features
+
+* **angular:** upgrade to Angular 7 ([13b0f08](https://github.com/interfacewerk/iwerk-angular-ui/commit/13b0f08))
+
 # [3.12.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.11.0...v3.12.0) (2018-11-10)
 
 
