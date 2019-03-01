@@ -926,6 +926,195 @@ var MultilineEllipsisModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../src/app/ui/navigation/navigation-controller.service.ts":
+/*!***********************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation-controller.service.ts ***!
+  \***********************************************************************************************************/
+/*! exports provided: NavigationData, NavigationController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationData", function() { return NavigationData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationController", function() { return NavigationController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var NavigationData = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["InjectionToken"]('iw-navigation.NAVIGATION_DATA');
+var NavigationController = /** @class */ (function () {
+    function NavigationController(injector) {
+        this.injector = injector;
+        this.stack = [];
+    }
+    NavigationController.prototype.present = function (type, data) {
+        var _this = this;
+        var injector = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ReflectiveInjector"].resolveAndCreate([{
+                provide: NavigationData,
+                useValue: data
+            }], this.injector);
+        return new Promise(function (resolve) {
+            _this.stack.push({ type: type, resolve: resolve, injector: injector });
+        });
+    };
+    NavigationController.prototype.dismiss = function (value) {
+        var last = this.stack.pop();
+        last.resolve(value);
+    };
+    NavigationController = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
+    ], NavigationController);
+    return NavigationController;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/navigation/navigation.module.ts":
+/*!***********************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation.module.ts ***!
+  \***********************************************************************************************/
+/*! exports provided: NavigationComponent, NavigationData, NavigationModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationModule", function() { return NavigationModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./navigation/navigation.component */ "../../src/app/ui/navigation/navigation/navigation.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationComponent", function() { return _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_3__["NavigationComponent"]; });
+
+/* harmony import */ var _navigation_controller_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navigation-controller.service */ "../../src/app/ui/navigation/navigation-controller.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationData", function() { return _navigation_controller_service__WEBPACK_IMPORTED_MODULE_4__["NavigationData"]; });
+
+
+
+
+
+
+
+var NavigationModule = /** @class */ (function () {
+    function NavigationModule() {
+    }
+    NavigationModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+            declarations: [
+                _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_3__["NavigationComponent"]
+            ],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
+            ],
+            exports: [
+                _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_3__["NavigationComponent"]
+            ]
+        })
+    ], NavigationModule);
+    return NavigationModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/navigation/navigation/navigation.component.html":
+/*!***************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.html ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"iw-navigation-container\" [class.iw-navigation-container--visible]=\"isStackEmpty\">\n  <ng-content></ng-content>\n</div>\n\n<ng-template ngFor [ngForOf]=\"stack\" let-item let-isLast=\"last\">\n  <div class=\"iw-navigation-container\" [class.iw-navigation-container--visible]=\"isLast\">\n    <ng-container *ngComponentOutlet=\"item.type; injector: item.injector\"></ng-container>\n  </div>\n</ng-template>\n"
+
+/***/ }),
+
+/***/ "../../src/app/ui/navigation/navigation/navigation.component.sass":
+/*!***************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.sass ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".iw-navigation-container:not(.iw-navigation-container--visible) {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvbmF2aWdhdGlvbi9uYXZpZ2F0aW9uL25hdmlnYXRpb24uY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFhLEVBQUciLCJmaWxlIjoic3JjL2FwcC91aS9uYXZpZ2F0aW9uL25hdmlnYXRpb24vbmF2aWdhdGlvbi5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pdy1uYXZpZ2F0aW9uLWNvbnRhaW5lcjpub3QoLml3LW5hdmlnYXRpb24tY29udGFpbmVyLS12aXNpYmxlKSB7XG4gIGRpc3BsYXk6IG5vbmU7IH1cbiJdfQ== */"
+
+/***/ }),
+
+/***/ "../../src/app/ui/navigation/navigation/navigation.component.ts":
+/*!*************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.ts ***!
+  \*************************************************************************************************************/
+/*! exports provided: NavigationComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationComponent", function() { return NavigationComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _navigation_controller_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navigation-controller.service */ "../../src/app/ui/navigation/navigation-controller.service.ts");
+
+
+
+/**
+ * The navigation component is designed to stack views and only show the last element.
+ * It is used along with the NavigationController
+ ```ts
+ import { NavigationModule } from 'iwerk-angular-ui';
+ ```
+ */
+var NavigationComponent = /** @class */ (function () {
+    function NavigationComponent(navigationController) {
+        this.navigationController = navigationController;
+    }
+    Object.defineProperty(NavigationComponent.prototype, "stack", {
+        /**
+         * @ignore
+         */
+        get: function () {
+            return this.navigationController.stack;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NavigationComponent.prototype, "isStackEmpty", {
+        /**
+         * @ignore
+         */
+        get: function () {
+            return this.stack.length === 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Present the component.
+     * @param type the component class to display in the stack.
+     * @returns a promise that resolves with a value that the dismissed view gives you.
+     */
+    NavigationComponent.prototype.present = function (type, data) {
+        return this.navigationController.present(type, data);
+    };
+    NavigationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'iw-navigation',
+            template: __webpack_require__(/*! ./navigation.component.html */ "../../src/app/ui/navigation/navigation/navigation.component.html"),
+            providers: [
+                _navigation_controller_service__WEBPACK_IMPORTED_MODULE_2__["NavigationController"]
+            ],
+            styles: [__webpack_require__(/*! ./navigation.component.sass */ "../../src/app/ui/navigation/navigation/navigation.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_navigation_controller_service__WEBPACK_IMPORTED_MODULE_2__["NavigationController"]])
+    ], NavigationComponent);
+    return NavigationComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../src/app/ui/popover/helpers.ts":
 /*!**********************************************************************************!*\
   !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/helpers.ts ***!
@@ -2291,6 +2480,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popover_popover_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./popover/popover.module */ "../../src/app/ui/popover/popover.module.ts");
 /* harmony import */ var _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./state-button/state-button.module */ "../../src/app/ui/state-button/state-button.module.ts");
 /* harmony import */ var _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tooltip/tooltip.module */ "../../src/app/ui/tooltip/tooltip.module.ts");
+/* harmony import */ var _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./navigation/navigation.module */ "../../src/app/ui/navigation/navigation.module.ts");
+
 
 
 
@@ -2310,14 +2501,16 @@ var UiModule = /** @class */ (function () {
                 _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"],
                 _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__["StateButtonModule"],
                 _checkbox_checkbox_module__WEBPACK_IMPORTED_MODULE_3__["CheckboxModule"],
-                _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"]
+                _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"],
+                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"]
             ],
             exports: [
                 _popover_popover_module__WEBPACK_IMPORTED_MODULE_5__["PopoverModule"],
                 _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"],
                 _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__["StateButtonModule"],
                 _checkbox_checkbox_module__WEBPACK_IMPORTED_MODULE_3__["CheckboxModule"],
-                _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"]
+                _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"],
+                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"]
             ]
         })
     ], UiModule);
@@ -2332,7 +2525,7 @@ var UiModule = /** @class */ (function () {
 /*!**********************************************************************!*\
   !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/public_api.ts ***!
   \**********************************************************************/
-/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, UiModule */
+/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationModule, UiModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2369,8 +2562,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_ui_multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app/ui/multiline-ellipsis/multiline-ellipsis.module */ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultilineEllipsisModule", function() { return _app_ui_multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_5__["MultilineEllipsisModule"]; });
 
-/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_6__["UiModule"]; });
+/* harmony import */ var _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app/ui/navigation/navigation.module */ "../../src/app/ui/navigation/navigation.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationComponent", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationComponent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationData", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationData"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationModule", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationModule"]; });
+
+/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_7__["UiModule"]; });
+
 
 
 
@@ -2398,6 +2599,10 @@ var map = {
 	"./ellipsis/ellipsis.module": [
 		"./src/app/ellipsis/ellipsis.module.ts",
 		"ellipsis-ellipsis-module"
+	],
+	"./navigation/navigation.module": [
+		"./src/app/navigation/navigation.module.ts",
+		"navigation-navigation-module"
 	],
 	"./popover/popover.module": [
 		"./src/app/popover/popover.module.ts",
@@ -2437,7 +2642,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<aside>\n  <ul>\n    <li class=\"app__logo\"><a></a></li>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <!-- <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li> -->\n    <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n    <li><a href=\"https://interfacewerk.de/jobs\"><fa-icon [icon]=\"faHandshake\"></fa-icon> We are hiring!</a></li>\n    <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
+module.exports = "<aside>\n  <ul>\n    <li class=\"app__logo\"><a></a></li>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/navigation\">Navigation</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <!-- <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li> -->\n    <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n    <li><a href=\"https://interfacewerk.de/jobs\"><fa-icon [icon]=\"faHandshake\"></fa-icon> We are hiring!</a></li>\n    <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
 
 /***/ }),
 
@@ -2520,6 +2725,7 @@ var appRoutes = [
     { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
     // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
     { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' },
+    { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationDemoModule' },
     { path: 'ellipsis', loadChildren: './ellipsis/ellipsis.module#EllipsisDemoModule' }
 ];
 var AppModule = /** @class */ (function () {
@@ -2762,7 +2968,7 @@ function sortByName(arr) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"\" [innerHTML]=\"componentId | componentDescription: componentType\"></div>"
+module.exports = "<div [innerHTML]=\"componentId | componentDescription: componentType\"></div>"
 
 /***/ }),
 
@@ -2826,7 +3032,7 @@ var ComponentDescriptionComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n  <h1>{{componentTitle}}</h1>\n\n  <ol>\n    <li [class.active]=\"isOverview$ | async\" (click)=\"select('overview')\">Overview</li>\n    <li [class.active]=\"isExamples$ | async\" (click)=\"select('examples')\">Examples</li>\n    <li [class.active]=\"isApi$ | async\" (click)=\"select('api')\">API</li>\n  </ol>\n</div>\n\n<div class=\"content\" [appAnchorContainer]=\"tab$ | async\">\n  <app-component-description\n    appAnchor=\"overview\"\n    [componentId]=\"componentId\"\n    [componentType]=\"'directives'\"\n  ></app-component-description>\n\n  <h2 appAnchor=\"examples\">Examples</h2>\n  <ng-template ngFor [ngForOf]=\"examples\" let-example>\n    <app-component-example [example]=\"example\"></app-component-example>\n  </ng-template>\n\n  <h2 appAnchor=\"api\">API</h2>\n  \n  <app-component-api\n    [componentId]=\"componentId\"\n    [componentType]=\"'directives'\"\n  ></app-component-api>\n  \n</div>\n\n"
+module.exports = "<div class=\"header\">\n  <h1>{{componentTitle}}</h1>\n\n  <ol>\n    <li [class.active]=\"isOverview$ | async\" (click)=\"select('overview')\">Overview</li>\n    <li [class.active]=\"isExamples$ | async\" (click)=\"select('examples')\">Examples</li>\n    <li [class.active]=\"isApi$ | async\" (click)=\"select('api')\">API</li>\n  </ol>\n</div>\n\n<div class=\"content\" [appAnchorContainer]=\"tab$ | async\">\n  <app-component-description\n    appAnchor=\"overview\"\n    [componentId]=\"componentId\"\n    [componentType]=\"componentType\"\n  ></app-component-description>\n\n  <h2 appAnchor=\"examples\">Examples</h2>\n  <ng-template ngFor [ngForOf]=\"examples\" let-example>\n    <app-component-example [example]=\"example\"></app-component-example>\n  </ng-template>\n\n  <h2 appAnchor=\"api\">API</h2>\n  \n  <app-component-api\n    [componentId]=\"componentId\"\n    [componentType]=\"componentType\"\n  ></app-component-api>\n  \n</div>\n\n"
 
 /***/ }),
 
