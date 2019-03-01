@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { EllipsisComponent } from './demo/ellipsis/ellipsis.component';
+import { UiModule } from './ui/ui.module';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { NavigationDemoComponent, SomeComponent, SomeOtherComponent } from './demo/navigation-demo/navigation.demo.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -15,13 +16,17 @@ const appRoutes: Routes = [
   { path: 'stateful-button', loadChildren: 'app/demo/stateful-button/stateful-button.module#StatefulButtonDemoModule' },
   { path: 'dialog', loadChildren: 'app/demo/dialog-demo/dialog-demo.module#DialogDemoModule' },
   { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
+  { path: 'navigation', component: NavigationDemoComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    EllipsisComponent
+    EllipsisComponent,
+    NavigationDemoComponent,
+    SomeComponent,
+    SomeOtherComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,10 @@ const appRoutes: Routes = [
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  entryComponents: [
+    SomeComponent,
+    SomeOtherComponent
+  ]
 })
 export class AppModule { }
