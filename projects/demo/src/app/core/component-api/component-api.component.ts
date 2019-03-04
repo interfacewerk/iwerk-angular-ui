@@ -6,7 +6,7 @@ import { DocumentationService, InputType, OutputType, ComponentDocumentation, Me
 @Component({
   selector: 'app-component-api',
   templateUrl: './component-api.component.html',
-  styleUrls: ['./component-api.component.scss']
+  styleUrls: ['./component-api.component.sass']
 })
 export class ComponentApiComponent implements OnChanges {
   @Input() componentId: string;

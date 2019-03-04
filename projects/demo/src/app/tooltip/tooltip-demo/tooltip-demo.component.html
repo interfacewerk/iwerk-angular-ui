@@ -3,13 +3,22 @@
   [componentId]="'TooltipDirective'"
   [componentType]="'directives'"
 >
-  <ng-template appComponentExample="Simple example" [source]="example1">
+  <ng-template appComponentExample="Simple example">
     <app-tooltip-demo-example1></app-tooltip-demo-example1>
+    <app-tabs>
+      <app-code *appTab="'HTML'" path="tooltip-demo-example1.component.html"></app-code>
+    </app-tabs>
   </ng-template>
-  <ng-template appComponentExample="Horizontal" [source]="example2">
+  <ng-template appComponentExample="Horizontal">
     <app-tooltip-demo-example2></app-tooltip-demo-example2>
+    <app-tabs>
+      <app-code *appTab="'HTML'" path="tooltip-demo-example2.component.html"></app-code>
+    </app-tabs>
   </ng-template>
-  <ng-template appComponentExample="Delay" [source]="example3">
+  <ng-template appComponentExample="Delay">
     <app-tooltip-demo-example3></app-tooltip-demo-example3>
+    <app-tabs>
+      <app-code *appTab="'HTML'" path="tooltip-demo-example3.component.html"></app-code>
+    </app-tabs>
   </ng-template>
 </app-component-documentation>

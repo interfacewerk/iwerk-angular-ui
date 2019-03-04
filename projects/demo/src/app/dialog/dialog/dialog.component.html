@@ -3,7 +3,16 @@
   [componentId]="'DialogDirective'"
   [componentType]="'directives'"
 >
-  <ng-template appComponentExample="Simple example" [source]="example1">
+  <ng-template appComponentExample="From the template">
     <app-dialog-example1></app-dialog-example1>
+    <app-tabs>
+      <app-code *appTab="'HTML'" path="dialog-example1.component.html"></app-code>
+    </app-tabs>
+  </ng-template>
+  <ng-template appComponentExample="Using the dialog service">
+    <app-dialog-example2></app-dialog-example2>
+    <app-tabs>
+      <app-code *appTab="'TS'" path="dialog-example2.component.ts"></app-code>
+    </app-tabs>
   </ng-template>
 </app-component-documentation>

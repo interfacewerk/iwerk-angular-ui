@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-component-documentation',
   templateUrl: './component-documentation.component.html',
-  styleUrls: ['./component-documentation.component.scss']
+  styleUrls: ['./component-documentation.component.sass']
 })
 export class ComponentDocumentationComponent implements OnInit {
   @Input() componentId: string;
@@ -96,7 +96,6 @@ export class AnchorDirective {
 })
 export class ComponentExampleDirective {
   @Input() appComponentExample: string;
-  @Input() source: string;
 
   constructor(
     private documentation: ComponentDocumentationComponent,
