@@ -49,16 +49,11 @@ const BASIC_STYLE = `iw-dialog-container {
   }
 }
 `;
-@Component({
-  selector: 'app-dialog-example1',
-  template: example1
-})
-export class DialogExample1Component {}
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.sass']
 })
 export class DialogComponent implements OnDestroy {
   styleCode = BASIC_STYLE;

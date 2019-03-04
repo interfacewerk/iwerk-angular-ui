@@ -10,15 +10,16 @@ export class CodeSamplePipe implements PipeTransform {
   codeSamples: {[sampleId: string]: string} = {};
 
   constructor(private http: HttpClient, private changeDetectorRef: ChangeDetectorRef) {
-    this.http.get('assets/code-samples.json')
+    this.http.get('assets/examples.json')
       .subscribe(c => {
         this.codeSamples = <any>c;
         this.changeDetectorRef.markForCheck();
       });
   }
 
-  transform(sampleId: string, args?: any): any {
-    return this.codeSamples[sampleId];
+  transform(sampleId: string): any {
+    const key = Object.keys(this.codeSamples).find(k => k.includes(sampleId));
+    return this.codeSamples[key];
   }
 
 }

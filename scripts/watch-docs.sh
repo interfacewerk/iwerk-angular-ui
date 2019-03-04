@@ -1,0 +1,1 @@
+./node_modules/.bin/nodemon --watch . --exec ./scripts/generate-doc.sh --ext ts,html,sass

@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TooltipModule } from 'src/public_api';
 import { CodeSampleModule } from './code-sample/code-sample.module';
 import { ComponentApiComponent } from './component-api/component-api.component';
 import { ComponentDescriptionComponent } from './component-description/component-description.component';
 import {
-    ComponentDocumentationComponent,
-    ComponentExampleDirective,
     AnchorContainerDirective,
-    AnchorDirective
+    AnchorDirective,
+    ComponentDocumentationComponent,
+    ComponentExampleDirective
 } from './component-documentation/component-documentation.component';
 import { ComponentExampleComponent } from './component-example/component-example.component';
-import { TooltipModule } from 'src/public_api';
+import { TabDirective, TabsComponent } from './tabs/tabs.component';
+import { CodeComponent } from './code/code.component';
 
 @NgModule({
     imports: [
@@ -29,7 +31,10 @@ import { TooltipModule } from 'src/public_api';
         ComponentExampleComponent,
         FontAwesomeModule,
         AnchorContainerDirective,
-        AnchorDirective
+        AnchorDirective,
+        TabsComponent,
+        TabDirective,
+        CodeComponent
     ],
     declarations: [
         ComponentDescriptionComponent,
@@ -38,7 +43,10 @@ import { TooltipModule } from 'src/public_api';
         ComponentExampleDirective,
         ComponentExampleComponent,
         AnchorContainerDirective,
-        AnchorDirective
+        AnchorDirective,
+        TabsComponent,
+        TabDirective,
+        CodeComponent
     ]
 })
 export class CoreModule {}

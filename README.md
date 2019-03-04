@@ -44,18 +44,11 @@ npm run test
 
 Documentation is generated automatically by using inline documentation and an Angular CLI side project called `demo`. To serve the documentation application, use:
 
-```
-npm run start:docs
-```
+#### Serve
 
-We use `compodoc` to generate a `documentation.json` file in the assets folder. To re-generate this file, you must run (there will be a watcher in a near future):
+1. Start the watcher `npm run watch:docs`
+2. Start the application `npm run start:docs`
 
-```
-npm run compodoc
-```
+### Build
 
-Finally, to build the documentation into the `docs/` folder (which is served as a Github page), run:
-
-```
-npm run build:docs
-```
+To build, run `npm run build:docs`.

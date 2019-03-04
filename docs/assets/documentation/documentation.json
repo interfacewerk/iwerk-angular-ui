@@ -2830,7 +2830,7 @@
         },
         {
             "name": "CustomPopoverDemoComponent",
-            "id": "component-CustomPopoverDemoComponent-52b6e5c6634da748cef94ec9a6fe53d1",
+            "id": "component-CustomPopoverDemoComponent-e48c8c24a62384e5871591e33f44cbdf",
             "file": "src/app/demo/popover/custom-popover-demo/custom-popover-demo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2839,7 +2839,7 @@
             "providers": [],
             "selector": "app-custom-popover-demo",
             "styleUrls": [
-                "./custom-popover-demo.component.scss"
+                "./custom-popover-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -2878,12 +2878,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-custom-popover-demo',\n  templateUrl: './custom-popover-demo.component.html',\n  styleUrls: ['./custom-popover-demo.component.scss']\n})\nexport class CustomPopoverDemoComponent implements OnInit {\n  @Output() close = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  _close() {\n    this.close.emit();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-custom-popover-demo',\n  templateUrl: './custom-popover-demo.component.html',\n  styleUrls: ['./custom-popover-demo.component.sass']\n})\nexport class CustomPopoverDemoComponent implements OnInit {\n  @Output() close = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  _close() {\n    this.close.emit();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  max-height: 300px;\n  width: 200px;\n  border: 1px solid grey;\n  border-radius: 3px;\n  box-shadow: 2px 2px 5px 2px #7b7b7b;\n  overflow: hidden;\n\n  .custom-popover--header {\n    padding: 0 30px 0 5px;\n    border-bottom: 1px solid grey;\n    background-color: lightgrey;\n    position: relative;\n    line-height: 30px;\n    height: 30px;\n  }\n\n  .custom-popover--content {\n    padding: 15px 5px;\n    background: white;\n  }\n\n  .custom-popover--close-button {\n    position: absolute;\n    right: 5px;\n    top: 0;\n    line-height: 30px;\n    text-decoration: none;\n    cursor: pointer;\n\n    &:hover {\n      color: black;\n    }\n  }\n}",
-                    "styleUrl": "./custom-popover-demo.component.scss"
+                    "data": "\\:host\n  display: block\n  max-height: 300px\n  width: 200px\n  border: 1px solid grey\n  border-radius: 3px\n  box-shadow: 2px 2px 5px 2px #7b7b7b\n  overflow: hidden\n\n  .custom-popover--header\n    padding: 0 30px 0 5px\n    border-bottom: 1px solid grey\n    background-color: lightgrey\n    position: relative\n    line-height: 30px\n    height: 30px\n\n  .custom-popover--content\n    padding: 15px 5px\n    background: white\n\n  .custom-popover--close-button\n    position: absolute\n    right: 5px\n    top: 0\n    line-height: 30px\n    text-decoration: none\n    cursor: pointer\n\n    &:hover\n      color: black",
+                    "styleUrl": "./custom-popover-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4042,7 +4042,7 @@
         },
         {
             "name": "TooltipDemoComponent",
-            "id": "component-TooltipDemoComponent-483cf847f84ff54b81b627eea38bc90f",
+            "id": "component-TooltipDemoComponent-6fa7894f346537e0c10aa94b7ccc0cdd",
             "file": "src/app/demo/tooltip/tooltip-demo/tooltip-demo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4051,7 +4051,7 @@
             "providers": [],
             "selector": "app-tooltip-demo",
             "styleUrls": [
-                "./tooltip-demo.component.scss"
+                "./tooltip-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4084,12 +4084,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-tooltip-demo',\n  templateUrl: './tooltip-demo.component.html',\n  styleUrls: ['./tooltip-demo.component.scss']\n})\nexport class TooltipDemoComponent implements OnInit {\n  value = 0;\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-tooltip-demo',\n  templateUrl: './tooltip-demo.component.html',\n  styleUrls: ['./tooltip-demo.component.sass']\n})\nexport class TooltipDemoComponent implements OnInit {\n  value = 0;\n\n  ngOnInit() {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n    pre {\n        background: lightyellow;\n        border-radius: 3px;\n        box-shadow: inset 0px 0px 1px 1px black;\n        padding: 10px;\n        font-size: 12px;\n    }\n}",
-                    "styleUrl": "./tooltip-demo.component.scss"
+                    "data": "\\:host\n  pre\n    background: lightyellow\n    border-radius: 3px\n    box-shadow: inset 0px 0px 1px 1px black\n    padding: 10px\n    font-size: 12px",
+                    "styleUrl": "./tooltip-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4100,7 +4100,7 @@
         },
         {
             "name": "WelcomeComponent",
-            "id": "component-WelcomeComponent-d72c463138295d330b198db02624da0b",
+            "id": "component-WelcomeComponent-cec57ee1b84bb84e4ef92a6e51859090",
             "file": "src/app/welcome/welcome.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4109,7 +4109,7 @@
             "providers": [],
             "selector": "app-welcome",
             "styleUrls": [
-                "./welcome.component.scss"
+                "./welcome.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4119,38 +4119,20 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12
-                }
-            ],
+            "methodsClass": [],
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-welcome',\n  templateUrl: './welcome.component.html',\n  styleUrls: ['./welcome.component.scss']\n})\nexport class WelcomeComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-welcome',\n  templateUrl: './welcome.component.html',\n  styleUrls: ['./welcome.component.sass']\n})\nexport class WelcomeComponent { }\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "",
-                    "styleUrl": "./welcome.component.scss"
+                    "styleUrl": "./welcome.component.sass"
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "args": [],
-                "line": 8
-            },
-            "implements": [
-                "OnInit"
-            ],
             "templateData": "<h1>Welcome!</h1>"
         }
     ],
@@ -4749,17 +4731,17 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/environments/environment.prod.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/environments/environment.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: true\n}"
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "IW_CHECKBOX_CONFIG",
@@ -4875,35 +4857,6 @@
             },
             {
                 "name": "horizontalSmartPosition",
-                "file": "src/app/ui/popover/helpers.ts",
-                "ctype": "miscellaneous",
-                "subtype": "function",
-                "description": "",
-                "args": [
-                    {
-                        "name": "elements"
-                    },
-                    {
-                        "name": "options"
-                    }
-                ],
-                "jsdoctags": [
-                    {
-                        "name": "elements",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "options",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            {
-                "name": "horizontalSmartPosition",
                 "file": "src/app/ui/tooltip/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4923,7 +4876,7 @@
                 ]
             },
             {
-                "name": "smartPosition",
+                "name": "horizontalSmartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4981,7 +4934,7 @@
                 ]
             },
             {
-                "name": "verticalSmartPosition",
+                "name": "smartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -5021,6 +4974,35 @@
                     }
                 ],
                 "jsdoctags": [
+                    {
+                        "name": "options",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "verticalSmartPosition",
+                "file": "src/app/ui/popover/helpers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "elements"
+                    },
+                    {
+                        "name": "options"
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "elements",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
                     {
                         "name": "options",
                         "tagName": {
@@ -5073,16 +5055,6 @@
                     "defaultValue": "{\n  closeOnClickOutside: true,\n  closeOnEsc: false,\n  containerClass: 'dialog-config-demo'\n}"
                 }
             ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -5091,6 +5063,16 @@
                     "file": "src/environments/environment.prod.ts",
                     "type": "object",
                     "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/app/ui/checkbox/checkbox.config.ts": [
@@ -5956,7 +5938,7 @@
                 "linktype": "component",
                 "name": "WelcomeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

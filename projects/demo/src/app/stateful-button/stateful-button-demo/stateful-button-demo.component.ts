@@ -4,7 +4,7 @@ import { ButtonState } from 'src/public_api';
 @Component({
   selector: 'app-stateful-button-demo',
   templateUrl: './stateful-button-demo.component.html',
-  styleUrls: ['./stateful-button-demo.component.scss']
+  styleUrls: ['./stateful-button-demo.component.sass']
 })
 export class StatefulButtonDemoComponent implements OnInit {
 
