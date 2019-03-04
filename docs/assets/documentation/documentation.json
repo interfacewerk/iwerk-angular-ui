@@ -4857,6 +4857,35 @@
             },
             {
                 "name": "horizontalSmartPosition",
+                "file": "src/app/ui/popover/helpers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "elements"
+                    },
+                    {
+                        "name": "options"
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "elements",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "options",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "horizontalSmartPosition",
                 "file": "src/app/ui/tooltip/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4876,7 +4905,7 @@
                 ]
             },
             {
-                "name": "horizontalSmartPosition",
+                "name": "smartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4934,7 +4963,7 @@
                 ]
             },
             {
-                "name": "smartPosition",
+                "name": "verticalSmartPosition",
                 "file": "src/app/ui/popover/helpers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -4974,35 +5003,6 @@
                     }
                 ],
                 "jsdoctags": [
-                    {
-                        "name": "options",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            {
-                "name": "verticalSmartPosition",
-                "file": "src/app/ui/popover/helpers.ts",
-                "ctype": "miscellaneous",
-                "subtype": "function",
-                "description": "",
-                "args": [
-                    {
-                        "name": "elements"
-                    },
-                    {
-                        "name": "options"
-                    }
-                ],
-                "jsdoctags": [
-                    {
-                        "name": "elements",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
                     {
                         "name": "options",
                         "tagName": {
