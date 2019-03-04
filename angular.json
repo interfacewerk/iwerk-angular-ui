@@ -21,7 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -69,7 +69,7 @@
             "karmaConfig": "./karma.conf.js",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.sass"
             ],
             "tsConfig": "src/tsconfig.spec.json",
             "assets": [
@@ -135,7 +135,8 @@
               "projects/demo/src/assets"
             ],
             "styles": [
-              "projects/demo/src/styles.scss"
+              "projects/demo/src/styles.sass",
+              "projects/demo/src/styles/font-awesome-4.7.0/css/font-awesome.css"
             ],
             "scripts": []
           },
@@ -162,6 +163,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port": 4201,
             "browserTarget": "demo:build"
           },
           "configurations": {
@@ -195,7 +197,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "styleext": "sass"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

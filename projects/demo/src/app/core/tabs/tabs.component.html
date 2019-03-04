@@ -1,0 +1,10 @@
+<ol>
+  <li *ngFor="let tab of tabs"
+    (click)="selectedTemplate = tab.template"
+    [class.active]="tab.template === selectedTemplate"
+  >{{tab.label}}</li>
+</ol>
+
+<div class="content">
+  <ng-container *ngTemplateOutlet="selectedTemplate"></ng-container>
+</div>

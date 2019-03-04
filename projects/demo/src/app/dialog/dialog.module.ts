@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DialogModule, PopoverModule, TooltipModule } from 'src/public_api';
 import { CoreModule } from '../core/core.module';
-import { DialogComponent, DialogExample1Component } from './dialog/dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogExample1Component } from './example1/dialog-example1.component';
+import { DialogExample2Component } from './example2/dialog-example2.component';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
 
 @NgModule({
@@ -17,7 +19,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     PopoverModule,
     CoreModule
   ],
-  declarations: [DialogComponent, MyDialogComponent, DialogExample1Component],
+  declarations: [DialogComponent, MyDialogComponent, DialogExample1Component, DialogExample2Component],
   entryComponents: [ MyDialogComponent ]
 })
 export class DialogDemoModule { }
