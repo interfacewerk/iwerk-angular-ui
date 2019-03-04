@@ -11,14 +11,14 @@ module.exports = "<div class=\"custom-popover--header\">\n  <div class=\"custom-
 
 /***/ }),
 
-/***/ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.scss":
+/***/ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.sass":
 /*!********************************************************************************!*\
-  !*** ./src/app/popover/custom-popover-demo/custom-popover-demo.component.scss ***!
+  !*** ./src/app/popover/custom-popover-demo/custom-popover-demo.component.sass ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n  max-height: 300px;\n  width: 200px;\n  border: 1px solid grey;\n  border-radius: 3px;\n  box-shadow: 2px 2px 5px 2px #7b7b7b;\n  overflow: hidden; }\n  :host .custom-popover--header {\n    padding: 0 30px 0 5px;\n    border-bottom: 1px solid grey;\n    background-color: lightgrey;\n    position: relative;\n    line-height: 30px;\n    height: 30px; }\n  :host .custom-popover--content {\n    padding: 15px 5px;\n    background: white; }\n  :host .custom-popover--close-button {\n    position: absolute;\n    right: 5px;\n    top: 0;\n    line-height: 30px;\n    text-decoration: none;\n    cursor: pointer; }\n  :host .custom-popover--close-button:hover {\n      color: black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL2N1c3RvbS1wb3BvdmVyLWRlbW8vY3VzdG9tLXBvcG92ZXItZGVtby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWM7RUFDZCxrQkFBaUI7RUFDakIsYUFBWTtFQUNaLHVCQUFzQjtFQUN0QixtQkFBa0I7RUFDbEIsb0NBQW1DO0VBQ25DLGlCQUFnQixFQTRCakI7RUFuQ0Q7SUFVSSxzQkFBcUI7SUFDckIsOEJBQTZCO0lBQzdCLDRCQUEyQjtJQUMzQixtQkFBa0I7SUFDbEIsa0JBQWlCO0lBQ2pCLGFBQVksRUFDYjtFQWhCSDtJQW1CSSxrQkFBaUI7SUFDakIsa0JBQWlCLEVBQ2xCO0VBckJIO0lBd0JJLG1CQUFrQjtJQUNsQixXQUFVO0lBQ1YsT0FBTTtJQUNOLGtCQUFpQjtJQUNqQixzQkFBcUI7SUFDckIsZ0JBQWUsRUFLaEI7RUFsQ0g7TUFnQ00sYUFBWSxFQUNiIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL2N1c3RvbS1wb3BvdmVyLWRlbW8vY3VzdG9tLXBvcG92ZXItZGVtby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG1heC1oZWlnaHQ6IDMwMHB4O1xuICB3aWR0aDogMjAwcHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGdyZXk7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbiAgYm94LXNoYWRvdzogMnB4IDJweCA1cHggMnB4ICM3YjdiN2I7XG4gIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgLmN1c3RvbS1wb3BvdmVyLS1oZWFkZXIge1xuICAgIHBhZGRpbmc6IDAgMzBweCAwIDVweDtcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgZ3JleTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyZXk7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxpbmUtaGVpZ2h0OiAzMHB4O1xuICAgIGhlaWdodDogMzBweDtcbiAgfVxuXG4gIC5jdXN0b20tcG9wb3Zlci0tY29udGVudCB7XG4gICAgcGFkZGluZzogMTVweCA1cHg7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gIH1cblxuICAuY3VzdG9tLXBvcG92ZXItLWNsb3NlLWJ1dHRvbiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHJpZ2h0OiA1cHg7XG4gICAgdG9wOiAwO1xuICAgIGxpbmUtaGVpZ2h0OiAzMHB4O1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG5cbiAgICAmOmhvdmVyIHtcbiAgICAgIGNvbG9yOiBibGFjaztcbiAgICB9XG4gIH1cbn0iXX0= */"
+module.exports = ":host {\n  display: block;\n  max-height: 300px;\n  width: 200px;\n  border: 1px solid grey;\n  border-radius: 3px;\n  box-shadow: 2px 2px 5px 2px #7b7b7b;\n  overflow: hidden; }\n  :host .custom-popover--header {\n    padding: 0 30px 0 5px;\n    border-bottom: 1px solid grey;\n    background-color: lightgrey;\n    position: relative;\n    line-height: 30px;\n    height: 30px; }\n  :host .custom-popover--content {\n    padding: 15px 5px;\n    background: white; }\n  :host .custom-popover--close-button {\n    position: absolute;\n    right: 5px;\n    top: 0;\n    line-height: 30px;\n    text-decoration: none;\n    cursor: pointer; }\n  :host .custom-popover--close-button:hover {\n      color: black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL2N1c3RvbS1wb3BvdmVyLWRlbW8vY3VzdG9tLXBvcG92ZXItZGVtby5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQztFQUNDLGVBQWM7RUFDZCxrQkFBaUI7RUFDakIsYUFBWTtFQUNaLHVCQUFzQjtFQUN0QixtQkFBa0I7RUFDbEIsb0NBQW1DO0VBQ25DLGlCQUFnQixFQXVCTztFQTlCeEI7SUFVRyxzQkFBcUI7SUFDckIsOEJBQTZCO0lBQzdCLDRCQUEyQjtJQUMzQixtQkFBa0I7SUFDbEIsa0JBQWlCO0lBQ2pCLGFBQVksRUFBRztFQWZsQjtJQWtCRyxrQkFBaUI7SUFDakIsa0JBQWlCLEVBQUc7RUFuQnZCO0lBc0JHLG1CQUFrQjtJQUNsQixXQUFVO0lBQ1YsT0FBTTtJQUNOLGtCQUFpQjtJQUNqQixzQkFBcUI7SUFDckIsZ0JBQWUsRUFHSTtFQTlCdEI7TUE4QkssYUFBWSxFQUFHIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL2N1c3RvbS1wb3BvdmVyLWRlbW8vY3VzdG9tLXBvcG92ZXItZGVtby5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIiA6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXgtaGVpZ2h0OiAzMDBweDtcbiAgd2lkdGg6IDIwMHB4O1xuICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xuICBib3JkZXItcmFkaXVzOiAzcHg7XG4gIGJveC1zaGFkb3c6IDJweCAycHggNXB4IDJweCAjN2I3YjdiO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuXG4gIC5jdXN0b20tcG9wb3Zlci0taGVhZGVyIHtcbiAgICBwYWRkaW5nOiAwIDMwcHggMCA1cHg7XG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIGdyZXk7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmV5O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBsaW5lLWhlaWdodDogMzBweDtcbiAgICBoZWlnaHQ6IDMwcHg7IH1cblxuICAuY3VzdG9tLXBvcG92ZXItLWNvbnRlbnQge1xuICAgIHBhZGRpbmc6IDE1cHggNXB4O1xuICAgIGJhY2tncm91bmQ6IHdoaXRlOyB9XG5cbiAgLmN1c3RvbS1wb3BvdmVyLS1jbG9zZS1idXR0b24ge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICByaWdodDogNXB4O1xuICAgIHRvcDogMDtcbiAgICBsaW5lLWhlaWdodDogMzBweDtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuXG4gICAgJjpob3ZlciB7XG4gICAgICBjb2xvcjogYmxhY2s7IH0gfSB9XG4iXX0= */"
 
 /***/ }),
 
@@ -80,7 +80,7 @@ var CustomPopoverDemoComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-custom-popover-demo',
             template: __webpack_require__(/*! ./custom-popover-demo.component.html */ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.html"),
-            styles: [__webpack_require__(/*! ./custom-popover-demo.component.scss */ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.scss")]
+            styles: [__webpack_require__(/*! ./custom-popover-demo.component.sass */ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.sass")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], CustomPopoverDemoComponent);
@@ -98,18 +98,18 @@ var CustomPopoverDemoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-component-documentation\n  [componentTitle]=\"'Popover'\"\n  [componentId]=\"'PopoverDirective'\"\n  [componentType]=\"'directives'\"\n>\n  <ng-template appComponentExample=\"From the template\" [source]=\"popoverExample1\">\n    <app-popover-example1></app-popover-example1>\n  </ng-template>\n  <ng-template appComponentExample=\"From the service\" [source]=\"popoverExample2\">\n    <app-popover-example2></app-popover-example2>\n  </ng-template>\n</app-component-documentation>\n"
+module.exports = "<app-component-documentation\n  [componentTitle]=\"'Popover'\"\n  [componentId]=\"'PopoverDirective'\"\n  [componentType]=\"'directives'\"\n>\n  <ng-template appComponentExample=\"From the template\">\n    <p>Add a template with the <code class=\"inline-code\">iwPopover</code> directive.</p>\n    <app-popover-example1></app-popover-example1>\n    <app-tabs>\n      <app-code *appTab=\"'HTML'\" path=\"popover-example1.component.html\"></app-code>\n      <app-code *appTab=\"'TS'\" path=\"popover-example1.component.ts\"></app-code>\n    </app-tabs>\n  </ng-template>\n  <ng-template appComponentExample=\"From the service\">\n    <p>\n      You can embed any of your components inside a popover. This can be very helpful to keep your templates light as well as refactoring.\n      To do so, declare the component class you want to embed as an entry component of your module.\n    </p>\n    <app-popover-example2></app-popover-example2>\n    \n    <app-tabs>\n      <app-code *appTab=\"'HTML'\" path=\"popover-example2.component.html\"></app-code>\n      <app-code *appTab=\"'TS'\" path=\"popover-example2.component.ts\"></app-code>\n    </app-tabs>\n  </ng-template>\n</app-component-documentation>\n"
 
 /***/ }),
 
-/***/ "./src/app/popover/popover-demo/popover-demo.component.scss":
+/***/ "./src/app/popover/popover-demo/popover-demo.component.sass":
 /*!******************************************************************!*\
-  !*** ./src/app/popover/popover-demo/popover-demo.component.scss ***!
+  !*** ./src/app/popover/popover-demo/popover-demo.component.sass ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host table {\n  width: 300px;\n  border-collapse: collapse; }\n  :host table th, :host table td {\n    text-align: left;\n    width: 50%;\n    padding: 5px 5px 5px 5px; }\n  :host table td {\n    line-height: 20px; }\n  :host table thead {\n    border-bottom: 1px solid lightgrey; }\n  :host .cell-right-icon {\n  position: relative;\n  padding-right: 30px; }\n  :host .cell-right-icon:hover button {\n    opacity: 1; }\n  :host .cell-right-icon button {\n    opacity: 0.2; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL3BvcG92ZXItZGVtby9wb3BvdmVyLWRlbW8uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSxhQUFZO0VBZ0JaLDBCQUF5QixFQUMxQjtFQW5CSDtJQUtNLGlCQUFnQjtJQUNoQixXQUFVO0lBQ1YseUJBQXdCLEVBQ3pCO0VBUkw7SUFXTSxrQkFBaUIsRUFDbEI7RUFaTDtJQWVNLG1DQUFrQyxFQUNuQztFQWhCTDtFQXNCSSxtQkFBa0I7RUFDbEIsb0JBQW1CLEVBV3BCO0VBbENIO0lBMkJRLFdBQVUsRUFDWDtFQTVCUDtJQWdDTSxhQUFZLEVBQ2IiLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL3BvcG92ZXIvcG9wb3Zlci1kZW1vL3BvcG92ZXItZGVtby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcbiAgdGFibGUge1xuICAgIHdpZHRoOiAzMDBweDtcblxuICAgIHRoLCB0ZCB7XG4gICAgICB0ZXh0LWFsaWduOiBsZWZ0O1xuICAgICAgd2lkdGg6IDUwJTtcbiAgICAgIHBhZGRpbmc6IDVweCA1cHggNXB4IDVweDtcbiAgICB9XG5cbiAgICB0ZCB7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICB9XG5cbiAgICB0aGVhZCB7XG4gICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgbGlnaHRncmV5O1xuICAgIH1cblxuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIH1cbiAgXG4gIC5jZWxsLXJpZ2h0LWljb24ge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBwYWRkaW5nLXJpZ2h0OiAzMHB4O1xuXG4gICAgJjpob3ZlciB7XG4gICAgICBidXR0b24ge1xuICAgICAgICBvcGFjaXR5OiAxO1xuICAgICAgfVxuICAgIH1cblxuICAgIGJ1dHRvbiB7XG4gICAgICBvcGFjaXR5OiAwLjI7XG4gICAgfVxuICB9XG59XG4iXX0= */"
+module.exports = ":host table {\n  width: 300px;\n  border-collapse: collapse; }\n  :host table th, :host table td {\n    text-align: left;\n    width: 50%;\n    padding: 5px 5px 5px 5px; }\n  :host table td {\n    line-height: 20px; }\n  :host table thead {\n    border-bottom: 1px solid lightgrey; }\n  :host .cell-right-icon {\n  position: relative;\n  padding-right: 30px; }\n  :host .cell-right-icon:hover button {\n    opacity: 1; }\n  :host .cell-right-icon button {\n    opacity: 0.2; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL3BvcG92ZXItZGVtby9wb3BvdmVyLWRlbW8uY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFFRyxhQUFZO0VBYVosMEJBQXlCLEVBQUc7RUFmL0I7SUFLSyxpQkFBZ0I7SUFDaEIsV0FBVTtJQUNWLHlCQUF3QixFQUFHO0VBUGhDO0lBVUssa0JBQWlCLEVBQUc7RUFWekI7SUFhSyxtQ0FBa0MsRUFBRztFQWIxQztFQWtCRyxtQkFBa0I7RUFDbEIsb0JBQW1CLEVBT0E7RUExQnRCO0lBdUJPLFdBQVUsRUFBRztFQXZCcEI7SUEwQkssYUFBWSxFQUFHIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9wb3BvdmVyL3BvcG92ZXItZGVtby9wb3BvdmVyLWRlbW8uY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyIgOmhvc3Qge1xuICB0YWJsZSB7XG4gICAgd2lkdGg6IDMwMHB4O1xuXG4gICAgdGgsIHRkIHtcbiAgICAgIHRleHQtYWxpZ246IGxlZnQ7XG4gICAgICB3aWR0aDogNTAlO1xuICAgICAgcGFkZGluZzogNXB4IDVweCA1cHggNXB4OyB9XG5cbiAgICB0ZCB7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDsgfVxuXG4gICAgdGhlYWQge1xuICAgICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIGxpZ2h0Z3JleTsgfVxuXG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsgfVxuXG4gIC5jZWxsLXJpZ2h0LWljb24ge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBwYWRkaW5nLXJpZ2h0OiAzMHB4O1xuXG4gICAgJjpob3ZlciB7XG4gICAgICBidXR0b24ge1xuICAgICAgICBvcGFjaXR5OiAxOyB9IH1cblxuICAgIGJ1dHRvbiB7XG4gICAgICBvcGFjaXR5OiAwLjI7IH0gfSB9XG4iXX0= */"
 
 /***/ }),
 
@@ -125,10 +125,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopoverDemoComponent", function() { return PopoverDemoComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _popover_example1_popover_example1_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../popover-example1/popover-example1.component */ "./src/app/popover/popover-example1/popover-example1.component.ts");
-/* harmony import */ var _popover_example2_popover_example2_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../popover-example2/popover-example2.component */ "./src/app/popover/popover-example2/popover-example2.component.ts");
-
-
 
 
 var PopoverDemoComponent = /** @class */ (function () {
@@ -136,8 +132,6 @@ var PopoverDemoComponent = /** @class */ (function () {
         this.persons = [];
         this.firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];
         this.lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];
-        this.popoverExample1 = _popover_example1_popover_example1_component__WEBPACK_IMPORTED_MODULE_2__["popoverExample1"];
-        this.popoverExample2 = _popover_example2_popover_example2_component__WEBPACK_IMPORTED_MODULE_3__["popoverExample2"];
         for (var i = 0; i < 10; i++) {
             this.persons.push({
                 first: this.firsts[Math.floor(Math.random() * this.firsts.length)],
@@ -145,13 +139,11 @@ var PopoverDemoComponent = /** @class */ (function () {
             });
         }
     }
-    PopoverDemoComponent.prototype.ngOnInit = function () {
-    };
     PopoverDemoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-popover-demo',
             template: __webpack_require__(/*! ./popover-demo.component.html */ "./src/app/popover/popover-demo/popover-demo.component.html"),
-            styles: [__webpack_require__(/*! ./popover-demo.component.scss */ "./src/app/popover/popover-demo/popover-demo.component.scss")]
+            styles: [__webpack_require__(/*! ./popover-demo.component.sass */ "./src/app/popover/popover-demo/popover-demo.component.sass")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], PopoverDemoComponent);
@@ -162,50 +154,45 @@ var PopoverDemoComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/popover/popover-example1/popover-example1.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/popover/popover-example1/popover-example1.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<button (click)=\"isOpen = true\">\n  Click to open!\n\n  <ng-template iwPopover\n    popoverClass=\"demo-popover\"\n    [isOpen]=\"isOpen\"\n    (shouldClose)=\"isOpen = false\">\n  \n    <div class=\"simple-popover\">\n      Helloooo\n    </div>\n  \n  </ng-template>\n</button>\n\n"
+
+/***/ }),
+
 /***/ "./src/app/popover/popover-example1/popover-example1.component.ts":
 /*!************************************************************************!*\
   !*** ./src/app/popover/popover-example1/popover-example1.component.ts ***!
   \************************************************************************/
-/*! exports provided: popoverExample1, PopoverExample1Component */
+/*! exports provided: PopoverExample1Component */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popoverExample1", function() { return popoverExample1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopoverExample1Component", function() { return PopoverExample1Component; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 
 
-var popoverExample1 = "<button (click)=\"isOpen = true\">\n  Click to open!\n  <ng-template iwPopover\n    popoverClass=\"demo-popover\"\n    [isOpen]=\"isOpen\"\n    (shouldClose)=\"isOpen = false\">\n\n    <div class=\"simple-popover\">\n      Helloooo\n    </div>\n\n  </ng-template>\n</button>";
 var PopoverExample1Component = /** @class */ (function () {
     function PopoverExample1Component() {
         this.isOpen = false;
     }
-    PopoverExample1Component.prototype.ngOnInit = function () {
-    };
     PopoverExample1Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-popover-example1',
-            template: "<p>Add a template with the <code class=\"inline-code\">iwPopover</code> directive.</p> " + popoverExample1
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+            template: __webpack_require__(/*! ./popover-example1.component.html */ "./src/app/popover/popover-example1/popover-example1.component.html")
+        })
     ], PopoverExample1Component);
     return PopoverExample1Component;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/popover/popover-example2/popover-example2.component.css":
-/*!*************************************************************************!*\
-  !*** ./src/app/popover/popover-example2/popover-example2.component.css ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvcG9wb3Zlci9wb3BvdmVyLWV4YW1wbGUyL3BvcG92ZXItZXhhbXBsZTIuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -216,7 +203,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  You can embed any of your components inside a popover. This can be very helpful to keep your templates light as well as refactoring.\n  To do so, declare the component class you want to embed as an entry component of your module.\n</p>\n\n<table>\n  <thead>\n    <tr>\n      <th>First Name</th>\n      <th>Last Name</th>\n    </tr>\n  </thead>\n  <tbody>\n    <ng-template ngFor [ngForOf]=\"persons\" let-person [ngForTrackBy]=\"trackBy\">\n      <tr>\n        <td class=\"cell-right-icon\">\n          {{person.first}}\n          <button (click)=\"openEditFirstNamePopover(person, $event)\">&#x270E;</button>\n        </td>\n        <td class=\"cell-right-icon\">\n          {{person.last}}\n          <button (click)=\"openEditLastNamePopover(person, $event)\">&#x270E;</button>          \n        </td>\n      </tr>\n    </ng-template>\n  </tbody>\n</table>\n"
+module.exports = "<table>\n  <thead><tr>\n    <th>First Name</th>\n    <th>Last Name</th>\n  </tr></thead>\n  <tr *ngFor=\"let person of persons\">\n    <td class=\"cell-right-icon\">\n      {{person.first}}\n      <button (click)=\"openEditFirstNamePopover(person, $event)\">&#x270E;</button>\n    </td>\n    <td class=\"cell-right-icon\">\n      {{person.last}}\n      <button (click)=\"openEditLastNamePopover(person, $event)\">&#x270E;</button>          \n    </td>\n  </tr>\n</table>\n"
 
 /***/ }),
 
@@ -224,12 +211,11 @@ module.exports = "<p>\n  You can embed any of your components inside a popover. 
 /*!************************************************************************!*\
   !*** ./src/app/popover/popover-example2/popover-example2.component.ts ***!
   \************************************************************************/
-/*! exports provided: popoverExample2, PopoverExample2Component */
+/*! exports provided: PopoverExample2Component */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popoverExample2", function() { return popoverExample2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopoverExample2Component", function() { return PopoverExample2Component; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
@@ -239,7 +225,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var popoverExample2 = "import { PopoverService } from 'iwerk-angular-ui';\n\nconstructor(private popoverService: PopoverService) {\n  \u2026\n}\n\nopenPopover() {\n  this.popoverService.open(MyComponent, \u2026)\n}\n";
 var PopoverExample2Component = /** @class */ (function () {
     function PopoverExample2Component(popoverService) {
         this.popoverService = popoverService;
@@ -253,9 +238,6 @@ var PopoverExample2Component = /** @class */ (function () {
             });
         }
     }
-    PopoverExample2Component.prototype.trackBy = function (index) {
-        return index;
-    };
     PopoverExample2Component.prototype.openEditFirstNamePopover = function (person, $event) {
         return this.openEditPropertyPopover(person, 'First Name', 'first', $event);
     };
@@ -277,8 +259,7 @@ var PopoverExample2Component = /** @class */ (function () {
     PopoverExample2Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-popover-example2',
-            template: __webpack_require__(/*! ./popover-example2.component.html */ "./src/app/popover/popover-example2/popover-example2.component.html"),
-            styles: [__webpack_require__(/*! ./popover-example2.component.css */ "./src/app/popover/popover-example2/popover-example2.component.css")]
+            template: __webpack_require__(/*! ./popover-example2.component.html */ "./src/app/popover/popover-example2/popover-example2.component.html")
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_public_api__WEBPACK_IMPORTED_MODULE_2__["PopoverService"]])
     ], PopoverExample2Component);
@@ -297,17 +278,6 @@ var PopoverExample2Component = /** @class */ (function () {
 /***/ (function(module, exports) {
 
 module.exports = "<app-custom-popover-demo (close)=\"close()\">\n  <ng-container appCustomPopoverHeader>Edit</ng-container>\n  <ng-container appCustomPopoverContent>    \n    {{propertyName}}: <input autofocus autocomplete=\"false\" [ngModel]=\"value\" (ngModelChange)=\"onValueChange.emit($event)\" type=\"text\"/>\n  </ng-container>\n</app-custom-popover-demo>"
-
-/***/ }),
-
-/***/ "./src/app/popover/popover-example2/property-edit-popover/property-edit-popover.component.scss":
-/*!*****************************************************************************************************!*\
-  !*** ./src/app/popover/popover-example2/property-edit-popover/property-edit-popover.component.scss ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvcG9wb3Zlci9wb3BvdmVyLWV4YW1wbGUyL3Byb3BlcnR5LWVkaXQtcG9wb3Zlci9wcm9wZXJ0eS1lZGl0LXBvcG92ZXIuY29tcG9uZW50LnNjc3MifQ== */"
 
 /***/ }),
 
@@ -332,8 +302,6 @@ var PropertyEditPopoverComponent = /** @class */ (function () {
         this.popoverInstance = popoverInstance;
         this.onValueChange = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
-    PropertyEditPopoverComponent.prototype.ngOnInit = function () {
-    };
     PropertyEditPopoverComponent.prototype.close = function () {
         this.popoverInstance.close();
     };
@@ -352,8 +320,7 @@ var PropertyEditPopoverComponent = /** @class */ (function () {
     PropertyEditPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-property-edit-popover',
-            template: __webpack_require__(/*! ./property-edit-popover.component.html */ "./src/app/popover/popover-example2/property-edit-popover/property-edit-popover.component.html"),
-            styles: [__webpack_require__(/*! ./property-edit-popover.component.scss */ "./src/app/popover/popover-example2/property-edit-popover/property-edit-popover.component.scss")]
+            template: __webpack_require__(/*! ./property-edit-popover.component.html */ "./src/app/popover/popover-example2/property-edit-popover/property-edit-popover.component.html")
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_public_api__WEBPACK_IMPORTED_MODULE_2__["Popover"]])
     ], PropertyEditPopoverComponent);

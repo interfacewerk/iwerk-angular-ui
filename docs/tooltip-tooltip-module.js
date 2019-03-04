@@ -1,5 +1,38 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tooltip-tooltip-module"],{
 
+/***/ "./src/app/tooltip/tooltip-demo/tooltip-demo-example1.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/tooltip/tooltip-demo/tooltip-demo-example1.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<button (click)=\"value = value + 1\">\n  Try me!\n  <ng-template iwTooltip>\n    Click to go from {{value}} to {{value+1}}\n  </ng-template>\n</button>"
+
+/***/ }),
+
+/***/ "./src/app/tooltip/tooltip-demo/tooltip-demo-example2.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/tooltip/tooltip-demo/tooltip-demo-example2.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<button>Horizontal tooltip\n  <ng-template iwTooltip [horizontal]=\"true\">\n    I show up horizontally!\n  </ng-template>\n</button>"
+
+/***/ }),
+
+/***/ "./src/app/tooltip/tooltip-demo/tooltip-demo-example3.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/tooltip/tooltip-demo/tooltip-demo-example3.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<button>\n  Some delay ~1s\n  <ng-template iwTooltip [delay]=\"1000\">\n    Yes, you waited but it was worth it!\n  </ng-template>\n</button>"
+
+/***/ }),
+
 /***/ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/tooltip/tooltip-demo/tooltip-demo.component.html ***!
@@ -7,18 +40,18 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-component-documentation\n  [componentTitle]=\"'Tooltip'\"\n  [componentId]=\"'TooltipDirective'\"\n  [componentType]=\"'directives'\"\n>\n  <ng-template appComponentExample=\"Simple example\" [source]=\"example1\">\n    <app-tooltip-demo-example1></app-tooltip-demo-example1>\n  </ng-template>\n  <ng-template appComponentExample=\"Horizontal\" [source]=\"example2\">\n    <app-tooltip-demo-example2></app-tooltip-demo-example2>\n  </ng-template>\n  <ng-template appComponentExample=\"Delay\" [source]=\"example3\">\n    <app-tooltip-demo-example3></app-tooltip-demo-example3>\n  </ng-template>\n</app-component-documentation>\n"
+module.exports = "<app-component-documentation\n  [componentTitle]=\"'Tooltip'\"\n  [componentId]=\"'TooltipDirective'\"\n  [componentType]=\"'directives'\"\n>\n  <ng-template appComponentExample=\"Simple example\">\n    <app-tooltip-demo-example1></app-tooltip-demo-example1>\n    <app-tabs>\n      <app-code *appTab=\"'HTML'\" path=\"tooltip-demo-example1.component.html\"></app-code>\n    </app-tabs>\n  </ng-template>\n  <ng-template appComponentExample=\"Horizontal\">\n    <app-tooltip-demo-example2></app-tooltip-demo-example2>\n    <app-tabs>\n      <app-code *appTab=\"'HTML'\" path=\"tooltip-demo-example2.component.html\"></app-code>\n    </app-tabs>\n  </ng-template>\n  <ng-template appComponentExample=\"Delay\">\n    <app-tooltip-demo-example3></app-tooltip-demo-example3>\n    <app-tabs>\n      <app-code *appTab=\"'HTML'\" path=\"tooltip-demo-example3.component.html\"></app-code>\n    </app-tabs>\n  </ng-template>\n</app-component-documentation>\n"
 
 /***/ }),
 
-/***/ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.scss":
+/***/ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.sass":
 /*!******************************************************************!*\
-  !*** ./src/app/tooltip/tooltip-demo/tooltip-demo.component.scss ***!
+  !*** ./src/app/tooltip/tooltip-demo/tooltip-demo.component.sass ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvdG9vbHRpcC90b29sdGlwLWRlbW8vdG9vbHRpcC1kZW1vLmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvdG9vbHRpcC90b29sdGlwLWRlbW8vdG9vbHRpcC1kZW1vLmNvbXBvbmVudC5zYXNzIn0= */"
 
 /***/ }),
 
@@ -39,9 +72,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 
 
-var example1 = "<button (click)=\"value = value + 1\">\n  Try me!\n  <ng-template iwTooltip>\n    Click to go from {{value}} to {{value+1}}\n  </ng-template>\n</button>";
-var example2 = "<button>\n  Horizontal tooltip\n  <ng-template iwTooltip [horizontal]=\"true\">\n    I show up horizontally!\n  </ng-template>\n</button>";
-var example3 = "<button>\n  Some delay ~1s\n  <ng-template iwTooltip [delay]=\"1000\">\n    Yes, you waited but it was worth it!\n  </ng-template>\n</button>";
 var Example1TooltipComponent = /** @class */ (function () {
     function Example1TooltipComponent() {
         this.value = 0;
@@ -49,7 +79,7 @@ var Example1TooltipComponent = /** @class */ (function () {
     Example1TooltipComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tooltip-demo-example1',
-            template: example1
+            template: __webpack_require__(/*! ./tooltip-demo-example1.component.html */ "./src/app/tooltip/tooltip-demo/tooltip-demo-example1.component.html")
         })
     ], Example1TooltipComponent);
     return Example1TooltipComponent;
@@ -61,7 +91,7 @@ var Example2TooltipComponent = /** @class */ (function () {
     Example2TooltipComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tooltip-demo-example2',
-            template: example2
+            template: __webpack_require__(/*! ./tooltip-demo-example2.component.html */ "./src/app/tooltip/tooltip-demo/tooltip-demo-example2.component.html")
         })
     ], Example2TooltipComponent);
     return Example2TooltipComponent;
@@ -73,7 +103,7 @@ var Example3TooltipComponent = /** @class */ (function () {
     Example3TooltipComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tooltip-demo-example3',
-            template: example3
+            template: __webpack_require__(/*! ./tooltip-demo-example3.component.html */ "./src/app/tooltip/tooltip-demo/tooltip-demo-example3.component.html")
         })
     ], Example3TooltipComponent);
     return Example3TooltipComponent;
@@ -81,15 +111,12 @@ var Example3TooltipComponent = /** @class */ (function () {
 
 var TooltipDemoComponent = /** @class */ (function () {
     function TooltipDemoComponent() {
-        this.example1 = example1;
-        this.example2 = example2;
-        this.example3 = example3;
     }
     TooltipDemoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tooltip-demo',
             template: __webpack_require__(/*! ./tooltip-demo.component.html */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.html"),
-            styles: [__webpack_require__(/*! ./tooltip-demo.component.scss */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.scss")]
+            styles: [__webpack_require__(/*! ./tooltip-demo.component.sass */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.sass")]
         })
     ], TooltipDemoComponent);
     return TooltipDemoComponent;

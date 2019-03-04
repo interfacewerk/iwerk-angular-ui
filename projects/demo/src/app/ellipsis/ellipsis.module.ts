@@ -4,22 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
 import { MultilineEllipsisModule } from 'src/app/ui/multiline-ellipsis/multiline-ellipsis.module';
-import { EllipsisDemoComponent, EllipsisDemoExample1Component } from './ellipsis/ellipsis.component';
+import { EllipsisDemoComponent } from './ellipsis/ellipsis.component';
+import { EllipsisExample1Component } from './ellipsis-example1/ellipsis-example1.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            { path: '', component: EllipsisDemoComponent }
-        ]),
-        MultilineEllipsisModule,
-        FormsModule,
-        CoreModule
-    ],
-    declarations: [
-        EllipsisDemoComponent,
-        EllipsisDemoExample1Component,
-    ],
-    exports: [RouterModule]
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: EllipsisDemoComponent }
+    ]),
+    MultilineEllipsisModule,
+    FormsModule,
+    CoreModule
+  ],
+  declarations: [
+    EllipsisDemoComponent,
+    EllipsisExample1Component,
+  ],
+  exports: [RouterModule]
 })
 export class EllipsisDemoModule { }

@@ -1,27 +1,16 @@
-<p>
-  You can embed any of your components inside a popover. This can be very helpful to keep your templates light as well as refactoring.
-  To do so, declare the component class you want to embed as an entry component of your module.
-</p>
-
 <table>
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-template ngFor [ngForOf]="persons" let-person [ngForTrackBy]="trackBy">
-      <tr>
-        <td class="cell-right-icon">
-          {{person.first}}
-          <button (click)="openEditFirstNamePopover(person, $event)">&#x270E;</button>
-        </td>
-        <td class="cell-right-icon">
-          {{person.last}}
-          <button (click)="openEditLastNamePopover(person, $event)">&#x270E;</button>          
-        </td>
-      </tr>
-    </ng-template>
-  </tbody>
+  <thead><tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr></thead>
+  <tr *ngFor="let person of persons">
+    <td class="cell-right-icon">
+      {{person.first}}
+      <button (click)="openEditFirstNamePopover(person, $event)">&#x270E;</button>
+    </td>
+    <td class="cell-right-icon">
+      {{person.last}}
+      <button (click)="openEditLastNamePopover(person, $event)">&#x270E;</button>          
+    </td>
+  </tr>
 </table>
