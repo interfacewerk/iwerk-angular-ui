@@ -5292,17 +5292,17 @@
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/popover/popover.module.ts",
-                "type": "PopoverConfig",
-                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
+                "file": "src/app/demo/tooltip/tooltip.module.ts",
+                "type": "TooltipConfig",
+                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
             },
             {
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/tooltip/tooltip.module.ts",
-                "type": "TooltipConfig",
-                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
+                "file": "src/app/demo/popover/popover.module.ts",
+                "type": "PopoverConfig",
+                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
             },
             {
                 "name": "dialogConfig",
@@ -5618,16 +5618,6 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "src/app/demo/popover/popover.module.ts": [
-                {
-                    "name": "config",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/demo/popover/popover.module.ts",
-                    "type": "PopoverConfig",
-                    "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
-                }
-            ],
             "src/app/demo/tooltip/tooltip.module.ts": [
                 {
                     "name": "config",
@@ -5636,6 +5626,16 @@
                     "file": "src/app/demo/tooltip/tooltip.module.ts",
                     "type": "TooltipConfig",
                     "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
+                }
+            ],
+            "src/app/demo/popover/popover.module.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/demo/popover/popover.module.ts",
+                    "type": "PopoverConfig",
+                    "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
                 }
             ],
             "src/app/demo/dialog-demo/dialog-demo.module.ts": [

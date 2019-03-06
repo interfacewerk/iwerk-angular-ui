@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
 /***/ "../../src/app/ui/checkbox/checkbox.config.ts":
-/*!*******************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/checkbox/checkbox.config.ts ***!
-  \*******************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/checkbox/checkbox.config.ts ***!
+  \**************************************************************************************/
 /*! exports provided: IW_CHECKBOX_CONFIG */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -18,9 +18,9 @@ var IW_CHECKBOX_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injecti
 /***/ }),
 
 /***/ "../../src/app/ui/checkbox/checkbox.module.ts":
-/*!*******************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/checkbox/checkbox.module.ts ***!
-  \*******************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/checkbox/checkbox.module.ts ***!
+  \**************************************************************************************/
 /*! exports provided: CheckboxModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -55,9 +55,9 @@ var CheckboxModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/checkbox/checkbox/checkbox.component.html":
-/*!*********************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.html ***!
-  \*********************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.html ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -66,20 +66,20 @@ module.exports = "<div class=\"checkbox__checkbox\" [attr.tabindex]=\"getTabInde
 /***/ }),
 
 /***/ "../../src/app/ui/checkbox/checkbox/checkbox.component.scss":
-/*!*********************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.scss ***!
-  \*********************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.scss ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-checkbox {\n  display: inline-block;\n  line-height: 15px; }\n  iw-checkbox:not(.checkbox--disabled) {\n    cursor: pointer; }\n  iw-checkbox.checkbox--disabled {\n    cursor: not-allowed; }\n  iw-checkbox.checkbox--disabled .checkbox__checkbox {\n    opacity: 0.2; }\n  iw-checkbox:not(.checkbox--disabled):not(.checkbox--checked):hover .checkbox__checkbox {\n    border-color: grey; }\n  iw-checkbox.checkbox--checked .checkbox__checkbox {\n    border-color: black; }\n  iw-checkbox.checkbox--checked .checkbox__checkbox svg {\n    opacity: 1; }\n  iw-checkbox .checkbox__checkbox {\n    width: 15px;\n    height: 15px;\n    position: relative;\n    margin: 0 3px;\n    display: inline-block;\n    float: left;\n    transition: border-color 0.3s;\n    border: 1px solid lightgrey;\n    border-radius: 2px;\n    overflow: hidden; }\n  iw-checkbox .checkbox__checkbox svg {\n      position: absolute;\n      left: 50%;\n      top: 50%;\n      width: 75%;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      opacity: 0;\n      transition: opacity 0.3s; }\n  iw-checkbox .checkbox__label {\n    display: inline-block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvY2hlY2tib3gvY2hlY2tib3gvY2hlY2tib3guY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBcUI7RUFDckIsa0JBQWlCLEVBeURsQjtFQTNERDtJQUtJLGdCQUFlLEVBQ2hCO0VBTkg7SUFRSSxvQkFBbUIsRUFDcEI7RUFUSDtJQWFNLGFBQVksRUFDYjtFQWRMO0lBbUJNLG1CQUFrQixFQUNuQjtFQXBCTDtJQXlCTSxvQkFBbUIsRUFDcEI7RUExQkw7SUE2Qk0sV0FBVSxFQUNYO0VBOUJMO0lBa0NJLFlBQVc7SUFDWCxhQUFZO0lBQ1osbUJBQWtCO0lBQ2xCLGNBQWE7SUFDYixzQkFBcUI7SUFDckIsWUFBVztJQUNYLDhCQUE2QjtJQUM3Qiw0QkFBMkI7SUFDM0IsbUJBQWtCO0lBQ2xCLGlCQUFnQixFQVdqQjtFQXRESDtNQThDTSxtQkFBa0I7TUFDbEIsVUFBUztNQUNULFNBQVE7TUFDUixXQUFVO01BQ1YseUNBQWdDO2NBQWhDLGlDQUFnQztNQUNoQyxXQUFVO01BQ1YseUJBQXdCLEVBQ3pCO0VBckRMO0lBeURJLHNCQUFxQixFQUN0QiIsImZpbGUiOiJzcmMvYXBwL3VpL2NoZWNrYm94L2NoZWNrYm94L2NoZWNrYm94LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaXctY2hlY2tib3gge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGxpbmUtaGVpZ2h0OiAxNXB4O1xuICBcbiAgJjpub3QoLmNoZWNrYm94LS1kaXNhYmxlZCkge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICAmLmNoZWNrYm94LS1kaXNhYmxlZCB7XG4gICAgY3Vyc29yOiBub3QtYWxsb3dlZDtcbiAgfVxuXG4gICYuY2hlY2tib3gtLWRpc2FibGVkIHtcbiAgICAuY2hlY2tib3hfX2NoZWNrYm94IHtcbiAgICAgIG9wYWNpdHk6IDAuMjtcbiAgICB9XG4gIH1cblxuICAmOm5vdCguY2hlY2tib3gtLWRpc2FibGVkKTpub3QoLmNoZWNrYm94LS1jaGVja2VkKTpob3ZlciB7XG4gICAgLmNoZWNrYm94X19jaGVja2JveCB7XG4gICAgICBib3JkZXItY29sb3I6IGdyZXk7XG4gICAgfVxuICB9XG5cbiAgJi5jaGVja2JveC0tY2hlY2tlZCB7XG4gICAgLmNoZWNrYm94X19jaGVja2JveCB7XG4gICAgICBib3JkZXItY29sb3I6IGJsYWNrO1xuICAgIH1cbiAgICBcbiAgICAuY2hlY2tib3hfX2NoZWNrYm94IHN2ZyB7XG4gICAgICBvcGFjaXR5OiAxO1xuICAgIH1cbiAgfVxuXG4gIC5jaGVja2JveF9fY2hlY2tib3gge1xuICAgIHdpZHRoOiAxNXB4O1xuICAgIGhlaWdodDogMTVweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOiAwIDNweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuM3M7XG4gICAgYm9yZGVyOiAxcHggc29saWQgbGlnaHRncmV5O1xuICAgIGJvcmRlci1yYWRpdXM6IDJweDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuXG4gICAgc3ZnIHtcbiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgIGxlZnQ6IDUwJTtcbiAgICAgIHRvcDogNTAlO1xuICAgICAgd2lkdGg6IDc1JTtcbiAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xuICAgICAgb3BhY2l0eTogMDtcbiAgICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMC4zcztcbiAgICB9XG4gIH1cblxuICAuY2hlY2tib3hfX2xhYmVsIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIH1cbn0iXX0= */"
+module.exports = "iw-checkbox {\n  display: inline-block;\n  line-height: 15px; }\n  iw-checkbox:not(.checkbox--disabled) {\n    cursor: pointer; }\n  iw-checkbox.checkbox--disabled {\n    cursor: not-allowed; }\n  iw-checkbox.checkbox--disabled .checkbox__checkbox {\n    opacity: 0.2; }\n  iw-checkbox:not(.checkbox--disabled):not(.checkbox--checked):hover .checkbox__checkbox {\n    border-color: grey; }\n  iw-checkbox.checkbox--checked .checkbox__checkbox {\n    border-color: black; }\n  iw-checkbox.checkbox--checked .checkbox__checkbox svg {\n    opacity: 1; }\n  iw-checkbox .checkbox__checkbox {\n    width: 15px;\n    height: 15px;\n    position: relative;\n    margin: 0 3px;\n    display: inline-block;\n    float: left;\n    transition: border-color 0.3s;\n    border: 1px solid lightgrey;\n    border-radius: 2px;\n    overflow: hidden; }\n  iw-checkbox .checkbox__checkbox svg {\n      position: absolute;\n      left: 50%;\n      top: 50%;\n      width: 75%;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      opacity: 0;\n      transition: opacity 0.3s; }\n  iw-checkbox .checkbox__label {\n    display: inline-block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL2NoZWNrYm94L2NoZWNrYm94L2NoZWNrYm94LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usc0JBQXFCO0VBQ3JCLGtCQUFpQixFQXlEbEI7RUEzREQ7SUFLSSxnQkFBZSxFQUNoQjtFQU5IO0lBUUksb0JBQW1CLEVBQ3BCO0VBVEg7SUFhTSxhQUFZLEVBQ2I7RUFkTDtJQW1CTSxtQkFBa0IsRUFDbkI7RUFwQkw7SUF5Qk0sb0JBQW1CLEVBQ3BCO0VBMUJMO0lBNkJNLFdBQVUsRUFDWDtFQTlCTDtJQWtDSSxZQUFXO0lBQ1gsYUFBWTtJQUNaLG1CQUFrQjtJQUNsQixjQUFhO0lBQ2Isc0JBQXFCO0lBQ3JCLFlBQVc7SUFDWCw4QkFBNkI7SUFDN0IsNEJBQTJCO0lBQzNCLG1CQUFrQjtJQUNsQixpQkFBZ0IsRUFXakI7RUF0REg7TUE4Q00sbUJBQWtCO01BQ2xCLFVBQVM7TUFDVCxTQUFRO01BQ1IsV0FBVTtNQUNWLHlDQUFnQztjQUFoQyxpQ0FBZ0M7TUFDaEMsV0FBVTtNQUNWLHlCQUF3QixFQUN6QjtFQXJETDtJQXlESSxzQkFBcUIsRUFDdEIiLCJmaWxlIjoic3JjL2FwcC91aS9jaGVja2JveC9jaGVja2JveC9jaGVja2JveC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIml3LWNoZWNrYm94IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBsaW5lLWhlaWdodDogMTVweDtcbiAgXG4gICY6bm90KC5jaGVja2JveC0tZGlzYWJsZWQpIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gIH1cbiAgJi5jaGVja2JveC0tZGlzYWJsZWQge1xuICAgIGN1cnNvcjogbm90LWFsbG93ZWQ7XG4gIH1cblxuICAmLmNoZWNrYm94LS1kaXNhYmxlZCB7XG4gICAgLmNoZWNrYm94X19jaGVja2JveCB7XG4gICAgICBvcGFjaXR5OiAwLjI7XG4gICAgfVxuICB9XG5cbiAgJjpub3QoLmNoZWNrYm94LS1kaXNhYmxlZCk6bm90KC5jaGVja2JveC0tY2hlY2tlZCk6aG92ZXIge1xuICAgIC5jaGVja2JveF9fY2hlY2tib3gge1xuICAgICAgYm9yZGVyLWNvbG9yOiBncmV5O1xuICAgIH1cbiAgfVxuXG4gICYuY2hlY2tib3gtLWNoZWNrZWQge1xuICAgIC5jaGVja2JveF9fY2hlY2tib3gge1xuICAgICAgYm9yZGVyLWNvbG9yOiBibGFjaztcbiAgICB9XG4gICAgXG4gICAgLmNoZWNrYm94X19jaGVja2JveCBzdmcge1xuICAgICAgb3BhY2l0eTogMTtcbiAgICB9XG4gIH1cblxuICAuY2hlY2tib3hfX2NoZWNrYm94IHtcbiAgICB3aWR0aDogMTVweDtcbiAgICBoZWlnaHQ6IDE1cHg7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1hcmdpbjogMCAzcHg7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGZsb2F0OiBsZWZ0O1xuICAgIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGxpZ2h0Z3JleTtcbiAgICBib3JkZXItcmFkaXVzOiAycHg7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgIHN2ZyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBsZWZ0OiA1MCU7XG4gICAgICB0b3A6IDUwJTtcbiAgICAgIHdpZHRoOiA3NSU7XG4gICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICAgIG9wYWNpdHk6IDA7XG4gICAgICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuM3M7XG4gICAgfVxuICB9XG5cbiAgLmNoZWNrYm94X19sYWJlbCB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG59Il19 */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/checkbox/checkbox/checkbox.component.ts":
-/*!*******************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.ts ***!
-  \*******************************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/checkbox/checkbox/checkbox.component.ts ***!
+  \**************************************************************************************************/
 /*! exports provided: CheckboxComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -230,9 +230,9 @@ var CheckboxComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog-container/dialog-container.component.html":
-/*!***********************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.html ***!
-  \***********************************************************************************************************************/
+/*!******************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.html ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -241,20 +241,20 @@ module.exports = "\n<div class=\"dialog-container__content\">\n  <ng-content></n
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog-container/dialog-container.component.scss":
-/*!***********************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.scss ***!
-  \***********************************************************************************************************************/
+/*!******************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.scss ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-dialog-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  opacity: 0;\n  background: rgba(192, 192, 192, 0.67);\n  transition: opacity 0.5s;\n  outline: none; }\n  iw-dialog-container .dialog-container__content {\n    position: absolute;\n    top: 100px;\n    left: 20%;\n    width: 60%;\n    background: white;\n    max-height: calc(100% - 200px);\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    transition: -webkit-transform 0.5s;\n    transition: transform 0.5s;\n    transition: transform 0.5s, -webkit-transform 0.5s;\n    -webkit-transform: translateY(-100%);\n            transform: translateY(-100%);\n    box-shadow: 2px 2px 4px 1px gray;\n    padding: 15px; }\n  iw-dialog-container.iw-dialog-container--visible {\n    opacity: 1; }\n  iw-dialog-container.iw-dialog-container--visible .dialog-container__content {\n      -webkit-transform: translateY(0);\n              transform: translateY(0); }\n  iw-dialog-container .dialog-container__focus-trap {\n    opacity: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvZGlhbG9nL2RpYWxvZy1jb250YWluZXIvZGlhbG9nLWNvbnRhaW5lci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFlO0VBQ2YsT0FBTTtFQUNOLFFBQU87RUFDUCxZQUFXO0VBQ1gsYUFBWTtFQUNaLFdBQVU7RUFDVixXQUFVO0VBQ1Ysc0NBQXFDO0VBQ3JDLHlCQUF3QjtFQUN4QixjQUFhLEVBNEJkO0VBdENEO0lBYUksbUJBQWtCO0lBQ2xCLFdBQVU7SUFDVixVQUFTO0lBQ1QsV0FBVTtJQUNWLGtCQUFpQjtJQUNqQiwrQkFBOEI7SUFDOUIsaUJBQWdCO0lBQ2hCLGNBQWE7SUFDYix1QkFBc0I7SUFDdEIsbUNBQTBCO0lBQTFCLDJCQUEwQjtJQUExQixtREFBMEI7SUFDMUIscUNBQTRCO1lBQTVCLDZCQUE0QjtJQUM1QixpQ0FBZ0M7SUFDaEMsY0FBYSxFQUNkO0VBMUJIO0lBNkJJLFdBQVUsRUFJWDtFQWpDSDtNQStCTSxpQ0FBd0I7Y0FBeEIseUJBQXdCLEVBQ3pCO0VBaENMO0lBb0NJLFdBQVUsRUFDWCIsImZpbGUiOiJzcmMvYXBwL3VpL2RpYWxvZy9kaWFsb2ctY29udGFpbmVyL2RpYWxvZy1jb250YWluZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpdy1kaWFsb2ctY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIHotaW5kZXg6IDI7XG4gIG9wYWNpdHk6IDA7XG4gIGJhY2tncm91bmQ6IHJnYmEoMTkyLCAxOTIsIDE5MiwgMC42Nyk7XG4gIHRyYW5zaXRpb246IG9wYWNpdHkgMC41cztcbiAgb3V0bGluZTogbm9uZTtcblxuICAuZGlhbG9nLWNvbnRhaW5lcl9fY29udGVudCB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMTAwcHg7XG4gICAgbGVmdDogMjAlO1xuICAgIHdpZHRoOiA2MCU7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgbWF4LWhlaWdodDogY2FsYygxMDAlIC0gMjAwcHgpO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjVzO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTAwJSk7XG4gICAgYm94LXNoYWRvdzogMnB4IDJweCA0cHggMXB4IGdyYXk7XG4gICAgcGFkZGluZzogMTVweDtcbiAgfVxuXG4gICYuaXctZGlhbG9nLWNvbnRhaW5lci0tdmlzaWJsZSB7XG4gICAgb3BhY2l0eTogMTtcbiAgICAuZGlhbG9nLWNvbnRhaW5lcl9fY29udGVudCB7XG4gICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7XG4gICAgfVxuICB9XG5cbiAgLmRpYWxvZy1jb250YWluZXJfX2ZvY3VzLXRyYXAge1xuICAgIG9wYWNpdHk6IDA7XG4gIH1cbn1cbiJdfQ== */"
+module.exports = "iw-dialog-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  opacity: 0;\n  background: rgba(192, 192, 192, 0.67);\n  transition: opacity 0.5s;\n  outline: none; }\n  iw-dialog-container .dialog-container__content {\n    position: absolute;\n    top: 100px;\n    left: 20%;\n    width: 60%;\n    background: white;\n    max-height: calc(100% - 200px);\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    transition: -webkit-transform 0.5s;\n    transition: transform 0.5s;\n    transition: transform 0.5s, -webkit-transform 0.5s;\n    -webkit-transform: translateY(-100%);\n            transform: translateY(-100%);\n    box-shadow: 2px 2px 4px 1px gray;\n    padding: 15px; }\n  iw-dialog-container.iw-dialog-container--visible {\n    opacity: 1; }\n  iw-dialog-container.iw-dialog-container--visible .dialog-container__content {\n      -webkit-transform: translateY(0);\n              transform: translateY(0); }\n  iw-dialog-container .dialog-container__focus-trap {\n    opacity: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL2RpYWxvZy9kaWFsb2ctY29udGFpbmVyL2RpYWxvZy1jb250YWluZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZTtFQUNmLE9BQU07RUFDTixRQUFPO0VBQ1AsWUFBVztFQUNYLGFBQVk7RUFDWixXQUFVO0VBQ1YsV0FBVTtFQUNWLHNDQUFxQztFQUNyQyx5QkFBd0I7RUFDeEIsY0FBYSxFQTRCZDtFQXRDRDtJQWFJLG1CQUFrQjtJQUNsQixXQUFVO0lBQ1YsVUFBUztJQUNULFdBQVU7SUFDVixrQkFBaUI7SUFDakIsK0JBQThCO0lBQzlCLGlCQUFnQjtJQUNoQixjQUFhO0lBQ2IsdUJBQXNCO0lBQ3RCLG1DQUEwQjtJQUExQiwyQkFBMEI7SUFBMUIsbURBQTBCO0lBQzFCLHFDQUE0QjtZQUE1Qiw2QkFBNEI7SUFDNUIsaUNBQWdDO0lBQ2hDLGNBQWEsRUFDZDtFQTFCSDtJQTZCSSxXQUFVLEVBSVg7RUFqQ0g7TUErQk0saUNBQXdCO2NBQXhCLHlCQUF3QixFQUN6QjtFQWhDTDtJQW9DSSxXQUFVLEVBQ1giLCJmaWxlIjoic3JjL2FwcC91aS9kaWFsb2cvZGlhbG9nLWNvbnRhaW5lci9kaWFsb2ctY29udGFpbmVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaXctZGlhbG9nLWNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICB6LWluZGV4OiAyO1xuICBvcGFjaXR5OiAwO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDE5MiwgMTkyLCAxOTIsIDAuNjcpO1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuNXM7XG4gIG91dGxpbmU6IG5vbmU7XG5cbiAgLmRpYWxvZy1jb250YWluZXJfX2NvbnRlbnQge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDEwMHB4O1xuICAgIGxlZnQ6IDIwJTtcbiAgICB3aWR0aDogNjAlO1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIG1heC1oZWlnaHQ6IGNhbGMoMTAwJSAtIDIwMHB4KTtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC41cztcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTEwMCUpO1xuICAgIGJveC1zaGFkb3c6IDJweCAycHggNHB4IDFweCBncmF5O1xuICAgIHBhZGRpbmc6IDE1cHg7XG4gIH1cblxuICAmLml3LWRpYWxvZy1jb250YWluZXItLXZpc2libGUge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgLmRpYWxvZy1jb250YWluZXJfX2NvbnRlbnQge1xuICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApO1xuICAgIH1cbiAgfVxuXG4gIC5kaWFsb2ctY29udGFpbmVyX19mb2N1cy10cmFwIHtcbiAgICBvcGFjaXR5OiAwO1xuICB9XG59XG4iXX0= */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog-container/dialog-container.component.ts":
-/*!*********************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.ts ***!
-  \*********************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog-container/dialog-container.component.ts ***!
+  \****************************************************************************************************************/
 /*! exports provided: DialogContainerComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -342,9 +342,9 @@ var DialogContainerComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog-focus-trap.directive.ts":
-/*!*****************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog-focus-trap.directive.ts ***!
-  \*****************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog-focus-trap.directive.ts ***!
+  \************************************************************************************************/
 /*! exports provided: DialogFocusTrapDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -389,9 +389,9 @@ var DialogFocusTrapDirective = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog-ref.class.ts":
-/*!******************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog-ref.class.ts ***!
-  \******************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog-ref.class.ts ***!
+  \*************************************************************************************/
 /*! exports provided: DialogRef */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -443,9 +443,9 @@ var DialogRef = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog.config.ts":
-/*!***************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog.config.ts ***!
-  \***************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog.config.ts ***!
+  \**********************************************************************************/
 /*! exports provided: IW_DIALOG_CONFIG */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -460,9 +460,9 @@ var IW_DIALOG_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injection
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog.directive.ts":
-/*!******************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog.directive.ts ***!
-  \******************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog.directive.ts ***!
+  \*************************************************************************************/
 /*! exports provided: DialogDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -552,9 +552,9 @@ var DialogDirective = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog.module.ts":
-/*!***************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog.module.ts ***!
-  \***************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog.module.ts ***!
+  \**********************************************************************************/
 /*! exports provided: IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -610,9 +610,9 @@ var DialogModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/dialog/dialog.service.ts":
-/*!****************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/dialog/dialog.service.ts ***!
-  \****************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/dialog/dialog.service.ts ***!
+  \***********************************************************************************/
 /*! exports provided: DialogService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -720,9 +720,9 @@ var DialogService = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts":
-/*!******************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts ***!
-  \******************************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts ***!
+  \*************************************************************************************************************/
 /*! exports provided: MultilineEllipsisDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -892,9 +892,9 @@ var MultilineEllipsisDirective = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.module.ts":
-/*!***************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/multiline-ellipsis/multiline-ellipsis.module.ts ***!
-  \***************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/multiline-ellipsis/multiline-ellipsis.module.ts ***!
+  \**********************************************************************************************************/
 /*! exports provided: MultilineEllipsisModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -927,9 +927,9 @@ var MultilineEllipsisModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/navigation/navigation-controller.service.ts":
-/*!***********************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation-controller.service.ts ***!
-  \***********************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/navigation/navigation-controller.service.ts ***!
+  \******************************************************************************************************/
 /*! exports provided: NavigationData, NavigationController */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -973,10 +973,10 @@ var NavigationController = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/navigation/navigation.module.ts":
-/*!***********************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation.module.ts ***!
-  \***********************************************************************************************/
-/*! exports provided: NavigationComponent, NavigationData, NavigationModule */
+/*!******************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/navigation/navigation.module.ts ***!
+  \******************************************************************************************/
+/*! exports provided: NavigationComponent, NavigationData, NavigationController, NavigationModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -990,6 +990,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _navigation_controller_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navigation-controller.service */ "../../src/app/ui/navigation/navigation-controller.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationData", function() { return _navigation_controller_service__WEBPACK_IMPORTED_MODULE_4__["NavigationData"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationController", function() { return _navigation_controller_service__WEBPACK_IMPORTED_MODULE_4__["NavigationController"]; });
 
 
 
@@ -1021,9 +1023,9 @@ var NavigationModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/navigation/navigation/navigation.component.html":
-/*!***************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.html ***!
-  \***************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.html ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1032,20 +1034,20 @@ module.exports = "<div class=\"iw-navigation-container\" [class.iw-navigation-co
 /***/ }),
 
 /***/ "../../src/app/ui/navigation/navigation/navigation.component.sass":
-/*!***************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.sass ***!
-  \***************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.sass ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".iw-navigation-container:not(.iw-navigation-container--visible) {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvbmF2aWdhdGlvbi9uYXZpZ2F0aW9uL25hdmlnYXRpb24uY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFhLEVBQUciLCJmaWxlIjoic3JjL2FwcC91aS9uYXZpZ2F0aW9uL25hdmlnYXRpb24vbmF2aWdhdGlvbi5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pdy1uYXZpZ2F0aW9uLWNvbnRhaW5lcjpub3QoLml3LW5hdmlnYXRpb24tY29udGFpbmVyLS12aXNpYmxlKSB7XG4gIGRpc3BsYXk6IG5vbmU7IH1cbiJdfQ== */"
+module.exports = ".iw-navigation-container:not(.iw-navigation-container--visible) {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL25hdmlnYXRpb24vbmF2aWdhdGlvbi9uYXZpZ2F0aW9uLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBYSxFQUFHIiwiZmlsZSI6InNyYy9hcHAvdWkvbmF2aWdhdGlvbi9uYXZpZ2F0aW9uL25hdmlnYXRpb24uY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaXctbmF2aWdhdGlvbi1jb250YWluZXI6bm90KC5pdy1uYXZpZ2F0aW9uLWNvbnRhaW5lci0tdmlzaWJsZSkge1xuICBkaXNwbGF5OiBub25lOyB9XG4iXX0= */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/navigation/navigation/navigation.component.ts":
-/*!*************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.ts ***!
-  \*************************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/navigation/navigation/navigation.component.ts ***!
+  \********************************************************************************************************/
 /*! exports provided: NavigationComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1116,9 +1118,9 @@ var NavigationComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/helpers.ts":
-/*!**********************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/helpers.ts ***!
-  \**********************************************************************************/
+/*!*****************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/helpers.ts ***!
+  \*****************************************************************************/
 /*! exports provided: smartPosition, addClasses, combineOptionsAndDefaults */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1221,9 +1223,9 @@ function combineOptionsAndDefaults(providedConfig, options) {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-container/popover-container.component.html":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.html ***!
-  \**************************************************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.html ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1232,20 +1234,20 @@ module.exports = "<ng-content></ng-content>\n"
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-container/popover-container.component.scss":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.scss ***!
-  \**************************************************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.scss ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-popover-container {\n  position: absolute;\n  z-index: 4;\n  display: block;\n  background: white;\n  border: 1px solid black;\n  padding: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvcG9wb3Zlci9wb3BvdmVyLWNvbnRhaW5lci9wb3BvdmVyLWNvbnRhaW5lci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFrQjtFQUNsQixXQUFVO0VBQ1YsZUFBYztFQUNkLGtCQUFpQjtFQUNqQix3QkFBdUI7RUFDdkIsYUFBWSxFQUNiIiwiZmlsZSI6InNyYy9hcHAvdWkvcG9wb3Zlci9wb3BvdmVyLWNvbnRhaW5lci9wb3BvdmVyLWNvbnRhaW5lci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIml3LXBvcG92ZXItY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB6LWluZGV4OiA0O1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBwYWRkaW5nOiA1cHg7XG59XG4iXX0= */"
+module.exports = "iw-popover-container {\n  position: absolute;\n  z-index: 4;\n  display: block;\n  background: white;\n  border: 1px solid black;\n  padding: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL3BvcG92ZXIvcG9wb3Zlci1jb250YWluZXIvcG9wb3Zlci1jb250YWluZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxtQkFBa0I7RUFDbEIsV0FBVTtFQUNWLGVBQWM7RUFDZCxrQkFBaUI7RUFDakIsd0JBQXVCO0VBQ3ZCLGFBQVksRUFDYiIsImZpbGUiOiJzcmMvYXBwL3VpL3BvcG92ZXIvcG9wb3Zlci1jb250YWluZXIvcG9wb3Zlci1jb250YWluZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpdy1wb3BvdmVyLWNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgei1pbmRleDogNDtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGJhY2tncm91bmQ6IHdoaXRlO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgcGFkZGluZzogNXB4O1xufVxuIl19 */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-container/popover-container.component.ts":
-/*!************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.ts ***!
-  \************************************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-container/popover-container.component.ts ***!
+  \*******************************************************************************************************************/
 /*! exports provided: PopoverContainerComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1289,9 +1291,9 @@ var PopoverContainerComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.html":
-/*!******************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.html ***!
-  \******************************************************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.html ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1300,20 +1302,20 @@ module.exports = "<ng-content></ng-content>"
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.scss":
-/*!******************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.scss ***!
-  \******************************************************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.scss ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-popover-scroll-mask {\n  z-index: 3;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(255, 255, 255, 0.01); }\n  iw-popover-scroll-mask .iw-popover-arrow-element {\n    z-index: 5; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvcG9wb3Zlci9wb3BvdmVyLXNjcm9sbC1tYXNrL3BvcG92ZXItc2Nyb2xsLW1hc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFVO0VBQ1YsbUJBQWtCO0VBQ2xCLE9BQU07RUFDTixRQUFPO0VBQ1AsWUFBVztFQUNYLGFBQVk7RUFDWixzQ0FBcUMsRUFLdEM7RUFaRDtJQVVJLFdBQVUsRUFDWCIsImZpbGUiOiJzcmMvYXBwL3VpL3BvcG92ZXIvcG9wb3Zlci1zY3JvbGwtbWFzay9wb3BvdmVyLXNjcm9sbC1tYXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaXctcG9wb3Zlci1zY3JvbGwtbWFzayB7XG4gIHotaW5kZXg6IDM7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDEpO1xuICBcbiAgLml3LXBvcG92ZXItYXJyb3ctZWxlbWVudCB7XG4gICAgei1pbmRleDogNTtcbiAgfVxufVxuIl19 */"
+module.exports = "iw-popover-scroll-mask {\n  z-index: 3;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(255, 255, 255, 0.01); }\n  iw-popover-scroll-mask .iw-popover-arrow-element {\n    z-index: 5; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL3BvcG92ZXIvcG9wb3Zlci1zY3JvbGwtbWFzay9wb3BvdmVyLXNjcm9sbC1tYXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBVTtFQUNWLG1CQUFrQjtFQUNsQixPQUFNO0VBQ04sUUFBTztFQUNQLFlBQVc7RUFDWCxhQUFZO0VBQ1osc0NBQXFDLEVBS3RDO0VBWkQ7SUFVSSxXQUFVLEVBQ1giLCJmaWxlIjoic3JjL2FwcC91aS9wb3BvdmVyL3BvcG92ZXItc2Nyb2xsLW1hc2svcG9wb3Zlci1zY3JvbGwtbWFzay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIml3LXBvcG92ZXItc2Nyb2xsLW1hc2sge1xuICB6LWluZGV4OiAzO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbiAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAxKTtcbiAgXG4gIC5pdy1wb3BvdmVyLWFycm93LWVsZW1lbnQge1xuICAgIHotaW5kZXg6IDU7XG4gIH1cbn1cbiJdfQ== */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.ts":
-/*!****************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.ts ***!
-  \****************************************************************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.ts ***!
+  \***********************************************************************************************************************/
 /*! exports provided: PopoverScrollMaskComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1359,9 +1361,9 @@ var PopoverScrollMaskComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover.config.ts":
-/*!*****************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover.config.ts ***!
-  \*****************************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover.config.ts ***!
+  \************************************************************************************/
 /*! exports provided: IW_POPOVER_CONFIG */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1376,9 +1378,9 @@ var IW_POPOVER_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectio
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover.directive.ts":
-/*!********************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover.directive.ts ***!
-  \********************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover.directive.ts ***!
+  \***************************************************************************************/
 /*! exports provided: PopoverDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1567,9 +1569,9 @@ var PopoverDirective = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover.module.ts":
-/*!*****************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover.module.ts ***!
-  \*****************************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover.module.ts ***!
+  \************************************************************************************/
 /*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1625,9 +1627,9 @@ var PopoverModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/popover/popover.service.ts":
-/*!******************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/popover/popover.service.ts ***!
-  \******************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/popover/popover.service.ts ***!
+  \*************************************************************************************/
 /*! exports provided: Popover, PopoverService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1786,9 +1788,9 @@ var PopoverService = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/state-button/state-button.directive.ts":
-/*!******************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/state-button/state-button.directive.ts ***!
-  \******************************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/state-button/state-button.directive.ts ***!
+  \*************************************************************************************************/
 /*! exports provided: StateButtonDirective, SbIdleDirective, SbSuccessDirective, SbDoingDirective, SbFailureDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1976,9 +1978,9 @@ var SbFailureDirective = /** @class */ (function (_super) {
 /***/ }),
 
 /***/ "../../src/app/ui/state-button/state-button.module.ts":
-/*!***************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/state-button/state-button.module.ts ***!
-  \***************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/state-button/state-button.module.ts ***!
+  \**********************************************************************************************/
 /*! exports provided: StateButtonModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2025,9 +2027,9 @@ var StateButtonModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/state-button/state-template.class.ts":
-/*!****************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/state-button/state-template.class.ts ***!
-  \****************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/state-button/state-template.class.ts ***!
+  \***********************************************************************************************/
 /*! exports provided: StateTemplate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2075,9 +2077,9 @@ var StateTemplate = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/helpers.ts":
-/*!**********************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/helpers.ts ***!
-  \**********************************************************************************/
+/*!*****************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/helpers.ts ***!
+  \*****************************************************************************/
 /*! exports provided: smartPosition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2145,9 +2147,9 @@ function horizontalSmartPosition(options) {
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip-container/tooltip-container.component.html":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.html ***!
-  \**************************************************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.html ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2156,20 +2158,20 @@ module.exports = "<div class=\"tooltip-container__content\">\n  <ng-content></ng
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip-container/tooltip-container.component.scss":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.scss ***!
-  \**************************************************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.scss ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-tooltip-container {\n  z-index: 6;\n  position: absolute;\n  display: block;\n  padding: 5px; }\n  iw-tooltip-container .tooltip-container__content {\n    border-radius: 3px;\n    color: white;\n    padding: 5px;\n    background: black; }\n  iw-tooltip-container:after {\n    border: 5px solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none; }\n  iw-tooltip-container.iw-tooltip-container--bottom:after {\n    left: 50%;\n    bottom: calc(100% - 5px);\n    border-bottom-color: black;\n    margin-left: -5px; }\n  iw-tooltip-container.iw-tooltip-container--top:after {\n    left: 50%;\n    top: calc(100% - 5px);\n    border-top-color: black;\n    margin-left: -5px; }\n  iw-tooltip-container.iw-tooltip-container--right:after {\n    top: 50%;\n    right: calc(100% - 5px);\n    border-right-color: black;\n    margin-top: -5px; }\n  iw-tooltip-container.iw-tooltip-container--left:after {\n    top: 50%;\n    left: calc(100% - 5px);\n    border-left-color: black;\n    margin-top: -5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3NyYy9hcHAvdWkvdG9vbHRpcC90b29sdGlwLWNvbnRhaW5lci90b29sdGlwLWNvbnRhaW5lci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLFdBQVU7RUFDVixtQkFBa0I7RUFDbEIsZUFBYztFQUNkLGFBTmlCLEVBbURsQjtFQWpERDtJQU9JLG1CQUFrQjtJQUNsQixhQUFZO0lBQ1osYUFBWTtJQUNaLGtCQUFpQixFQUNsQjtFQVhIO0lBY0ksOEJBQXdDO0lBQ3hDLGFBQVk7SUFDWixVQUFTO0lBQ1QsU0FBUTtJQUNSLG1CQUFrQjtJQUNsQixxQkFBb0IsRUFDckI7RUFwQkg7SUF1QkksVUFBUztJQUNULHlCQUFzQztJQUN0QywyQkFBMEI7SUFDMUIsa0JBNUJlLEVBNkJoQjtFQTNCSDtJQThCSSxVQUFTO0lBQ1Qsc0JBQW1DO0lBQ25DLHdCQUF1QjtJQUN2QixrQkFuQ2UsRUFvQ2hCO0VBbENIO0lBcUNJLFNBQVE7SUFDUix3QkFBcUM7SUFDckMsMEJBQXlCO0lBQ3pCLGlCQTFDZSxFQTJDaEI7RUF6Q0g7SUE0Q0ksU0FBUTtJQUNSLHVCQUFvQztJQUNwQyx5QkFBd0I7SUFDeEIsaUJBakRlLEVBa0RoQiIsImZpbGUiOiJzcmMvYXBwL3VpL3Rvb2x0aXAvdG9vbHRpcC1jb250YWluZXIvdG9vbHRpcC1jb250YWluZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIkaW5uZXItcGFkZGluZzogNXB4O1xuXG5pdy10b29sdGlwLWNvbnRhaW5lciB7XG4gIHotaW5kZXg6IDY7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHBhZGRpbmc6ICRpbm5lci1wYWRkaW5nO1xuXG4gIC50b29sdGlwLWNvbnRhaW5lcl9fY29udGVudCB7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgYmFja2dyb3VuZDogYmxhY2s7ICAgIFxuICB9XG5cbiAgJjphZnRlciB7XG4gICAgYm9yZGVyOiAkaW5uZXItcGFkZGluZyBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBjb250ZW50OiBcIiBcIjtcbiAgICBoZWlnaHQ6IDA7XG4gICAgd2lkdGg6IDA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICB9XG5cbiAgJi5pdy10b29sdGlwLWNvbnRhaW5lci0tYm90dG9tOmFmdGVyIHtcbiAgICBsZWZ0OiA1MCU7XG4gICAgYm90dG9tOiBjYWxjKDEwMCUgLSAjeyRpbm5lci1wYWRkaW5nfSk7XG4gICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogYmxhY2s7XG4gICAgbWFyZ2luLWxlZnQ6IC0kaW5uZXItcGFkZGluZztcbiAgfVxuXG4gICYuaXctdG9vbHRpcC1jb250YWluZXItLXRvcDphZnRlciB7XG4gICAgbGVmdDogNTAlO1xuICAgIHRvcDogY2FsYygxMDAlIC0gI3skaW5uZXItcGFkZGluZ30pO1xuICAgIGJvcmRlci10b3AtY29sb3I6IGJsYWNrO1xuICAgIG1hcmdpbi1sZWZ0OiAtJGlubmVyLXBhZGRpbmc7XG4gIH1cblxuICAmLml3LXRvb2x0aXAtY29udGFpbmVyLS1yaWdodDphZnRlciB7XG4gICAgdG9wOiA1MCU7XG4gICAgcmlnaHQ6IGNhbGMoMTAwJSAtICN7JGlubmVyLXBhZGRpbmd9KTtcbiAgICBib3JkZXItcmlnaHQtY29sb3I6IGJsYWNrO1xuICAgIG1hcmdpbi10b3A6IC0kaW5uZXItcGFkZGluZztcbiAgfVxuXG4gICYuaXctdG9vbHRpcC1jb250YWluZXItLWxlZnQ6YWZ0ZXIge1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IGNhbGMoMTAwJSAtICN7JGlubmVyLXBhZGRpbmd9KTtcbiAgICBib3JkZXItbGVmdC1jb2xvcjogYmxhY2s7XG4gICAgbWFyZ2luLXRvcDogLSRpbm5lci1wYWRkaW5nO1xuICB9XG59XG4iXX0= */"
+module.exports = "iw-tooltip-container {\n  z-index: 6;\n  position: absolute;\n  display: block;\n  padding: 5px; }\n  iw-tooltip-container .tooltip-container__content {\n    border-radius: 3px;\n    color: white;\n    padding: 5px;\n    background: black; }\n  iw-tooltip-container:after {\n    border: 5px solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none; }\n  iw-tooltip-container.iw-tooltip-container--bottom:after {\n    left: 50%;\n    bottom: calc(100% - 5px);\n    border-bottom-color: black;\n    margin-left: -5px; }\n  iw-tooltip-container.iw-tooltip-container--top:after {\n    left: 50%;\n    top: calc(100% - 5px);\n    border-top-color: black;\n    margin-left: -5px; }\n  iw-tooltip-container.iw-tooltip-container--right:after {\n    top: 50%;\n    right: calc(100% - 5px);\n    border-right-color: black;\n    margin-top: -5px; }\n  iw-tooltip-container.iw-tooltip-container--left:after {\n    top: 50%;\n    left: calc(100% - 5px);\n    border-left-color: black;\n    margin-top: -5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9zcmMvYXBwL3VpL3Rvb2x0aXAvdG9vbHRpcC1jb250YWluZXIvdG9vbHRpcC1jb250YWluZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxXQUFVO0VBQ1YsbUJBQWtCO0VBQ2xCLGVBQWM7RUFDZCxhQU5pQixFQW1EbEI7RUFqREQ7SUFPSSxtQkFBa0I7SUFDbEIsYUFBWTtJQUNaLGFBQVk7SUFDWixrQkFBaUIsRUFDbEI7RUFYSDtJQWNJLDhCQUF3QztJQUN4QyxhQUFZO0lBQ1osVUFBUztJQUNULFNBQVE7SUFDUixtQkFBa0I7SUFDbEIscUJBQW9CLEVBQ3JCO0VBcEJIO0lBdUJJLFVBQVM7SUFDVCx5QkFBc0M7SUFDdEMsMkJBQTBCO0lBQzFCLGtCQTVCZSxFQTZCaEI7RUEzQkg7SUE4QkksVUFBUztJQUNULHNCQUFtQztJQUNuQyx3QkFBdUI7SUFDdkIsa0JBbkNlLEVBb0NoQjtFQWxDSDtJQXFDSSxTQUFRO0lBQ1Isd0JBQXFDO0lBQ3JDLDBCQUF5QjtJQUN6QixpQkExQ2UsRUEyQ2hCO0VBekNIO0lBNENJLFNBQVE7SUFDUix1QkFBb0M7SUFDcEMseUJBQXdCO0lBQ3hCLGlCQWpEZSxFQWtEaEIiLCJmaWxlIjoic3JjL2FwcC91aS90b29sdGlwL3Rvb2x0aXAtY29udGFpbmVyL3Rvb2x0aXAtY29udGFpbmVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiJGlubmVyLXBhZGRpbmc6IDVweDtcblxuaXctdG9vbHRpcC1jb250YWluZXIge1xuICB6LWluZGV4OiA2O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBwYWRkaW5nOiAkaW5uZXItcGFkZGluZztcblxuICAudG9vbHRpcC1jb250YWluZXJfX2NvbnRlbnQge1xuICAgIGJvcmRlci1yYWRpdXM6IDNweDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIGJhY2tncm91bmQ6IGJsYWNrOyAgICBcbiAgfVxuXG4gICY6YWZ0ZXIge1xuICAgIGJvcmRlcjogJGlubmVyLXBhZGRpbmcgc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgY29udGVudDogXCIgXCI7XG4gICAgaGVpZ2h0OiAwO1xuICAgIHdpZHRoOiAwO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgfVxuXG4gICYuaXctdG9vbHRpcC1jb250YWluZXItLWJvdHRvbTphZnRlciB7XG4gICAgbGVmdDogNTAlO1xuICAgIGJvdHRvbTogY2FsYygxMDAlIC0gI3skaW5uZXItcGFkZGluZ30pO1xuICAgIGJvcmRlci1ib3R0b20tY29sb3I6IGJsYWNrO1xuICAgIG1hcmdpbi1sZWZ0OiAtJGlubmVyLXBhZGRpbmc7XG4gIH1cblxuICAmLml3LXRvb2x0aXAtY29udGFpbmVyLS10b3A6YWZ0ZXIge1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0b3A6IGNhbGMoMTAwJSAtICN7JGlubmVyLXBhZGRpbmd9KTtcbiAgICBib3JkZXItdG9wLWNvbG9yOiBibGFjaztcbiAgICBtYXJnaW4tbGVmdDogLSRpbm5lci1wYWRkaW5nO1xuICB9XG5cbiAgJi5pdy10b29sdGlwLWNvbnRhaW5lci0tcmlnaHQ6YWZ0ZXIge1xuICAgIHRvcDogNTAlO1xuICAgIHJpZ2h0OiBjYWxjKDEwMCUgLSAjeyRpbm5lci1wYWRkaW5nfSk7XG4gICAgYm9yZGVyLXJpZ2h0LWNvbG9yOiBibGFjaztcbiAgICBtYXJnaW4tdG9wOiAtJGlubmVyLXBhZGRpbmc7XG4gIH1cblxuICAmLml3LXRvb2x0aXAtY29udGFpbmVyLS1sZWZ0OmFmdGVyIHtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiBjYWxjKDEwMCUgLSAjeyRpbm5lci1wYWRkaW5nfSk7XG4gICAgYm9yZGVyLWxlZnQtY29sb3I6IGJsYWNrO1xuICAgIG1hcmdpbi10b3A6IC0kaW5uZXItcGFkZGluZztcbiAgfVxufVxuIl19 */"
 
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip-container/tooltip-container.component.ts":
-/*!************************************************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.ts ***!
-  \************************************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip-container/tooltip-container.component.ts ***!
+  \*******************************************************************************************************************/
 /*! exports provided: TooltipContainerComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2219,9 +2221,9 @@ var TooltipContainerComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip.config.ts":
-/*!*****************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip.config.ts ***!
-  \*****************************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip.config.ts ***!
+  \************************************************************************************/
 /*! exports provided: IW_TOOLTIP_CONFIG */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2236,9 +2238,9 @@ var IW_TOOLTIP_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectio
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip.directive.ts":
-/*!********************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip.directive.ts ***!
-  \********************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip.directive.ts ***!
+  \***************************************************************************************/
 /*! exports provided: TooltipDirective */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2419,9 +2421,9 @@ var TooltipDirective = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/tooltip/tooltip.module.ts":
-/*!*****************************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/tooltip/tooltip.module.ts ***!
-  \*****************************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/tooltip/tooltip.module.ts ***!
+  \************************************************************************************/
 /*! exports provided: IW_TOOLTIP_CONFIG, TooltipModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2463,9 +2465,9 @@ var TooltipModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/app/ui/ui.module.ts":
-/*!****************************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/app/ui/ui.module.ts ***!
-  \****************************************************************************/
+/*!***********************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/app/ui/ui.module.ts ***!
+  \***********************************************************************/
 /*! exports provided: UiModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2522,10 +2524,10 @@ var UiModule = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../src/public_api.ts":
-/*!**********************************************************************!*\
-  !*** /Users/kevinmerckx/dev/open/iwerk-angular-ui/src/public_api.ts ***!
-  \**********************************************************************/
-/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationModule, UiModule */
+/*!*****************************************************************!*\
+  !*** /Users/kevinmerckx/dev/iwerk-angular-ui/src/public_api.ts ***!
+  \*****************************************************************/
+/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationController, NavigationModule, UiModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2566,6 +2568,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationComponent", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationComponent"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationData", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationData"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationController", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationController"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationModule", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationModule"]; });
 
@@ -2653,7 +2657,7 @@ module.exports = "<aside>\n  <ul>\n    <li class=\"app__logo\"><a></a></li>\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%; }\n  :host ul li.app__logo {\n    padding: 10px 15px; }\n  :host ul li.app__logo a {\n      width: 100%;\n      display: block;\n      width: auto;\n      position: relative;\n      color: red;\n      background-image: url('https://interfacewerk.github.io/iwerk-angular-ui/assets/logo.svg');\n      background-size: 100%;\n      background-repeat: no-repeat; }\n  :host aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: 200px;\n    overflow: auto;\n    background: white;\n    color: black;\n    padding: 15px 0px;\n    border-right: 1px solid grey;\n    box-shadow: 2px 0px 2px 1px lightgray; }\n  :host main {\n    position: absolute;\n    top: 0;\n    left: 200px;\n    height: 100%;\n    right: 0;\n    overflow: auto; }\n  :host ul {\n    padding: 0;\n    margin: 0; }\n  :host ul li {\n      list-style: none;\n      width: 100%;\n      padding: 0; }\n  :host ul li a {\n        display: inline-block;\n        width: 100%;\n        height: 40px;\n        line-height: 40px;\n        text-decoration: none;\n        padding: 0px 15px;\n        color: black;\n        font-size: 1.6rem;\n        transition: color 0.2s; }\n  :host ul li a:hover {\n          color: #FF793F; }\n  :host ul li a.active-link {\n          color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9hcHAuY29tcG9uZW50LnNhc3MiLCIvVXNlcnMva2V2aW5tZXJja3gvZGV2L29wZW4vaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9zdHlsZXMvX3ZhcmlhYmxlcy5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVDO0VBQ0MsZUFBYztFQUNkLG1CQUFrQjtFQUNsQixZQUFXO0VBQ1gsYUFBWSxFQThEeUI7RUFsRXRDO0lBbUJHLG1CQUFrQixFQUFHO0VBbkJ4QjtNQVVLLFlBQVc7TUFDWCxlQUFjO01BQ2QsWUFBVztNQUNYLG1CQUFrQjtNQUNsQixXQUFVO01BQ1YsMEZBQXlDO01BQ3pDLHNCQUFxQjtNQUNyQiw2QkFBNEIsRUFBRztFQWpCcEM7SUFzQkcsbUJBQWtCO0lBQ2xCLE9BQU07SUFDTixRQUFPO0lBQ1AsYUFBWTtJQUNaLGFBcEJpQjtJQXFCakIsZUFBYztJQUNkLGtCQUFpQjtJQUNqQixhQUFZO0lBQ1osa0JBQWlCO0lBQ2pCLDZCQUE0QjtJQUM1QixzQ0FBcUMsRUFBRztFQWhDM0M7SUFtQ0csbUJBQWtCO0lBQ2xCLE9BQU07SUFDTixZQS9CaUI7SUFnQ2pCLGFBQVk7SUFDWixTQUFRO0lBQ1IsZUFBYyxFQUFHO0VBeENwQjtJQTJDRyxXQUFVO0lBQ1YsVUFBUyxFQXNCd0I7RUFsRXBDO01BK0NLLGlCQUFnQjtNQUNoQixZQUFXO01BQ1gsV0FBVSxFQWlCbUI7RUFsRWxDO1FBb0RPLHNCQUFxQjtRQUNyQixZQUFXO1FBQ1gsYUFBWTtRQUNaLGtCQUFpQjtRQUNqQixzQkFBcUI7UUFDckIsa0JBQWlCO1FBQ2pCLGFBQVk7UUFDWixrQkFBaUI7UUFDakIsdUJBQXNCLEVBTUc7RUFsRWhDO1VBK0RTLGVDL0RXLEVEK0RXO0VBL0QvQjtVQWtFUyxlQ2pFVSxFRGlFVyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vc3R5bGVzL192YXJpYWJsZXMnO1xuXG4gOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuXG4gICR3aWR0aF9hc2lkZTogMjAwcHg7XG5cbiAgdWwgbGkuYXBwX19sb2dvIHtcbiAgICBhIHtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICB3aWR0aDogYXV0bztcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIGNvbG9yOiByZWQ7XG4gICAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCIvYXNzZXRzL2xvZ28uc3ZnXCIpO1xuICAgICAgYmFja2dyb3VuZC1zaXplOiAxMDAlO1xuICAgICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDsgfVxuXG4gICAgcGFkZGluZzogMTBweCAxNXB4OyB9XG5cbiAgYXNpZGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG4gICAgbGVmdDogMDtcbiAgICBoZWlnaHQ6IDEwMCU7XG4gICAgd2lkdGg6ICR3aWR0aF9hc2lkZTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgcGFkZGluZzogMTVweCAwcHg7XG4gICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgZ3JleTtcbiAgICBib3gtc2hhZG93OiAycHggMHB4IDJweCAxcHggbGlnaHRncmF5OyB9XG5cbiAgbWFpbiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAkd2lkdGhfYXNpZGU7XG4gICAgaGVpZ2h0OiAxMDAlO1xuICAgIHJpZ2h0OiAwO1xuICAgIG92ZXJmbG93OiBhdXRvOyB9XG5cbiAgdWwge1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOiAwO1xuXG4gICAgbGkge1xuICAgICAgbGlzdC1zdHlsZTogbm9uZTtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgcGFkZGluZzogMDtcblxuICAgICAgYSB7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGhlaWdodDogNDBweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDQwcHg7XG4gICAgICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICAgICAgcGFkZGluZzogMHB4IDE1cHg7XG4gICAgICAgIGNvbG9yOiBibGFjaztcbiAgICAgICAgZm9udC1zaXplOiAxLjZyZW07XG4gICAgICAgIHRyYW5zaXRpb246IGNvbG9yIDAuMnM7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgY29sb3I6ICRjb2xvci10aHJlZTsgfVxuXG4gICAgICAgICYuYWN0aXZlLWxpbmsge1xuICAgICAgICAgIGNvbG9yOiAkY29sb3ItZm91cjsgfSB9IH0gfSB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
+module.exports = ":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%; }\n  :host ul li.app__logo {\n    padding: 10px 15px; }\n  :host ul li.app__logo a {\n      width: 100%;\n      display: block;\n      width: auto;\n      position: relative;\n      color: red;\n      background-image: url('https://interfacewerk.github.io/iwerk-angular-ui/assets/logo.svg');\n      background-size: 100%;\n      background-repeat: no-repeat; }\n  :host aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: 200px;\n    overflow: auto;\n    background: white;\n    color: black;\n    padding: 15px 0px;\n    border-right: 1px solid grey;\n    box-shadow: 2px 0px 2px 1px lightgray; }\n  :host main {\n    position: absolute;\n    top: 0;\n    left: 200px;\n    height: 100%;\n    right: 0;\n    overflow: auto; }\n  :host ul {\n    padding: 0;\n    margin: 0; }\n  :host ul li {\n      list-style: none;\n      width: 100%;\n      padding: 0; }\n  :host ul li a {\n        display: inline-block;\n        width: 100%;\n        height: 40px;\n        line-height: 40px;\n        text-decoration: none;\n        padding: 0px 15px;\n        color: black;\n        font-size: 1.6rem;\n        transition: color 0.2s; }\n  :host ul li a:hover {\n          color: #FF793F; }\n  :host ul li a.active-link {\n          color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zYXNzIiwiL1VzZXJzL2tldmlubWVyY2t4L2Rldi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL3N0eWxlcy9fdmFyaWFibGVzLnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUM7RUFDQyxlQUFjO0VBQ2QsbUJBQWtCO0VBQ2xCLFlBQVc7RUFDWCxhQUFZLEVBOER5QjtFQWxFdEM7SUFtQkcsbUJBQWtCLEVBQUc7RUFuQnhCO01BVUssWUFBVztNQUNYLGVBQWM7TUFDZCxZQUFXO01BQ1gsbUJBQWtCO01BQ2xCLFdBQVU7TUFDViwwRkFBeUM7TUFDekMsc0JBQXFCO01BQ3JCLDZCQUE0QixFQUFHO0VBakJwQztJQXNCRyxtQkFBa0I7SUFDbEIsT0FBTTtJQUNOLFFBQU87SUFDUCxhQUFZO0lBQ1osYUFwQmlCO0lBcUJqQixlQUFjO0lBQ2Qsa0JBQWlCO0lBQ2pCLGFBQVk7SUFDWixrQkFBaUI7SUFDakIsNkJBQTRCO0lBQzVCLHNDQUFxQyxFQUFHO0VBaEMzQztJQW1DRyxtQkFBa0I7SUFDbEIsT0FBTTtJQUNOLFlBL0JpQjtJQWdDakIsYUFBWTtJQUNaLFNBQVE7SUFDUixlQUFjLEVBQUc7RUF4Q3BCO0lBMkNHLFdBQVU7SUFDVixVQUFTLEVBc0J3QjtFQWxFcEM7TUErQ0ssaUJBQWdCO01BQ2hCLFlBQVc7TUFDWCxXQUFVLEVBaUJtQjtFQWxFbEM7UUFvRE8sc0JBQXFCO1FBQ3JCLFlBQVc7UUFDWCxhQUFZO1FBQ1osa0JBQWlCO1FBQ2pCLHNCQUFxQjtRQUNyQixrQkFBaUI7UUFDakIsYUFBWTtRQUNaLGtCQUFpQjtRQUNqQix1QkFBc0IsRUFNRztFQWxFaEM7VUErRFMsZUMvRFcsRUQrRFc7RUEvRC9CO1VBa0VTLGVDakVVLEVEaUVXIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9hcHAuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi9zdHlsZXMvX3ZhcmlhYmxlcyc7XG5cbiA6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG5cbiAgJHdpZHRoX2FzaWRlOiAyMDBweDtcblxuICB1bCBsaS5hcHBfX2xvZ28ge1xuICAgIGEge1xuICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgY29sb3I6IHJlZDtcbiAgICAgIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi9hc3NldHMvbG9nby5zdmdcIik7XG4gICAgICBiYWNrZ3JvdW5kLXNpemU6IDEwMCU7XG4gICAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0OyB9XG5cbiAgICBwYWRkaW5nOiAxMHB4IDE1cHg7IH1cblxuICBhc2lkZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAwO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICB3aWR0aDogJHdpZHRoX2FzaWRlO1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiBibGFjaztcbiAgICBwYWRkaW5nOiAxNXB4IDBweDtcbiAgICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCBncmV5O1xuICAgIGJveC1zaGFkb3c6IDJweCAwcHggMnB4IDFweCBsaWdodGdyYXk7IH1cblxuICBtYWluIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIGxlZnQ6ICR3aWR0aF9hc2lkZTtcbiAgICBoZWlnaHQ6IDEwMCU7XG4gICAgcmlnaHQ6IDA7XG4gICAgb3ZlcmZsb3c6IGF1dG87IH1cblxuICB1bCB7XG4gICAgcGFkZGluZzogMDtcbiAgICBtYXJnaW46IDA7XG5cbiAgICBsaSB7XG4gICAgICBsaXN0LXN0eWxlOiBub25lO1xuICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICBwYWRkaW5nOiAwO1xuXG4gICAgICBhIHtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgaGVpZ2h0OiA0MHB4O1xuICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgICAgICBwYWRkaW5nOiAwcHggMTVweDtcbiAgICAgICAgY29sb3I6IGJsYWNrO1xuICAgICAgICBmb250LXNpemU6IDEuNnJlbTtcbiAgICAgICAgdHJhbnNpdGlvbjogY29sb3IgMC4ycztcblxuICAgICAgICAmOmhvdmVyIHtcbiAgICAgICAgICBjb2xvcjogJGNvbG9yLXRocmVlOyB9XG5cbiAgICAgICAgJi5hY3RpdmUtbGluayB7XG4gICAgICAgICAgY29sb3I6ICRjb2xvci1mb3VyOyB9IH0gfSB9IH1cbiIsIiRjb2xvci1vbmU6ICMyOEM4RkY7XG4kY29sb3ItdHdvOiAjMjhBMkZGO1xuJGNvbG9yLXRocmVlOiAjRkY3OTNGO1xuJGNvbG9yLWZvdXI6ICNGRjREMDA7XG4kY29sb3ItZml2ZTogI0VFMjIwMDtcblxuJGNvbG9yLWxpZ2h0LWdyZXk6IGxpZ2h0Z3JleTtcbiJdfQ== */"
 
 /***/ }),
 
@@ -2893,7 +2897,7 @@ module.exports = "<pre><code #code>{{ path | codeSample }}</code></pre>\n<div cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  position: relative;\n  display: block; }\n\npre {\n  margin: 0;\n  padding: 0; }\n\npre code {\n    margin: 0; }\n\n.source-actions {\n  position: absolute;\n  right: 0;\n  top: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  padding: 5px 15px; }\n\n.copy {\n  outline: none;\n  background: none;\n  box-shadow: none;\n  color: grey;\n  padding: 0; }\n\n.copy:hover {\n    color: black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL2NvZGUvY29kZS5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQztFQUNDLG1CQUFrQjtFQUNsQixlQUFjLEVBQUc7O0FBRW5CO0VBQ0UsVUFBUztFQUNULFdBQVUsRUFHTTs7QUFMbEI7SUFLSSxVQUFTLEVBQUc7O0FBR2hCO0VBQ0UsbUJBQWtCO0VBQ2xCLFNBQVE7RUFDUixPQUFNO0VBQ04sY0FBYTtFQUNiLHVCQUFzQjtFQUN0QixzQkFBcUI7RUFDckIsa0JBQWlCLEVBQUc7O0FBRXRCO0VBQ0UsY0FBYTtFQUNiLGlCQUFnQjtFQUNoQixpQkFBZ0I7RUFDaEIsWUFBVztFQUNYLFdBQVUsRUFHUzs7QUFSckI7SUFRSSxhQUFZLEVBQUciLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL2NvcmUvY29kZS9jb2RlLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiIDpob3N0IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBkaXNwbGF5OiBibG9jazsgfVxuXG5wcmUge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG5cbiAgY29kZSB7XG4gICAgbWFyZ2luOiAwOyB9IH1cblxuXG4uc291cmNlLWFjdGlvbnMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiAwO1xuICB0b3A6IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBmbGV4LWVuZDtcbiAgcGFkZGluZzogNXB4IDE1cHg7IH1cblxuLmNvcHkge1xuICBvdXRsaW5lOiBub25lO1xuICBiYWNrZ3JvdW5kOiBub25lO1xuICBib3gtc2hhZG93OiBub25lO1xuICBjb2xvcjogZ3JleTtcbiAgcGFkZGluZzogMDtcblxuICAmOmhvdmVyIHtcbiAgICBjb2xvcjogYmxhY2s7IH0gfVxuIl19 */"
+module.exports = ":host {\n  position: relative;\n  display: block; }\n\npre {\n  margin: 0;\n  padding: 0; }\n\npre code {\n    margin: 0; }\n\n.source-actions {\n  position: absolute;\n  right: 0;\n  top: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  padding: 5px 15px; }\n\n.copy {\n  outline: none;\n  background: none;\n  box-shadow: none;\n  color: grey;\n  padding: 0; }\n\n.copy:hover {\n    color: black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS9jb2RlL2NvZGUuY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFDQyxtQkFBa0I7RUFDbEIsZUFBYyxFQUFHOztBQUVuQjtFQUNFLFVBQVM7RUFDVCxXQUFVLEVBR007O0FBTGxCO0lBS0ksVUFBUyxFQUFHOztBQUdoQjtFQUNFLG1CQUFrQjtFQUNsQixTQUFRO0VBQ1IsT0FBTTtFQUNOLGNBQWE7RUFDYix1QkFBc0I7RUFDdEIsc0JBQXFCO0VBQ3JCLGtCQUFpQixFQUFHOztBQUV0QjtFQUNFLGNBQWE7RUFDYixpQkFBZ0I7RUFDaEIsaUJBQWdCO0VBQ2hCLFlBQVc7RUFDWCxXQUFVLEVBR1M7O0FBUnJCO0lBUUksYUFBWSxFQUFHIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL2NvZGUvY29kZS5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIiA6aG9zdCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZGlzcGxheTogYmxvY2s7IH1cblxucHJlIHtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xuXG4gIGNvZGUge1xuICAgIG1hcmdpbjogMDsgfSB9XG5cblxuLnNvdXJjZS1hY3Rpb25zIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogMDtcbiAgdG9wOiAwO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogZmxleC1lbmQ7XG4gIHBhZGRpbmc6IDVweCAxNXB4OyB9XG5cbi5jb3B5IHtcbiAgb3V0bGluZTogbm9uZTtcbiAgYmFja2dyb3VuZDogbm9uZTtcbiAgYm94LXNoYWRvdzogbm9uZTtcbiAgY29sb3I6IGdyZXk7XG4gIHBhZGRpbmc6IDA7XG5cbiAgJjpob3ZlciB7XG4gICAgY29sb3I6IGJsYWNrOyB9IH1cbiJdfQ== */"
 
 /***/ }),
 
@@ -2977,7 +2981,7 @@ module.exports = "<h2>Selector: <code>{{selector$ | async}}</code></h2>\n\n<ng-t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  border-collapse: collapse;\n  border: 1px solid lightgrey;\n  border-radius: 1px;\n  width: 100%; }\n\nthead {\n  background: lightgrey; }\n\nth {\n  text-align: left; }\n\nth, td {\n  padding: 3px 20px 3px 3px; }\n\ntr {\n  border-bottom: 1px solid lightgrey; }\n\n.name, .type {\n  width: 30%; }\n\n.description {\n  width: 40%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL2NvbXBvbmVudC1hcGkvY29tcG9uZW50LWFwaS5jb21wb25lbnQuc2FzcyIsIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL3N0eWxlcy9fdmFyaWFibGVzLnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSwwQkFBeUI7RUFDekIsNEJDRXdCO0VERHhCLG1CQUFrQjtFQUNsQixZQUFXLEVBQUc7O0FBRWxCO0VBQ0ksc0JDSHdCLEVER1E7O0FBRXBDO0VBQ0ksaUJBQWdCLEVBQUc7O0FBRXZCO0VBQ0ksMEJBQXlCLEVBQUc7O0FBRWhDO0VBQ0ksbUNDWndCLEVEWXFCOztBQUVqRDtFQUNJLFdBQVUsRUFBRzs7QUFFakI7RUFDSSxXQUFVLEVBQUciLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL2NvcmUvY29tcG9uZW50LWFwaS9jb21wb25lbnQtYXBpLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vc3R5bGVzL3ZhcmlhYmxlcyc7XG5cbnRhYmxlIHtcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICRjb2xvci1saWdodC1ncmV5O1xuICAgIGJvcmRlci1yYWRpdXM6IDFweDtcbiAgICB3aWR0aDogMTAwJTsgfVxuXG50aGVhZCB7XG4gICAgYmFja2dyb3VuZDogJGNvbG9yLWxpZ2h0LWdyZXk7IH1cblxudGgge1xuICAgIHRleHQtYWxpZ246IGxlZnQ7IH1cblxudGgsIHRkIHtcbiAgICBwYWRkaW5nOiAzcHggMjBweCAzcHggM3B4OyB9XG5cbnRyIHtcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7IH1cblxuLm5hbWUsIC50eXBlIHtcbiAgICB3aWR0aDogMzAlOyB9XG5cbi5kZXNjcmlwdGlvbiB7XG4gICAgd2lkdGg6IDQwJTsgfVxuIiwiJGNvbG9yLW9uZTogIzI4QzhGRjtcbiRjb2xvci10d286ICMyOEEyRkY7XG4kY29sb3ItdGhyZWU6ICNGRjc5M0Y7XG4kY29sb3ItZm91cjogI0ZGNEQwMDtcbiRjb2xvci1maXZlOiAjRUUyMjAwO1xuXG4kY29sb3ItbGlnaHQtZ3JleTogbGlnaHRncmV5O1xuIl19 */"
+module.exports = "table {\n  border-collapse: collapse;\n  border: 1px solid lightgrey;\n  border-radius: 1px;\n  width: 100%; }\n\nthead {\n  background: lightgrey; }\n\nth {\n  text-align: left; }\n\nth, td {\n  padding: 3px 20px 3px 3px; }\n\ntr {\n  border-bottom: 1px solid lightgrey; }\n\n.name, .type {\n  width: 30%; }\n\n.description {\n  width: 40%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS9jb21wb25lbnQtYXBpL2NvbXBvbmVudC1hcGkuY29tcG9uZW50LnNhc3MiLCIvVXNlcnMva2V2aW5tZXJja3gvZGV2L2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvc3R5bGVzL192YXJpYWJsZXMuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLDBCQUF5QjtFQUN6Qiw0QkNFd0I7RUREeEIsbUJBQWtCO0VBQ2xCLFlBQVcsRUFBRzs7QUFFbEI7RUFDSSxzQkNId0IsRURHUTs7QUFFcEM7RUFDSSxpQkFBZ0IsRUFBRzs7QUFFdkI7RUFDSSwwQkFBeUIsRUFBRzs7QUFFaEM7RUFDSSxtQ0Nad0IsRURZcUI7O0FBRWpEO0VBQ0ksV0FBVSxFQUFHOztBQUVqQjtFQUNJLFdBQVUsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS9jb21wb25lbnQtYXBpL2NvbXBvbmVudC1hcGkuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi8uLi9zdHlsZXMvdmFyaWFibGVzJztcblxudGFibGUge1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gICAgYm9yZGVyOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7XG4gICAgYm9yZGVyLXJhZGl1czogMXB4O1xuICAgIHdpZHRoOiAxMDAlOyB9XG5cbnRoZWFkIHtcbiAgICBiYWNrZ3JvdW5kOiAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG50aCB7XG4gICAgdGV4dC1hbGlnbjogbGVmdDsgfVxuXG50aCwgdGQge1xuICAgIHBhZGRpbmc6IDNweCAyMHB4IDNweCAzcHg7IH1cblxudHIge1xuICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG4ubmFtZSwgLnR5cGUge1xuICAgIHdpZHRoOiAzMCU7IH1cblxuLmRlc2NyaXB0aW9uIHtcbiAgICB3aWR0aDogNDAlOyB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
 
 /***/ }),
 
@@ -3128,7 +3132,7 @@ module.exports = "<div class=\"header\">\n  <h1>{{componentTitle}}</h1>\n\n  <ol
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column; }\n\n.header {\n  flex: 0 0 auto;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  border-bottom: 1px solid grey;\n  box-shadow: 2px 0px 2px 1px lightgrey;\n  padding: 0 15px; }\n\n.content {\n  flex: 1 1;\n  padding: 15px;\n  overflow: auto; }\n\nh2 {\n  margin-top: 50px;\n  border-bottom: 1px solid lightgrey; }\n\nol {\n  list-style: none;\n  margin: 0 0 0 30px;\n  padding: 0; }\n\nli {\n  display: inline-block;\n  margin: 0;\n  padding: 5px 10px;\n  transition: color 0.2s;\n  cursor: pointer; }\n\nli:hover {\n    color: #FF793F; }\n\nli.active {\n    color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uLmNvbXBvbmVudC5zYXNzIiwiL1VzZXJzL2tldmlubWVyY2t4L2Rldi9vcGVuL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvc3R5bGVzL192YXJpYWJsZXMuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQztFQUNDLGFBQVk7RUFDWixpQkFBZ0I7RUFDaEIsY0FBYTtFQUNiLHVCQUFzQixFQUFHOztBQUUzQjtFQUNFLGVBQWM7RUFDZCxjQUFhO0VBQ2Isb0JBQW1CO0VBQ25CLG9CQUFtQjtFQUNuQiw4QkFBNkI7RUFDN0Isc0NBQXFDO0VBQ3JDLGdCQUFlLEVBQUc7O0FBRXBCO0VBQ0UsVUFBUztFQUNULGNBQWE7RUFDYixlQUFjLEVBQUc7O0FBR25CO0VBQ0UsaUJBQWdCO0VBQ2hCLG1DQ25CMEIsRURtQm1COztBQUUvQztFQUNFLGlCQUFnQjtFQUNoQixtQkFBa0I7RUFDbEIsV0FBVSxFQUFHOztBQUVmO0VBQ0Usc0JBQXFCO0VBQ3JCLFVBQVM7RUFDVCxrQkFBaUI7RUFDakIsdUJBQXNCO0VBQ3RCLGdCQUFlLEVBTVU7O0FBWDNCO0lBUUksZUN0Q2lCLEVEc0NLOztBQVIxQjtJQVdJLGVDeENnQixFRHdDSyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS9jb21wb25lbnQtZG9jdW1lbnRhdGlvbi9jb21wb25lbnQtZG9jdW1lbnRhdGlvbi5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgJy4uLy4uLy4uL3N0eWxlcy92YXJpYWJsZXMnO1xuXG4gOmhvc3Qge1xuICBoZWlnaHQ6IDEwMCU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IH1cblxuLmhlYWRlciB7XG4gIGZsZXg6IDAgMCBhdXRvO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgZ3JleTtcbiAgYm94LXNoYWRvdzogMnB4IDBweCAycHggMXB4IGxpZ2h0Z3JleTtcbiAgcGFkZGluZzogMCAxNXB4OyB9XG5cbi5jb250ZW50IHtcbiAgZmxleDogMSAxO1xuICBwYWRkaW5nOiAxNXB4O1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG5cbmgyIHtcbiAgbWFyZ2luLXRvcDogNTBweDtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICRjb2xvci1saWdodC1ncmV5OyB9XG5cbm9sIHtcbiAgbGlzdC1zdHlsZTogbm9uZTtcbiAgbWFyZ2luOiAwIDAgMCAzMHB4O1xuICBwYWRkaW5nOiAwOyB9XG5cbmxpIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDVweCAxMHB4O1xuICB0cmFuc2l0aW9uOiBjb2xvciAwLjJzO1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbiAgJjpob3ZlciB7XG4gICAgY29sb3I6ICRjb2xvci10aHJlZTsgfVxuXG4gICYuYWN0aXZlIHtcbiAgICBjb2xvcjogJGNvbG9yLWZvdXI7IH0gfVxuIiwiJGNvbG9yLW9uZTogIzI4QzhGRjtcbiRjb2xvci10d286ICMyOEEyRkY7XG4kY29sb3ItdGhyZWU6ICNGRjc5M0Y7XG4kY29sb3ItZm91cjogI0ZGNEQwMDtcbiRjb2xvci1maXZlOiAjRUUyMjAwO1xuXG4kY29sb3ItbGlnaHQtZ3JleTogbGlnaHRncmV5O1xuIl19 */"
+module.exports = ":host {\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column; }\n\n.header {\n  flex: 0 0 auto;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  border-bottom: 1px solid grey;\n  box-shadow: 2px 0px 2px 1px lightgrey;\n  padding: 0 15px; }\n\n.content {\n  flex: 1 1;\n  padding: 15px;\n  overflow: auto; }\n\nh2 {\n  margin-top: 50px;\n  border-bottom: 1px solid lightgrey; }\n\nol {\n  list-style: none;\n  margin: 0 0 0 30px;\n  padding: 0; }\n\nli {\n  display: inline-block;\n  margin: 0;\n  padding: 5px 10px;\n  transition: color 0.2s;\n  cursor: pointer; }\n\nli:hover {\n    color: #FF793F; }\n\nli.active {\n    color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS9jb21wb25lbnQtZG9jdW1lbnRhdGlvbi9jb21wb25lbnQtZG9jdW1lbnRhdGlvbi5jb21wb25lbnQuc2FzcyIsIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9zdHlsZXMvX3ZhcmlhYmxlcy5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVDO0VBQ0MsYUFBWTtFQUNaLGlCQUFnQjtFQUNoQixjQUFhO0VBQ2IsdUJBQXNCLEVBQUc7O0FBRTNCO0VBQ0UsZUFBYztFQUNkLGNBQWE7RUFDYixvQkFBbUI7RUFDbkIsb0JBQW1CO0VBQ25CLDhCQUE2QjtFQUM3QixzQ0FBcUM7RUFDckMsZ0JBQWUsRUFBRzs7QUFFcEI7RUFDRSxVQUFTO0VBQ1QsY0FBYTtFQUNiLGVBQWMsRUFBRzs7QUFHbkI7RUFDRSxpQkFBZ0I7RUFDaEIsbUNDbkIwQixFRG1CbUI7O0FBRS9DO0VBQ0UsaUJBQWdCO0VBQ2hCLG1CQUFrQjtFQUNsQixXQUFVLEVBQUc7O0FBRWY7RUFDRSxzQkFBcUI7RUFDckIsVUFBUztFQUNULGtCQUFpQjtFQUNqQix1QkFBc0I7RUFDdEIsZ0JBQWUsRUFNVTs7QUFYM0I7SUFRSSxlQ3RDaUIsRURzQ0s7O0FBUjFCO0lBV0ksZUN4Q2dCLEVEd0NLIiwiZmlsZSI6InByb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vc3R5bGVzL3ZhcmlhYmxlcyc7XG5cbiA6aG9zdCB7XG4gIGhlaWdodDogMTAwJTtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgfVxuXG4uaGVhZGVyIHtcbiAgZmxleDogMCAwIGF1dG87XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCBncmV5O1xuICBib3gtc2hhZG93OiAycHggMHB4IDJweCAxcHggbGlnaHRncmV5O1xuICBwYWRkaW5nOiAwIDE1cHg7IH1cblxuLmNvbnRlbnQge1xuICBmbGV4OiAxIDE7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIG92ZXJmbG93OiBhdXRvOyB9XG5cblxuaDIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7IH1cblxub2wge1xuICBsaXN0LXN0eWxlOiBub25lO1xuICBtYXJnaW46IDAgMCAwIDMwcHg7XG4gIHBhZGRpbmc6IDA7IH1cblxubGkge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogNXB4IDEwcHg7XG4gIHRyYW5zaXRpb246IGNvbG9yIDAuMnM7XG4gIGN1cnNvcjogcG9pbnRlcjtcblxuICAmOmhvdmVyIHtcbiAgICBjb2xvcjogJGNvbG9yLXRocmVlOyB9XG5cbiAgJi5hY3RpdmUge1xuICAgIGNvbG9yOiAkY29sb3ItZm91cjsgfSB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
 
 /***/ }),
 
@@ -3508,7 +3512,7 @@ module.exports = "<ol>\n  <li *ngFor=\"let tab of tabs\"\n    (click)=\"selected
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: flex;\n  flex-direction: column;\n  height: 300px;\n  overflow: hidden;\n  border: lightgrey 1px solid; }\n\nol {\n  margin: 0;\n  padding: 0; }\n\nli {\n  list-style: none;\n  display: inline-block;\n  cursor: pointer;\n  padding: 0;\n  margin: 0; }\n\n.content {\n  flex: 1 1;\n  overflow: auto; }\n\n:host {\n  margin-top: 20px; }\n\n:host .content {\n    background-color: whitesmoke; }\n\n:host pre {\n    margin-top: 0; }\n\n:host li {\n    padding: 0 15px;\n    line-height: 40px;\n    height: 40px;\n    border-bottom: 2px solid transparent;\n    transition: border-bottom 0.2s; }\n\n:host li:hover:not(.active) {\n      border-bottom-color: lightgrey; }\n\n:host li.active {\n      color: #FF4D00;\n      border-bottom-color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC9jb3JlL3RhYnMvdGFicy5jb21wb25lbnQuc2FzcyIsIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL3N0eWxlcy9fdmFyaWFibGVzLnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUM7RUFDQyxjQUFhO0VBQ2IsdUJBQXNCO0VBQ3RCLGNBQWE7RUFDYixpQkFBZ0I7RUFDaEIsNEJBQW1DLEVBQUc7O0FBRXhDO0VBQ0UsVUFBUztFQUNULFdBQVUsRUFBRzs7QUFFZjtFQUNFLGlCQUFnQjtFQUNoQixzQkFBcUI7RUFDckIsZ0JBQWU7RUFDZixXQUFVO0VBQ1YsVUFBUyxFQUFHOztBQUVkO0VBQ0UsVUFBUztFQUNULGVBQWMsRUFBRzs7QUFHbEI7RUFDQyxpQkFBZ0IsRUFrQjJCOztBQW5CNUM7SUFJRyw2QkFBNEIsRUFBRzs7QUFKbEM7SUFNRyxjQUFhLEVBQUc7O0FBTm5CO0lBUUcsZ0JBQWU7SUFDZixrQkFBaUI7SUFDakIsYUFBWTtJQUNaLHFDQUFvQztJQUNwQywrQkFBOEIsRUFPUzs7QUFuQjFDO01BZUssK0JDbENzQixFRGtDbUI7O0FBZjlDO01Ba0JLLGVDeENjO01EeUNkLDZCQ3pDYyxFRHlDcUIiLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL2NvcmUvdGFicy90YWJzLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vc3R5bGVzL3ZhcmlhYmxlcyc7XG5cbiA6aG9zdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGhlaWdodDogMzAwcHg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGJvcmRlcjogJGNvbG9yLWxpZ2h0LWdyZXkgMXB4IHNvbGlkOyB9XG5cbm9sIHtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwOyB9XG5cbmxpIHtcbiAgbGlzdC1zdHlsZTogbm9uZTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIHBhZGRpbmc6IDA7XG4gIG1hcmdpbjogMDsgfVxuXG4uY29udGVudCB7XG4gIGZsZXg6IDEgMTtcbiAgb3ZlcmZsb3c6IGF1dG87IH1cblxuLy8gaW1wbGVtZW50ZWQgdG8gZGlzcGxheSBjb2RlXG4gOmhvc3Qge1xuICBtYXJnaW4tdG9wOiAyMHB4O1xuXG4gIC5jb250ZW50IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZXNtb2tlOyB9XG4gIHByZSB7XG4gICAgbWFyZ2luLXRvcDogMDsgfVxuICBsaSB7XG4gICAgcGFkZGluZzogMCAxNXB4O1xuICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICAgIGhlaWdodDogNDBweDtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgdHJhbnNpdGlvbjogYm9yZGVyLWJvdHRvbSAwLjJzO1xuXG4gICAgJjpob3Zlcjpub3QoLmFjdGl2ZSkge1xuICAgICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogJGNvbG9yLWxpZ2h0LWdyZXk7IH1cblxuICAgICYuYWN0aXZlIHtcbiAgICAgIGNvbG9yOiAkY29sb3ItZm91cjtcbiAgICAgIGJvcmRlci1ib3R0b20tY29sb3I6ICRjb2xvci1mb3VyOyB9IH0gfVxuIiwiJGNvbG9yLW9uZTogIzI4QzhGRjtcbiRjb2xvci10d286ICMyOEEyRkY7XG4kY29sb3ItdGhyZWU6ICNGRjc5M0Y7XG4kY29sb3ItZm91cjogI0ZGNEQwMDtcbiRjb2xvci1maXZlOiAjRUUyMjAwO1xuXG4kY29sb3ItbGlnaHQtZ3JleTogbGlnaHRncmV5O1xuIl19 */"
+module.exports = ":host {\n  display: flex;\n  flex-direction: column;\n  height: 300px;\n  overflow: hidden;\n  border: lightgrey 1px solid; }\n\nol {\n  margin: 0;\n  padding: 0; }\n\nli {\n  list-style: none;\n  display: inline-block;\n  cursor: pointer;\n  padding: 0;\n  margin: 0; }\n\n.content {\n  flex: 1 1;\n  overflow: auto; }\n\n:host {\n  margin-top: 20px; }\n\n:host .content {\n    background-color: whitesmoke; }\n\n:host pre {\n    margin-top: 0; }\n\n:host li {\n    padding: 0 15px;\n    line-height: 40px;\n    height: 40px;\n    border-bottom: 2px solid transparent;\n    transition: border-bottom 0.2s; }\n\n:host li:hover:not(.active) {\n      border-bottom-color: lightgrey; }\n\n:host li.active {\n      color: #FF4D00;\n      border-bottom-color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS90YWJzL3RhYnMuY29tcG9uZW50LnNhc3MiLCIvVXNlcnMva2V2aW5tZXJja3gvZGV2L2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvc3R5bGVzL192YXJpYWJsZXMuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQztFQUNDLGNBQWE7RUFDYix1QkFBc0I7RUFDdEIsY0FBYTtFQUNiLGlCQUFnQjtFQUNoQiw0QkFBbUMsRUFBRzs7QUFFeEM7RUFDRSxVQUFTO0VBQ1QsV0FBVSxFQUFHOztBQUVmO0VBQ0UsaUJBQWdCO0VBQ2hCLHNCQUFxQjtFQUNyQixnQkFBZTtFQUNmLFdBQVU7RUFDVixVQUFTLEVBQUc7O0FBRWQ7RUFDRSxVQUFTO0VBQ1QsZUFBYyxFQUFHOztBQUdsQjtFQUNDLGlCQUFnQixFQWtCMkI7O0FBbkI1QztJQUlHLDZCQUE0QixFQUFHOztBQUpsQztJQU1HLGNBQWEsRUFBRzs7QUFObkI7SUFRRyxnQkFBZTtJQUNmLGtCQUFpQjtJQUNqQixhQUFZO0lBQ1oscUNBQW9DO0lBQ3BDLCtCQUE4QixFQU9TOztBQW5CMUM7TUFlSywrQkNsQ3NCLEVEa0NtQjs7QUFmOUM7TUFrQkssZUN4Q2M7TUR5Q2QsNkJDekNjLEVEeUNxQiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvY29yZS90YWJzL3RhYnMuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi8uLi9zdHlsZXMvdmFyaWFibGVzJztcblxuIDpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgYm9yZGVyOiAkY29sb3ItbGlnaHQtZ3JleSAxcHggc29saWQ7IH1cblxub2wge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7IH1cblxubGkge1xuICBsaXN0LXN0eWxlOiBub25lO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwOyB9XG5cbi5jb250ZW50IHtcbiAgZmxleDogMSAxO1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG4vLyBpbXBsZW1lbnRlZCB0byBkaXNwbGF5IGNvZGVcbiA6aG9zdCB7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG5cbiAgLmNvbnRlbnQge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlc21va2U7IH1cbiAgcHJlIHtcbiAgICBtYXJnaW4tdG9wOiAwOyB9XG4gIGxpIHtcbiAgICBwYWRkaW5nOiAwIDE1cHg7XG4gICAgbGluZS1oZWlnaHQ6IDQwcHg7XG4gICAgaGVpZ2h0OiA0MHB4O1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICB0cmFuc2l0aW9uOiBib3JkZXItYm90dG9tIDAuMnM7XG5cbiAgICAmOmhvdmVyOm5vdCguYWN0aXZlKSB7XG4gICAgICBib3JkZXItYm90dG9tLWNvbG9yOiAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG4gICAgJi5hY3RpdmUge1xuICAgICAgY29sb3I6ICRjb2xvci1mb3VyO1xuICAgICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogJGNvbG9yLWZvdXI7IH0gfSB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
 
 /***/ }),
 
@@ -3597,7 +3601,7 @@ module.exports = "<h1>Interfacewerk Angular UI</h1>\n\n<h2><i class=\"fa fa-chec
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  padding: 15px;\n  display: block;\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvb3Blbi9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RlbW8vc3JjL2FwcC93ZWxjb21lL3dlbGNvbWUuY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFDQyxjQUFhO0VBQ2IsZUFBYztFQUNkLGVBQWMsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvd2VsY29tZS93ZWxjb21lLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiIDpob3N0IHtcbiAgcGFkZGluZzogMTVweDtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG92ZXJmbG93OiBhdXRvOyB9XG4iXX0= */"
+module.exports = ":host {\n  padding: 15px;\n  display: block;\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9rZXZpbm1lcmNreC9kZXYvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kZW1vL3NyYy9hcHAvd2VsY29tZS93ZWxjb21lLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFDO0VBQ0MsY0FBYTtFQUNiLGVBQWM7RUFDZCxlQUFjLEVBQUciLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL3dlbGNvbWUvd2VsY29tZS5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIiA6aG9zdCB7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBvdmVyZmxvdzogYXV0bzsgfVxuIl19 */"
 
 /***/ }),
 
@@ -3696,7 +3700,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kevinmerckx/dev/open/iwerk-angular-ui/projects/demo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/kevinmerckx/dev/iwerk-angular-ui/projects/demo/src/main.ts */"./src/main.ts");
 
 
 /***/ })
