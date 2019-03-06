@@ -13,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
   // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
   { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' },
+  { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationDemoModule' },
   { path: 'ellipsis', loadChildren: './ellipsis/ellipsis.module#EllipsisDemoModule' }
 ];
 

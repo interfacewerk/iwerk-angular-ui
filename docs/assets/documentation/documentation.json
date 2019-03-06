@@ -185,6 +185,58 @@
             "methods": []
         },
         {
+            "name": "NavData",
+            "id": "interface-NavData-d6b4a2d65d494a25e74d525135283c8f",
+            "file": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+            "type": "interface",
+            "sourceCode": "import { Component, OnInit, ViewChild, Inject } from '@angular/core';\nimport { NavigationController, NavigationData } from '../../ui/navigation/navigation-controller.service';\nimport { NavigationComponent } from '../../ui/navigation/navigation.module';\n\ninterface NavData {\n  depth: number;\n}\n\n@Component({\n  template: `\n    <p>some component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeComponent {\n  depth = -1;\n  nestedDepth = -1;\n\n  constructor(private navCtrl: NavigationController, @Inject(NavigationData) private data: NavData) {\n    this.depth = this.data.depth;\n    this.nestedDepth = this.depth;\n  }\n\n  dismiss() {\n    this.navCtrl.dismiss(this.nestedDepth);\n  }\n\n  present() {\n    this.navCtrl.present<number>(SomeComponent, {depth: this.depth + 1}).then(v => this.nestedDepth = v);\n  }\n}\n\n\n@Component({\n  template: `\n    <p>some other component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeOtherComponent extends SomeComponent {\n}\n\n@Component({\n  templateUrl: './navigation.demo.component.html',\n  styleUrls: ['./navigation.demo.component.sass']\n})\nexport class NavigationDemoComponent implements OnInit {\n  @ViewChild('nav') nav: NavigationComponent;\n  depth = 0;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  present() {\n    this.depth = 0;\n    this.nav.present<number, NavData>(SomeComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n\n  presentOther() {\n    this.nav.present<number, NavData>(SomeOtherComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "depth",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "NavigationItem",
+            "id": "interface-NavigationItem-107144ca8824f0fd556b81cef44c7699",
+            "file": "src/app/ui/navigation/navigation-controller.service.ts",
+            "type": "interface",
+            "sourceCode": "import { Injectable, Type, Injector, ReflectiveInjector, InjectionToken } from '@angular/core';\n\nexport const NavigationData = new InjectionToken<any>('iw-navigation.NAVIGATION_DATA');\n\nexport interface NavigationItem {\n  type: Type<any>;\n  resolve: (v: any) => void;\n  injector: Injector;\n}\n\n@Injectable()\nexport class NavigationController {\n  stack: NavigationItem[] = [];\n\n  constructor(\n    private injector: Injector\n  ) { }\n\n  present<ReturnDataType>(type: Type<any>, data?: any): Promise<ReturnDataType> {\n    const injector = ReflectiveInjector.resolveAndCreate([{\n      provide: NavigationData,\n      useValue: data\n    }], this.injector);\n    return new Promise(resolve => {\n      this.stack.push(\n        { type, resolve, injector }\n      );\n    });\n  }\n\n  dismiss<ReturnDataType>(value?: ReturnDataType) {\n    const last = this.stack.pop();\n    last.resolve(value);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "injector",
+                    "type": "Injector",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "resolve",
+                    "type": "function",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "type",
+                    "type": "Type<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
             "name": "Person",
             "id": "interface-Person-c8ecdd933a4edcdf5c62951d1ffb3b41",
             "file": "src/app/demo/popover/popover-demo/popover-demo.component.ts",
@@ -733,6 +785,109 @@
                     {
                         "name": "dialogConfig",
                         "type": "DialogConfig",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "NavigationController",
+            "id": "injectable-NavigationController-107144ca8824f0fd556b81cef44c7699",
+            "file": "src/app/ui/navigation/navigation-controller.service.ts",
+            "properties": [
+                {
+                    "name": "stack",
+                    "defaultValue": "[]",
+                    "type": "NavigationItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methods": [
+                {
+                    "name": "dismiss",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "ReturnDataType",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [
+                        "ReturnDataType"
+                    ],
+                    "line": 31,
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "ReturnDataType",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "present",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "Type<any>"
+                        },
+                        {
+                            "name": "data",
+                            "type": "any",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<ReturnDataType>",
+                    "typeParameters": [
+                        "ReturnDataType"
+                    ],
+                    "line": 19,
+                    "jsdoctags": [
+                        {
+                            "name": "type",
+                            "type": "Type<any>",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "data",
+                            "type": "any",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable, Type, Injector, ReflectiveInjector, InjectionToken } from '@angular/core';\n\nexport const NavigationData = new InjectionToken<any>('iw-navigation.NAVIGATION_DATA');\n\nexport interface NavigationItem {\n  type: Type<any>;\n  resolve: (v: any) => void;\n  injector: Injector;\n}\n\n@Injectable()\nexport class NavigationController {\n  stack: NavigationItem[] = [];\n\n  constructor(\n    private injector: Injector\n  ) { }\n\n  present<ReturnDataType>(type: Type<any>, data?: any): Promise<ReturnDataType> {\n    const injector = ReflectiveInjector.resolveAndCreate([{\n      provide: NavigationData,\n      useValue: data\n    }], this.injector);\n    return new Promise(resolve => {\n      this.stack.push(\n        { type, resolve, injector }\n      );\n    });\n  }\n\n  dismiss<ReturnDataType>(value?: ReturnDataType) {\n    const last = this.stack.pop();\n    last.resolve(value);\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "injector",
+                        "type": "Injector"
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "injector",
+                        "type": "Injector",
                         "tagName": {
                             "text": "param"
                         }
@@ -2372,7 +2527,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<aside>\n  <ul>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/checkbox\">Checkbox</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
+            "templateData": "<aside>\n  <ul>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/checkbox\">Checkbox</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/navigation\">Navigation</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
         },
         {
             "name": "CheckboxComponent",
@@ -3312,6 +3467,218 @@
             "templateData": "<h1>\n  {{title}}\n</h1>\n\n<ul>\n  <li>Press ESC to close</li>\n  <li>Click outside to close</li>\n  <li>Programmatically close it <button (click)=\"close()\">close</button></li>\n</ul>\n"
         },
         {
+            "name": "NavigationComponent",
+            "id": "component-NavigationComponent-a0953f351b56bd1c2f6a2e363ce24978",
+            "file": "src/app/ui/navigation/navigation/navigation.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "NavigationController",
+                    "type": "controller"
+                }
+            ],
+            "selector": "iw-navigation",
+            "styleUrls": [
+                "./navigation.component.sass"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navigation.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "present",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "Type<any>"
+                        },
+                        {
+                            "name": "data",
+                            "type": "NavDataType",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [
+                        "ReturnedDataType",
+                        "NavDataType"
+                    ],
+                    "line": 45,
+                    "description": "<p>Present the component.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 857,
+                                "end": 861,
+                                "flags": 0,
+                                "escapedText": "type"
+                            },
+                            "type": "Type<any>",
+                            "tagName": {
+                                "pos": 851,
+                                "end": 856,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the component class to display in the stack.</p>\n"
+                        },
+                        {
+                            "name": "data",
+                            "type": "NavDataType",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 913,
+                                "end": 920,
+                                "flags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>a promise that resolves with a value that the dismissed view gives you.</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>The navigation component is designed to stack views and only show the last element.\nIt is used along with the NavigationController</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { NavigationModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
+            "type": "component",
+            "sourceCode": "import { Component, Type } from '@angular/core';\nimport { NavigationController } from '../navigation-controller.service';\n\n\n/**\n * The navigation component is designed to stack views and only show the last element.\n * It is used along with the NavigationController\n ```ts\n import { NavigationModule } from 'iwerk-angular-ui';\n ```\n */\n@Component({\n  selector: 'iw-navigation',\n  templateUrl: './navigation.component.html',\n  styleUrls: ['./navigation.component.sass'],\n  providers: [\n    NavigationController\n  ]\n})\nexport class NavigationComponent {\n\n  constructor(\n    private navigationController: NavigationController,\n  ) { }\n\n  /**\n   * @ignore\n   */\n  get stack() {\n    return this.navigationController.stack;\n  }\n\n  /**\n   * @ignore\n   */\n  get isStackEmpty() {\n    return this.stack.length === 0;\n  }\n\n  /**\n   * Present the component.\n   * @param type the component class to display in the stack.\n   * @returns a promise that resolves with a value that the dismissed view gives you.\n   */\n  present<ReturnedDataType, NavDataType>(type: Type<any>, data?: NavDataType) {\n    return this.navigationController.present<ReturnedDataType>(type, data);\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".iw-navigation-container:not(.iw-navigation-container--visible)\n  display: none\n",
+                    "styleUrl": "./navigation.component.sass"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "navigationController",
+                        "type": "NavigationController"
+                    }
+                ],
+                "line": 20,
+                "jsdoctags": [
+                    {
+                        "name": "navigationController",
+                        "type": "NavigationController",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<div class=\"iw-navigation-container\" [class.iw-navigation-container--visible]=\"isStackEmpty\">\n  <ng-content></ng-content>\n</div>\n\n<ng-template ngFor [ngForOf]=\"stack\" let-item let-isLast=\"last\">\n  <div class=\"iw-navigation-container\" [class.iw-navigation-container--visible]=\"isLast\">\n    <ng-container *ngComponentOutlet=\"item.type; injector: item.injector\"></ng-container>\n  </div>\n</ng-template>\n"
+        },
+        {
+            "name": "NavigationDemoComponent",
+            "id": "component-NavigationDemoComponent-d6b4a2d65d494a25e74d525135283c8f",
+            "file": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [
+                "./navigation.demo.component.sass"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navigation.demo.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "depth",
+                    "defaultValue": "0",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 49
+                },
+                {
+                    "name": "nav",
+                    "type": "NavigationComponent",
+                    "optional": false,
+                    "description": "",
+                    "line": 48,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'nav'"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53
+                },
+                {
+                    "name": "present",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 56
+                },
+                {
+                    "name": "presentOther",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 61
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewChild, Inject } from '@angular/core';\nimport { NavigationController, NavigationData } from '../../ui/navigation/navigation-controller.service';\nimport { NavigationComponent } from '../../ui/navigation/navigation.module';\n\ninterface NavData {\n  depth: number;\n}\n\n@Component({\n  template: `\n    <p>some component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeComponent {\n  depth = -1;\n  nestedDepth = -1;\n\n  constructor(private navCtrl: NavigationController, @Inject(NavigationData) private data: NavData) {\n    this.depth = this.data.depth;\n    this.nestedDepth = this.depth;\n  }\n\n  dismiss() {\n    this.navCtrl.dismiss(this.nestedDepth);\n  }\n\n  present() {\n    this.navCtrl.present<number>(SomeComponent, {depth: this.depth + 1}).then(v => this.nestedDepth = v);\n  }\n}\n\n\n@Component({\n  template: `\n    <p>some other component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeOtherComponent extends SomeComponent {\n}\n\n@Component({\n  templateUrl: './navigation.demo.component.html',\n  styleUrls: ['./navigation.demo.component.sass']\n})\nexport class NavigationDemoComponent implements OnInit {\n  @ViewChild('nav') nav: NavigationComponent;\n  depth = 0;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  present() {\n    this.depth = 0;\n    this.nav.present<number, NavData>(SomeComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n\n  presentOther() {\n    this.nav.present<number, NavData>(SomeOtherComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".nav-container\n  width: 400px\n  height: 400px\n  box-shadow: 1px 1px 1px 1px black",
+                    "styleUrl": "./navigation.demo.component.sass"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 49
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<h1>Navigation</h1>\n\n<div class=\"nav-container\">\n  <iw-navigation #nav>\n    <h4>Here is our main view</h4>\n    Last depth: {{depth}}\n    <button (click)=\"present()\">Present</button>\n    <button (click)=\"presentOther()\">Present Other</button>\n  </iw-navigation>\n</div>\n"
+        },
+        {
             "name": "PopoverContainerComponent",
             "id": "component-PopoverContainerComponent-8859cc6204605e6bb1e395f41ef7cc5f",
             "file": "src/app/ui/popover/popover-container/popover-container.component.ts",
@@ -3862,6 +4229,172 @@
             "templateData": "<app-custom-popover-demo (close)=\"close()\">\n  <div custom-popover-header>Edit</div>\n  <div custom-popover-content>    \n    {{propertyName}}: <input autofocus autocomplete=\"false\" [ngModel]=\"value\" (ngModelChange)=\"onValueChange.emit($event)\" type=\"text\"/>\n  </div>\n</app-custom-popover-demo>"
         },
         {
+            "name": "SomeComponent",
+            "id": "component-SomeComponent-d6b4a2d65d494a25e74d525135283c8f",
+            "file": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [],
+            "template": "<p>some component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n<button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "depth",
+                    "defaultValue": "-1",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "nestedDepth",
+                    "defaultValue": "-1",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "dismiss",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24
+                },
+                {
+                    "name": "present",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewChild, Inject } from '@angular/core';\nimport { NavigationController, NavigationData } from '../../ui/navigation/navigation-controller.service';\nimport { NavigationComponent } from '../../ui/navigation/navigation.module';\n\ninterface NavData {\n  depth: number;\n}\n\n@Component({\n  template: `\n    <p>some component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeComponent {\n  depth = -1;\n  nestedDepth = -1;\n\n  constructor(private navCtrl: NavigationController, @Inject(NavigationData) private data: NavData) {\n    this.depth = this.data.depth;\n    this.nestedDepth = this.depth;\n  }\n\n  dismiss() {\n    this.navCtrl.dismiss(this.nestedDepth);\n  }\n\n  present() {\n    this.navCtrl.present<number>(SomeComponent, {depth: this.depth + 1}).then(v => this.nestedDepth = v);\n  }\n}\n\n\n@Component({\n  template: `\n    <p>some other component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeOtherComponent extends SomeComponent {\n}\n\n@Component({\n  templateUrl: './navigation.demo.component.html',\n  styleUrls: ['./navigation.demo.component.sass']\n})\nexport class NavigationDemoComponent implements OnInit {\n  @ViewChild('nav') nav: NavigationComponent;\n  depth = 0;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  present() {\n    this.depth = 0;\n    this.nav.present<number, NavData>(SomeComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n\n  presentOther() {\n    this.nav.present<number, NavData>(SomeOtherComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "navCtrl",
+                        "type": "NavigationController"
+                    },
+                    {
+                        "name": "data",
+                        "type": "NavData"
+                    }
+                ],
+                "line": 17,
+                "jsdoctags": [
+                    {
+                        "name": "navCtrl",
+                        "type": "NavigationController",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "type": "NavData",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "SomeOtherComponent",
+            "id": "component-SomeOtherComponent-d6b4a2d65d494a25e74d525135283c8f",
+            "file": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [],
+            "template": "<p>some other component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n<button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "depth",
+                    "defaultValue": "-1",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "inheritance": {
+                        "file": "SomeComponent"
+                    }
+                },
+                {
+                    "name": "nestedDepth",
+                    "defaultValue": "-1",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "inheritance": {
+                        "file": "SomeComponent"
+                    }
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "dismiss",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "inheritance": {
+                        "file": "SomeComponent"
+                    }
+                },
+                {
+                    "name": "present",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "inheritance": {
+                        "file": "SomeComponent"
+                    }
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewChild, Inject } from '@angular/core';\nimport { NavigationController, NavigationData } from '../../ui/navigation/navigation-controller.service';\nimport { NavigationComponent } from '../../ui/navigation/navigation.module';\n\ninterface NavData {\n  depth: number;\n}\n\n@Component({\n  template: `\n    <p>some component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeComponent {\n  depth = -1;\n  nestedDepth = -1;\n\n  constructor(private navCtrl: NavigationController, @Inject(NavigationData) private data: NavData) {\n    this.depth = this.data.depth;\n    this.nestedDepth = this.depth;\n  }\n\n  dismiss() {\n    this.navCtrl.dismiss(this.nestedDepth);\n  }\n\n  present() {\n    this.navCtrl.present<number>(SomeComponent, {depth: this.depth + 1}).then(v => this.nestedDepth = v);\n  }\n}\n\n\n@Component({\n  template: `\n    <p>some other component (current depth: {{ depth }}, nested depth: {{ nestedDepth }})</p>\n    <button (click)=\"present()\">Present</button><button (click)=\"dismiss()\">Dismiss</button>\n  `\n})\nexport class SomeOtherComponent extends SomeComponent {\n}\n\n@Component({\n  templateUrl: './navigation.demo.component.html',\n  styleUrls: ['./navigation.demo.component.sass']\n})\nexport class NavigationDemoComponent implements OnInit {\n  @ViewChild('nav') nav: NavigationComponent;\n  depth = 0;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  present() {\n    this.depth = 0;\n    this.nav.present<number, NavData>(SomeComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n\n  presentOther() {\n    this.nav.present<number, NavData>(SomeOtherComponent, {depth: this.depth + 1}).then(v => this.depth = v);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": "SomeComponent"
+        },
+        {
             "name": "StatefulButtonDemoComponent",
             "id": "component-StatefulButtonDemoComponent-7e68d6bc3452a2bbdddb8f1c6250f502",
             "file": "src/app/demo/stateful-button/stateful-button-demo/stateful-button-demo.component.ts",
@@ -4154,6 +4687,15 @@
                             "name": "EllipsisComponent"
                         },
                         {
+                            "name": "NavigationDemoComponent"
+                        },
+                        {
+                            "name": "SomeComponent"
+                        },
+                        {
+                            "name": "SomeOtherComponent"
+                        },
+                        {
                             "name": "WelcomeComponent"
                         }
                     ]
@@ -4369,6 +4911,43 @@
                     "elements": [
                         {
                             "name": "MultilineEllipsisDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "NavigationModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "NavigationComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "NavigationComponent"
                         }
                     ]
                 },
@@ -4660,6 +5239,9 @@
                             "name": "MultilineEllipsisModule"
                         },
                         {
+                            "name": "NavigationModule"
+                        },
+                        {
                             "name": "PopoverModule"
                         },
                         {
@@ -4678,6 +5260,9 @@
                         },
                         {
                             "name": "MultilineEllipsisModule"
+                        },
+                        {
+                            "name": "NavigationModule"
                         },
                         {
                             "name": "PopoverModule"
@@ -4774,6 +5359,14 @@
                 "file": "src/app/ui/tooltip/tooltip.config.ts",
                 "type": "",
                 "defaultValue": "new InjectionToken<TooltipConfig>('iw-tooltip.config')"
+            },
+            {
+                "name": "NavigationData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/ui/navigation/navigation-controller.service.ts",
+                "type": "",
+                "defaultValue": "new InjectionToken<any>('iw-navigation.NAVIGATION_DATA')"
             }
         ],
         "functions": [
@@ -5114,6 +5707,16 @@
                     "type": "",
                     "defaultValue": "new InjectionToken<TooltipConfig>('iw-tooltip.config')"
                 }
+            ],
+            "src/app/ui/navigation/navigation-controller.service.ts": [
+                {
+                    "name": "NavigationData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/ui/navigation/navigation-controller.service.ts",
+                    "type": "",
+                    "defaultValue": "new InjectionToken<any>('iw-navigation.NAVIGATION_DATA')"
+                }
             ]
         },
         "groupedFunctions": {
@@ -5387,11 +5990,16 @@
                 "kind": "component",
                 "component": "EllipsisComponent",
                 "path": "ellipsis"
+            },
+            {
+                "kind": "component",
+                "component": "NavigationDemoComponent",
+                "path": "navigation"
             }
         ]
     },
     "coverage": {
-        "count": 4,
+        "count": 5,
         "status": "low",
         "files": [
             {
@@ -5447,6 +6055,42 @@
                 "name": "EllipsisComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavigationDemoComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SomeOtherComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/navigation-demo/navigation.demo.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "NavData",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -5659,6 +6303,43 @@
                 "coveragePercent": 33,
                 "coverageCount": "3/9",
                 "status": "medium"
+            },
+            {
+                "filePath": "src/app/ui/navigation/navigation-controller.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "NavigationController",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui/navigation/navigation-controller.service.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "NavigationItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui/navigation/navigation-controller.service.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NavigationData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui/navigation/navigation/navigation.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavigationComponent",
+                "coveragePercent": 66,
+                "coverageCount": "2/3",
+                "status": "good"
             },
             {
                 "filePath": "src/app/ui/popover/helpers.ts",
