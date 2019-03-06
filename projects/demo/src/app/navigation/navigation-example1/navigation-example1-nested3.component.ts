@@ -13,11 +13,7 @@ import { NavigationController } from 'src/public_api';
   ]
 })
 export class Example3Component {
-  constructor(
-    private navCtrl: NavigationController
-  ) {
-
-  }
+  constructor(private navCtrl: NavigationController) {}
 
   dismiss() {
     this.navCtrl.dismiss();

@@ -8,7 +8,6 @@ export interface Example2ComponentNavData {
 
 export type Example2ReturnedData = number;
 
-
 @Component({
   template: `<h5>{{data.title}}</h5>
   <button (click)="present()">Present one more view!</button>
@@ -33,6 +32,7 @@ export class Example2Component {
   present() {
     this.navCtrl.present(Example3Component);
   }
+
   dismiss() {
     this.navCtrl.dismiss<Example2ReturnedData>(1234);
   }
