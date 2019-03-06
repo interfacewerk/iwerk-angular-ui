@@ -3,7 +3,12 @@
   [componentId]="'NavigationComponent'"
   [componentType]="'components'"
 >
-  <ng-template appComponentExample="Example" [source]="example1Src">
-    <ng-container *ngComponentOutlet="example1Comp"></ng-container>
+  <ng-template appComponentExample="Example">
+    <app-navigation-example1></app-navigation-example1>
+    <app-tabs>
+      <app-code *appTab="'Main TS'" path="navigation-example1.component.ts"></app-code>
+      <app-code *appTab="'Nested TS #1'" path="navigation-example1-nested2.component.ts"></app-code>
+      <app-code *appTab="'Nested TS #2'" path="navigation-example1-nested3.component.ts"></app-code>
+    </app-tabs>
   </ng-template>
 </app-component-documentation>

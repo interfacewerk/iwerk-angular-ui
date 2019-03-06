@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavigationModule } from 'src/public_api';
 import { CoreModule } from '../core/core.module';
-import { Example1Component, NavigationdDemoComponent, Example2Component, Example3Component } from './navigation/navigation.component';
+import { Example2Component } from './navigation-example1/navigation-example1-nested2.component';
+import { Example3Component } from './navigation-example1/navigation-example1-nested3.component';
+import { Example1Component } from './navigation-example1/navigation-example1.component';
+import { NavigationdDemoComponent } from './navigation/navigation.component';
 
 @NgModule({
   imports: [
