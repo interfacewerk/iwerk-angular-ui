@@ -5,6 +5,7 @@ import { MultilineEllipsisModule } from './multiline-ellipsis/multiline-ellipsis
 import { PopoverModule } from './popover/popover.module';
 import { StateButtonModule } from './state-button/state-button.module';
 import { TooltipModule } from './tooltip/tooltip.module';
+import { NavigationModule } from './navigation/navigation.module';
 
 @NgModule({
   imports: [
@@ -13,14 +14,16 @@ import { TooltipModule } from './tooltip/tooltip.module';
     TooltipModule,
     StateButtonModule,
     CheckboxModule,
-    MultilineEllipsisModule
+    MultilineEllipsisModule,
+    NavigationModule
   ],
   exports: [
     PopoverModule,
     TooltipModule,
     StateButtonModule,
     CheckboxModule,
-    MultilineEllipsisModule
+    MultilineEllipsisModule,
+    NavigationModule
   ]
 })
 export class UiModule { }

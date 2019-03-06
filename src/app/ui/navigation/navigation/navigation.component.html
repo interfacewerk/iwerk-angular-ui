@@ -1,0 +1,9 @@
+<div class="iw-navigation-container" [class.iw-navigation-container--visible]="isStackEmpty">
+  <ng-content></ng-content>
+</div>
+
+<ng-template ngFor [ngForOf]="stack" let-item let-isLast="last">
+  <div class="iw-navigation-container" [class.iw-navigation-container--visible]="isLast">
+    <ng-container *ngComponentOutlet="item.type; injector: item.injector"></ng-container>
+  </div>
+</ng-template>
