@@ -11,15 +11,7 @@ export type Example2ReturnedData = number;
 @Component({
   template: `<h5>{{data.title}}</h5>
   <button (click)="present()">Present one more view!</button>
-  <button (click)="dismiss()">Dismiss with value 1234</button>`,
-  styles: [
-    `.nav-container {
-      padding: 3px 10px;
-      box-shadow: 1px 1px 1px 1px black;
-      height: 300px;
-      width: 300px;
-    }`
-  ]
+  <button (click)="dismiss()">Dismiss with value 1234</button>`
 })
 export class Example2Component {
   constructor(
