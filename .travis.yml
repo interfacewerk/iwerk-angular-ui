@@ -15,7 +15,7 @@ apt:
 install:
   - npm install
 script:
-  # - npm run lint && npm run test-ci && npm run build
+  - npm run lint && npm run test-ci && npm run build
   - npm run build:docs
 node_js:
   - '8'
@@ -32,4 +32,4 @@ deploy:
   keep-history: true
   local-dir: ./docs
   on:
-    branch: ci/docs
+    branch: master
