@@ -4966,45 +4966,6 @@
             "children": [
                 {
                     "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "CustomPopoverDemoComponent"
-                        },
-                        {
-                            "name": "PopoverDemoComponent"
-                        },
-                        {
-                            "name": "PropertyEditPopoverComponent"
-                        }
-                    ]
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "PopoverModule",
-            "children": [
-                {
-                    "type": "providers",
                     "elements": [
                         {
                             "name": "PopoverService"
@@ -5036,6 +4997,45 @@
                             "name": "PopoverDirective"
                         }
                     ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PopoverModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CustomPopoverDemoComponent"
+                        },
+                        {
+                            "name": "PopoverDemoComponent"
+                        },
+                        {
+                            "name": "PropertyEditPopoverComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -5156,7 +5156,10 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "TooltipDemoComponent"
+                            "name": "TooltipContainerComponent"
+                        },
+                        {
+                            "name": "TooltipDirective"
                         }
                     ]
                 },
@@ -5166,7 +5169,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "TooltipDirective"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -5189,10 +5196,7 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "TooltipContainerComponent"
-                        },
-                        {
-                            "name": "TooltipDirective"
+                            "name": "TooltipDemoComponent"
                         }
                     ]
                 },
@@ -5202,11 +5206,7 @@
                 },
                 {
                     "type": "exports",
-                    "elements": [
-                        {
-                            "name": "TooltipDirective"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -5292,17 +5292,17 @@
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/tooltip/tooltip.module.ts",
-                "type": "TooltipConfig",
-                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
+                "file": "src/app/demo/popover/popover.module.ts",
+                "type": "PopoverConfig",
+                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
             },
             {
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/demo/popover/popover.module.ts",
-                "type": "PopoverConfig",
-                "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
+                "file": "src/app/demo/tooltip/tooltip.module.ts",
+                "type": "TooltipConfig",
+                "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
             },
             {
                 "name": "dialogConfig",
@@ -5618,16 +5618,6 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "src/app/demo/tooltip/tooltip.module.ts": [
-                {
-                    "name": "config",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/demo/tooltip/tooltip.module.ts",
-                    "type": "TooltipConfig",
-                    "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
-                }
-            ],
             "src/app/demo/popover/popover.module.ts": [
                 {
                     "name": "config",
@@ -5636,6 +5626,16 @@
                     "file": "src/app/demo/popover/popover.module.ts",
                     "type": "PopoverConfig",
                     "defaultValue": "{\n  escToClose: true,\n  clickOutsideToClose: true,\n  popoverClass: 'popover-demo-from-config'\n}"
+                }
+            ],
+            "src/app/demo/tooltip/tooltip.module.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/demo/tooltip/tooltip.module.ts",
+                    "type": "TooltipConfig",
+                    "defaultValue": "{\n  containerClass: 'demo-tooltip',\n  horizontal: false,\n  delay: 0,\n}"
                 }
             ],
             "src/app/demo/dialog-demo/dialog-demo.module.ts": [

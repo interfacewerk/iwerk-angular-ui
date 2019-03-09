@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { PopoverModule } from 'src/public_api';
-import { CoreModule } from '../core/core.module';
+import { CoreModule } from 'projects/docs/src/lib/core/core.module';
 import {
   CustomPopoverContentDirective,
   CustomPopoverDemoComponent,
@@ -17,9 +16,6 @@ import { PropertyEditPopoverComponent } from './popover-example2/property-edit-p
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      { path: '', component: PopoverDemoComponent }
-    ]),
     PopoverModule,
     FormsModule,
     CoreModule
@@ -33,7 +29,8 @@ import { PropertyEditPopoverComponent } from './popover-example2/property-edit-p
     PopoverExample2Component,
     PropertyEditPopoverComponent
   ],
-  entryComponents: [PropertyEditPopoverComponent],
-  exports: [RouterModule]
+  entryComponents: [
+    PropertyEditPopoverComponent
+  ]
 })
 export class PopoverDemoModule { }

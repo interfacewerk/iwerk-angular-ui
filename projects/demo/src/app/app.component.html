@@ -1,23 +1,5 @@
-<aside>
-  <ul>
-    <li class="app__logo"><a></a></li>
-    <li><a routerLink="/"
-      [routerLinkActiveOptions]="{exact: true}" 
-      routerLinkActive="active-link">
-      Get Started
-    </a></li>
-    <li><a routerLinkActive="active-link" routerLink="/popover">Popover</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/tooltip">Tooltip</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/dialog">Dialog</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/navigation">Navigation</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/ellipsis">Ellipsis</a></li>
-    <!-- <li><a routerLinkActive="active-link" routerLink="/stateful-button">Stateful Button</a></li> -->
-    <li><a href="https://github.com/interfacewerk/iwerk-angular-ui"><i class="fa fa-github" aria-hidden="true"></i> Github</a></li>
-    <li><a href="https://interfacewerk.de/jobs"><fa-icon [icon]="faHandshake"></fa-icon> We are hiring!</a></li>
-    <li><a href="https://interfacewerk.de">interfacewerk.de</a></li>
-  </ul>
-</aside>
-
-<main>
-  <router-outlet></router-outlet>
-</main>
+<docs-app [brandLogo]="'/assets/logo.svg'">
+  <li><a href="https://github.com/interfacewerk/iwerk-angular-ui"><i class="fa fa-github" aria-hidden="true"></i> Github</a></li>
+  <li><a href="https://interfacewerk.de/jobs"><fa-icon [icon]="faHandshake"></fa-icon> We are hiring!</a></li>
+  <li><a href="https://interfacewerk.de">interfacewerk.de</a></li>
+</docs-app>
