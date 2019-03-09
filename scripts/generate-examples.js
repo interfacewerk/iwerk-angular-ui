@@ -11,7 +11,7 @@ glob(path.join(__dirname, '../projects/demo/src/app/**/*'), (error, allFiles) =>
     matches.forEach(absPath => {
       const content = fs.readFileSync(absPath);
       const root = parse(`<!doctype><html><body>${content}</body></html>`);
-      const codes = root.querySelectorAll('app-code');
+      const codes = root.querySelectorAll('docs-code');
       codes.map(c => c.attributes).filter(a => a.path).forEach(c => {
         const path = c.path;
         const completePath = findMatchingFile(allFiles, path);
