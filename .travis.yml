@@ -15,7 +15,8 @@ apt:
 install:
   - npm install
 script:
-  - npm run lint && npm run test-ci && npm run build
+  # - npm run lint && npm run test-ci && npm run build
+  - npm run build:docs
 node_js:
   - '9'
   - '8'
@@ -25,3 +26,11 @@ after_success:
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  local-dir: ./docs
+  on:
+    branch: ci/docs
