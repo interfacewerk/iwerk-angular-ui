@@ -6,6 +6,7 @@
 dist.tgz
 /documentation
 /projects/demo/src/assets/documentation
+/docs
 
 # dependencies
 /node_modules
