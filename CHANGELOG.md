@@ -1,3 +1,11 @@
+# [3.15.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.14.0...v3.15.0) (2019-03-09)
+
+
+### Features
+
+* **docs:** add search feature ([f1a9f86](https://github.com/interfacewerk/iwerk-angular-ui/commit/f1a9f86))
+* **docs:** introduce docs project ([7d5d012](https://github.com/interfacewerk/iwerk-angular-ui/commit/7d5d012))
+
 # [3.14.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.13.0...v3.14.0) (2019-03-06)
 
 
