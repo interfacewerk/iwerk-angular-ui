@@ -1,14 +1,14 @@
-<app-component-documentation
+<docs-component-documentation
   [componentTitle]="'Navigation'"
   [componentId]="'NavigationComponent'"
   [componentType]="'components'"
 >
-  <ng-template appComponentExample="Example">
+  <ng-template docsComponentExample="Example">
     <app-navigation-example1></app-navigation-example1>
-    <app-tabs>
-      <app-code *appTab="'Main TS'" path="navigation-example1.component.ts"></app-code>
-      <app-code *appTab="'Nested TS #1'" path="navigation-example1-nested2.component.ts"></app-code>
-      <app-code *appTab="'Nested TS #2'" path="navigation-example1-nested3.component.ts"></app-code>
-    </app-tabs>
+    <docs-tabs>
+      <docs-code *docsTab="'Main TS'" path="navigation-example1.component.ts"></docs-code>
+      <docs-code *docsTab="'Nested TS #1'" path="navigation-example1-nested2.component.ts"></docs-code>
+      <docs-code *docsTab="'Nested TS #2'" path="navigation-example1-nested3.component.ts"></docs-code>
+    </docs-tabs>
   </ng-template>
-</app-component-documentation>
+</docs-component-documentation>

@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { TooltipModule as UiTooltipModule, IW_TOOLTIP_CONFIG, TooltipConfig } from '../../ui/tooltip/tooltip.module';
+import { IW_TOOLTIP_CONFIG, TooltipConfig, TooltipModule as UiTooltipModule } from '../../ui/tooltip/tooltip.module';
+import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
 
 const config: TooltipConfig = {
   containerClass: 'demo-tooltip',
@@ -14,14 +13,10 @@ const config: TooltipConfig = {
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      { path: '', component: TooltipDemoComponent }
-    ]),
     UiTooltipModule,
     FormsModule
   ],
   declarations: [TooltipDemoComponent],
-  exports: [RouterModule],
-  providers: [{provide: IW_TOOLTIP_CONFIG, useValue: config}]
+  providers: [{ provide: IW_TOOLTIP_CONFIG, useValue: config }]
 })
 export class TooltipModule { }

@@ -1,26 +1,26 @@
-<app-component-documentation
+<docs-component-documentation
   [componentTitle]="'Popover'"
   [componentId]="'PopoverDirective'"
   [componentType]="'directives'"
 >
-  <ng-template appComponentExample="From the template">
+  <ng-template docsComponentExample="From the template">
     <p>Add a template with the <code class="inline-code">iwPopover</code> directive.</p>
     <app-popover-example1></app-popover-example1>
-    <app-tabs>
-      <app-code *appTab="'HTML'" path="popover-example1.component.html"></app-code>
-      <app-code *appTab="'TS'" path="popover-example1.component.ts"></app-code>
-    </app-tabs>
+    <docs-tabs>
+      <docs-code *docsTab="'HTML'" path="popover-example1.component.html"></docs-code>
+      <docs-code *docsTab="'TS'" path="popover-example1.component.ts"></docs-code>
+    </docs-tabs>
   </ng-template>
-  <ng-template appComponentExample="From the service">
+  <ng-template docsComponentExample="From the service">
     <p>
       You can embed any of your components inside a popover. This can be very helpful to keep your templates light as well as refactoring.
       To do so, declare the component class you want to embed as an entry component of your module.
     </p>
     <app-popover-example2></app-popover-example2>
     
-    <app-tabs>
-      <app-code *appTab="'HTML'" path="popover-example2.component.html"></app-code>
-      <app-code *appTab="'TS'" path="popover-example2.component.ts"></app-code>
-    </app-tabs>
+    <docs-tabs>
+      <docs-code *docsTab="'HTML'" path="popover-example2.component.html"></docs-code>
+      <docs-code *docsTab="'TS'" path="popover-example2.component.ts"></docs-code>
+    </docs-tabs>
   </ng-template>
-</app-component-documentation>
+</docs-component-documentation>

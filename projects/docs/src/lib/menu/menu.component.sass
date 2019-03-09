@@ -1,0 +1,50 @@
+@import '../styles/variables'
+
+$search-color: $color-two
+
+.search
+  line-height: 40px
+  height: 40px
+  padding: 0 15px
+  width: 100%
+  border-radius: 0
+  color: $search-color
+  font-size: 1.4rem
+  outline: none
+  border: none
+  border-top: $color-light-grey 1px solid
+  border-bottom: $color-light-grey 1px solid
+
+  &.no-result
+    border-color: $color-five
+    color: $color-five
+
+.search-helper
+  width: 100%
+  padding: 0 15px
+  line-height: 20px
+  height: 20px
+  background-color: $search-color
+  color: white
+  font-size: 1rem
+  transition: opacity 0.2s
+  opacity: 1
+
+  &.no-result
+    background-color: $color-five
+
+  &.hidden
+    opacity: 0
+
+\:host
+  display: flex
+  height: 100%
+  overflow: hidden
+  flex-direction: column
+
+.links
+  flex: 1 1
+  overflow: auto
+
+.extra-links, .header
+  flex: 0 0 auto

@@ -1,0 +1,180 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./styles/variables"
+@import "./styles/button"
+
+html
+  font-size: 10px
+
+html, body
+  width: 100%
+  height: 100%
+  padding: 0
+  margin: 0
+  font-family: 'Lato', sans-serif
+  line-height: 1.5
+  font-weight: 400
+  background: white
+
+*
+  box-sizing: border-box
+
+a
+  text-decoration: underline
+  outline: none
+  
+  &:visited, &:focus, &:hover
+
+  &:hover
+    text-decoration: none
+
+iw-popover-container.demo-popover
+  padding: 9px
+  opacity: 0
+  transition: opacity 0.2s
+  background: transparent
+  font-size: 1.6rem
+  border: none
+
+  &.iw-popover-container--visible
+    opacity: 1
+
+.simple-popover
+  background: lightgray
+  padding: 7px
+  border: 1px solid grey
+  box-shadow: 1px 1px 5px 0 grey  
+
+.iw-popover-arrow-element
+  position: absolute
+  width: 10px
+  height: 10px
+  border-top: 1px solid grey
+  border-right: 1px solid grey
+
+  &.from-the-bottom
+    transform: rotateZ(-45deg) translate(-7px, 0px)
+    background-color: lightgrey
+
+  &.from-the-top
+    transform: translate(-5px, -15px) rotateZ(135deg)
+    background-color: white
+    box-shadow: 4px -4px 6px -1px #7b7b7b
+
+p, ul, ol, th, td
+  font-size: 1.6rem
+
+h1
+  font-size: 2rem
+
+h2
+  font-size: 1.8rem
+
+h3
+  font-size: 1.7rem
+
+
+code
+  display: inline
+  padding: 0
+  margin: 0
+  background: none
+  color: rgb(81, 172, 235)
+
+pre
+  code
+    display: block
+    white-space: pre
+    padding: 10px
+    margin: 10px 0
+    font-size: 1.4rem
+    background: whitesmoke
+    color: #7a7272
+    overflow: auto
+
+.iw-state-button
+  display: inline-block
+
+  &.sb--doing
+    background-color: grey
+    color: white
+    cursor: wait
+
+  &.sb--success
+    background-color: #2ECC40
+    color: white
+  
+  &.sb--failure
+    background-color: red
+    color: white
+
+  &.sb--doing::before
+    content: ''
+    display: inline-block
+    width: 16px
+    height: 16px
+    margin: 0px 5px -3px 0px
+    border-radius: 8px
+    box-shadow: 0 1px 0 0 white
+    -ms-animation: stateful-button--animation 1s linear infinite
+    -moz-animation: stateful-button--animation 1s linear infinite
+    -webkit-animation: stateful-button--animation 1s linear infinite
+    -o-animation: stateful-button--animation 1s linear infinite
+    animation: stateful-button--animation 1s linear infinite
+    z-index: 1
+
+
+@-moz-keyframes stateful-button--animation
+  0%
+    -moz-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -moz-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@-ms-keyframes stateful-button--animation
+  0%
+    -ms-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -ms-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@-webkit-keyframes stateful-button--animation
+  0%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -webkit-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@-o-keyframes stateful-button--animation
+  0%
+    -o-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -o-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@keyframes stateful-button--animation
+  0%
+    -ms-transform: rotate(0deg)
+    -moz-transform: rotate(0deg)
+    -webkit-transform: rotate(0deg)
+    -o-transform: rotate(0deg)
+    transform: rotate(0deg)
+  100%
+    -ms-transform: rotate(360deg)
+    -moz-transform: rotate(360deg)
+    -webkit-transform: rotate(360deg)
+    -o-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+iw-dialog-container
+  background: rgba(192, 192, 192, 0.67)
+
+iw-tooltip-container
+  font-size: 1.2rem !important
+
+.menu-popover
+  .iw-popover-arrow-element
+    display: none

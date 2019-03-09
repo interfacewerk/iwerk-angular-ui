@@ -2,20 +2,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { DocsModule } from 'projects/docs/src/public_api';
 import { AppComponent } from './app.component';
+import { PopoverDemoComponent } from './popover/popover-demo/popover-demo.component';
+import { PopoverDemoModule } from './popover/popover.module';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { CoreModule } from './core/core.module';
-
-const appRoutes: Routes = [
-  { path: '', component: WelcomeComponent },
-  { path: 'popover', loadChildren: './popover/popover.module#PopoverDemoModule' },
-  { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipDemoModule' },
-  // { path: 'stateful-button', loadChildren: './stateful-button/stateful-button.module#StatefulButtonDemoModule' },
-  { path: 'dialog', loadChildren: './dialog/dialog.module#DialogDemoModule' },
-  { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationDemoModule' },
-  { path: 'ellipsis', loadChildren: './ellipsis/ellipsis.module#EllipsisDemoModule' }
-];
+import { TooltipDemoComponent } from './tooltip/tooltip-demo/tooltip-demo.component';
+import { DialogComponent } from './dialog/dialog/dialog.component';
+import { NavigationdDemoComponent } from './navigation/navigation/navigation.component';
+import { EllipsisDemoComponent } from './ellipsis/ellipsis/ellipsis.component';
+import { TooltipDemoModule } from './tooltip/tooltip.module';
+import { EllipsisDemoModule } from './ellipsis/ellipsis.module';
+import { NavigationDemoModule } from './navigation/navigation.module';
+import { DialogDemoModule } from './dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -26,14 +25,22 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CoreModule,
-    RouterModule.forRoot(appRoutes, {
-      useHash: true,
-      preloadingStrategy: PreloadAllModules
+    PopoverDemoModule,
+    TooltipDemoModule,
+    NavigationDemoModule,
+    EllipsisDemoModule,
+    DialogDemoModule,
+    DocsModule.configure({
+      welcomePage: WelcomeComponent,
+      componentPages: {
+        popover: { title: 'Popover', component: PopoverDemoComponent },
+        tooltip: { title: 'Tooltip', component: TooltipDemoComponent },
+        dialog: { title: 'Dialog', component: DialogComponent },
+        navigation: { title: 'Navigation', component: NavigationdDemoComponent },
+        ellipsis: { title: 'Ellipsis', component: EllipsisDemoComponent }
+      }
     })
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  exports: [RouterModule]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

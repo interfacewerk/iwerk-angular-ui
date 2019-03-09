@@ -1,18 +1,18 @@
-<app-component-documentation
+<docs-component-documentation
   [componentTitle]="'Dialog'"
   [componentId]="'DialogDirective'"
   [componentType]="'directives'"
 >
-  <ng-template appComponentExample="From the template">
+  <ng-template docsComponentExample="From the template">
     <app-dialog-example1></app-dialog-example1>
-    <app-tabs>
-      <app-code *appTab="'HTML'" path="dialog-example1.component.html"></app-code>
-    </app-tabs>
+    <docs-tabs>
+      <docs-code *docsTab="'HTML'" path="dialog-example1.component.html"></docs-code>
+    </docs-tabs>
   </ng-template>
-  <ng-template appComponentExample="Using the dialog service">
+  <ng-template docsComponentExample="Using the dialog service">
     <app-dialog-example2></app-dialog-example2>
-    <app-tabs>
-      <app-code *appTab="'TS'" path="dialog-example2.component.ts"></app-code>
-    </app-tabs>
+    <docs-tabs>
+      <docs-code *docsTab="'TS'" path="dialog-example2.component.ts"></docs-code>
+    </docs-tabs>
   </ng-template>
-</app-component-documentation>
+</docs-component-documentation>
