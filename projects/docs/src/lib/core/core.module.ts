@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TooltipModule } from 'src/public_api';
+import { TooltipModule } from '../../../../../src/public_api';
 import { CodeSampleModule } from './code-sample/code-sample.module';
 import { ComponentApiComponent } from './component-api/component-api.component';
 import { ComponentDescriptionComponent } from './component-description/component-description.component';

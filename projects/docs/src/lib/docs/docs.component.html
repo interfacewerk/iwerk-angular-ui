@@ -1,16 +1,7 @@
 <aside>
-  <ul>
-    <li class="app__logo"><a [style.backgroundImage]="secureBrandLogo" routerLink="/"></a></li>
-    <li *ngFor="let route of routes">
-      <a
-        [routerLink]="route.path"
-        routerLinkActive="active-link"
-      >{{route.title}}</a>
-    </li>
-  </ul>
-  <ul class="extra-links">
+  <docs-menu>
     <ng-content></ng-content>
-  </ul>
+  </docs-menu>
 </aside>
 
 <main>

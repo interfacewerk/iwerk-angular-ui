@@ -1,6 +1,8 @@
-import { Component, Inject, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { ComponentPages, COMPONENT_PAGES } from '../routes.token';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'docs-app',
@@ -16,7 +18,12 @@ export class DocsComponent {
   secureBrandLogo: SafeStyle;
 
   constructor(
-    @Inject(COMPONENT_PAGES) public routes: ComponentPages,
-    private sanitizer: DomSanitizer
-  ) { }
+    private sanitizer: DomSanitizer,
+    private route: ActivatedRoute
+  ) {
+  }
+
+  get search$(): Observable<string> {
+    return this.route.queryParams.pipe(map(p => p.search || ''));
+  }
 }

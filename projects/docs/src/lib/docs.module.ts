@@ -5,17 +5,21 @@ import { CoreModule } from './core/core.module';
 import { DefaultWelcomeComponent } from './default-welcome/default-welcome.component';
 import { DocsComponent } from './docs/docs.component';
 import { ComponentPageMap, COMPONENT_PAGES, ComponentPages } from './routes.token';
+import { MenuComponent } from './menu/menu.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     DocsComponent,
-    DefaultWelcomeComponent
+    DefaultWelcomeComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forRoot([]),
-    CoreModule
+    CoreModule,
+    FormsModule
   ],
   exports: [
     DocsComponent,
