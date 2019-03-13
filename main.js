@@ -2308,13 +2308,19 @@ var TooltipDirective = /** @class */ (function () {
      */
     TooltipDirective.prototype.handleEvent = function (evt) {
         var _this = this;
+        var scrollHandler = function () {
+            document.removeEventListener('scroll', scrollHandler, true);
+            _this.__remove();
+        };
         if (evt.type === 'mouseenter') {
             this.__timerId = setTimeout(function () {
+                document.addEventListener('scroll', scrollHandler, true);
                 return _this.__onMouseEnter(evt);
             }, this.__delay);
         }
         if (evt.type === 'mouseleave') {
             clearTimeout(this.__timerId);
+            document.removeEventListener('scroll', scrollHandler, true);
             return this.__onMouseLeave(evt);
         }
     };
@@ -3847,23 +3853,25 @@ var AppComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! projects/docs/src/public_api */ "../docs/src/public_api.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popover/popover-demo/popover-demo.component */ "./src/app/popover/popover-demo/popover-demo.component.ts");
-/* harmony import */ var _popover_popover_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./popover/popover.module */ "./src/app/popover/popover.module.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
-/* harmony import */ var _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./tooltip/tooltip-demo/tooltip-demo.component */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.ts");
-/* harmony import */ var _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./dialog/dialog/dialog.component */ "./src/app/dialog/dialog/dialog.component.ts");
-/* harmony import */ var _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./navigation/navigation/navigation.component */ "./src/app/navigation/navigation/navigation.component.ts");
-/* harmony import */ var _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ellipsis/ellipsis/ellipsis.component */ "./src/app/ellipsis/ellipsis/ellipsis.component.ts");
-/* harmony import */ var _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tooltip/tooltip.module */ "./src/app/tooltip/tooltip.module.ts");
-/* harmony import */ var _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ellipsis/ellipsis.module */ "./src/app/ellipsis/ellipsis.module.ts");
-/* harmony import */ var _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./navigation/navigation.module */ "./src/app/navigation/navigation.module.ts");
-/* harmony import */ var _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dialog/dialog.module */ "./src/app/dialog/dialog.module.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! projects/docs/src/public_api */ "../docs/src/public_api.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dialog/dialog.module */ "./src/app/dialog/dialog.module.ts");
+/* harmony import */ var _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dialog/dialog/dialog.component */ "./src/app/dialog/dialog/dialog.component.ts");
+/* harmony import */ var _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ellipsis/ellipsis.module */ "./src/app/ellipsis/ellipsis.module.ts");
+/* harmony import */ var _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ellipsis/ellipsis/ellipsis.component */ "./src/app/ellipsis/ellipsis/ellipsis.component.ts");
+/* harmony import */ var _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./navigation/navigation.module */ "./src/app/navigation/navigation.module.ts");
+/* harmony import */ var _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./navigation/navigation/navigation.component */ "./src/app/navigation/navigation/navigation.component.ts");
+/* harmony import */ var _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./popover/popover-demo/popover-demo.component */ "./src/app/popover/popover-demo/popover-demo.component.ts");
+/* harmony import */ var _popover_popover_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./popover/popover.module */ "./src/app/popover/popover.module.ts");
+/* harmony import */ var _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./tooltip/tooltip-demo/tooltip-demo.component */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.ts");
+/* harmony import */ var _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tooltip/tooltip.module */ "./src/app/tooltip/tooltip.module.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
+
 
 
 
@@ -3886,32 +3894,36 @@ var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_9__["WelcomeComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__["WelcomeComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
-                _popover_popover_module__WEBPACK_IMPORTED_MODULE_8__["PopoverDemoModule"],
-                _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_14__["TooltipDemoModule"],
-                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_16__["NavigationDemoModule"],
-                _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_15__["EllipsisDemoModule"],
-                _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_17__["DialogDemoModule"],
-                projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_5__["DocsModule"].configure({
-                    welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_9__["WelcomeComponent"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["BrowserModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
+                _popover_popover_module__WEBPACK_IMPORTED_MODULE_15__["PopoverDemoModule"],
+                _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_17__["TooltipDemoModule"],
+                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_12__["NavigationDemoModule"],
+                _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_10__["EllipsisDemoModule"],
+                _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__["DialogDemoModule"],
+                projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_6__["DocsModule"].configure({
+                    welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__["WelcomeComponent"],
                     componentPages: {
-                        popover: { title: 'Popover', component: _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_7__["PopoverDemoComponent"] },
-                        tooltip: { title: 'Tooltip', component: _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_10__["TooltipDemoComponent"] },
-                        dialog: { title: 'Dialog', component: _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_11__["DialogComponent"] },
-                        navigation: { title: 'Navigation', component: _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_12__["NavigationdDemoComponent"] },
-                        ellipsis: { title: 'Ellipsis', component: _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_13__["EllipsisDemoComponent"] }
+                        popover: { title: 'Popover', component: _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_14__["PopoverDemoComponent"] },
+                        tooltip: { title: 'Tooltip', component: _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_16__["TooltipDemoComponent"] },
+                        dialog: { title: 'Dialog', component: _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_9__["DialogComponent"] },
+                        navigation: { title: 'Navigation', component: _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_13__["NavigationdDemoComponent"] },
+                        ellipsis: { title: 'Ellipsis', component: _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_11__["EllipsisDemoComponent"] }
                     }
                 })
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            providers: [{
+                    provide: _angular_common__WEBPACK_IMPORTED_MODULE_1__["LocationStrategy"],
+                    useClass: _angular_common__WEBPACK_IMPORTED_MODULE_1__["HashLocationStrategy"]
+                }],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
