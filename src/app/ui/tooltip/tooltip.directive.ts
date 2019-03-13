@@ -94,13 +94,20 @@ export class TooltipDirective implements AfterViewInit, OnDestroy, EventListener
    * @ignore
    */
   handleEvent(evt: Event): void {
+    const scrollHandler = () => {
+      document.removeEventListener('scroll', scrollHandler, true);
+      this.__remove();
+    };
     if (evt.type === 'mouseenter') {
       this.__timerId = setTimeout(() => {
+        document.addEventListener('scroll', scrollHandler, true);
         return this.__onMouseEnter(<MouseEvent>evt);
       }, this.__delay);
+
     }
     if (evt.type === 'mouseleave') {
       clearTimeout(this.__timerId);
+      document.removeEventListener('scroll', scrollHandler, true);
       return this.__onMouseLeave(<MouseEvent>evt);
     }
   }
