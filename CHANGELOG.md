@@ -1,3 +1,10 @@
+## [3.15.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.15.0...v3.15.1) (2019-03-13)
+
+
+### Bug Fixes
+
+* **tooltip:** make tooltip go away after scrolling ([d1b7d71](https://github.com/interfacewerk/iwerk-angular-ui/commit/d1b7d71))
+
 # [3.15.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.14.0...v3.15.0) (2019-03-09)
 
 
