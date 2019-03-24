@@ -1,25 +1,26 @@
-<ul class="header">
-  <li class="app__logo"><a [style.backgroundImage]="secureBrandLogo" routerLink="/"></a></li>
-  <li>
-    <input type="text"
-      class="search"
-      [class.active]="search$ | async"
-      [class.no-result]="(pages$ | async).length === 0"
-      [ngModel]="search$ | async"
-      (ngModelChange)="setSearch($event)"
-      placeholder="Search for a component"
-      autofocus
-      autocomplete="off"
-    />
-    <div class="search-helper"
-      [class.hidden]="!(search$ | async)"
-      [class.no-result]="(pages$ | async).length === 0">
-      <ng-container *ngIf="search$ | async">
-        {{(pages$ | async).length}} <ng-container *ngIf="(pages$ | async).length > 1">results</ng-container><ng-container *ngIf="(pages$ | async).length === 1">result</ng-container> found
-      </ng-container>
-    </div>
-  </li>
-</ul>
+<div class="header">
+  <a class="app__logo" [style.backgroundImage]="secureBrandLogo" routerLink="/"></a>
+  <ul class="links">
+    <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Get started</a></li>
+  </ul>
+  <input type="text"
+    class="search"
+    [class.active]="search$ | async"
+    [class.no-result]="(pages$ | async).length === 0"
+    [ngModel]="search$ | async"
+    (ngModelChange)="setSearch($event)"
+    placeholder="Search for a component"
+    autofocus
+    autocomplete="off"
+  />
+  <div class="search-helper"
+    [class.hidden]="!(search$ | async)"
+    [class.no-result]="(pages$ | async).length === 0">
+    <ng-container *ngIf="search$ | async">
+      {{(pages$ | async).length}} <ng-container *ngIf="(pages$ | async).length > 1">results</ng-container><ng-container *ngIf="(pages$ | async).length === 1">result</ng-container> found
+    </ng-container>
+  </div>
+</div>
 <ul class="links">
   <ng-container *ngIf="pages$ | async as pages; else noResults">
     <li *ngFor="let page of pages">
