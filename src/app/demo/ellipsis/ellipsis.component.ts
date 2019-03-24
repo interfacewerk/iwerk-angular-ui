@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-ellipsis',
   templateUrl: './ellipsis.component.html',
-  styleUrls: ['./ellipsis.component.scss']
+  styleUrls: ['./ellipsis.component.sass']
 })
 export class EllipsisComponent implements OnInit {
   // tslint:disable-next-line

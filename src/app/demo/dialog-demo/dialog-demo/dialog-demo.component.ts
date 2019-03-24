@@ -5,7 +5,7 @@ import { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dial
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog-demo.component.html',
-  styleUrls: ['./dialog-demo.component.scss']
+  styleUrls: ['./dialog-demo.component.sass']
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @ViewChild('myDialog1') myDialog1: DialogDirective;

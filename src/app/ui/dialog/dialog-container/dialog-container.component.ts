@@ -26,7 +26,7 @@ export interface IDialog {
 @Component({
   selector: 'iw-dialog-container',
   templateUrl: './dialog-container.component.html',
-  styleUrls: ['./dialog-container.component.scss'],
+  styleUrls: ['./dialog-container.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

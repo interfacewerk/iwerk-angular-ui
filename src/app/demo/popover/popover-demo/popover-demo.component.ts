@@ -5,7 +5,7 @@ import { PopoverService } from '../../../ui/popover/popover.module';
 @Component({
   selector: 'app-popover-demo',
   templateUrl: './popover-demo.component.html',
-  styleUrls: ['./popover-demo.component.scss']
+  styleUrls: ['./popover-demo.component.sass']
 })
 export class PopoverDemoComponent implements OnInit {
   editedPerson: Person;
