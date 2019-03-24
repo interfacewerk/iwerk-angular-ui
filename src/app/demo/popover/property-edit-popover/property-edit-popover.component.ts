@@ -4,7 +4,7 @@ import { Popover } from '../../../ui/popover/popover.module';
 @Component({
   selector: 'app-property-edit-popover',
   templateUrl: './property-edit-popover.component.html',
-  styleUrls: ['./property-edit-popover.component.scss']
+  styleUrls: ['./property-edit-popover.component.sass']
 })
 export class PropertyEditPopoverComponent implements OnInit {
   @Input() value: string;

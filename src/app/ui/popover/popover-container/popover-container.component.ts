@@ -8,7 +8,7 @@ import {
 @Component({
   selector: 'iw-popover-container',
   templateUrl: './popover-container.component.html',
-  styleUrls: ['./popover-container.component.scss'],
+  styleUrls: ['./popover-container.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
 export class PopoverContainerComponent {

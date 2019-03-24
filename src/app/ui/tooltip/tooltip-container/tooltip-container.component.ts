@@ -14,7 +14,7 @@ import { IW_TOOLTIP_CONFIG } from '../tooltip.config';
 @Component({
   selector: 'iw-tooltip-container',
   templateUrl: './tooltip-container.component.html',
-  styleUrls: ['./tooltip-container.component.scss'],
+  styleUrls: ['./tooltip-container.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
 export class TooltipContainerComponent implements OnInit {

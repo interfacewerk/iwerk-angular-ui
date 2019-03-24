@@ -4,7 +4,7 @@ import { DialogService } from '../../../ui/dialog/dialog.module';
 @Component({
   selector: 'app-my-dialog',
   templateUrl: './my-dialog.component.html',
-  styleUrls: ['./my-dialog.component.scss']
+  styleUrls: ['./my-dialog.component.sass']
 })
 export class MyDialogComponent implements OnInit {
   @Input() title: string;

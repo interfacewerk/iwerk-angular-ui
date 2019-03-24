@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'iw-popover-scroll-mask',
   templateUrl: './popover-scroll-mask.component.html',
-  styleUrls: ['./popover-scroll-mask.component.scss'],
+  styleUrls: ['./popover-scroll-mask.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
 export class PopoverScrollMaskComponent {
