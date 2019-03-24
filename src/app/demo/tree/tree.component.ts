@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { TreeItem, TreeComponent as UiTreeComponent } from '../../ui/tree/tree/tree.component';
-import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { TreeComponent as UiTreeComponent, TreeItem } from '../../ui/tree/tree/tree.component';
 
 @Component({
   template: `
@@ -103,7 +103,7 @@ export class Tree2Component {
     'div:focus { background: grey; }'
   ]
 })
-export class Tree3Component {
+export class Tree3Component implements OnInit {
   items: TreeItem[] = [{
     data: 'Node #1',
     children: [{
