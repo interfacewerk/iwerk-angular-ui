@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DocumentationService, InputType, OutputType, ComponentDocumentation, MethodType } from '../documentation.service';
+import { ComponentDocumentation, Documentation, DocumentationService, InputType, MethodType, OutputType } from '../documentation.service';
 
 @Component({
   selector: 'docs-component-api',
@@ -10,7 +10,7 @@ import { DocumentationService, InputType, OutputType, ComponentDocumentation, Me
 })
 export class ComponentApiComponent implements OnChanges {
   @Input() componentId: string;
-  @Input() componentType: 'directives';
+  @Input() componentType: keyof Documentation;
 
   documentation$: Observable<ComponentDocumentation>;
 
@@ -47,6 +47,14 @@ export class ComponentApiComponent implements OnChanges {
     this.hasOutputs$ = this.outputs$.pipe(map(a => a.length > 0));
     this.hasInputs$ = this.inputs$.pipe(map(a => a.length > 0));
     this.hasMethods$ = this.methods$.pipe(map(a => a.length > 0));
+  }
+
+  getInputType(input: InputType): Observable<string> {
+    return this.documentation.getInputType({
+      componentId: this.componentId,
+      componentType: this.componentType,
+      input
+    });
   }
 }
 
