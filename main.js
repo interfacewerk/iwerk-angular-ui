@@ -2470,6 +2470,368 @@ var TooltipModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../src/app/ui/tree/tree.module.ts":
+/*!****************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/tree/tree.module.ts ***!
+  \****************************************************************************************/
+/*! exports provided: TreeComponent, TreeModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeModule", function() { return TreeModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tree/tree.component */ "../../src/app/ui/tree/tree/tree.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TreeComponent", function() { return _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeComponent"]; });
+
+
+
+
+
+
+var TreeModule = /** @class */ (function () {
+    function TreeModule() {
+    }
+    TreeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+            declarations: [
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeComponent"],
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeItemDirective"],
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeNodeTemplateDirective"]
+            ],
+            exports: [
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeComponent"],
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeItemDirective"],
+                _tree_tree_component__WEBPACK_IMPORTED_MODULE_3__["TreeNodeTemplateDirective"]
+            ],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
+            ]
+        })
+    ], TreeModule);
+    return TreeModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/tree/tree/tree.component.html":
+/*!**************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/tree/tree/tree.component.html ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-container *ngTemplateOutlet=\"treeTemplate; context: { $implicit: tree, depth: 0 }\"></ng-container>\n\n<ng-template #treeTemplate let-nodes let-depth=\"depth\">\n  <ol>\n    <li *ngFor=\"let node of nodes\">\n      <ng-container *ngTemplateOutlet=\"nodeTemplate; context: { $implicit: node, data: node.data, depth: depth, hasChildren: hasChildren(node) }\"></ng-container>\n      \n      <ng-template [ngIf]=\"hasChildren(node) && isExpanded(node)\">\n        <ng-container *ngTemplateOutlet=\"treeTemplate; context: { $implicit: node.children, depth: depth + 1 }\"></ng-container>\n      </ng-template>\n    </li>\n  </ol>\n</ng-template>\n"
+
+/***/ }),
+
+/***/ "../../src/app/ui/tree/tree/tree.component.sass":
+/*!**************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/tree/tree/tree.component.sass ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ":host {\n  display: block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvc3JjL2FwcC91aS90cmVlL3RyZWUvdHJlZS5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQztFQUNDLGVBQWMsRUFBRyIsImZpbGUiOiJzcmMvYXBwL3VpL3RyZWUvdHJlZS90cmVlLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiIDpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7IH1cbiJdfQ== */"
+
+/***/ }),
+
+/***/ "../../src/app/ui/tree/tree/tree.component.ts":
+/*!************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/tree/tree/tree.component.ts ***!
+  \************************************************************************************************/
+/*! exports provided: TreeComponent, TreeNodeTemplateDirective, TreeItemDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeComponent", function() { return TreeComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeNodeTemplateDirective", function() { return TreeNodeTemplateDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeItemDirective", function() { return TreeItemDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+/**
+ * This component renders a tree of DOM elements based on the provided `tree` input.
+ * It does nothing else than rendering. You have to provide a template for the node.
+ ```ts
+ import { TreeModule } from 'iwerk-angular-ui';
+ ```
+ */
+var TreeComponent = /** @class */ (function () {
+    function TreeComponent() {
+        /**
+         * The expanded nodes: their children will be displayed.
+         */
+        this.expanded = [];
+        /**
+         * Event that is emitted when the set of expanded nodes changes.
+         */
+        this.expand = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.focusEvent = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.parentMap = new Map();
+        this.__tree = [];
+    }
+    Object.defineProperty(TreeComponent.prototype, "tree", {
+        get: function () {
+            return this.__tree;
+        },
+        /**
+         * The tree input to render. Use the `TreeItem` type definition.
+         */
+        set: function (v) {
+            this.__tree = v;
+            this.updateParentMap();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Return `true` if the item has children, `false` otherwise.
+     * @param item the item
+     */
+    TreeComponent.prototype.hasChildren = function (item) {
+        return item.children && item.children.length > 0;
+    };
+    /**
+     * Return `true` if the item is expanded, `false` otherwise.
+     * @param item the item
+     */
+    TreeComponent.prototype.isExpanded = function (item) {
+        return this.expanded.indexOf(item) > -1;
+    };
+    /**
+     * Toggle the expanded state of the item.
+     * @param item the item
+     */
+    TreeComponent.prototype.toggleExpand = function (item) {
+        if (!this.hasChildren(item)) {
+            return;
+        }
+        if (this.isExpanded(item)) {
+            this.collapseItem(item);
+        }
+        else {
+            this.expandItem(item);
+        }
+    };
+    /**
+     * Expand the item: display its children.
+     * @param item the item
+     */
+    TreeComponent.prototype.expandItem = function (item) {
+        if (!this.hasChildren(item)) {
+            return;
+        }
+        this.setExpanded(this.expanded.concat([item]));
+    };
+    /**
+     * Collapse the item: hide its children.
+     * @param item the item
+     */
+    TreeComponent.prototype.collapseItem = function (item) {
+        this.setExpanded(this.expanded.filter(function (e) { return e !== item; }));
+    };
+    /**
+     * @ignore
+     */
+    TreeComponent.prototype.sendFocusEvent = function (item) {
+        this.focusEvent.next(item);
+    };
+    /**
+     * @ignore
+     */
+    TreeComponent.prototype.setExpanded = function (v) {
+        this.expanded = v;
+        this.expand.emit(v);
+    };
+    /**
+     * @ignore
+     */
+    TreeComponent.prototype.updateParentMap = function () {
+        var _this = this;
+        this.parentMap = new Map();
+        var aux = function (parent, nodes) {
+            nodes.forEach(function (n) {
+                _this.parentMap.set(n, parent);
+                aux(n, n.children || []);
+            });
+        };
+        aux(undefined, this.__tree);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Array])
+    ], TreeComponent.prototype, "tree", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], TreeComponent.prototype, "expanded", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], TreeComponent.prototype, "expand", void 0);
+    TreeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'iw-tree',
+            template: __webpack_require__(/*! ./tree.component.html */ "../../src/app/ui/tree/tree/tree.component.html"),
+            styles: [__webpack_require__(/*! ./tree.component.sass */ "../../src/app/ui/tree/tree/tree.component.sass")]
+        })
+    ], TreeComponent);
+    return TreeComponent;
+}());
+
+var TreeNodeTemplateDirective = /** @class */ (function () {
+    function TreeNodeTemplateDirective(templateRef, menu) {
+        this.templateRef = templateRef;
+        this.menu = menu;
+        this.menu.nodeTemplate = this.templateRef;
+    }
+    TreeNodeTemplateDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[iwTreeNodeTemplate]'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], TreeComponent])
+    ], TreeNodeTemplateDirective);
+    return TreeNodeTemplateDirective;
+}());
+
+var TreeItemDirective = /** @class */ (function () {
+    function TreeItemDirective(menu, elementRef) {
+        this.menu = menu;
+        this.elementRef = elementRef;
+        this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subscription"];
+    }
+    TreeItemDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription.add(this.menu.focusEvent
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["filter"])(function (e) { return e === _this.item; }))
+            .subscribe(function (e) {
+            _this.elementRef.nativeElement.focus();
+        }));
+    };
+    TreeItemDirective.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
+    TreeItemDirective.prototype.keydown = function ($event) {
+        switch ($event.keyCode) {
+            case 39:
+                this.goRight($event);
+                break;
+            case 40:
+                this.goDown($event);
+                break;
+            case 38:
+                this.goUp($event);
+                break;
+            case 37:
+                this.goLeft($event);
+                break;
+        }
+    };
+    TreeItemDirective.prototype.goLeft = function ($event) {
+        $event.preventDefault();
+        if (this.menu.isExpanded(this.item)) {
+            return this.menu.collapseItem(this.item);
+        }
+        var parent = this.menu.parentMap.get(this.item);
+        if (parent) {
+            this.menu.sendFocusEvent(parent);
+        }
+        else {
+            this.goUp($event);
+        }
+    };
+    TreeItemDirective.prototype.goRight = function ($event) {
+        $event.preventDefault();
+        if (!this.menu.hasChildren(this.item)) {
+            return this.goDown($event);
+        }
+        if (!this.menu.isExpanded(this.item)) {
+            return this.menu.expandItem(this.item);
+        }
+        this.menu.sendFocusEvent(this.item.children[0]);
+    };
+    TreeItemDirective.prototype.goDown = function ($event) {
+        var _this = this;
+        $event.preventDefault();
+        if (this.menu.hasChildren(this.item) &&
+            this.menu.isExpanded(this.item)) {
+            return this.menu.sendFocusEvent(this.item.children[0]);
+        }
+        var selectAfter = function (item) {
+            var parent = _this.menu.parentMap.get(item);
+            var children = parent ? parent.children : _this.menu.tree;
+            var index = children.indexOf(item);
+            var next = children[index + 1];
+            if (next) {
+                _this.menu.sendFocusEvent(next);
+            }
+            else if (parent) {
+                selectAfter(parent);
+            }
+        };
+        selectAfter(this.item);
+    };
+    TreeItemDirective.prototype.goUp = function ($event) {
+        var _this = this;
+        $event.preventDefault();
+        var selectLastPossible = function (item) {
+            if (_this.menu.hasChildren(item) && _this.menu.isExpanded(item)) {
+                selectLastPossible(item.children[item.children.length - 1]);
+            }
+            else {
+                _this.menu.sendFocusEvent(item);
+            }
+        };
+        var selectBefore = function (item) {
+            var parent = _this.menu.parentMap.get(item);
+            var children = parent ? parent.children : _this.menu.tree;
+            var index = children.indexOf(item);
+            var previous = children[index - 1];
+            if (previous) {
+                selectLastPossible(previous);
+            }
+            else if (parent) {
+                _this.menu.sendFocusEvent(parent);
+            }
+        };
+        selectBefore(this.item);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('iwTreeItem'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], TreeItemDirective.prototype, "item", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('keydown', ['$event']),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [KeyboardEvent]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
+    ], TreeItemDirective.prototype, "keydown", null);
+    TreeItemDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[iwTreeItem]'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [TreeComponent,
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], TreeItemDirective);
+    return TreeItemDirective;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../src/app/ui/ui.module.ts":
 /*!*********************************************************************************!*\
   !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/ui.module.ts ***!
@@ -2489,6 +2851,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./state-button/state-button.module */ "../../src/app/ui/state-button/state-button.module.ts");
 /* harmony import */ var _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tooltip/tooltip.module */ "../../src/app/ui/tooltip/tooltip.module.ts");
 /* harmony import */ var _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./navigation/navigation.module */ "../../src/app/ui/navigation/navigation.module.ts");
+/* harmony import */ var _tree_tree_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./tree/tree.module */ "../../src/app/ui/tree/tree.module.ts");
+
 
 
 
@@ -2510,7 +2874,8 @@ var UiModule = /** @class */ (function () {
                 _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__["StateButtonModule"],
                 _checkbox_checkbox_module__WEBPACK_IMPORTED_MODULE_3__["CheckboxModule"],
                 _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"],
-                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"]
+                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"],
+                _tree_tree_module__WEBPACK_IMPORTED_MODULE_9__["TreeModule"]
             ],
             exports: [
                 _popover_popover_module__WEBPACK_IMPORTED_MODULE_5__["PopoverModule"],
@@ -2518,7 +2883,8 @@ var UiModule = /** @class */ (function () {
                 _state_button_state_button_module__WEBPACK_IMPORTED_MODULE_6__["StateButtonModule"],
                 _checkbox_checkbox_module__WEBPACK_IMPORTED_MODULE_3__["CheckboxModule"],
                 _multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_4__["MultilineEllipsisModule"],
-                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"]
+                _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_8__["NavigationModule"],
+                _tree_tree_module__WEBPACK_IMPORTED_MODULE_9__["TreeModule"]
             ]
         })
     ], UiModule);
@@ -2533,7 +2899,7 @@ var UiModule = /** @class */ (function () {
 /*!***************************************************************************!*\
   !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/public_api.ts ***!
   \***************************************************************************/
-/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationController, NavigationModule, UiModule */
+/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationController, NavigationModule, TreeComponent, TreeModule, UiModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2579,8 +2945,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationModule", function() { return _app_ui_navigation_navigation_module__WEBPACK_IMPORTED_MODULE_6__["NavigationModule"]; });
 
-/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_7__["UiModule"]; });
+/* harmony import */ var _app_ui_tree_tree_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app/ui/tree/tree.module */ "../../src/app/ui/tree/tree.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TreeComponent", function() { return _app_ui_tree_tree_module__WEBPACK_IMPORTED_MODULE_7__["TreeComponent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TreeModule", function() { return _app_ui_tree_tree_module__WEBPACK_IMPORTED_MODULE_7__["TreeModule"]; });
+
+/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_8__["UiModule"]; });
+
 
 
 
@@ -2801,7 +3173,7 @@ var CodeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Selector: <code>{{selector$ | async}}</code></h2>\n\n<ng-template [ngIf]=\"hasInputs$ | async\">\n  <h3>Inputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Input</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"inputs$ | async\" let-input>\n        <tr>\n          <td><code>{{input.name}}</code></td>\n          <td><code>{{input.type}}</code></td>\n          <td [innerHTML]=\"input.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasOutputs$ | async\">\n  <h3>Outputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Output</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"outputs$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td><code>{{output.defaultValue}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasMethods$ | async\">\n  <h3>Methods</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Method</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"methods$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>"
+module.exports = "<h2>Selector: <code>{{selector$ | async}}</code></h2>\n\n<ng-template [ngIf]=\"hasInputs$ | async\">\n  <h3>Inputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Input</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"inputs$ | async\" let-input>\n        <tr>\n          <td><code>{{input.name}}</code></td>\n          <td><code>{{getInputType(input) | async}}</code></td>\n          <td [innerHTML]=\"input.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasOutputs$ | async\">\n  <h3>Outputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Output</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"outputs$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td><code>{{output.defaultValue}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasMethods$ | async\">\n  <h3>Methods</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Method</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"methods$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>"
 
 /***/ }),
 
@@ -2851,13 +3223,20 @@ var ComponentApiComponent = /** @class */ (function () {
         this.hasInputs$ = this.inputs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (a) { return a.length > 0; }));
         this.hasMethods$ = this.methods$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (a) { return a.length > 0; }));
     };
+    ComponentApiComponent.prototype.getInputType = function (input) {
+        return this.documentation.getInputType({
+            componentId: this.componentId,
+            componentType: this.componentType,
+            input: input
+        });
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
     ], ComponentApiComponent.prototype, "componentId", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], ComponentApiComponent.prototype, "componentType", void 0);
     ComponentApiComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3262,8 +3641,8 @@ var CoreModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentationService", function() { return DocumentationService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
 
@@ -3313,11 +3692,27 @@ var DocumentationService = /** @class */ (function () {
             return this.documentation[type].find(function (d) { return d.name === name; });
         }
     };
+    DocumentationService.prototype.getInputType = function (options) {
+        return this.getComponentDocumentation$(options.componentId, options.componentType)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (d) {
+            var defaultResult = options.input.type;
+            if (!d.accessors) {
+                return defaultResult;
+            }
+            var acc = d.accessors[options.input.name];
+            if (acc) {
+                return acc.getSignature.returnType;
+            }
+            else {
+                return defaultResult;
+            }
+        }));
+    };
     DocumentationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DocumentationService);
     return DocumentationService;
 }());
@@ -3870,7 +4265,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _popover_popover_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./popover/popover.module */ "./src/app/popover/popover.module.ts");
 /* harmony import */ var _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./tooltip/tooltip-demo/tooltip-demo.component */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.ts");
 /* harmony import */ var _tooltip_tooltip_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tooltip/tooltip.module */ "./src/app/tooltip/tooltip.module.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
+/* harmony import */ var _tree_docs_tree_docs_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./tree-docs/tree-docs.component */ "./src/app/tree-docs/tree-docs.component.ts");
+/* harmony import */ var _tree_docs_tree_docs_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./tree-docs/tree-docs.module */ "./src/app/tree-docs/tree-docs.module.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
+
+
 
 
 
@@ -3897,7 +4296,7 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__["WelcomeComponent"]
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__["WelcomeComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["BrowserModule"],
@@ -3908,14 +4307,16 @@ var AppModule = /** @class */ (function () {
                 _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_12__["NavigationDemoModule"],
                 _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_10__["EllipsisDemoModule"],
                 _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__["DialogDemoModule"],
+                _tree_docs_tree_docs_module__WEBPACK_IMPORTED_MODULE_19__["TreeDocsModule"],
                 projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_6__["DocsModule"].configure({
-                    welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_18__["WelcomeComponent"],
+                    welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__["WelcomeComponent"],
                     componentPages: {
                         popover: { title: 'Popover', component: _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_14__["PopoverDemoComponent"] },
                         tooltip: { title: 'Tooltip', component: _tooltip_tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_16__["TooltipDemoComponent"] },
                         dialog: { title: 'Dialog', component: _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_9__["DialogComponent"] },
                         navigation: { title: 'Navigation', component: _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_13__["NavigationdDemoComponent"] },
-                        ellipsis: { title: 'Ellipsis', component: _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_11__["EllipsisDemoComponent"] }
+                        ellipsis: { title: 'Ellipsis', component: _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_11__["EllipsisDemoComponent"] },
+                        tree: { title: 'Tree', component: _tree_docs_tree_docs_component__WEBPACK_IMPORTED_MODULE_18__["TreeDocsComponent"] }
                     }
                 })
             ],
@@ -5140,6 +5541,385 @@ var TooltipDemoModule = /** @class */ (function () {
         })
     ], TooltipDemoModule);
     return TooltipDemoModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<iw-tree [tree]=\"items\" #tree>\n  <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n    {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n  </ng-template>\n</iw-tree>"
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: TreeDocsExample1Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeDocsExample1Component", function() { return TreeDocsExample1Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var TreeDocsExample1Component = /** @class */ (function () {
+    function TreeDocsExample1Component() {
+        this.items = [{
+                data: 'Node #1',
+                children: [{
+                        data: 'Node #1.1',
+                        children: [{
+                                data: 'Node #1.1.1'
+                            }, {
+                                data: 'Node #1.1.2'
+                            }, {
+                                data: 'Node #1.1.3'
+                            }]
+                    }, {
+                        data: 'Node #1.2',
+                        children: [{
+                                data: 'Node #1.2.1'
+                            }, {
+                                data: 'Node #1.2.2'
+                            }, {
+                                data: 'Node #1.2.3'
+                            }]
+                    }, {
+                        data: 'Node #1.3',
+                        children: [{
+                                data: 'Node #1.3.1'
+                            }, {
+                                data: 'Node #1.3.2'
+                            }, {
+                                data: 'Node #1.3.3'
+                            }]
+                    }]
+            }];
+    }
+    TreeDocsExample1Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tree-docs-example1',
+            template: __webpack_require__(/*! ./tree-docs-example1.component.html */ "./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.html")
+        })
+    ], TreeDocsExample1Component);
+    return TreeDocsExample1Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>Use your arrow keys to navigate inside this tree.</p>\n\n<iw-tree [tree]=\"items\" #tree>\n  <ng-template iwTreeNodeTemplate let-node>\n    <div tabindex=\"0\"\n      [iwTreeItem]=\"node\"\n    >{{node.data}}</div>\n  </ng-template>\n</iw-tree>"
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: TreeDocsExample2Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeDocsExample2Component", function() { return TreeDocsExample2Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var TreeDocsExample2Component = /** @class */ (function () {
+    function TreeDocsExample2Component() {
+        this.items = [{
+                data: 'Node #1',
+                children: [{
+                        data: 'Node #1.1',
+                        children: [{
+                                data: 'Node #1.1.1'
+                            }, {
+                                data: 'Node #1.1.2'
+                            }, {
+                                data: 'Node #1.1.3'
+                            }]
+                    }, {
+                        data: 'Node #1.2',
+                        children: [{
+                                data: 'Node #1.2.1'
+                            }, {
+                                data: 'Node #1.2.2'
+                            }, {
+                                data: 'Node #1.2.3'
+                            }]
+                    }, {
+                        data: 'Node #1.3',
+                        children: [{
+                                data: 'Node #1.3.1'
+                            }, {
+                                data: 'Node #1.3.2'
+                            }, {
+                                data: 'Node #1.3.3'
+                            }]
+                    }]
+            }];
+    }
+    TreeDocsExample2Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tree-docs-example2',
+            template: __webpack_require__(/*! ./tree-docs-example2.component.html */ "./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.html"),
+            styles: ["div:focus { background: grey; }"]
+        })
+    ], TreeDocsExample2Component);
+    return TreeDocsExample2Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<iw-tree #treeComponent [tree]=\"tree\" class=\"menu-tree\">\n  <ng-template iwTreeNodeTemplate let-node let-depth=\"depth\">\n    <a [routerLink]=\"node.data.routerLink\"\n      [ngStyle]=\"getLinkStyle(depth)\"\n      [queryParams]=\"node.data.queryParams\"\n      [queryParamsHandling]=\"'merge'\"\n      [routerLinkActive]=\"'active'\"\n      [iwTreeItem]=\"node\"\n      (click)=\"treeComponent.expandItem(node)\">\n      <fa-icon\n        [style.visibility]=\"treeComponent.hasChildren(node) ? 'visible' : 'hidden'\"\n        (click)=\"toggleExpand(treeComponent, node, $event)\"\n        [icon]=\"treeComponent.isExpanded(node) ? caretDown : caretRight\"\n      ></fa-icon>\n      Node #{{node.data.label}}\n    </a>\n  </ng-template>\n</iw-tree>"
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: TreeDocsExample3Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeDocsExample3Component", function() { return TreeDocsExample3Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+
+
+var TreeDocsExample3Component = /** @class */ (function () {
+    function TreeDocsExample3Component() {
+        this.tree = [{
+                data: {
+                    label: '1',
+                    routerLink: [],
+                    queryParams: {
+                        someParam: 1
+                    }
+                },
+                children: [{
+                        data: {
+                            label: '2',
+                            routerLink: [],
+                            queryParams: {
+                                someParam: 2
+                            },
+                        },
+                        children: [{
+                                data: {
+                                    label: '3',
+                                    routerLink: [],
+                                    queryParams: {
+                                        someParam: 3
+                                    }
+                                }
+                            }, {
+                                data: {
+                                    label: '4',
+                                    routerLink: [],
+                                    queryParams: {
+                                        someParam: 4
+                                    }
+                                }
+                            }]
+                    }, {
+                        data: {
+                            label: '5',
+                            routerLink: [],
+                            queryParams: {
+                                someParam: 5
+                            }
+                        }
+                    }]
+            }, {
+                data: {
+                    label: '6',
+                    routerLink: [],
+                    queryParams: {
+                        someParam: 6
+                    }
+                },
+                children: [{
+                        data: {
+                            label: '7',
+                            routerLink: [],
+                            queryParams: {
+                                someParam: 7
+                            }
+                        }
+                    }, {
+                        data: {
+                            label: '8',
+                            routerLink: [],
+                            queryParams: {
+                                someParam: 8
+                            }
+                        }
+                    }]
+            }];
+        this.caretRight = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faCaretRight"];
+        this.caretDown = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faCaretDown"];
+    }
+    TreeDocsExample3Component.prototype.getLinkStyle = function (depth) {
+        return { padding: "0 " + depth * 20 + "px" };
+    };
+    TreeDocsExample3Component.prototype.toggleExpand = function (tree, item, $event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        $event.stopImmediatePropagation();
+        tree.toggleExpand(item);
+    };
+    TreeDocsExample3Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tree-docs-example3',
+            template: __webpack_require__(/*! ./tree-docs-example3.component.html */ "./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.html")
+        })
+    ], TreeDocsExample3Component);
+    return TreeDocsExample3Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<docs-component-documentation\n  [componentTitle]=\"'Tree'\"\n  [componentId]=\"'TreeComponent'\"\n  [componentType]=\"'components'\"\n>\n<ng-template docsComponentExample=\"Simple Tree\">\n  <ng-container [ngComponentOutlet]=\"\"></ng-container>\n  <app-tree-docs-example1></app-tree-docs-example1>\n  <docs-tabs>\n    <docs-code *docsTab=\"'HTML'\" path=\"tree-docs-example1.component.html\"></docs-code>\n    <docs-code *docsTab=\"'TS'\" path=\"tree-docs-example1.component.ts\"></docs-code>\n  </docs-tabs>\n</ng-template>\n<ng-template docsComponentExample=\"Keyboard Navigation\">\n  <ng-container [ngComponentOutlet]=\"\"></ng-container>\n  <app-tree-docs-example2></app-tree-docs-example2>\n  <docs-tabs>\n    <docs-code *docsTab=\"'HTML'\" path=\"tree-docs-example2.component.html\"></docs-code>\n    <docs-code *docsTab=\"'TS'\" path=\"tree-docs-example2.component.ts\"></docs-code>\n  </docs-tabs>\n</ng-template>\n<ng-template docsComponentExample=\"Navigation Menu\">\n  <ng-container [ngComponentOutlet]=\"\"></ng-container>\n  <app-tree-docs-example3></app-tree-docs-example3>\n  <docs-tabs>\n    <docs-code *docsTab=\"'HTML'\" path=\"tree-docs-example3.component.html\"></docs-code>\n    <docs-code *docsTab=\"'TS'\" path=\"tree-docs-example3.component.ts\"></docs-code>\n  </docs-tabs>\n</ng-template>\n  <!--<ng-template docsComponentExample=\"Horizontal\">\n    <app-tooltip-demo-example2></app-tooltip-demo-example2>\n    <docs-tabs>\n      <docs-code *docsTab=\"'HTML'\" path=\"tooltip-demo-example2.component.html\"></docs-code>\n    </docs-tabs>\n  </ng-template>\n  <ng-template docsComponentExample=\"Delay\">\n    <app-tooltip-demo-example3></app-tooltip-demo-example3>\n    <docs-tabs>\n      <docs-code *docsTab=\"'HTML'\" path=\"tooltip-demo-example3.component.html\"></docs-code>\n    </docs-tabs>\n  </ng-template> -->\n</docs-component-documentation>\n"
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvdHJlZS1kb2NzL3RyZWUtZG9jcy5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/tree-docs/tree-docs.component.ts ***!
+  \**************************************************/
+/*! exports provided: TreeDocsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeDocsComponent", function() { return TreeDocsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var TreeDocsComponent = /** @class */ (function () {
+    function TreeDocsComponent() {
+    }
+    TreeDocsComponent.prototype.ngOnInit = function () {
+    };
+    TreeDocsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tree-docs',
+            template: __webpack_require__(/*! ./tree-docs.component.html */ "./src/app/tree-docs/tree-docs.component.html"),
+            styles: [__webpack_require__(/*! ./tree-docs.component.scss */ "./src/app/tree-docs/tree-docs.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], TreeDocsComponent);
+    return TreeDocsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tree-docs/tree-docs.module.ts":
+/*!***********************************************!*\
+  !*** ./src/app/tree-docs/tree-docs.module.ts ***!
+  \***********************************************/
+/*! exports provided: TreeDocsModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreeDocsModule", function() { return TreeDocsModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
+/* harmony import */ var _tree_docs_example1_tree_docs_example1_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tree-docs-example1/tree-docs-example1.component */ "./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.ts");
+/* harmony import */ var _tree_docs_example2_tree_docs_example2_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tree-docs-example2/tree-docs-example2.component */ "./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.ts");
+/* harmony import */ var _tree_docs_example3_tree_docs_example3_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tree-docs-example3/tree-docs-example3.component */ "./src/app/tree-docs/tree-docs-example3/tree-docs-example3.component.ts");
+/* harmony import */ var _tree_docs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./tree-docs.component */ "./src/app/tree-docs/tree-docs.component.ts");
+
+
+
+
+
+
+
+
+
+
+var TreeDocsModule = /** @class */ (function () {
+    function TreeDocsModule() {
+    }
+    TreeDocsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+            declarations: [
+                _tree_docs_component__WEBPACK_IMPORTED_MODULE_9__["TreeDocsComponent"],
+                _tree_docs_example1_tree_docs_example1_component__WEBPACK_IMPORTED_MODULE_6__["TreeDocsExample1Component"],
+                _tree_docs_example2_tree_docs_example2_component__WEBPACK_IMPORTED_MODULE_7__["TreeDocsExample2Component"],
+                _tree_docs_example3_tree_docs_example3_component__WEBPACK_IMPORTED_MODULE_8__["TreeDocsExample3Component"]
+            ],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
+                src_public_api__WEBPACK_IMPORTED_MODULE_5__["TreeModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"]
+            ]
+        })
+    ], TreeDocsModule);
+    return TreeDocsModule;
 }());
 
 

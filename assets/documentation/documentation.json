@@ -456,6 +456,32 @@
             "indexSignatures": [],
             "kind": 150,
             "methods": []
+        },
+        {
+            "name": "TreeItem",
+            "id": "interface-TreeItem-a587e83a8b2903380b120d3da5d23847",
+            "file": "src/app/ui/tree/tree/tree.component.ts",
+            "type": "interface",
+            "sourceCode": "import { Component, Input, Directive, HostListener, ElementRef, OnInit, OnDestroy, Output, EventEmitter, TemplateRef } from '@angular/core';\nimport { Subject, Subscription } from 'rxjs';\nimport { filter } from 'rxjs/operators';\n\nexport interface TreeItem {\n  data: any;\n  children?: TreeItem[];\n}\n\n/**\n * This component renders a tree of DOM elements based on the provided `tree` input.\n * It does nothing else than rendering. You have to provide a template for the node.\n ```ts\n import { TreeModule } from 'iwerk-angular-ui';\n ```\n */\n@Component({\n  selector: 'iw-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass']\n})\nexport class TreeComponent {\n  /**\n   * The tree input to render. Use the `TreeItem` type definition.\n   */\n  @Input() set tree(v: TreeItem[]) {\n    this.__tree = v;\n    this.updateParentMap();\n  }\n  get tree(): TreeItem[] {\n    return this.__tree;\n  }\n\n  /**\n   * The expanded nodes: their children will be displayed.\n   */\n  @Input() expanded: TreeItem[] = [];\n  nodeTemplate: TemplateRef<any>;\n\n  /**\n   * Event that is emitted when the set of expanded nodes changes.\n   */\n  @Output() expand = new EventEmitter<TreeItem[]>();\n\n  focusEvent = new Subject<TreeItem>();\n  parentMap = new Map<TreeItem, TreeItem>();\n\n  private __tree: TreeItem[] = [];\n\n  /**\n   * Return `true` if the item has children, `false` otherwise.\n   * @param item the item\n   */\n  hasChildren(item: TreeItem): boolean {\n    return item.children && item.children.length > 0;\n  }\n\n  /**\n   * Return `true` if the item is expanded, `false` otherwise.\n   * @param item the item\n   */\n  isExpanded(item: TreeItem): boolean {\n    return this.expanded.indexOf(item) > -1;\n  }\n\n  /**\n   * Toggle the expanded state of the item.\n   * @param item the item\n   */\n  toggleExpand(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    if (this.isExpanded(item)) {\n      this.collapseItem(item);\n    } else {\n      this.expandItem(item);\n    }\n  }\n\n  /**\n   * Expand the item: display its children.\n   * @param item the item\n   */\n  expandItem(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    this.setExpanded(this.expanded.concat([item]));\n  }\n\n  /**\n   * Collapse the item: hide its children.\n   * @param item the item\n   */\n  collapseItem(item: TreeItem) {\n    this.setExpanded(this.expanded.filter(e => e !== item));\n  }\n\n  /**\n   * @ignore\n   */\n  sendFocusEvent(item: TreeItem) {\n    this.focusEvent.next(item);\n  }\n\n  /**\n   * @ignore\n   */\n  private setExpanded(v: TreeItem[]) {\n    this.expanded = v;\n    this.expand.emit(v);\n  }\n\n  /**\n   * @ignore\n   */\n  private updateParentMap() {\n    this.parentMap = new Map();\n    const aux = (parent: TreeItem, nodes: TreeItem[]) => {\n      nodes.forEach(n => {\n        this.parentMap.set(n, parent);\n        aux(n, n.children || []);\n      });\n    };\n    aux(undefined, this.__tree);\n  }\n}\n\n@Directive({\n  selector: '[iwTreeNodeTemplate]'\n})\nexport class TreeNodeTemplateDirective {\n  constructor(public templateRef: TemplateRef<any>, private menu: TreeComponent) {\n    this.menu.nodeTemplate = this.templateRef;\n  }\n}\n\n@Directive({\n  selector: '[iwTreeItem]'\n})\nexport class TreeItemDirective implements OnInit, OnDestroy {\n  @Input('iwTreeItem') item: TreeItem;\n\n  private subscription = new Subscription;\n\n  constructor(\n    private menu: TreeComponent,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  ngOnInit() {\n    this.subscription.add(this.menu.focusEvent\n      .pipe(filter(e => e === this.item))\n      .subscribe(e => {\n        this.elementRef.nativeElement.focus();\n      }));\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n  @HostListener('keydown', ['$event'])\n  keydown($event: KeyboardEvent) {\n    switch ($event.keyCode) {\n      case 39:\n        this.goRight($event); break;\n      case 40:\n        this.goDown($event); break;\n      case 38:\n        this.goUp($event); break;\n      case 37:\n        this.goLeft($event); break;\n    }\n  }\n\n  private goLeft($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (this.menu.isExpanded(this.item)) {\n      return this.menu.collapseItem(this.item);\n    }\n    const parent = this.menu.parentMap.get(this.item);\n    if (parent) {\n      this.menu.sendFocusEvent(parent);\n    } else {\n      this.goUp($event);\n    }\n  }\n\n  private goRight($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (!this.menu.hasChildren(this.item)) {\n      return this.goDown($event);\n    }\n    if (!this.menu.isExpanded(this.item)) {\n      return this.menu.expandItem(this.item);\n    }\n    this.menu.sendFocusEvent(this.item.children[0]);\n  }\n\n  private goDown($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (\n      this.menu.hasChildren(this.item) &&\n      this.menu.isExpanded(this.item)\n    ) {\n      return this.menu.sendFocusEvent(this.item.children[0]);\n    }\n    const selectAfter = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const next = children[index + 1];\n      if (next) {\n        this.menu.sendFocusEvent(next);\n      } else if (parent) {\n        selectAfter(parent);\n      }\n    };\n    selectAfter(this.item);\n  }\n\n  private goUp($event: KeyboardEvent) {\n    $event.preventDefault();\n    const selectLastPossible = (item: TreeItem) => {\n      if (this.menu.hasChildren(item) && this.menu.isExpanded(item)) {\n        selectLastPossible(item.children[item.children.length - 1]);\n      } else {\n        this.menu.sendFocusEvent(item);\n      }\n    };\n    const selectBefore = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const previous = children[index - 1];\n      if (previous) {\n        selectLastPossible(previous);\n      } else if (parent) {\n        this.menu.sendFocusEvent(parent);\n      }\n    };\n    selectBefore(this.item);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "children",
+                    "type": "TreeItem[]",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "data",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
         }
     ],
     "injectables": [
@@ -2489,12 +2515,270 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "TreeItemDirective",
+            "id": "directive-TreeItemDirective-a587e83a8b2903380b120d3da5d23847",
+            "file": "src/app/ui/tree/tree/tree.component.ts",
+            "type": "directive",
+            "description": "",
+            "sourceCode": "import { Component, Input, Directive, HostListener, ElementRef, OnInit, OnDestroy, Output, EventEmitter, TemplateRef } from '@angular/core';\nimport { Subject, Subscription } from 'rxjs';\nimport { filter } from 'rxjs/operators';\n\nexport interface TreeItem {\n  data: any;\n  children?: TreeItem[];\n}\n\n/**\n * This component renders a tree of DOM elements based on the provided `tree` input.\n * It does nothing else than rendering. You have to provide a template for the node.\n ```ts\n import { TreeModule } from 'iwerk-angular-ui';\n ```\n */\n@Component({\n  selector: 'iw-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass']\n})\nexport class TreeComponent {\n  /**\n   * The tree input to render. Use the `TreeItem` type definition.\n   */\n  @Input() set tree(v: TreeItem[]) {\n    this.__tree = v;\n    this.updateParentMap();\n  }\n  get tree(): TreeItem[] {\n    return this.__tree;\n  }\n\n  /**\n   * The expanded nodes: their children will be displayed.\n   */\n  @Input() expanded: TreeItem[] = [];\n  nodeTemplate: TemplateRef<any>;\n\n  /**\n   * Event that is emitted when the set of expanded nodes changes.\n   */\n  @Output() expand = new EventEmitter<TreeItem[]>();\n\n  focusEvent = new Subject<TreeItem>();\n  parentMap = new Map<TreeItem, TreeItem>();\n\n  private __tree: TreeItem[] = [];\n\n  /**\n   * Return `true` if the item has children, `false` otherwise.\n   * @param item the item\n   */\n  hasChildren(item: TreeItem): boolean {\n    return item.children && item.children.length > 0;\n  }\n\n  /**\n   * Return `true` if the item is expanded, `false` otherwise.\n   * @param item the item\n   */\n  isExpanded(item: TreeItem): boolean {\n    return this.expanded.indexOf(item) > -1;\n  }\n\n  /**\n   * Toggle the expanded state of the item.\n   * @param item the item\n   */\n  toggleExpand(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    if (this.isExpanded(item)) {\n      this.collapseItem(item);\n    } else {\n      this.expandItem(item);\n    }\n  }\n\n  /**\n   * Expand the item: display its children.\n   * @param item the item\n   */\n  expandItem(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    this.setExpanded(this.expanded.concat([item]));\n  }\n\n  /**\n   * Collapse the item: hide its children.\n   * @param item the item\n   */\n  collapseItem(item: TreeItem) {\n    this.setExpanded(this.expanded.filter(e => e !== item));\n  }\n\n  /**\n   * @ignore\n   */\n  sendFocusEvent(item: TreeItem) {\n    this.focusEvent.next(item);\n  }\n\n  /**\n   * @ignore\n   */\n  private setExpanded(v: TreeItem[]) {\n    this.expanded = v;\n    this.expand.emit(v);\n  }\n\n  /**\n   * @ignore\n   */\n  private updateParentMap() {\n    this.parentMap = new Map();\n    const aux = (parent: TreeItem, nodes: TreeItem[]) => {\n      nodes.forEach(n => {\n        this.parentMap.set(n, parent);\n        aux(n, n.children || []);\n      });\n    };\n    aux(undefined, this.__tree);\n  }\n}\n\n@Directive({\n  selector: '[iwTreeNodeTemplate]'\n})\nexport class TreeNodeTemplateDirective {\n  constructor(public templateRef: TemplateRef<any>, private menu: TreeComponent) {\n    this.menu.nodeTemplate = this.templateRef;\n  }\n}\n\n@Directive({\n  selector: '[iwTreeItem]'\n})\nexport class TreeItemDirective implements OnInit, OnDestroy {\n  @Input('iwTreeItem') item: TreeItem;\n\n  private subscription = new Subscription;\n\n  constructor(\n    private menu: TreeComponent,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  ngOnInit() {\n    this.subscription.add(this.menu.focusEvent\n      .pipe(filter(e => e === this.item))\n      .subscribe(e => {\n        this.elementRef.nativeElement.focus();\n      }));\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n  @HostListener('keydown', ['$event'])\n  keydown($event: KeyboardEvent) {\n    switch ($event.keyCode) {\n      case 39:\n        this.goRight($event); break;\n      case 40:\n        this.goDown($event); break;\n      case 38:\n        this.goUp($event); break;\n      case 37:\n        this.goLeft($event); break;\n    }\n  }\n\n  private goLeft($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (this.menu.isExpanded(this.item)) {\n      return this.menu.collapseItem(this.item);\n    }\n    const parent = this.menu.parentMap.get(this.item);\n    if (parent) {\n      this.menu.sendFocusEvent(parent);\n    } else {\n      this.goUp($event);\n    }\n  }\n\n  private goRight($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (!this.menu.hasChildren(this.item)) {\n      return this.goDown($event);\n    }\n    if (!this.menu.isExpanded(this.item)) {\n      return this.menu.expandItem(this.item);\n    }\n    this.menu.sendFocusEvent(this.item.children[0]);\n  }\n\n  private goDown($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (\n      this.menu.hasChildren(this.item) &&\n      this.menu.isExpanded(this.item)\n    ) {\n      return this.menu.sendFocusEvent(this.item.children[0]);\n    }\n    const selectAfter = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const next = children[index + 1];\n      if (next) {\n        this.menu.sendFocusEvent(next);\n      } else if (parent) {\n        selectAfter(parent);\n      }\n    };\n    selectAfter(this.item);\n  }\n\n  private goUp($event: KeyboardEvent) {\n    $event.preventDefault();\n    const selectLastPossible = (item: TreeItem) => {\n      if (this.menu.hasChildren(item) && this.menu.isExpanded(item)) {\n        selectLastPossible(item.children[item.children.length - 1]);\n      } else {\n        this.menu.sendFocusEvent(item);\n      }\n    };\n    const selectBefore = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const previous = children[index - 1];\n      if (previous) {\n        selectLastPossible(previous);\n      } else if (parent) {\n        this.menu.sendFocusEvent(parent);\n      }\n    };\n    selectBefore(this.item);\n  }\n}\n",
+            "selector": "[iwTreeItem]",
+            "providers": [],
+            "inputsClass": [
+                {
+                    "name": "iwTreeItem",
+                    "line": 143,
+                    "type": "TreeItem"
+                }
+            ],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "keydown",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent"
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "line": 166
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "subscription",
+                    "defaultValue": "new Subscription",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 145,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "goDown",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 203,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "goLeft",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 179,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "goRight",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 192,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "goUp",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 225,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "KeyboardEvent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 161
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 153
+                }
+            ],
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "menu",
+                        "type": "TreeComponent"
+                    },
+                    {
+                        "name": "elementRef",
+                        "type": "ElementRef"
+                    }
+                ],
+                "line": 145,
+                "jsdoctags": [
+                    {
+                        "name": "menu",
+                        "type": "TreeComponent",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "elementRef",
+                        "type": "ElementRef",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "TreeNodeTemplateDirective",
+            "id": "directive-TreeNodeTemplateDirective-a587e83a8b2903380b120d3da5d23847",
+            "file": "src/app/ui/tree/tree/tree.component.ts",
+            "type": "directive",
+            "description": "",
+            "sourceCode": "import { Component, Input, Directive, HostListener, ElementRef, OnInit, OnDestroy, Output, EventEmitter, TemplateRef } from '@angular/core';\nimport { Subject, Subscription } from 'rxjs';\nimport { filter } from 'rxjs/operators';\n\nexport interface TreeItem {\n  data: any;\n  children?: TreeItem[];\n}\n\n/**\n * This component renders a tree of DOM elements based on the provided `tree` input.\n * It does nothing else than rendering. You have to provide a template for the node.\n ```ts\n import { TreeModule } from 'iwerk-angular-ui';\n ```\n */\n@Component({\n  selector: 'iw-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass']\n})\nexport class TreeComponent {\n  /**\n   * The tree input to render. Use the `TreeItem` type definition.\n   */\n  @Input() set tree(v: TreeItem[]) {\n    this.__tree = v;\n    this.updateParentMap();\n  }\n  get tree(): TreeItem[] {\n    return this.__tree;\n  }\n\n  /**\n   * The expanded nodes: their children will be displayed.\n   */\n  @Input() expanded: TreeItem[] = [];\n  nodeTemplate: TemplateRef<any>;\n\n  /**\n   * Event that is emitted when the set of expanded nodes changes.\n   */\n  @Output() expand = new EventEmitter<TreeItem[]>();\n\n  focusEvent = new Subject<TreeItem>();\n  parentMap = new Map<TreeItem, TreeItem>();\n\n  private __tree: TreeItem[] = [];\n\n  /**\n   * Return `true` if the item has children, `false` otherwise.\n   * @param item the item\n   */\n  hasChildren(item: TreeItem): boolean {\n    return item.children && item.children.length > 0;\n  }\n\n  /**\n   * Return `true` if the item is expanded, `false` otherwise.\n   * @param item the item\n   */\n  isExpanded(item: TreeItem): boolean {\n    return this.expanded.indexOf(item) > -1;\n  }\n\n  /**\n   * Toggle the expanded state of the item.\n   * @param item the item\n   */\n  toggleExpand(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    if (this.isExpanded(item)) {\n      this.collapseItem(item);\n    } else {\n      this.expandItem(item);\n    }\n  }\n\n  /**\n   * Expand the item: display its children.\n   * @param item the item\n   */\n  expandItem(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    this.setExpanded(this.expanded.concat([item]));\n  }\n\n  /**\n   * Collapse the item: hide its children.\n   * @param item the item\n   */\n  collapseItem(item: TreeItem) {\n    this.setExpanded(this.expanded.filter(e => e !== item));\n  }\n\n  /**\n   * @ignore\n   */\n  sendFocusEvent(item: TreeItem) {\n    this.focusEvent.next(item);\n  }\n\n  /**\n   * @ignore\n   */\n  private setExpanded(v: TreeItem[]) {\n    this.expanded = v;\n    this.expand.emit(v);\n  }\n\n  /**\n   * @ignore\n   */\n  private updateParentMap() {\n    this.parentMap = new Map();\n    const aux = (parent: TreeItem, nodes: TreeItem[]) => {\n      nodes.forEach(n => {\n        this.parentMap.set(n, parent);\n        aux(n, n.children || []);\n      });\n    };\n    aux(undefined, this.__tree);\n  }\n}\n\n@Directive({\n  selector: '[iwTreeNodeTemplate]'\n})\nexport class TreeNodeTemplateDirective {\n  constructor(public templateRef: TemplateRef<any>, private menu: TreeComponent) {\n    this.menu.nodeTemplate = this.templateRef;\n  }\n}\n\n@Directive({\n  selector: '[iwTreeItem]'\n})\nexport class TreeItemDirective implements OnInit, OnDestroy {\n  @Input('iwTreeItem') item: TreeItem;\n\n  private subscription = new Subscription;\n\n  constructor(\n    private menu: TreeComponent,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  ngOnInit() {\n    this.subscription.add(this.menu.focusEvent\n      .pipe(filter(e => e === this.item))\n      .subscribe(e => {\n        this.elementRef.nativeElement.focus();\n      }));\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n  @HostListener('keydown', ['$event'])\n  keydown($event: KeyboardEvent) {\n    switch ($event.keyCode) {\n      case 39:\n        this.goRight($event); break;\n      case 40:\n        this.goDown($event); break;\n      case 38:\n        this.goUp($event); break;\n      case 37:\n        this.goLeft($event); break;\n    }\n  }\n\n  private goLeft($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (this.menu.isExpanded(this.item)) {\n      return this.menu.collapseItem(this.item);\n    }\n    const parent = this.menu.parentMap.get(this.item);\n    if (parent) {\n      this.menu.sendFocusEvent(parent);\n    } else {\n      this.goUp($event);\n    }\n  }\n\n  private goRight($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (!this.menu.hasChildren(this.item)) {\n      return this.goDown($event);\n    }\n    if (!this.menu.isExpanded(this.item)) {\n      return this.menu.expandItem(this.item);\n    }\n    this.menu.sendFocusEvent(this.item.children[0]);\n  }\n\n  private goDown($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (\n      this.menu.hasChildren(this.item) &&\n      this.menu.isExpanded(this.item)\n    ) {\n      return this.menu.sendFocusEvent(this.item.children[0]);\n    }\n    const selectAfter = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const next = children[index + 1];\n      if (next) {\n        this.menu.sendFocusEvent(next);\n      } else if (parent) {\n        selectAfter(parent);\n      }\n    };\n    selectAfter(this.item);\n  }\n\n  private goUp($event: KeyboardEvent) {\n    $event.preventDefault();\n    const selectLastPossible = (item: TreeItem) => {\n      if (this.menu.hasChildren(item) && this.menu.isExpanded(item)) {\n        selectLastPossible(item.children[item.children.length - 1]);\n      } else {\n        this.menu.sendFocusEvent(item);\n      }\n    };\n    const selectBefore = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const previous = children[index - 1];\n      if (previous) {\n        selectLastPossible(previous);\n      } else if (parent) {\n        this.menu.sendFocusEvent(parent);\n      }\n    };\n    selectBefore(this.item);\n  }\n}\n",
+            "selector": "[iwTreeNodeTemplate]",
+            "providers": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "templateRef",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 134,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "templateRef",
+                        "type": "TemplateRef<any>"
+                    },
+                    {
+                        "name": "menu",
+                        "type": "TreeComponent"
+                    }
+                ],
+                "line": 133,
+                "jsdoctags": [
+                    {
+                        "name": "templateRef",
+                        "type": "TemplateRef<any>",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "menu",
+                        "type": "TreeComponent",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
         }
     ],
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-8fbd201a1f2a344dde9a7dc241c39c5c",
+            "id": "component-AppComponent-783748b34e9d9b4b4fbb1d33cf12b654",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2512,22 +2796,54 @@
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "tree",
+                    "defaultValue": "[\n    {\n      data: {\n        routerLink: ['/'],\n        routerLinkActiveOptions: {exact: true},\n        label: 'Get Started'\n      }\n    },\n    {\n      data: {\n        routerLink: ['/ellipsis'], label: 'Ellipsis'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/popover'], label: 'Popover'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tooltip'], label: 'Tooltip'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/stateful-button'], label: 'Stateful Button'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/dialog'], label: 'Dialog'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/checkbox'], label: 'Checkbox'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/navigation'], label: 'Navigation'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tree'], label: 'Tree'\n      },\n    },\n  ]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "linkStyle",
+                    "args": [
+                        {
+                            "name": "depth",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{ padding: string; }",
+                    "typeParameters": [],
+                    "line": 60,
+                    "jsdoctags": [
+                        {
+                            "name": "depth",
+                            "type": "number",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { TreeItem } from './ui/tree/tree/tree.component';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n  tree: TreeItem[] = [\n    {\n      data: {\n        routerLink: ['/'],\n        routerLinkActiveOptions: {exact: true},\n        label: 'Get Started'\n      }\n    },\n    {\n      data: {\n        routerLink: ['/ellipsis'], label: 'Ellipsis'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/popover'], label: 'Popover'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tooltip'], label: 'Tooltip'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/stateful-button'], label: 'Stateful Button'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/dialog'], label: 'Dialog'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/checkbox'], label: 'Checkbox'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/navigation'], label: 'Navigation'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tree'], label: 'Tree'\n      },\n    },\n  ];\n\n  linkStyle(depth: number) {\n    return {\n      padding: `0 ${(depth + 1) * 15}px`\n    };\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%;\n\n  $width_aside: 200px;\n\n  aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: $width_aside;\n    overflow: auto;\n    background: black;\n    color: white;\n    padding: 15px 0px;\n  }\n\n  main {\n    position: absolute;\n    top: 0;\n    left: $width_aside;\n    height: 100%;\n    right: 0;\n    overflow: auto;\n    padding: 15px;\n  }\n\n  ul {\n    padding: 0;\n    margin: 0;\n\n    li {\n      list-style: none;\n      width: 100%;\n      border-bottom: 1px solid #222;\n      padding: 0;\n\n      a {\n        display: inline-block;\n        width: 100%;\n        height: 40px;\n        line-height: 40px;\n        text-decoration: none;\n        padding: 0px 15px;\n\n        &:hover, &:focus {\n          background: #222;\n        }\n\n        &.active-link {\n          background: grey;\n        }\n      }\n    }\n  }\n}",
+                    "data": ":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%;\n\n  $width_aside: 200px;\n\n  aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: $width_aside;\n    overflow: auto;\n    background: black;\n    color: white;\n    padding: 15px 0px;\n  }\n\n  main {\n    position: absolute;\n    top: 0;\n    left: $width_aside;\n    height: 100%;\n    right: 0;\n    overflow: auto;\n    padding: 15px;\n  }\n}\n",
                     "styleUrl": "./app.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<aside>\n  <ul>\n    <li><a routerLink=\"/\"\n      [routerLinkActiveOptions]=\"{exact: true}\" \n      routerLinkActive=\"active-link\">\n      Get Started\n    </a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/ellipsis\">Ellipsis</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/popover\">Popover</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/tooltip\">Tooltip</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/stateful-button\">Stateful Button</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/dialog\">Dialog</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/checkbox\">Checkbox</a></li>\n    <li><a routerLinkActive=\"active-link\" routerLink=\"/navigation\">Navigation</a></li>\n  </ul>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
+            "templateData": "<aside>\n  <iw-tree #treeComponent class=\"routes-menu\" [tree]=\"tree\">\n    <ng-template iwTreeNodeTemplate let-node let-depth=\"depth\">\n      <a [routerLink]=\"node.data.routerLink\"\n        [ngStyle]=\"linkStyle(depth)\"\n        [routerLinkActiveOptions]=\"{ exact: true }\"\n        [queryParams]=\"node.data.queryParams\"\n        [queryParamsHandling]=\"'merge'\"\n        [routerLinkActive]=\"'active-link'\"\n        [iwTreeItem]=\"node\">\n        {{node.data.label}}\n      </a>\n    </ng-template>\n  </iw-tree>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
         },
         {
             "name": "CheckboxComponent",
@@ -4632,6 +4948,598 @@
             "templateData": "<h1> Tooltip </h1>\n\n<button (click)=\"value = value + 1\">\n  Increment\n  <ng-template iwTooltip>\n    Click to go from {{value}} to {{value+1}}\n  </ng-template>\n</button>\n\n<button *ngIf=\"value > 0\" (click)=\"value = 0\">\n  Reset\n  <ng-template iwTooltip>\n    Reset to 0\n  </ng-template>\n</button>\n\n<button *ngFor=\"let t of [1,2,3]\" (click)=\"value = t\">\n  Set to {{t}}\n  <ng-template iwTooltip>\n    Set to {{t}}\n  </ng-template>\n</button>\n\n<h2>Custom class</h2>\n<button>\n  Custom class\n  <ng-template iwTooltip containerClass=\"custom-tooltip-container\">\n    Set to {{t}}\n  </ng-template>\n</button>\n\n<h2>Horizontal</h2>\n<button>\n  horizontal\n  <ng-template iwTooltip containerClass=\"custom-tooltip-container\" [horizontal]=\"true\">\n    horizontal\n  </ng-template>\n</button>\n\n<h2>Delay (1 sec)</h2>\n<button>\n  delay\n  <ng-template iwTooltip containerClass=\"custom-tooltip-container\" [delay]=\"1000\">\n    delay\n  </ng-template>\n</button>"
         },
         {
+            "name": "Tree1Component",
+            "id": "component-Tree1Component-42990ceaa5c1f830e83d87641ad6a169",
+            "file": "src/app/demo/tree/tree.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [],
+            "template": "<iw-tree [tree]=\"items\" #tree>\n  <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n    {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n  </ng-template>\n</iw-tree>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "items",
+                    "defaultValue": "[{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\nimport { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';\nimport { TreeComponent as UiTreeComponent, TreeItem } from '../../ui/tree/tree/tree.component';\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n        {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n      </ng-template>\n    </iw-tree>\n  `\n})\nexport class Tree1Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree2Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" [expanded]=\"expanded\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree3Component implements OnInit {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n  expanded: TreeItem[] = [];\n\n  ngOnInit() {\n    this.expanded = [\n      this.items[0],\n      this.items[0].children[1]\n    ];\n  }\n}\n\n@Component({\n  selector: 'app-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TreeDemoComponent implements OnInit {\n  caretRight = faCaretRight;\n  caretDown = faCaretDown;\n  demo1 = Tree1Component;\n  demo2 = Tree2Component;\n  demo3 = Tree3Component;\n\n  tree: TreeItem[] = [{\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        },\n      },\n      children: [{\n        data: {\n          label: '2',\n          routerLink: [],\n          queryParams: {\n            truc: 2\n          }\n        }\n      }, {\n        data: {\n          label: '3',\n          routerLink: [],\n          queryParams: {\n            truc: 3\n          }\n        }\n      }]\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }, {\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        }\n      }\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }];\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  toggleExpand(tree: UiTreeComponent, item: TreeItem, $event: MouseEvent) {\n    $event.stopPropagation();\n    $event.preventDefault();\n    $event.stopImmediatePropagation();\n    tree.toggleExpand(item);\n  }\n\n  getLinkStyle(depth: number) {\n    return { padding: `0 ${depth * 20}px` };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": ""
+        },
+        {
+            "name": "Tree2Component",
+            "id": "component-Tree2Component-42990ceaa5c1f830e83d87641ad6a169",
+            "file": "src/app/demo/tree/tree.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [
+                "div:focus { background: grey; }"
+            ],
+            "template": "<iw-tree [tree]=\"items\" #tree>\n  <ng-template iwTreeNodeTemplate let-node>\n    <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n  </ng-template>\n</iw-tree>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "items",
+                    "defaultValue": "[{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 61
+                }
+            ],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\nimport { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';\nimport { TreeComponent as UiTreeComponent, TreeItem } from '../../ui/tree/tree/tree.component';\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n        {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n      </ng-template>\n    </iw-tree>\n  `\n})\nexport class Tree1Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree2Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" [expanded]=\"expanded\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree3Component implements OnInit {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n  expanded: TreeItem[] = [];\n\n  ngOnInit() {\n    this.expanded = [\n      this.items[0],\n      this.items[0].children[1]\n    ];\n  }\n}\n\n@Component({\n  selector: 'app-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TreeDemoComponent implements OnInit {\n  caretRight = faCaretRight;\n  caretDown = faCaretDown;\n  demo1 = Tree1Component;\n  demo2 = Tree2Component;\n  demo3 = Tree3Component;\n\n  tree: TreeItem[] = [{\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        },\n      },\n      children: [{\n        data: {\n          label: '2',\n          routerLink: [],\n          queryParams: {\n            truc: 2\n          }\n        }\n      }, {\n        data: {\n          label: '3',\n          routerLink: [],\n          queryParams: {\n            truc: 3\n          }\n        }\n      }]\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }, {\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        }\n      }\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }];\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  toggleExpand(tree: UiTreeComponent, item: TreeItem, $event: MouseEvent) {\n    $event.stopPropagation();\n    $event.preventDefault();\n    $event.stopImmediatePropagation();\n    tree.toggleExpand(item);\n  }\n\n  getLinkStyle(depth: number) {\n    return { padding: `0 ${depth * 20}px` };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "div:focus { background: grey; }\n"
+        },
+        {
+            "name": "Tree3Component",
+            "id": "component-Tree3Component-42990ceaa5c1f830e83d87641ad6a169",
+            "file": "src/app/demo/tree/tree.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [
+                "div:focus { background: grey; }"
+            ],
+            "template": "<iw-tree [tree]=\"items\" [expanded]=\"expanded\" #tree>\n  <ng-template iwTreeNodeTemplate let-node>\n    <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n  </ng-template>\n</iw-tree>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "expanded",
+                    "defaultValue": "[]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 138
+                },
+                {
+                    "name": "items",
+                    "defaultValue": "[{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 107
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 140
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\nimport { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';\nimport { TreeComponent as UiTreeComponent, TreeItem } from '../../ui/tree/tree/tree.component';\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n        {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n      </ng-template>\n    </iw-tree>\n  `\n})\nexport class Tree1Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree2Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" [expanded]=\"expanded\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree3Component implements OnInit {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n  expanded: TreeItem[] = [];\n\n  ngOnInit() {\n    this.expanded = [\n      this.items[0],\n      this.items[0].children[1]\n    ];\n  }\n}\n\n@Component({\n  selector: 'app-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TreeDemoComponent implements OnInit {\n  caretRight = faCaretRight;\n  caretDown = faCaretDown;\n  demo1 = Tree1Component;\n  demo2 = Tree2Component;\n  demo3 = Tree3Component;\n\n  tree: TreeItem[] = [{\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        },\n      },\n      children: [{\n        data: {\n          label: '2',\n          routerLink: [],\n          queryParams: {\n            truc: 2\n          }\n        }\n      }, {\n        data: {\n          label: '3',\n          routerLink: [],\n          queryParams: {\n            truc: 3\n          }\n        }\n      }]\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }, {\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        }\n      }\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }];\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  toggleExpand(tree: UiTreeComponent, item: TreeItem, $event: MouseEvent) {\n    $event.stopPropagation();\n    $event.preventDefault();\n    $event.stopImmediatePropagation();\n    tree.toggleExpand(item);\n  }\n\n  getLinkStyle(depth: number) {\n    return { padding: `0 ${depth * 20}px` };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "div:focus { background: grey; }\n",
+            "implements": [
+                "OnInit"
+            ]
+        },
+        {
+            "name": "TreeComponent",
+            "id": "component-TreeComponent-a587e83a8b2903380b120d3da5d23847",
+            "file": "src/app/ui/tree/tree/tree.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "iw-tree",
+            "styleUrls": [
+                "./tree.component.sass"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./tree.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "expanded",
+                    "defaultValue": "[]",
+                    "description": "<p>The expanded nodes: their children will be displayed.</p>\n",
+                    "line": 37,
+                    "type": "TreeItem[]"
+                },
+                {
+                    "name": "tree",
+                    "description": "<p>The tree input to render. Use the <code>TreeItem</code> type definition.</p>\n",
+                    "line": 26,
+                    "type": "[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "expand",
+                    "defaultValue": "new EventEmitter<TreeItem[]>()",
+                    "description": "<p>Event that is emitted when the set of expanded nodes changes.</p>\n",
+                    "line": 43,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "__tree",
+                    "defaultValue": "[]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 48,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "focusEvent",
+                    "defaultValue": "new Subject<TreeItem>()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "nodeTemplate",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                },
+                {
+                    "name": "parentMap",
+                    "defaultValue": "new Map<TreeItem, TreeItem>()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "collapseItem",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 96,
+                    "description": "<p>Collapse the item: hide its children.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2273,
+                                "end": 2277,
+                                "flags": 0,
+                                "escapedText": "item"
+                            },
+                            "type": "TreeItem",
+                            "tagName": {
+                                "pos": 2267,
+                                "end": 2272,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the item</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "expandItem",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 85,
+                    "description": "<p>Expand the item: display its children.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2049,
+                                "end": 2053,
+                                "flags": 0,
+                                "escapedText": "item"
+                            },
+                            "type": "TreeItem",
+                            "tagName": {
+                                "pos": 2043,
+                                "end": 2048,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the item</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "hasChildren",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 54,
+                    "description": "<p>Return <code>true</code> if the item has children, <code>false</code> otherwise.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1389,
+                                "end": 1393,
+                                "flags": 0,
+                                "escapedText": "item"
+                            },
+                            "type": "TreeItem",
+                            "tagName": {
+                                "pos": 1383,
+                                "end": 1388,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the item</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "isExpanded",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 62,
+                    "description": "<p>Return <code>true</code> if the item is expanded, <code>false</code> otherwise.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1590,
+                                "end": 1594,
+                                "flags": 0,
+                                "escapedText": "item"
+                            },
+                            "type": "TreeItem",
+                            "tagName": {
+                                "pos": 1584,
+                                "end": 1589,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the item</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "toggleExpand",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 70,
+                    "description": "<p>Toggle the expanded state of the item.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1762,
+                                "end": 1766,
+                                "flags": 0,
+                                "escapedText": "item"
+                            },
+                            "type": "TreeItem",
+                            "tagName": {
+                                "pos": 1756,
+                                "end": 1761,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>the item</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>This component renders a tree of DOM elements based on the provided <code>tree</code> input.\nIt does nothing else than rendering. You have to provide a template for the node.</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { TreeModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Directive, HostListener, ElementRef, OnInit, OnDestroy, Output, EventEmitter, TemplateRef } from '@angular/core';\nimport { Subject, Subscription } from 'rxjs';\nimport { filter } from 'rxjs/operators';\n\nexport interface TreeItem {\n  data: any;\n  children?: TreeItem[];\n}\n\n/**\n * This component renders a tree of DOM elements based on the provided `tree` input.\n * It does nothing else than rendering. You have to provide a template for the node.\n ```ts\n import { TreeModule } from 'iwerk-angular-ui';\n ```\n */\n@Component({\n  selector: 'iw-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass']\n})\nexport class TreeComponent {\n  /**\n   * The tree input to render. Use the `TreeItem` type definition.\n   */\n  @Input() set tree(v: TreeItem[]) {\n    this.__tree = v;\n    this.updateParentMap();\n  }\n  get tree(): TreeItem[] {\n    return this.__tree;\n  }\n\n  /**\n   * The expanded nodes: their children will be displayed.\n   */\n  @Input() expanded: TreeItem[] = [];\n  nodeTemplate: TemplateRef<any>;\n\n  /**\n   * Event that is emitted when the set of expanded nodes changes.\n   */\n  @Output() expand = new EventEmitter<TreeItem[]>();\n\n  focusEvent = new Subject<TreeItem>();\n  parentMap = new Map<TreeItem, TreeItem>();\n\n  private __tree: TreeItem[] = [];\n\n  /**\n   * Return `true` if the item has children, `false` otherwise.\n   * @param item the item\n   */\n  hasChildren(item: TreeItem): boolean {\n    return item.children && item.children.length > 0;\n  }\n\n  /**\n   * Return `true` if the item is expanded, `false` otherwise.\n   * @param item the item\n   */\n  isExpanded(item: TreeItem): boolean {\n    return this.expanded.indexOf(item) > -1;\n  }\n\n  /**\n   * Toggle the expanded state of the item.\n   * @param item the item\n   */\n  toggleExpand(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    if (this.isExpanded(item)) {\n      this.collapseItem(item);\n    } else {\n      this.expandItem(item);\n    }\n  }\n\n  /**\n   * Expand the item: display its children.\n   * @param item the item\n   */\n  expandItem(item: TreeItem) {\n    if (!this.hasChildren(item)) {\n      return;\n    }\n    this.setExpanded(this.expanded.concat([item]));\n  }\n\n  /**\n   * Collapse the item: hide its children.\n   * @param item the item\n   */\n  collapseItem(item: TreeItem) {\n    this.setExpanded(this.expanded.filter(e => e !== item));\n  }\n\n  /**\n   * @ignore\n   */\n  sendFocusEvent(item: TreeItem) {\n    this.focusEvent.next(item);\n  }\n\n  /**\n   * @ignore\n   */\n  private setExpanded(v: TreeItem[]) {\n    this.expanded = v;\n    this.expand.emit(v);\n  }\n\n  /**\n   * @ignore\n   */\n  private updateParentMap() {\n    this.parentMap = new Map();\n    const aux = (parent: TreeItem, nodes: TreeItem[]) => {\n      nodes.forEach(n => {\n        this.parentMap.set(n, parent);\n        aux(n, n.children || []);\n      });\n    };\n    aux(undefined, this.__tree);\n  }\n}\n\n@Directive({\n  selector: '[iwTreeNodeTemplate]'\n})\nexport class TreeNodeTemplateDirective {\n  constructor(public templateRef: TemplateRef<any>, private menu: TreeComponent) {\n    this.menu.nodeTemplate = this.templateRef;\n  }\n}\n\n@Directive({\n  selector: '[iwTreeItem]'\n})\nexport class TreeItemDirective implements OnInit, OnDestroy {\n  @Input('iwTreeItem') item: TreeItem;\n\n  private subscription = new Subscription;\n\n  constructor(\n    private menu: TreeComponent,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  ngOnInit() {\n    this.subscription.add(this.menu.focusEvent\n      .pipe(filter(e => e === this.item))\n      .subscribe(e => {\n        this.elementRef.nativeElement.focus();\n      }));\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n  @HostListener('keydown', ['$event'])\n  keydown($event: KeyboardEvent) {\n    switch ($event.keyCode) {\n      case 39:\n        this.goRight($event); break;\n      case 40:\n        this.goDown($event); break;\n      case 38:\n        this.goUp($event); break;\n      case 37:\n        this.goLeft($event); break;\n    }\n  }\n\n  private goLeft($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (this.menu.isExpanded(this.item)) {\n      return this.menu.collapseItem(this.item);\n    }\n    const parent = this.menu.parentMap.get(this.item);\n    if (parent) {\n      this.menu.sendFocusEvent(parent);\n    } else {\n      this.goUp($event);\n    }\n  }\n\n  private goRight($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (!this.menu.hasChildren(this.item)) {\n      return this.goDown($event);\n    }\n    if (!this.menu.isExpanded(this.item)) {\n      return this.menu.expandItem(this.item);\n    }\n    this.menu.sendFocusEvent(this.item.children[0]);\n  }\n\n  private goDown($event: KeyboardEvent) {\n    $event.preventDefault();\n    if (\n      this.menu.hasChildren(this.item) &&\n      this.menu.isExpanded(this.item)\n    ) {\n      return this.menu.sendFocusEvent(this.item.children[0]);\n    }\n    const selectAfter = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const next = children[index + 1];\n      if (next) {\n        this.menu.sendFocusEvent(next);\n      } else if (parent) {\n        selectAfter(parent);\n      }\n    };\n    selectAfter(this.item);\n  }\n\n  private goUp($event: KeyboardEvent) {\n    $event.preventDefault();\n    const selectLastPossible = (item: TreeItem) => {\n      if (this.menu.hasChildren(item) && this.menu.isExpanded(item)) {\n        selectLastPossible(item.children[item.children.length - 1]);\n      } else {\n        this.menu.sendFocusEvent(item);\n      }\n    };\n    const selectBefore = (item: TreeItem) => {\n      const parent = this.menu.parentMap.get(item);\n      const children = parent ? parent.children : this.menu.tree;\n      const index = children.indexOf(item);\n      const previous = children[index - 1];\n      if (previous) {\n        selectLastPossible(previous);\n      } else if (parent) {\n        this.menu.sendFocusEvent(parent);\n      }\n    };\n    selectBefore(this.item);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\\:host\n  display: block",
+                    "styleUrl": "./tree.component.sass"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "tree": {
+                    "name": "tree",
+                    "setSignature": {
+                        "name": "tree",
+                        "type": "void",
+                        "args": [
+                            {
+                                "name": "v",
+                                "type": "[]"
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 26,
+                        "description": "<p>The tree input to render. Use the <code>TreeItem</code> type definition.</p>\n",
+                        "jsdoctags": [
+                            {
+                                "name": "v",
+                                "type": "[]",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "tree",
+                        "type": "[]",
+                        "returnType": "TreeItem[]",
+                        "line": 30
+                    }
+                }
+            },
+            "templateData": "<ng-container *ngTemplateOutlet=\"treeTemplate; context: { $implicit: tree, depth: 0 }\"></ng-container>\n\n<ng-template #treeTemplate let-nodes let-depth=\"depth\">\n  <ol>\n    <li *ngFor=\"let node of nodes\">\n      <ng-container *ngTemplateOutlet=\"nodeTemplate; context: { $implicit: node, data: node.data, depth: depth, hasChildren: hasChildren(node) }\"></ng-container>\n      \n      <ng-template [ngIf]=\"hasChildren(node) && isExpanded(node)\">\n        <ng-container *ngTemplateOutlet=\"treeTemplate; context: { $implicit: node.children, depth: depth + 1 }\"></ng-container>\n      </ng-template>\n    </li>\n  </ol>\n</ng-template>\n"
+        },
+        {
+            "name": "TreeDemoComponent",
+            "id": "component-TreeDemoComponent-42990ceaa5c1f830e83d87641ad6a169",
+            "file": "src/app/demo/tree/tree.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-tree",
+            "styleUrls": [
+                "./tree.component.sass"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./tree.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "caretDown",
+                    "defaultValue": "faCaretDown",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 156
+                },
+                {
+                    "name": "caretRight",
+                    "defaultValue": "faCaretRight",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 155
+                },
+                {
+                    "name": "demo1",
+                    "defaultValue": "Tree1Component",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 157
+                },
+                {
+                    "name": "demo2",
+                    "defaultValue": "Tree2Component",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 158
+                },
+                {
+                    "name": "demo3",
+                    "defaultValue": "Tree3Component",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 159
+                },
+                {
+                    "name": "tree",
+                    "defaultValue": "[{\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        },\n      },\n      children: [{\n        data: {\n          label: '2',\n          routerLink: [],\n          queryParams: {\n            truc: 2\n          }\n        }\n      }, {\n        data: {\n          label: '3',\n          routerLink: [],\n          queryParams: {\n            truc: 3\n          }\n        }\n      }]\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }, {\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        }\n      }\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }]",
+                    "type": "TreeItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 161
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getLinkStyle",
+                    "args": [
+                        {
+                            "name": "depth",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{ padding: string; }",
+                    "typeParameters": [],
+                    "line": 242,
+                    "jsdoctags": [
+                        {
+                            "name": "depth",
+                            "type": "number",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 232
+                },
+                {
+                    "name": "toggleExpand",
+                    "args": [
+                        {
+                            "name": "tree",
+                            "type": "UiTreeComponent"
+                        },
+                        {
+                            "name": "item",
+                            "type": "TreeItem"
+                        },
+                        {
+                            "name": "$event",
+                            "type": "MouseEvent"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 235,
+                    "jsdoctags": [
+                        {
+                            "name": "tree",
+                            "type": "UiTreeComponent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "item",
+                            "type": "TreeItem",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "$event",
+                            "type": "MouseEvent",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\nimport { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';\nimport { TreeComponent as UiTreeComponent, TreeItem } from '../../ui/tree/tree/tree.component';\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node let-hasChildren=\"hasChildren\">\n        {{node.data}} <button *ngIf=\"hasChildren\" (click)=\"tree.toggleExpand(node)\">toggle</button>\n      </ng-template>\n    </iw-tree>\n  `\n})\nexport class Tree1Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree2Component {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n}\n\n@Component({\n  template: `\n    <iw-tree [tree]=\"items\" [expanded]=\"expanded\" #tree>\n      <ng-template iwTreeNodeTemplate let-node>\n        <div tabindex=\"0\" [iwTreeItem]=\"node\">{{node.data}}</div>\n      </ng-template>\n    </iw-tree>\n  `,\n  styles: [\n    'div:focus { background: grey; }'\n  ]\n})\nexport class Tree3Component implements OnInit {\n  items: TreeItem[] = [{\n    data: 'Node #1',\n    children: [{\n      data: 'Node #1.1',\n      children: [{\n        data: 'Node #1.1.1'\n      }, {\n        data: 'Node #1.1.2'\n      }, {\n        data: 'Node #1.1.3'\n      }]\n    }, {\n      data: 'Node #1.2',\n      children: [{\n        data: 'Node #1.2.1'\n      }, {\n        data: 'Node #1.2.2'\n      }, {\n        data: 'Node #1.2.3'\n      }]\n    }, {\n      data: 'Node #1.3',\n      children: [{\n        data: 'Node #1.3.1'\n      }, {\n        data: 'Node #1.3.2'\n      }, {\n        data: 'Node #1.3.3'\n      }]\n    }]\n  }];\n  expanded: TreeItem[] = [];\n\n  ngOnInit() {\n    this.expanded = [\n      this.items[0],\n      this.items[0].children[1]\n    ];\n  }\n}\n\n@Component({\n  selector: 'app-tree',\n  templateUrl: './tree.component.html',\n  styleUrls: ['./tree.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TreeDemoComponent implements OnInit {\n  caretRight = faCaretRight;\n  caretDown = faCaretDown;\n  demo1 = Tree1Component;\n  demo2 = Tree2Component;\n  demo3 = Tree3Component;\n\n  tree: TreeItem[] = [{\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        },\n      },\n      children: [{\n        data: {\n          label: '2',\n          routerLink: [],\n          queryParams: {\n            truc: 2\n          }\n        }\n      }, {\n        data: {\n          label: '3',\n          routerLink: [],\n          queryParams: {\n            truc: 3\n          }\n        }\n      }]\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }, {\n    data: {\n      label: '1',\n      routerLink: [],\n      queryParams: {\n        truc: 1\n      }\n    },\n    children: [{\n      data: {\n        label: '2',\n        routerLink: [],\n        queryParams: {\n          truc: 2\n        }\n      }\n    }, {\n      data: {\n        label: '3',\n        routerLink: [],\n        queryParams: {\n          truc: 3\n        }\n      }\n    }]\n  }];\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n  toggleExpand(tree: UiTreeComponent, item: TreeItem, $event: MouseEvent) {\n    $event.stopPropagation();\n    $event.preventDefault();\n    $event.stopImmediatePropagation();\n    tree.toggleExpand(item);\n  }\n\n  getLinkStyle(depth: number) {\n    return { padding: `0 ${depth * 20}px` };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\na\n  color: black\n\na\n  line-height: 40px\n  height: 40px\n  padding: 0\n  display: block\n  text-decoration: none\n\n  &:visited\n    color: black\n  \n  &.routes-menu__link--active\n    color: blue\n    font-weight: bold\n\n  &:hover, &:focus\n    border: 1px solid red\n    text-decoration: none\n\n  &:focus\n    background: grey",
+                    "styleUrl": "./tree.component.sass"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 228
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<h1>Tree Component</h1>\n\n<h2>Simple tree</h2>\n\n<ng-container [ngComponentOutlet]=\"demo1\"></ng-container>\n\n<h2>Tree with Keyboard Navigation Support</h2>\n\n<ng-container [ngComponentOutlet]=\"demo2\"></ng-container>\n\n<h2>Initially Expanded Nodes</h2>\n\n<ng-container [ngComponentOutlet]=\"demo3\"></ng-container>\n\n<h2>Tree with routes</h2>\n<iw-tree #treeComponent [tree]=\"tree\">\n  <ng-template iwTreeNodeTemplate let-node let-depth=\"depth\">\n    <a [routerLink]=\"node.data.routerLink\"\n      [ngStyle]=\"getLinkStyle(depth)\"\n      [queryParams]=\"node.data.queryParams\"\n      [queryParamsHandling]=\"'merge'\"\n      [routerLinkActive]=\"'active'\"\n      [iwTreeItem]=\"node\"\n      (click)=\"treeComponent.expandItem(node)\">\n      <fa-icon\n        [style.visibility]=\"treeComponent.hasChildren(node) ? 'visible' : 'hidden'\"\n        (click)=\"toggleExpand(treeComponent, node, $event)\"\n        [icon]=\"treeComponent.isExpanded(node) ? caretDown : caretRight\"\n      ></fa-icon>\n      {{node.data.label}}\n    </a>\n  </ng-template>\n</iw-tree>\n"
+        },
+        {
             "name": "WelcomeComponent",
             "id": "component-WelcomeComponent-cec57ee1b84bb84e4ef92a6e51859090",
             "file": "src/app/welcome/welcome.component.ts",
@@ -4703,6 +5611,9 @@
                 {
                     "type": "imports",
                     "elements": [
+                        {
+                            "name": "TreeModule"
+                        },
                         {
                             "name": "UiModule"
                         }
@@ -5219,6 +6130,97 @@
             ]
         },
         {
+            "name": "TreeModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "Tree1Component"
+                        },
+                        {
+                            "name": "Tree2Component"
+                        },
+                        {
+                            "name": "Tree3Component"
+                        },
+                        {
+                            "name": "TreeDemoComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "TreeModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "TreeComponent"
+                        },
+                        {
+                            "name": "TreeItemDirective"
+                        },
+                        {
+                            "name": "TreeNodeTemplateDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "TreeComponent"
+                        },
+                        {
+                            "name": "TreeItemDirective"
+                        },
+                        {
+                            "name": "TreeNodeTemplateDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "UiModule",
             "children": [
                 {
@@ -5249,6 +6251,9 @@
                         },
                         {
                             "name": "TooltipModule"
+                        },
+                        {
+                            "name": "TreeModule"
                         }
                     ]
                 },
@@ -5272,6 +6277,9 @@
                         },
                         {
                             "name": "TooltipModule"
+                        },
+                        {
+                            "name": "TreeModule"
                         }
                     ]
                 },
@@ -5995,6 +7003,11 @@
                 "kind": "component",
                 "component": "NavigationDemoComponent",
                 "path": "navigation"
+            },
+            {
+                "kind": "component",
+                "component": "TreeDemoComponent",
+                "path": "tree"
             }
         ]
     },
@@ -6008,7 +7021,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -6174,6 +7187,42 @@
                 "name": "config",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/tree/tree.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "Tree1Component",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/tree/tree.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "Tree2Component",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/tree/tree.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "Tree3Component",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/tree/tree.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TreeDemoComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
@@ -6612,6 +7661,42 @@
                 "coveragePercent": 50,
                 "coverageCount": "4/8",
                 "status": "medium"
+            },
+            {
+                "filePath": "src/app/ui/tree/tree/tree.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TreeComponent",
+                "coveragePercent": 69,
+                "coverageCount": "9/13",
+                "status": "good"
+            },
+            {
+                "filePath": "src/app/ui/tree/tree/tree.component.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "TreeItemDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui/tree/tree/tree.component.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "TreeNodeTemplateDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui/tree/tree/tree.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "TreeItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
             },
             {
                 "filePath": "src/app/welcome/welcome.component.ts",

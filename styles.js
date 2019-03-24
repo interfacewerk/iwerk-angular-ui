@@ -11,6 +11,17 @@ module.exports = [[module.i, "/* You can add global styles to this file, and als
 
 /***/ }),
 
+/***/ "../../node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!../../node_modules/postcss-loader/src/index.js?!../../node_modules/sass-loader/lib/loader.js?!./src/styles.sass":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/home/travis/build/interfacewerk/iwerk-angular-ui/node_modules/postcss-loader/src??embedded!/home/travis/build/interfacewerk/iwerk-angular-ui/node_modules/sass-loader/lib/loader.js??ref--14-3!./src/styles.sass ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = [[module.i, "/* These are global styles. */\niw-tree.menu-tree ol, iw-tree.menu-tree li {\n  margin: 0;\n  padding: 0; }\niw-tree.menu-tree li {\n  list-style: none; }\niw-tree.menu-tree a {\n  color: black;\n  line-height: 40px;\n  height: 40px;\n  padding: 0;\n  display: block;\n  text-decoration: none; }\niw-tree.menu-tree a:visited {\n    color: black; }\niw-tree.menu-tree a.active {\n    font-weight: bold; }\niw-tree.menu-tree a:hover, iw-tree.menu-tree a:focus {\n    text-decoration: none;\n    background: lightgrey; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvc3R5bGVzL21lbnUtdHJlZS5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4QjtBQUU5QjtFQUVJLFVBQVM7RUFDVCxXQUFVLEVBQUc7QUFIakI7RUFNSSxpQkFBZ0IsRUFBRztBQU52QjtFQVNJLGFBQVk7RUFDWixrQkFBaUI7RUFDakIsYUFBWTtFQUNaLFdBQVU7RUFDVixlQUFjO0VBQ2Qsc0JBQXFCLEVBVU87QUF4QmhDO0lBaUJNLGFBQVksRUFBRztBQWpCckI7SUFvQk0sa0JBQWlCLEVBQUc7QUFwQjFCO0lBdUJNLHNCQUFxQjtJQUNyQixzQkFBcUIsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9zdHlsZXMuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFRoZXNlIGFyZSBnbG9iYWwgc3R5bGVzLiAqL1xuXG5pdy10cmVlLm1lbnUtdHJlZSB7XG4gIG9sLCBsaSB7XG4gICAgbWFyZ2luOiAwO1xuICAgIHBhZGRpbmc6IDA7IH1cblxuICBsaSB7XG4gICAgbGlzdC1zdHlsZTogbm9uZTsgfVxuXG4gIGEge1xuICAgIGNvbG9yOiBibGFjaztcbiAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICBoZWlnaHQ6IDQwcHg7XG4gICAgcGFkZGluZzogMDtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG5cbiAgICAmOnZpc2l0ZWQge1xuICAgICAgY29sb3I6IGJsYWNrOyB9XG5cbiAgICAmLmFjdGl2ZSB7XG4gICAgICBmb250LXdlaWdodDogYm9sZDsgfVxuXG4gICAgJjpob3ZlciwgJjpmb2N1cyB7XG4gICAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgICBiYWNrZ3JvdW5kOiBsaWdodGdyZXk7IH0gfSB9XG4iXX0= */", '', '']]
+
+/***/ }),
+
 /***/ "../../node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!../../node_modules/postcss-loader/src/index.js?!../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /home/travis/build/interfacewerk/iwerk-angular-ui/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/home/travis/build/interfacewerk/iwerk-angular-ui/node_modules/postcss-loader/src??embedded!../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css ***!
@@ -591,15 +602,46 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./src/styles.sass":
+/*!*************************!*\
+  !*** ./src/styles.sass ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/src??embedded!../../../node_modules/sass-loader/lib/loader.js??ref--14-3!./styles.sass */ "../../node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!../../node_modules/postcss-loader/src/index.js?!../../node_modules/sass-loader/lib/loader.js?!./src/styles.sass");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "../../node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ 2:
-/*!********************************************************************************************************!*\
-  !*** multi ../docs/src/lib/styles.sass ../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css ***!
-  \********************************************************************************************************/
+/*!**************************************************************************************************************************!*\
+  !*** multi ../docs/src/lib/styles.sass ../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css ./src/styles.sass ***!
+  \**************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/travis/build/interfacewerk/iwerk-angular-ui/projects/docs/src/lib/styles.sass */"../docs/src/lib/styles.sass");
-module.exports = __webpack_require__(/*! /home/travis/build/interfacewerk/iwerk-angular-ui/projects/docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css */"../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css");
+__webpack_require__(/*! /home/travis/build/interfacewerk/iwerk-angular-ui/projects/docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css */"../docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css");
+module.exports = __webpack_require__(/*! /home/travis/build/interfacewerk/iwerk-angular-ui/projects/demo/src/styles.sass */"./src/styles.sass");
 
 
 /***/ })
