@@ -15,7 +15,7 @@
       <ng-template ngFor [ngForOf]="inputs$ | async" let-input>
         <tr>
           <td><code>{{input.name}}</code></td>
-          <td><code>{{input.type}}</code></td>
+          <td><code>{{getInputType(input) | async}}</code></td>
           <td [innerHTML]="input.description"></td>
         </tr>
       </ng-template>

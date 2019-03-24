@@ -1,0 +1,9 @@
+<p>Use your arrow keys to navigate inside this tree.</p>
+
+<iw-tree [tree]="items" #tree>
+  <ng-template iwTreeNodeTemplate let-node>
+    <div tabindex="0"
+      [iwTreeItem]="node"
+    >{{node.data}}</div>
+  </ng-template>
+</iw-tree>

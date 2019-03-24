@@ -1,0 +1,42 @@
+<docs-component-documentation
+  [componentTitle]="'Tree'"
+  [componentId]="'TreeComponent'"
+  [componentType]="'components'"
+>
+<ng-template docsComponentExample="Simple Tree">
+  <ng-container [ngComponentOutlet]=""></ng-container>
+  <app-tree-docs-example1></app-tree-docs-example1>
+  <docs-tabs>
+    <docs-code *docsTab="'HTML'" path="tree-docs-example1.component.html"></docs-code>
+    <docs-code *docsTab="'TS'" path="tree-docs-example1.component.ts"></docs-code>
+  </docs-tabs>
+</ng-template>
+<ng-template docsComponentExample="Keyboard Navigation">
+  <ng-container [ngComponentOutlet]=""></ng-container>
+  <app-tree-docs-example2></app-tree-docs-example2>
+  <docs-tabs>
+    <docs-code *docsTab="'HTML'" path="tree-docs-example2.component.html"></docs-code>
+    <docs-code *docsTab="'TS'" path="tree-docs-example2.component.ts"></docs-code>
+  </docs-tabs>
+</ng-template>
+<ng-template docsComponentExample="Navigation Menu">
+  <ng-container [ngComponentOutlet]=""></ng-container>
+  <app-tree-docs-example3></app-tree-docs-example3>
+  <docs-tabs>
+    <docs-code *docsTab="'HTML'" path="tree-docs-example3.component.html"></docs-code>
+    <docs-code *docsTab="'TS'" path="tree-docs-example3.component.ts"></docs-code>
+  </docs-tabs>
+</ng-template>
+  <!--<ng-template docsComponentExample="Horizontal">
+    <app-tooltip-demo-example2></app-tooltip-demo-example2>
+    <docs-tabs>
+      <docs-code *docsTab="'HTML'" path="tooltip-demo-example2.component.html"></docs-code>
+    </docs-tabs>
+  </ng-template>
+  <ng-template docsComponentExample="Delay">
+    <app-tooltip-demo-example3></app-tooltip-demo-example3>
+    <docs-tabs>
+      <docs-code *docsTab="'HTML'" path="tooltip-demo-example3.component.html"></docs-code>
+    </docs-tabs>
+  </ng-template> -->
+</docs-component-documentation>

@@ -136,7 +136,8 @@
             ],
             "styles": [
               "projects/docs/src/lib/styles.sass",
-              "projects/docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css"
+              "projects/docs/src/lib/styles/font-awesome-4.7.0/css/font-awesome.css",
+              "projects/demo/src/styles.sass"
             ],
             "scripts": []
           },

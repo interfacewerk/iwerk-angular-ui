@@ -1,0 +1,33 @@
+<h1>Tree Component</h1>
+
+<h2>Simple tree</h2>
+
+<ng-container [ngComponentOutlet]="demo1"></ng-container>
+
+<h2>Tree with Keyboard Navigation Support</h2>
+
+<ng-container [ngComponentOutlet]="demo2"></ng-container>
+
+<h2>Initially Expanded Nodes</h2>
+
+<ng-container [ngComponentOutlet]="demo3"></ng-container>
+
+<h2>Tree with routes</h2>
+<iw-tree #treeComponent [tree]="tree">
+  <ng-template iwTreeNodeTemplate let-node let-depth="depth">
+    <a [routerLink]="node.data.routerLink"
+      [ngStyle]="getLinkStyle(depth)"
+      [queryParams]="node.data.queryParams"
+      [queryParamsHandling]="'merge'"
+      [routerLinkActive]="'active'"
+      [iwTreeItem]="node"
+      (click)="treeComponent.expandItem(node)">
+      <fa-icon
+        [style.visibility]="treeComponent.hasChildren(node) ? 'visible' : 'hidden'"
+        (click)="toggleExpand(treeComponent, node, $event)"
+        [icon]="treeComponent.isExpanded(node) ? caretDown : caretRight"
+      ></fa-icon>
+      {{node.data.label}}
+    </a>
+  </ng-template>
+</iw-tree>
