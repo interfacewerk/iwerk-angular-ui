@@ -5,4 +5,5 @@ export * from './app/ui/checkbox/checkbox.module';
 export * from './app/ui/dialog/dialog.module';
 export * from './app/ui/multiline-ellipsis/multiline-ellipsis.module';
 export * from './app/ui/navigation/navigation.module';
+export * from './app/ui/tree/tree.module';
 export * from './app/ui/ui.module';

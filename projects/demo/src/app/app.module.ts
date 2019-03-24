@@ -4,17 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocsModule } from 'projects/docs/src/public_api';
 import { AppComponent } from './app.component';
+import { DialogDemoModule } from './dialog/dialog.module';
+import { DialogComponent } from './dialog/dialog/dialog.component';
+import { EllipsisDemoModule } from './ellipsis/ellipsis.module';
+import { EllipsisDemoComponent } from './ellipsis/ellipsis/ellipsis.component';
+import { NavigationDemoModule } from './navigation/navigation.module';
+import { NavigationdDemoComponent } from './navigation/navigation/navigation.component';
 import { PopoverDemoComponent } from './popover/popover-demo/popover-demo.component';
 import { PopoverDemoModule } from './popover/popover.module';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { TooltipDemoComponent } from './tooltip/tooltip-demo/tooltip-demo.component';
-import { DialogComponent } from './dialog/dialog/dialog.component';
-import { NavigationdDemoComponent } from './navigation/navigation/navigation.component';
-import { EllipsisDemoComponent } from './ellipsis/ellipsis/ellipsis.component';
 import { TooltipDemoModule } from './tooltip/tooltip.module';
-import { EllipsisDemoModule } from './ellipsis/ellipsis.module';
-import { NavigationDemoModule } from './navigation/navigation.module';
-import { DialogDemoModule } from './dialog/dialog.module';
+import { TreeDocsComponent } from './tree-docs/tree-docs.component';
+import { TreeDocsModule } from './tree-docs/tree-docs.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { DialogDemoModule } from './dialog/dialog.module';
     NavigationDemoModule,
     EllipsisDemoModule,
     DialogDemoModule,
+    TreeDocsModule,
     DocsModule.configure({
       welcomePage: WelcomeComponent,
       componentPages: {
@@ -37,7 +40,8 @@ import { DialogDemoModule } from './dialog/dialog.module';
         tooltip: { title: 'Tooltip', component: TooltipDemoComponent },
         dialog: { title: 'Dialog', component: DialogComponent },
         navigation: { title: 'Navigation', component: NavigationdDemoComponent },
-        ellipsis: { title: 'Ellipsis', component: EllipsisDemoComponent }
+        ellipsis: { title: 'Ellipsis', component: EllipsisDemoComponent },
+        tree: { title: 'Tree', component: TreeDocsComponent }
       }
     })
   ],

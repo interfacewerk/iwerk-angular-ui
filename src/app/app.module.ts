@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { EllipsisComponent } from './demo/ellipsis/ellipsis.component';
+import { NavigationDemoComponent, SomeComponent, SomeOtherComponent } from './demo/navigation-demo/navigation.demo.component';
+import { TreeDemoComponent } from './demo/tree/tree.component';
+import { TreeModule } from './demo/tree/tree.module';
 import { UiModule } from './ui/ui.module';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { NavigationDemoComponent, SomeComponent, SomeOtherComponent } from './demo/navigation-demo/navigation.demo.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -17,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'dialog', loadChildren: 'app/demo/dialog-demo/dialog-demo.module#DialogDemoModule' },
   { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
   { path: 'navigation', component: NavigationDemoComponent },
+  { path: 'tree', component: TreeDemoComponent },
 ];
 
 @NgModule({
@@ -32,7 +35,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     UiModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    TreeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

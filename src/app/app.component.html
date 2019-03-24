@@ -1,18 +1,17 @@
 <aside>
-  <ul>
-    <li><a routerLink="/"
-      [routerLinkActiveOptions]="{exact: true}" 
-      routerLinkActive="active-link">
-      Get Started
-    </a></li>
-    <li><a routerLinkActive="active-link" routerLink="/ellipsis">Ellipsis</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/popover">Popover</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/tooltip">Tooltip</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/stateful-button">Stateful Button</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/dialog">Dialog</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/checkbox">Checkbox</a></li>
-    <li><a routerLinkActive="active-link" routerLink="/navigation">Navigation</a></li>
-  </ul>
+  <iw-tree #treeComponent class="routes-menu" [tree]="tree">
+    <ng-template iwTreeNodeTemplate let-node let-depth="depth">
+      <a [routerLink]="node.data.routerLink"
+        [ngStyle]="linkStyle(depth)"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [queryParams]="node.data.queryParams"
+        [queryParamsHandling]="'merge'"
+        [routerLinkActive]="'active-link'"
+        [iwTreeItem]="node">
+        {{node.data.label}}
+      </a>
+    </ng-template>
+  </iw-tree>
 </aside>
 
 <main>
