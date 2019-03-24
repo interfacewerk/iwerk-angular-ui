@@ -6,7 +6,7 @@ import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
   template: `
     <iw-tree [tree]="items" #tree>
       <ng-template iwTreeNodeTemplate let-node let-hasChildren="hasChildren">
-        {{node.data}} <button *ngIf="hasChildren" (click)="tree.toggleExpand(node)">togdgle</button>
+        {{node.data}} <button *ngIf="hasChildren" (click)="tree.toggleExpand(node)">toggle</button>
       </ng-template>
     </iw-tree>
   `
