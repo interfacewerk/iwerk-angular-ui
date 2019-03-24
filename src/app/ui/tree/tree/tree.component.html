@@ -1,0 +1,13 @@
+<ng-container *ngTemplateOutlet="treeTemplate; context: { $implicit: tree, depth: 0 }"></ng-container>
+
+<ng-template #treeTemplate let-nodes let-depth="depth">
+  <ol>
+    <li *ngFor="let node of nodes">
+      <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node, data: node.data, depth: depth, hasChildren: hasChildren(node) }"></ng-container>
+      
+      <ng-template [ngIf]="hasChildren(node) && isExpanded(node)">
+        <ng-container *ngTemplateOutlet="treeTemplate; context: { $implicit: node.children, depth: depth + 1 }"></ng-container>
+      </ng-template>
+    </li>
+  </ol>
+</ng-template>

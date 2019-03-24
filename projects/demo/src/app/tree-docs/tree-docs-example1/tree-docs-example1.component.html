@@ -1,0 +1,5 @@
+<iw-tree [tree]="items" #tree>
+  <ng-template iwTreeNodeTemplate let-node let-hasChildren="hasChildren">
+    {{node.data}} <button *ngIf="hasChildren" (click)="tree.toggleExpand(node)">toggle</button>
+  </ng-template>
+</iw-tree>

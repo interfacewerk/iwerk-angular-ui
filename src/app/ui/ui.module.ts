@@ -6,6 +6,7 @@ import { PopoverModule } from './popover/popover.module';
 import { StateButtonModule } from './state-button/state-button.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { TreeModule } from './tree/tree.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NavigationModule } from './navigation/navigation.module';
     StateButtonModule,
     CheckboxModule,
     MultilineEllipsisModule,
-    NavigationModule
+    NavigationModule,
+    TreeModule
   ],
   exports: [
     PopoverModule,
@@ -23,7 +25,8 @@ import { NavigationModule } from './navigation/navigation.module';
     StateButtonModule,
     CheckboxModule,
     MultilineEllipsisModule,
-    NavigationModule
+    NavigationModule,
+    TreeModule
   ]
 })
 export class UiModule { }

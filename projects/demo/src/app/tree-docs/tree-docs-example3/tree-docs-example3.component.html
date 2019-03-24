@@ -1,0 +1,18 @@
+<iw-tree #treeComponent [tree]="tree" class="menu-tree">
+  <ng-template iwTreeNodeTemplate let-node let-depth="depth">
+    <a [routerLink]="node.data.routerLink"
+      [ngStyle]="getLinkStyle(depth)"
+      [queryParams]="node.data.queryParams"
+      [queryParamsHandling]="'merge'"
+      [routerLinkActive]="'active'"
+      [iwTreeItem]="node"
+      (click)="treeComponent.expandItem(node)">
+      <fa-icon
+        [style.visibility]="treeComponent.hasChildren(node) ? 'visible' : 'hidden'"
+        (click)="toggleExpand(treeComponent, node, $event)"
+        [icon]="treeComponent.isExpanded(node) ? caretDown : caretRight"
+      ></fa-icon>
+      Node #{{node.data.label}}
+    </a>
+  </ng-template>
+</iw-tree>
