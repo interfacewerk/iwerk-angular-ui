@@ -55,10 +55,10 @@
         },
         {
             "name": "DialogOptions",
-            "id": "interface-DialogOptions-7adc2474fd166ed553a5763ab487afca",
+            "id": "interface-DialogOptions-fe0645021aca13cc6868e8881676da8f",
             "file": "src/app/ui/dialog/dialog-container/dialog-container.component.ts",
             "type": "interface",
-            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.sass'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
             "properties": [
                 {
                     "name": "clickToClose",
@@ -95,10 +95,10 @@
         },
         {
             "name": "IDialog",
-            "id": "interface-IDialog-7adc2474fd166ed553a5763ab487afca",
+            "id": "interface-IDialog-fe0645021aca13cc6868e8881676da8f",
             "file": "src/app/ui/dialog/dialog-container/dialog-container.component.ts",
             "type": "interface",
-            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.sass'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
             "properties": [],
             "indexSignatures": [],
             "kind": 152,
@@ -238,10 +238,10 @@
         },
         {
             "name": "Person",
-            "id": "interface-Person-c8ecdd933a4edcdf5c62951d1ffb3b41",
+            "id": "interface-Person-d97f961b052ac42bf6fc9632a94c0e01",
             "file": "src/app/demo/popover/popover-demo/popover-demo.component.ts",
             "type": "interface",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';\nimport { PopoverService } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-popover-demo',\n  templateUrl: './popover-demo.component.html',\n  styleUrls: ['./popover-demo.component.scss']\n})\nexport class PopoverDemoComponent implements OnInit {\n  editedPerson: Person;\n  editedField: string;\n  persons: Person[] = [];\n  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];\n  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];\n  isPopoverOpen3 = false;\n  isPopoverOpen2 = false;\n  isPopoverOpen = false;\n  isPopoverOpen4 = false;\n  isPopoverOpen5 = false;\n\n  constructor(private popoverService: PopoverService) {\n    for (let i = 0; i < 1000; i++) {\n      this.persons.push({\n        first: this.firsts[Math.floor(Math.random() * this.firsts.length)],\n        last: this.lasts[Math.floor(Math.random() * this.lasts.length)],\n      });\n    }\n  }\n\n  trackBy(index: number) {\n    return index;\n  }\n\n  openEditFirstNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'First Name', 'first', $event);\n  }\n\n  openEditLastNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'Last Name', 'last', $event);\n  }\n\n  openEditPropertyPopover(person: Person, propertyName: string, p: keyof Person, $event: MouseEvent) {\n    this.popoverService.open(PropertyEditPopoverComponent, <HTMLElement>$event.target, {\n      popoverClass: 'popover-demo',\n      escToClose: true\n    }, component => {\n      component.value = person[p];\n      component.propertyName = propertyName;\n      component.onValueChange.subscribe((v: string) => {\n        person[p] = v;\n      });\n    });\n  }\n\n  ngOnInit() {\n  }\n}\n\ninterface Person {\n  first: string;\n  last: string;\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';\nimport { PopoverService } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-popover-demo',\n  templateUrl: './popover-demo.component.html',\n  styleUrls: ['./popover-demo.component.sass']\n})\nexport class PopoverDemoComponent implements OnInit {\n  editedPerson: Person;\n  editedField: string;\n  persons: Person[] = [];\n  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];\n  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];\n  isPopoverOpen3 = false;\n  isPopoverOpen2 = false;\n  isPopoverOpen = false;\n  isPopoverOpen4 = false;\n  isPopoverOpen5 = false;\n\n  constructor(private popoverService: PopoverService) {\n    for (let i = 0; i < 1000; i++) {\n      this.persons.push({\n        first: this.firsts[Math.floor(Math.random() * this.firsts.length)],\n        last: this.lasts[Math.floor(Math.random() * this.lasts.length)],\n      });\n    }\n  }\n\n  trackBy(index: number) {\n    return index;\n  }\n\n  openEditFirstNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'First Name', 'first', $event);\n  }\n\n  openEditLastNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'Last Name', 'last', $event);\n  }\n\n  openEditPropertyPopover(person: Person, propertyName: string, p: keyof Person, $event: MouseEvent) {\n    this.popoverService.open(PropertyEditPopoverComponent, <HTMLElement>$event.target, {\n      popoverClass: 'popover-demo',\n      escToClose: true\n    }, component => {\n      component.value = person[p];\n      component.propertyName = propertyName;\n      component.onValueChange.subscribe((v: string) => {\n        person[p] = v;\n      });\n    });\n  }\n\n  ngOnInit() {\n  }\n}\n\ninterface Person {\n  first: string;\n  last: string;\n}\n",
             "properties": [
                 {
                     "name": "first",
@@ -2778,7 +2778,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-783748b34e9d9b4b4fbb1d33cf12b654",
+            "id": "component-AppComponent-58d699cdfead4531f4cbcca489632c1d",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2787,7 +2787,7 @@
             "providers": [],
             "selector": "app-root",
             "styleUrls": [
-                "./app.component.scss"
+                "./app.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -2834,12 +2834,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { TreeItem } from './ui/tree/tree/tree.component';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n  tree: TreeItem[] = [\n    {\n      data: {\n        routerLink: ['/'],\n        routerLinkActiveOptions: {exact: true},\n        label: 'Get Started'\n      }\n    },\n    {\n      data: {\n        routerLink: ['/ellipsis'], label: 'Ellipsis'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/popover'], label: 'Popover'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tooltip'], label: 'Tooltip'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/stateful-button'], label: 'Stateful Button'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/dialog'], label: 'Dialog'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/checkbox'], label: 'Checkbox'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/navigation'], label: 'Navigation'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tree'], label: 'Tree'\n      },\n    },\n  ];\n\n  linkStyle(depth: number) {\n    return {\n      padding: `0 ${(depth + 1) * 15}px`\n    };\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { TreeItem } from './ui/tree/tree/tree.component';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.sass']\n})\nexport class AppComponent {\n  tree: TreeItem[] = [\n    {\n      data: {\n        routerLink: ['/'],\n        routerLinkActiveOptions: {exact: true},\n        label: 'Get Started'\n      }\n    },\n    {\n      data: {\n        routerLink: ['/ellipsis'], label: 'Ellipsis'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/popover'], label: 'Popover'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tooltip'], label: 'Tooltip'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/stateful-button'], label: 'Stateful Button'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/dialog'], label: 'Dialog'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/checkbox'], label: 'Checkbox'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/navigation'], label: 'Navigation'\n      },\n    },\n    {\n      data: {\n        routerLink: ['/tree'], label: 'Tree'\n      },\n    },\n  ];\n\n  linkStyle(depth: number) {\n    return {\n      padding: `0 ${(depth + 1) * 15}px`\n    };\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%;\n\n  $width_aside: 200px;\n\n  aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: $width_aside;\n    overflow: auto;\n    background: black;\n    color: white;\n    padding: 15px 0px;\n  }\n\n  main {\n    position: absolute;\n    top: 0;\n    left: $width_aside;\n    height: 100%;\n    right: 0;\n    overflow: auto;\n    padding: 15px;\n  }\n}\n",
-                    "styleUrl": "./app.component.scss"
+                    "data": "\\:host\n  display: block\n  position: relative\n  width: 100%\n  height: 100%\n\n  $width_aside: 200px\n\n  aside\n    position: absolute\n    top: 0\n    left: 0\n    height: 100%\n    width: $width_aside\n    overflow: auto\n    background: black\n    color: white\n    padding: 15px 0px\n\n  main\n    position: absolute\n    top: 0\n    left: $width_aside\n    height: 100%\n    right: 0\n    overflow: auto\n    padding: 15px\n",
+                    "styleUrl": "./app.component.sass"
                 }
             ],
             "stylesData": "",
@@ -2847,7 +2847,7 @@
         },
         {
             "name": "CheckboxComponent",
-            "id": "component-CheckboxComponent-f564711cd70d057bb463a3e8b80ea001",
+            "id": "component-CheckboxComponent-735ab7b87496da109ac3e07c98900fa8",
             "file": "src/app/ui/checkbox/checkbox/checkbox.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -2863,7 +2863,7 @@
             ],
             "selector": "iw-checkbox",
             "styleUrls": [
-                "./checkbox.component.scss"
+                "./checkbox.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3113,12 +3113,12 @@
             ],
             "description": "<p>A checkbox component is great!</p>\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  ElementRef,\n  forwardRef,\n  HostListener,\n  Inject,\n  Input,\n  OnInit,\n  Optional,\n  Renderer2,\n  ViewEncapsulation\n} from '@angular/core';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { CheckboxConfig } from '../checkbox-config.interface';\nimport { IW_CHECKBOX_CONFIG } from '../checkbox.config';\n\n/**\n * A checkbox component is great!\n */\n@Component({\n  selector: 'iw-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.scss'],\n  providers: [{\n    provide: NG_VALUE_ACCESSOR,\n    useExisting: forwardRef(() => CheckboxComponent),\n    multi: true\n  }],\n  encapsulation: ViewEncapsulation.None\n})\nexport class CheckboxComponent implements OnInit, ControlValueAccessor {\n  @Input() tabindex: number;\n\n  set value(v: boolean) {\n    this.__value = v;\n    if (v) {\n      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--checked');\n    } else {\n      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--checked');\n    }\n  }\n  get value() {\n    return this.__value;\n  }\n  onChangeCb: (newValue: boolean) => any;\n  onTouchedCb: Function;\n  set isDisabled(v: boolean) {\n    this.__isDisabled = v;\n    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', v);\n    if (v) {\n      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--disabled');\n    } else {\n      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--disabled');\n    }\n  }\n  get isDisabled() {\n    return this.__isDisabled;\n  }\n\n  private __value = false;\n  private __isDisabled = false;\n\n  constructor(\n    private renderer: Renderer2,\n    private elementRef: ElementRef,\n    @Optional() @Inject(IW_CHECKBOX_CONFIG) private checkboxConfig: CheckboxConfig\n  ) {\n    this.onChangeCb = this.onTouchedCb = () => {};\n  }\n\n  ngOnInit() {\n    if (this.checkboxConfig && this.checkboxConfig.containerClass) {\n      this.renderer.addClass(\n        this.elementRef.nativeElement,\n        this.checkboxConfig.containerClass,\n      );\n    }\n  }\n\n  onKeyup($event: KeyboardEvent) {\n    if ($event.keyCode === 32) {\n      this.userToggle();\n    }\n  }\n\n  getTabIndex(): string {\n    if (this.isDisabled) {\n      return '';\n    }\n    return String(this.tabindex || 0);\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    this.userToggle();\n  }\n\n  /**\n   * Implements ControlValueAccessor:writeValue\n   * @param obj the new selection\n   */\n  writeValue(obj: boolean): void {\n    this.value = obj;\n  }\n\n  /**\n   * Implements ControlValueAccessor:registerOnChange\n   * @param fn\n   */\n  registerOnChange(fn: any): void {\n    this.onChangeCb = fn;\n  }\n\n  /**\n   * Implements ControlValueAccessor:registerOnTouched\n   * @param fn\n   */\n  registerOnTouched(fn: any): void {\n    this.onTouchedCb = fn;\n  }\n\n  /**\n   * Implements ControlValueAccessor:setDisabledState\n   * @param isDisabled\n   */\n  setDisabledState(isDisabled: boolean): void {\n    this.isDisabled = isDisabled;\n  }\n\n  private userToggle() {\n    if (this.isDisabled) {\n      return;\n    }\n    this.value = !this.value;\n    this.onTouchedCb();\n    this.onChangeCb(this.value);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  ElementRef,\n  forwardRef,\n  HostListener,\n  Inject,\n  Input,\n  OnInit,\n  Optional,\n  Renderer2,\n  ViewEncapsulation\n} from '@angular/core';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { CheckboxConfig } from '../checkbox-config.interface';\nimport { IW_CHECKBOX_CONFIG } from '../checkbox.config';\n\n/**\n * A checkbox component is great!\n */\n@Component({\n  selector: 'iw-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.sass'],\n  providers: [{\n    provide: NG_VALUE_ACCESSOR,\n    useExisting: forwardRef(() => CheckboxComponent),\n    multi: true\n  }],\n  encapsulation: ViewEncapsulation.None\n})\nexport class CheckboxComponent implements OnInit, ControlValueAccessor {\n  @Input() tabindex: number;\n\n  set value(v: boolean) {\n    this.__value = v;\n    if (v) {\n      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--checked');\n    } else {\n      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--checked');\n    }\n  }\n  get value() {\n    return this.__value;\n  }\n  onChangeCb: (newValue: boolean) => any;\n  onTouchedCb: Function;\n  set isDisabled(v: boolean) {\n    this.__isDisabled = v;\n    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', v);\n    if (v) {\n      this.renderer.addClass(this.elementRef.nativeElement, 'checkbox--disabled');\n    } else {\n      this.renderer.removeClass(this.elementRef.nativeElement, 'checkbox--disabled');\n    }\n  }\n  get isDisabled() {\n    return this.__isDisabled;\n  }\n\n  private __value = false;\n  private __isDisabled = false;\n\n  constructor(\n    private renderer: Renderer2,\n    private elementRef: ElementRef,\n    @Optional() @Inject(IW_CHECKBOX_CONFIG) private checkboxConfig: CheckboxConfig\n  ) {\n    this.onChangeCb = this.onTouchedCb = () => {};\n  }\n\n  ngOnInit() {\n    if (this.checkboxConfig && this.checkboxConfig.containerClass) {\n      this.renderer.addClass(\n        this.elementRef.nativeElement,\n        this.checkboxConfig.containerClass,\n      );\n    }\n  }\n\n  onKeyup($event: KeyboardEvent) {\n    if ($event.keyCode === 32) {\n      this.userToggle();\n    }\n  }\n\n  getTabIndex(): string {\n    if (this.isDisabled) {\n      return '';\n    }\n    return String(this.tabindex || 0);\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    this.userToggle();\n  }\n\n  /**\n   * Implements ControlValueAccessor:writeValue\n   * @param obj the new selection\n   */\n  writeValue(obj: boolean): void {\n    this.value = obj;\n  }\n\n  /**\n   * Implements ControlValueAccessor:registerOnChange\n   * @param fn\n   */\n  registerOnChange(fn: any): void {\n    this.onChangeCb = fn;\n  }\n\n  /**\n   * Implements ControlValueAccessor:registerOnTouched\n   * @param fn\n   */\n  registerOnTouched(fn: any): void {\n    this.onTouchedCb = fn;\n  }\n\n  /**\n   * Implements ControlValueAccessor:setDisabledState\n   * @param isDisabled\n   */\n  setDisabledState(isDisabled: boolean): void {\n    this.isDisabled = isDisabled;\n  }\n\n  private userToggle() {\n    if (this.isDisabled) {\n      return;\n    }\n    this.value = !this.value;\n    this.onTouchedCb();\n    this.onChangeCb(this.value);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "iw-checkbox {\n  display: inline-block;\n  line-height: 15px;\n  \n  &:not(.checkbox--disabled) {\n    cursor: pointer;\n  }\n  &.checkbox--disabled {\n    cursor: not-allowed;\n  }\n\n  &.checkbox--disabled {\n    .checkbox__checkbox {\n      opacity: 0.2;\n    }\n  }\n\n  &:not(.checkbox--disabled):not(.checkbox--checked):hover {\n    .checkbox__checkbox {\n      border-color: grey;\n    }\n  }\n\n  &.checkbox--checked {\n    .checkbox__checkbox {\n      border-color: black;\n    }\n    \n    .checkbox__checkbox svg {\n      opacity: 1;\n    }\n  }\n\n  .checkbox__checkbox {\n    width: 15px;\n    height: 15px;\n    position: relative;\n    margin: 0 3px;\n    display: inline-block;\n    float: left;\n    transition: border-color 0.3s;\n    border: 1px solid lightgrey;\n    border-radius: 2px;\n    overflow: hidden;\n\n    svg {\n      position: absolute;\n      left: 50%;\n      top: 50%;\n      width: 75%;\n      transform: translate(-50%, -50%);\n      opacity: 0;\n      transition: opacity 0.3s;\n    }\n  }\n\n  .checkbox__label {\n    display: inline-block;\n  }\n}",
-                    "styleUrl": "./checkbox.component.scss"
+                    "data": "iw-checkbox\n  display: inline-block\n  line-height: 15px\n  \n  &:not(.checkbox--disabled)\n    cursor: pointer\n\n  &.checkbox--disabled\n    cursor: not-allowed\n\n  &.checkbox--disabled\n    .checkbox__checkbox\n      opacity: 0.2\n\n\n  &:not(.checkbox--disabled):not(.checkbox--checked):hover\n    .checkbox__checkbox\n      border-color: grey\n\n  &.checkbox--checked\n    .checkbox__checkbox\n      border-color: black\n    \n    .checkbox__checkbox svg\n      opacity: 1\n\n  .checkbox__checkbox\n    width: 15px\n    height: 15px\n    position: relative\n    margin: 0 3px\n    display: inline-block\n    float: left\n    transition: border-color 0.3s\n    border: 1px solid lightgrey\n    border-radius: 2px\n    overflow: hidden\n\n    svg\n      position: absolute\n      left: 50%\n      top: 50%\n      width: 75%\n      transform: translate(-50%, -50%)\n      opacity: 0\n      transition: opacity 0.3s\n\n  .checkbox__label\n    display: inline-block",
+                    "styleUrl": "./checkbox.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3234,7 +3234,7 @@
         },
         {
             "name": "CheckboxDemoComponent",
-            "id": "component-CheckboxDemoComponent-5218183b129181e8395549e76a3b32ea",
+            "id": "component-CheckboxDemoComponent-9e83c12bd2dbdf46aad3a304f84a757d",
             "file": "src/app/demo/checkbox-demo/checkbox-demo.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -3246,7 +3246,7 @@
             "providers": [],
             "selector": "app-checkbox-demo",
             "styleUrls": [
-                "./checkbox-demo.component.scss"
+                "./checkbox-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3279,12 +3279,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox-demo',\n  templateUrl: './checkbox-demo.component.html',\n  styleUrls: ['./checkbox-demo.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class CheckboxDemoComponent implements OnInit {\n  value1 = false;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox-demo',\n  templateUrl: './checkbox-demo.component.html',\n  styleUrls: ['./checkbox-demo.component.sass'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class CheckboxDemoComponent implements OnInit {\n  value1 = false;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "",
-                    "styleUrl": "./checkbox-demo.component.scss"
+                    "styleUrl": "./checkbox-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3371,7 +3371,7 @@
         },
         {
             "name": "DialogComponent",
-            "id": "component-DialogComponent-1ff7243126fadf1e48a9f3cea3eac291",
+            "id": "component-DialogComponent-8f22fcd8fcde922b184330874eb919b6",
             "file": "src/app/demo/dialog-demo/dialog-demo/dialog-demo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3380,7 +3380,7 @@
             "providers": [],
             "selector": "app-dialog",
             "styleUrls": [
-                "./dialog-demo.component.scss"
+                "./dialog-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3460,12 +3460,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';\nimport { MyDialogComponent } from '../my-dialog/my-dialog.component';\nimport { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dialog.module';\n\n@Component({\n  selector: 'app-dialog',\n  templateUrl: './dialog-demo.component.html',\n  styleUrls: ['./dialog-demo.component.scss']\n})\nexport class DialogComponent implements OnInit, OnDestroy {\n  @ViewChild('myDialog1') myDialog1: DialogDirective;\n  someValue = 667;\n\n  private __dialogInstance: IDialog;\n\n  constructor(private dialog: DialogService) { }\n\n  ngOnInit() {\n  }\n\n  ngOnDestroy() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n    }\n  }\n\n  openDialog() {\n    this.__dialogInstance = this.dialog.open(MyDialogComponent, {\n      escToClose: true\n    }, {\n      title: 'Programmatic Dialog'\n    });\n  }\n\n  openDialog1() {\n    this.myDialog1.open();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';\nimport { MyDialogComponent } from '../my-dialog/my-dialog.component';\nimport { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dialog.module';\n\n@Component({\n  selector: 'app-dialog',\n  templateUrl: './dialog-demo.component.html',\n  styleUrls: ['./dialog-demo.component.sass']\n})\nexport class DialogComponent implements OnInit, OnDestroy {\n  @ViewChild('myDialog1') myDialog1: DialogDirective;\n  someValue = 667;\n\n  private __dialogInstance: IDialog;\n\n  constructor(private dialog: DialogService) { }\n\n  ngOnInit() {\n  }\n\n  ngOnDestroy() {\n    if (this.__dialogInstance) {\n      this.__dialogInstance.close();\n    }\n  }\n\n  openDialog() {\n    this.__dialogInstance = this.dialog.open(MyDialogComponent, {\n      escToClose: true\n    }, {\n      title: 'Programmatic Dialog'\n    });\n  }\n\n  openDialog1() {\n    this.myDialog1.open();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "\n",
-                    "styleUrl": "./dialog-demo.component.scss"
+                    "styleUrl": "./dialog-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3497,7 +3497,7 @@
         },
         {
             "name": "DialogContainerComponent",
-            "id": "component-DialogContainerComponent-7adc2474fd166ed553a5763ab487afca",
+            "id": "component-DialogContainerComponent-fe0645021aca13cc6868e8881676da8f",
             "file": "src/app/ui/dialog/dialog-container/dialog-container.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -3509,7 +3509,7 @@
             "providers": [],
             "selector": "iw-dialog-container",
             "styleUrls": [
-                "./dialog-container.component.scss"
+                "./dialog-container.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3589,12 +3589,12 @@
             ],
             "description": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  ChangeDetectionStrategy,\n  HostListener,\n  ElementRef,\n  Output,\n  EventEmitter,\n  Renderer2,\n  AfterViewInit,\n  Input,\n  ViewEncapsulation\n} from '@angular/core';\n\nexport interface DialogOptions {\n  escToClose?: boolean;\n  clickToClose?: boolean;\n  containerClass?: string;\n  onClose?: (dialog: IDialog) => void;\n}\n\nexport interface IDialog {\n  close(): void;\n}\n\n@Component({\n  selector: 'iw-dialog-container',\n  templateUrl: './dialog-container.component.html',\n  styleUrls: ['./dialog-container.component.sass'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None\n})\nexport class DialogContainerComponent implements OnInit, AfterViewInit {\n  @Input() dialogOptions: DialogOptions;\n  @Output() onClose = new EventEmitter();\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) { }\n\n  @HostListener('body:keydown', ['$event'])\n  onKeydown($event: KeyboardEvent) {\n    if ($event.keyCode === 27 && this.dialogOptions.escToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n    }\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if ($event.target === this.elementRef.nativeElement && this.dialogOptions.clickToClose) {\n      this.onClose.emit();\n      $event.preventDefault();\n      $event.stopPropagation();\n    }\n  }\n\n\n  ngOnInit() {\n    const classes = this.dialogOptions.containerClass.split(' ').filter(s => !!s);\n    for (const c of classes) {\n      this.renderer.addClass(this.elementRef.nativeElement, c);\n    }\n  }\n\n  ngAfterViewInit() {\n    this.renderer.setAttribute(this.elementRef.nativeElement, 'tabindex', '0');\n    this.focus();\n    setTimeout(() => {\n      this.renderer.addClass(this.elementRef.nativeElement, 'iw-dialog-container--visible');\n    }, 0);\n  }\n\n  focus() {\n    const element = <HTMLElement>this.elementRef.nativeElement;\n    element.focus();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "iw-dialog-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  opacity: 0;\n  background: rgba(192, 192, 192, 0.67);\n  transition: opacity 0.5s;\n  outline: none;\n\n  .dialog-container__content {\n    position: absolute;\n    top: 100px;\n    left: 20%;\n    width: 60%;\n    background: white;\n    max-height: calc(100% - 200px);\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    transition: transform 0.5s;\n    transform: translateY(-100%);\n    box-shadow: 2px 2px 4px 1px gray;\n    padding: 15px;\n  }\n\n  &.iw-dialog-container--visible {\n    opacity: 1;\n    .dialog-container__content {\n      transform: translateY(0);\n    }\n  }\n\n  .dialog-container__focus-trap {\n    opacity: 0;\n  }\n}\n",
-                    "styleUrl": "./dialog-container.component.scss"
+                    "data": "iw-dialog-container\n  position: fixed\n  top: 0\n  left: 0\n  width: 100%\n  height: 100%\n  z-index: 2\n  opacity: 0\n  background: rgba(192, 192, 192, 0.67)\n  transition: opacity 0.5s\n  outline: none\n\n  .dialog-container__content\n    position: absolute\n    top: 100px\n    left: 20%\n    width: 60%\n    background: white\n    max-height: calc(100% - 200px)\n    overflow: hidden\n    display: flex\n    flex-direction: column\n    transition: transform 0.5s\n    transform: translateY(-100%)\n    box-shadow: 2px 2px 4px 1px gray\n    padding: 15px\n\n  &.iw-dialog-container--visible\n    opacity: 1\n    .dialog-container__content\n      transform: translateY(0)\n\n\n  .dialog-container__focus-trap\n    opacity: 0\n",
+                    "styleUrl": "./dialog-container.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3637,7 +3637,7 @@
         },
         {
             "name": "EllipsisComponent",
-            "id": "component-EllipsisComponent-304fc5e99747de0a61e7439a3916e45d",
+            "id": "component-EllipsisComponent-d71a650298d0ebd7a93da6e9dc91644e",
             "file": "src/app/demo/ellipsis/ellipsis.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3646,7 +3646,7 @@
             "providers": [],
             "selector": "app-ellipsis",
             "styleUrls": [
-                "./ellipsis.component.scss"
+                "./ellipsis.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3679,12 +3679,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-ellipsis',\n  templateUrl: './ellipsis.component.html',\n  styleUrls: ['./ellipsis.component.scss']\n})\nexport class EllipsisComponent implements OnInit {\n  // tslint:disable-next-line\n  lorem = 'Consectetur qui non tempor aute. Adipisicing ad laboris mollit ea consectetur eu aliquip exercitation ipsum cillum esse. Dolor irure consequat magna enim dolor aute sunt sint. Incididunt sint ullamco eu proident eiusmod reprehenderit reprehenderit cillum fugiat voluptate elit nulla. Reprehenderit ad voluptate laboris eu ad ex veniam id sint cupidatat mollit. Dolore magna officia consectetur ea proident excepteur culpa veniam exercitation. Occaecat mollit commodo voluptate ex cupidatat enim veniam quis tempor voluptate culpa quis consequat mollit.';\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-ellipsis',\n  templateUrl: './ellipsis.component.html',\n  styleUrls: ['./ellipsis.component.sass']\n})\nexport class EllipsisComponent implements OnInit {\n  // tslint:disable-next-line\n  lorem = 'Consectetur qui non tempor aute. Adipisicing ad laboris mollit ea consectetur eu aliquip exercitation ipsum cillum esse. Dolor irure consequat magna enim dolor aute sunt sint. Incididunt sint ullamco eu proident eiusmod reprehenderit reprehenderit cillum fugiat voluptate elit nulla. Reprehenderit ad voluptate laboris eu ad ex veniam id sint cupidatat mollit. Dolore magna officia consectetur ea proident excepteur culpa veniam exercitation. Occaecat mollit commodo voluptate ex cupidatat enim veniam quis tempor voluptate culpa quis consequat mollit.';\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "p {\n    max-height: 100px;\n    max-width: 300px;\n    border: 1px solid grey;\n}",
-                    "styleUrl": "./ellipsis.component.scss"
+                    "data": "p\n  max-height: 100px\n  max-width: 300px\n  border: 1px solid grey\n",
+                    "styleUrl": "./ellipsis.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3701,7 +3701,7 @@
         },
         {
             "name": "MyDialogComponent",
-            "id": "component-MyDialogComponent-8bfc91122df053b426685ef6b57e9cb6",
+            "id": "component-MyDialogComponent-cbc53eaf1d49555eaca2c142149dbd72",
             "file": "src/app/demo/dialog-demo/my-dialog/my-dialog.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3710,7 +3710,7 @@
             "providers": [],
             "selector": "app-my-dialog",
             "styleUrls": [
-                "./my-dialog.component.scss"
+                "./my-dialog.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -3748,12 +3748,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\nimport { DialogService } from '../../../ui/dialog/dialog.module';\n\n@Component({\n  selector: 'app-my-dialog',\n  templateUrl: './my-dialog.component.html',\n  styleUrls: ['./my-dialog.component.scss']\n})\nexport class MyDialogComponent implements OnInit {\n  @Input() title: string;\n\n  constructor(private dialog: DialogService) { }\n\n  ngOnInit() {\n  }\n\n  close() {\n    this.dialog.close();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\nimport { DialogService } from '../../../ui/dialog/dialog.module';\n\n@Component({\n  selector: 'app-my-dialog',\n  templateUrl: './my-dialog.component.html',\n  styleUrls: ['./my-dialog.component.sass']\n})\nexport class MyDialogComponent implements OnInit {\n  @Input() title: string;\n\n  constructor(private dialog: DialogService) { }\n\n  ngOnInit() {\n  }\n\n  close() {\n    this.dialog.close();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: block;\n  padding: 15px;\n}",
-                    "styleUrl": "./my-dialog.component.scss"
+                    "data": "\\:host\n  display: block\n  padding: 15px\n",
+                    "styleUrl": "./my-dialog.component.sass"
                 }
             ],
             "stylesData": "",
@@ -3996,7 +3996,7 @@
         },
         {
             "name": "PopoverContainerComponent",
-            "id": "component-PopoverContainerComponent-8859cc6204605e6bb1e395f41ef7cc5f",
+            "id": "component-PopoverContainerComponent-11b6a8d18033ff49cc842e331a7dc007",
             "file": "src/app/ui/popover/popover-container/popover-container.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -4007,7 +4007,7 @@
             "providers": [],
             "selector": "iw-popover-container",
             "styleUrls": [
-                "./popover-container.component.scss"
+                "./popover-container.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4052,12 +4052,12 @@
             ],
             "description": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  HostListener,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-container',\n  templateUrl: './popover-container.component.html',\n  styleUrls: ['./popover-container.component.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverContainerComponent {\n  escToClose: boolean;\n  onClose = new EventEmitter(true);\n\n  constructor() {}\n\n  @HostListener('body:keydown', ['$event'])\n  onKeyDown($event: KeyboardEvent) {\n    if (this.escToClose && $event.keyCode === 27) {\n      $event.preventDefault();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
+            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  HostListener,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-container',\n  templateUrl: './popover-container.component.html',\n  styleUrls: ['./popover-container.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverContainerComponent {\n  escToClose: boolean;\n  onClose = new EventEmitter(true);\n\n  constructor() {}\n\n  @HostListener('body:keydown', ['$event'])\n  onKeyDown($event: KeyboardEvent) {\n    if (this.escToClose && $event.keyCode === 27) {\n      $event.preventDefault();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "iw-popover-container {\n  position: absolute;\n  z-index: 4;\n  display: block;\n  background: white;\n  border: 1px solid black;\n  padding: 5px;\n}\n",
-                    "styleUrl": "./popover-container.component.scss"
+                    "data": "iw-popover-container\n  position: absolute\n  z-index: 4\n  display: block\n  background: white\n  border: 1px solid black\n  padding: 5px\n",
+                    "styleUrl": "./popover-container.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4071,7 +4071,7 @@
         },
         {
             "name": "PopoverDemoComponent",
-            "id": "component-PopoverDemoComponent-c8ecdd933a4edcdf5c62951d1ffb3b41",
+            "id": "component-PopoverDemoComponent-d97f961b052ac42bf6fc9632a94c0e01",
             "file": "src/app/demo/popover/popover-demo/popover-demo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4080,7 +4080,7 @@
             "providers": [],
             "selector": "app-popover-demo",
             "styleUrls": [
-                "./popover-demo.component.scss"
+                "./popover-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4326,12 +4326,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';\nimport { PopoverService } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-popover-demo',\n  templateUrl: './popover-demo.component.html',\n  styleUrls: ['./popover-demo.component.scss']\n})\nexport class PopoverDemoComponent implements OnInit {\n  editedPerson: Person;\n  editedField: string;\n  persons: Person[] = [];\n  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];\n  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];\n  isPopoverOpen3 = false;\n  isPopoverOpen2 = false;\n  isPopoverOpen = false;\n  isPopoverOpen4 = false;\n  isPopoverOpen5 = false;\n\n  constructor(private popoverService: PopoverService) {\n    for (let i = 0; i < 1000; i++) {\n      this.persons.push({\n        first: this.firsts[Math.floor(Math.random() * this.firsts.length)],\n        last: this.lasts[Math.floor(Math.random() * this.lasts.length)],\n      });\n    }\n  }\n\n  trackBy(index: number) {\n    return index;\n  }\n\n  openEditFirstNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'First Name', 'first', $event);\n  }\n\n  openEditLastNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'Last Name', 'last', $event);\n  }\n\n  openEditPropertyPopover(person: Person, propertyName: string, p: keyof Person, $event: MouseEvent) {\n    this.popoverService.open(PropertyEditPopoverComponent, <HTMLElement>$event.target, {\n      popoverClass: 'popover-demo',\n      escToClose: true\n    }, component => {\n      component.value = person[p];\n      component.propertyName = propertyName;\n      component.onValueChange.subscribe((v: string) => {\n        person[p] = v;\n      });\n    });\n  }\n\n  ngOnInit() {\n  }\n}\n\ninterface Person {\n  first: string;\n  last: string;\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { PropertyEditPopoverComponent } from '../property-edit-popover/property-edit-popover.component';\nimport { PopoverService } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-popover-demo',\n  templateUrl: './popover-demo.component.html',\n  styleUrls: ['./popover-demo.component.sass']\n})\nexport class PopoverDemoComponent implements OnInit {\n  editedPerson: Person;\n  editedField: string;\n  persons: Person[] = [];\n  firsts = ['Mark', 'Edy', 'Jack', 'John', 'Mike'];\n  lasts = ['Johnson', 'Willis', 'Chapman', 'Bob', 'Last'];\n  isPopoverOpen3 = false;\n  isPopoverOpen2 = false;\n  isPopoverOpen = false;\n  isPopoverOpen4 = false;\n  isPopoverOpen5 = false;\n\n  constructor(private popoverService: PopoverService) {\n    for (let i = 0; i < 1000; i++) {\n      this.persons.push({\n        first: this.firsts[Math.floor(Math.random() * this.firsts.length)],\n        last: this.lasts[Math.floor(Math.random() * this.lasts.length)],\n      });\n    }\n  }\n\n  trackBy(index: number) {\n    return index;\n  }\n\n  openEditFirstNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'First Name', 'first', $event);\n  }\n\n  openEditLastNamePopover(person: Person, $event: MouseEvent) {\n    return this.openEditPropertyPopover(person, 'Last Name', 'last', $event);\n  }\n\n  openEditPropertyPopover(person: Person, propertyName: string, p: keyof Person, $event: MouseEvent) {\n    this.popoverService.open(PropertyEditPopoverComponent, <HTMLElement>$event.target, {\n      popoverClass: 'popover-demo',\n      escToClose: true\n    }, component => {\n      component.value = person[p];\n      component.propertyName = propertyName;\n      component.onValueChange.subscribe((v: string) => {\n        person[p] = v;\n      });\n    });\n  }\n\n  ngOnInit() {\n  }\n}\n\ninterface Person {\n  first: string;\n  last: string;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  table {\n    width: 100%;\n\n    th, td {\n      text-align: left;\n      width: 50%;\n      padding: 5px 5px 5px 5px;\n    }\n\n    td {\n      line-height: 20px;\n    }\n\n    thead {\n      border-bottom: 1px solid lightgrey;\n    }\n\n    border-collapse: collapse;\n  }\n  \n  .cell-right-icon {\n    position: relative;\n    padding-right: 30px;\n\n    &:hover {\n      button {\n        opacity: 1;\n      }\n    }\n\n    button {\n      opacity: 0;\n      position: absolute;\n      right: 0;\n      top: 0;\n      border: none;\n      -webkit-appearance: none;\n      background: none;\n      cursor: pointer;\n\n      &:hover {\n        background: lightgray;\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./popover-demo.component.scss"
+                    "data": "\\:host\n  table\n    width: 100%\n\n    th, td\n      text-align: left\n      width: 50%\n      padding: 5px 5px 5px 5px\n\n    td\n      line-height: 20px\n\n    thead\n      border-bottom: 1px solid lightgrey\n\n    border-collapse: collapse\n  \n  .cell-right-icon\n    position: relative\n    padding-right: 30px\n\n    &:hover\n      button\n        opacity: 1\n\n    button\n      opacity: 0\n      position: absolute\n      right: 0\n      top: 0\n      border: none\n      -webkit-appearance: none\n      background: none\n      cursor: pointer\n\n      &:hover\n        background: lightgray\n",
+                    "styleUrl": "./popover-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4362,7 +4362,7 @@
         },
         {
             "name": "PopoverScrollMaskComponent",
-            "id": "component-PopoverScrollMaskComponent-7aabbe040050aadd31828e6d038768e2",
+            "id": "component-PopoverScrollMaskComponent-19b2087dbc3516a1ccbcfa2b1feae726",
             "file": "src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -4373,7 +4373,7 @@
             "providers": [],
             "selector": "iw-popover-scroll-mask",
             "styleUrls": [
-                "./popover-scroll-mask.component.scss"
+                "./popover-scroll-mask.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4418,12 +4418,12 @@
             ],
             "description": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  HostListener,\n  EventEmitter,\n  ViewEncapsulation,\n  ElementRef\n} from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-scroll-mask',\n  templateUrl: './popover-scroll-mask.component.html',\n  styleUrls: ['./popover-scroll-mask.component.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverScrollMaskComponent {\n  clickOutsideToClose: boolean;\n  onClose = new EventEmitter(false);\n\n  constructor(private elementRef: ElementRef) {}\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if (this.clickOutsideToClose && $event.target === this.elementRef.nativeElement) {\n      $event.preventDefault();\n      $event.stopPropagation();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
+            "sourceCode": "import {\n  Component,\n  HostListener,\n  EventEmitter,\n  ViewEncapsulation,\n  ElementRef\n} from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-scroll-mask',\n  templateUrl: './popover-scroll-mask.component.html',\n  styleUrls: ['./popover-scroll-mask.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverScrollMaskComponent {\n  clickOutsideToClose: boolean;\n  onClose = new EventEmitter(false);\n\n  constructor(private elementRef: ElementRef) {}\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if (this.clickOutsideToClose && $event.target === this.elementRef.nativeElement) {\n      $event.preventDefault();\n      $event.stopPropagation();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "iw-popover-scroll-mask {\n  z-index: 3;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(255, 255, 255, 0.01);\n  \n  .iw-popover-arrow-element {\n    z-index: 5;\n  }\n}\n",
-                    "styleUrl": "./popover-scroll-mask.component.scss"
+                    "data": "iw-popover-scroll-mask\n  z-index: 3\n  position: absolute\n  top: 0\n  left: 0\n  width: 100%\n  height: 100%\n  background: rgba(255, 255, 255, 0.01)\n  \n  .iw-popover-arrow-element\n    z-index: 5\n",
+                    "styleUrl": "./popover-scroll-mask.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4451,7 +4451,7 @@
         },
         {
             "name": "PropertyEditPopoverComponent",
-            "id": "component-PropertyEditPopoverComponent-bce9da42201c4bf660ee8db059724bbd",
+            "id": "component-PropertyEditPopoverComponent-1c196c81ee4abe91d680a7e7023f1822",
             "file": "src/app/demo/popover/property-edit-popover/property-edit-popover.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4460,7 +4460,7 @@
             "providers": [],
             "selector": "app-property-edit-popover",
             "styleUrls": [
-                "./property-edit-popover.component.scss"
+                "./property-edit-popover.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4510,12 +4510,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { Popover } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-property-edit-popover',\n  templateUrl: './property-edit-popover.component.html',\n  styleUrls: ['./property-edit-popover.component.scss']\n})\nexport class PropertyEditPopoverComponent implements OnInit {\n  @Input() value: string;\n  @Input() propertyName: string;\n  @Output() onValueChange = new EventEmitter<string>();\n\n  constructor(private popoverInstance: Popover) { }\n\n  ngOnInit() {\n  }\n\n  close() {\n    this.popoverInstance.close();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\nimport { Popover } from '../../../ui/popover/popover.module';\n\n@Component({\n  selector: 'app-property-edit-popover',\n  templateUrl: './property-edit-popover.component.html',\n  styleUrls: ['./property-edit-popover.component.sass']\n})\nexport class PropertyEditPopoverComponent implements OnInit {\n  @Input() value: string;\n  @Input() propertyName: string;\n  @Output() onValueChange = new EventEmitter<string>();\n\n  constructor(private popoverInstance: Popover) { }\n\n  ngOnInit() {\n  }\n\n  close() {\n    this.popoverInstance.close();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "",
-                    "styleUrl": "./property-edit-popover.component.scss"
+                    "styleUrl": "./property-edit-popover.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4712,7 +4712,7 @@
         },
         {
             "name": "StatefulButtonDemoComponent",
-            "id": "component-StatefulButtonDemoComponent-7e68d6bc3452a2bbdddb8f1c6250f502",
+            "id": "component-StatefulButtonDemoComponent-33a362d07b6e164ec4a237c5beabb875",
             "file": "src/app/demo/stateful-button/stateful-button-demo/stateful-button-demo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4721,7 +4721,7 @@
             "providers": [],
             "selector": "app-stateful-button-demo",
             "styleUrls": [
-                "./stateful-button-demo.component.scss"
+                "./stateful-button-demo.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4770,12 +4770,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ButtonState } from '../../../ui/state-button/state-button.module';\n\n@Component({\n  selector: 'app-stateful-button-demo',\n  templateUrl: './stateful-button-demo.component.html',\n  styleUrls: ['./stateful-button-demo.component.scss']\n})\nexport class StatefulButtonDemoComponent implements OnInit {\n\n  myButtonState: ButtonState = 'IDLE';\n  toggle = false;\n\n  constructor() { }\n\n  ngOnInit() {\n    setInterval(() => this.toggle = !this.toggle, 500);\n  }\n\n  do() {\n    this.myButtonState = 'DOING';\n\n    delay(1000)\n      .then(() => this.myButtonState = 'SUCCESS')\n      .then(() => delay(1000))\n      .then(() => this.myButtonState = 'IDLE');\n  }\n}\n\nfunction delay(ts: number) {\n  return new Promise(resolve => {\n    setTimeout(() => resolve(), ts);\n  });\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ButtonState } from '../../../ui/state-button/state-button.module';\n\n@Component({\n  selector: 'app-stateful-button-demo',\n  templateUrl: './stateful-button-demo.component.html',\n  styleUrls: ['./stateful-button-demo.component.sass']\n})\nexport class StatefulButtonDemoComponent implements OnInit {\n\n  myButtonState: ButtonState = 'IDLE';\n  toggle = false;\n\n  constructor() { }\n\n  ngOnInit() {\n    setInterval(() => this.toggle = !this.toggle, 500);\n  }\n\n  do() {\n    this.myButtonState = 'DOING';\n\n    delay(1000)\n      .then(() => this.myButtonState = 'SUCCESS')\n      .then(() => delay(1000))\n      .then(() => this.myButtonState = 'IDLE');\n  }\n}\n\nfunction delay(ts: number) {\n  return new Promise(resolve => {\n    setTimeout(() => resolve(), ts);\n  });\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".iw-state-button {\n  display: inline-block;\n  height: 30px;\n  line-height: 30px;\n  padding: 0 10px;\n\n  &.sb--doing {\n    background-color: grey;\n    color: white;\n    cursor: wait;\n  }\n\n  &.sb--success {\n    background-color: #2ECC40;\n    color: white;\n  }\n  \n  &.sb--failure {\n    background-color: red;\n    color: white;\n  }\n\n  &.sb--doing::before {\n    content: '';\n    display: inline-block;\n    width: 16px;\n    height: 16px;\n    margin: 0px 5px -3px 0px;\n    border-radius: 8px;\n    box-shadow: 0 1px 0 0 white;\n    -ms-animation: stateful-button--animation 1s linear infinite;\n    -moz-animation: stateful-button--animation 1s linear infinite;\n    -webkit-animation: stateful-button--animation 1s linear infinite;\n    -o-animation: stateful-button--animation 1s linear infinite;\n    animation: stateful-button--animation 1s linear infinite;\n    z-index: 1;\n  }\n}\n\n\n@-moz-keyframes stateful-button--animation {\n  0% {\n    -moz-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  100% {\n    -moz-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@-ms-keyframes stateful-button--animation {\n  0% {\n    -ms-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  100% {\n    -ms-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@-webkit-keyframes stateful-button--animation {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@-o-keyframes stateful-button--animation {\n  0% {\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  100% {\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes stateful-button--animation {\n  0% {\n    -ms-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -webkit-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n  100% {\n    -ms-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -webkit-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}",
-                    "styleUrl": "./stateful-button-demo.component.scss"
+                    "data": ".iw-state-button\n  display: inline-block\n  height: 30px\n  line-height: 30px\n  padding: 0 10px\n\n  &.sb--doing\n    background-color: grey\n    color: white\n    cursor: wait\n\n  &.sb--success\n    background-color: #2ECC40\n    color: white\n  \n  &.sb--failure\n    background-color: red\n    color: white\n\n  &.sb--doing::before\n    content: ''\n    display: inline-block\n    width: 16px\n    height: 16px\n    margin: 0px 5px -3px 0px\n    border-radius: 8px\n    box-shadow: 0 1px 0 0 white\n    -ms-animation: stateful-button--animation 1s linear infinite\n    -moz-animation: stateful-button--animation 1s linear infinite\n    -webkit-animation: stateful-button--animation 1s linear infinite\n    -o-animation: stateful-button--animation 1s linear infinite\n    animation: stateful-button--animation 1s linear infinite\n    z-index: 1\n\n\n@-moz-keyframes stateful-button--animation\n  0%\n    -moz-transform: rotate(0deg)\n    transform: rotate(0deg)\n  100%\n    -moz-transform: rotate(360deg)\n    transform: rotate(360deg)\n\n@-ms-keyframes stateful-button--animation\n  0%\n    -ms-transform: rotate(0deg)\n    transform: rotate(0deg)\n  100%\n    -ms-transform: rotate(360deg)\n    transform: rotate(360deg)\n\n@-webkit-keyframes stateful-button--animation\n  0%\n    -webkit-transform: rotate(0deg)\n    transform: rotate(0deg)\n  100%\n    -webkit-transform: rotate(360deg)\n    transform: rotate(360deg)\n\n@-o-keyframes stateful-button--animation\n  0%\n    -o-transform: rotate(0deg)\n    transform: rotate(0deg)\n  100%\n    -o-transform: rotate(360deg)\n    transform: rotate(360deg)\n\n@keyframes stateful-button--animation\n  0%\n    -ms-transform: rotate(0deg)\n    -moz-transform: rotate(0deg)\n    -webkit-transform: rotate(0deg)\n    -o-transform: rotate(0deg)\n    transform: rotate(0deg)\n  100%\n    -ms-transform: rotate(360deg)\n    -moz-transform: rotate(360deg)\n    -webkit-transform: rotate(360deg)\n    -o-transform: rotate(360deg)\n    transform: rotate(360deg)",
+                    "styleUrl": "./stateful-button-demo.component.sass"
                 }
             ],
             "stylesData": "",
@@ -4792,7 +4792,7 @@
         },
         {
             "name": "TooltipContainerComponent",
-            "id": "component-TooltipContainerComponent-652f074fbdcbb5fc0b252e9dd7eb6811",
+            "id": "component-TooltipContainerComponent-e746b44d98065fa25e1f564f0702cca1",
             "file": "src/app/ui/tooltip/tooltip-container/tooltip-container.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -4803,7 +4803,7 @@
             "providers": [],
             "selector": "iw-tooltip-container",
             "styleUrls": [
-                "./tooltip-container.component.scss"
+                "./tooltip-container.component.sass"
             ],
             "styles": [],
             "templateUrl": [
@@ -4833,12 +4833,12 @@
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  OnInit,\n  ViewEncapsulation,\n  Input,\n  Renderer2,\n  ElementRef,\n  Optional,\n  Inject\n} from '@angular/core';\nimport { TooltipConfig } from '../tooltip-config.interface';\nimport { IW_TOOLTIP_CONFIG } from '../tooltip.config';\n\n@Component({\n  selector: 'iw-tooltip-container',\n  templateUrl: './tooltip-container.component.html',\n  styleUrls: ['./tooltip-container.component.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TooltipContainerComponent implements OnInit {\n  @Input() containerClass: string;\n\n  constructor(\n    private renderer: Renderer2,\n    private elementRef: ElementRef,\n    @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig\n  ) { }\n\n  ngOnInit() {\n    if (this.containerClass) {\n      this.renderer.addClass(this.elementRef.nativeElement, this.containerClass);\n    }\n    if (this.tooltipConfig && this.tooltipConfig.containerClass) {\n      this.renderer.addClass(\n        this.elementRef.nativeElement,\n        this.tooltipConfig.containerClass\n      );\n    }\n  }\n\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  ViewEncapsulation,\n  Input,\n  Renderer2,\n  ElementRef,\n  Optional,\n  Inject\n} from '@angular/core';\nimport { TooltipConfig } from '../tooltip-config.interface';\nimport { IW_TOOLTIP_CONFIG } from '../tooltip.config';\n\n@Component({\n  selector: 'iw-tooltip-container',\n  templateUrl: './tooltip-container.component.html',\n  styleUrls: ['./tooltip-container.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TooltipContainerComponent implements OnInit {\n  @Input() containerClass: string;\n\n  constructor(\n    private renderer: Renderer2,\n    private elementRef: ElementRef,\n    @Optional() @Inject(IW_TOOLTIP_CONFIG) private tooltipConfig: TooltipConfig\n  ) { }\n\n  ngOnInit() {\n    if (this.containerClass) {\n      this.renderer.addClass(this.elementRef.nativeElement, this.containerClass);\n    }\n    if (this.tooltipConfig && this.tooltipConfig.containerClass) {\n      this.renderer.addClass(\n        this.elementRef.nativeElement,\n        this.tooltipConfig.containerClass\n      );\n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "$inner-padding: 5px;\n\niw-tooltip-container {\n  z-index: 6;\n  position: absolute;\n  display: block;\n  padding: $inner-padding;\n\n  .tooltip-container__content {\n    border-radius: 3px;\n    color: white;\n    padding: 5px;\n    background: black;    \n  }\n\n  &:after {\n    border: $inner-padding solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n  }\n\n  &.iw-tooltip-container--bottom:after {\n    left: 50%;\n    bottom: calc(100% - #{$inner-padding});\n    border-bottom-color: black;\n    margin-left: -$inner-padding;\n  }\n\n  &.iw-tooltip-container--top:after {\n    left: 50%;\n    top: calc(100% - #{$inner-padding});\n    border-top-color: black;\n    margin-left: -$inner-padding;\n  }\n\n  &.iw-tooltip-container--right:after {\n    top: 50%;\n    right: calc(100% - #{$inner-padding});\n    border-right-color: black;\n    margin-top: -$inner-padding;\n  }\n\n  &.iw-tooltip-container--left:after {\n    top: 50%;\n    left: calc(100% - #{$inner-padding});\n    border-left-color: black;\n    margin-top: -$inner-padding;\n  }\n}\n",
-                    "styleUrl": "./tooltip-container.component.scss"
+                    "data": "$inner-padding: 5px\n\niw-tooltip-container\n  z-index: 6\n  position: absolute\n  display: block\n  padding: $inner-padding\n\n  .tooltip-container__content\n    border-radius: 3px\n    color: white\n    padding: 5px\n    background: black    \n\n  &:after\n    border: $inner-padding solid transparent\n    content: \" \"\n    height: 0\n    width: 0\n    position: absolute\n    pointer-events: none\n\n  &.iw-tooltip-container--bottom:after\n    left: 50%\n    bottom: calc(100% - #{$inner-padding})\n    border-bottom-color: black\n    margin-left: -$inner-padding\n\n  &.iw-tooltip-container--top:after\n    left: 50%\n    top: calc(100% - #{$inner-padding})\n    border-top-color: black\n    margin-left: -$inner-padding\n\n  &.iw-tooltip-container--right:after\n    top: 50%\n    right: calc(100% - #{$inner-padding})\n    border-right-color: black\n    margin-top: -$inner-padding\n\n  &.iw-tooltip-container--left:after\n    top: 50%\n    left: calc(100% - #{$inner-padding})\n    border-left-color: black\n    margin-top: -$inner-padding\n",
+                    "styleUrl": "./tooltip-container.component.sass"
                 }
             ],
             "stylesData": "",
