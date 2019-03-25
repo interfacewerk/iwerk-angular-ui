@@ -1,3 +1,18 @@
+# [3.17.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.16.0...v3.17.0) (2019-03-25)
+
+
+### Bug Fixes
+
+* **docs/code:** fix copy button position ([2a5663c](https://github.com/interfacewerk/iwerk-angular-ui/commit/2a5663c))
+* **docs/search:** fix style of search input ([3f09a8d](https://github.com/interfacewerk/iwerk-angular-ui/commit/3f09a8d))
+* **popover:** fix issue where popover does not position correctly ([ac297c5](https://github.com/interfacewerk/iwerk-angular-ui/commit/ac297c5))
+
+
+### Features
+
+* **docs:** add Get Started page link ([ea3a8ae](https://github.com/interfacewerk/iwerk-angular-ui/commit/ea3a8ae))
+* **docs/code-line:** introduce code-line component ([06cf9e9](https://github.com/interfacewerk/iwerk-angular-ui/commit/06cf9e9))
+
 # [3.16.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.15.1...v3.16.0) (2019-03-24)
 
 
