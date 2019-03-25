@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TooltipModule } from '../../../../../src/public_api';
+import { CodeLineComponent } from './code-line/code-line.component';
 import { CodeSampleModule } from './code-sample/code-sample.module';
+import { CodeComponent } from './code/code.component';
 import { ComponentApiComponent } from './component-api/component-api.component';
 import { ComponentDescriptionComponent } from './component-description/component-description.component';
 import {
@@ -13,7 +15,6 @@ import {
 } from './component-documentation/component-documentation.component';
 import { ComponentExampleComponent } from './component-example/component-example.component';
 import { TabDirective, TabsComponent } from './tabs/tabs.component';
-import { CodeComponent } from './code/code.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { CodeComponent } from './code/code.component';
     TabsComponent,
     TabDirective,
     CodeComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CodeLineComponent
   ],
   declarations: [
     ComponentDescriptionComponent,
@@ -47,7 +49,8 @@ import { CodeComponent } from './code/code.component';
     AnchorDirective,
     TabsComponent,
     TabDirective,
-    CodeComponent
+    CodeComponent,
+    CodeLineComponent
   ]
 })
 export class CoreModule { }

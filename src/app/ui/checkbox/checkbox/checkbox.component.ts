@@ -20,7 +20,7 @@ import { IW_CHECKBOX_CONFIG } from '../checkbox.config';
 @Component({
   selector: 'iw-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
+  styleUrls: ['./checkbox.component.sass'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CheckboxComponent),

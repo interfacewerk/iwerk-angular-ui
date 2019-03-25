@@ -1,0 +1,49 @@
+iw-checkbox
+  display: inline-block
+  line-height: 15px
+  
+  &:not(.checkbox--disabled)
+    cursor: pointer
+
+  &.checkbox--disabled
+    cursor: not-allowed
+
+  &.checkbox--disabled
+    .checkbox__checkbox
+      opacity: 0.2
+
+
+  &:not(.checkbox--disabled):not(.checkbox--checked):hover
+    .checkbox__checkbox
+      border-color: grey
+
+  &.checkbox--checked
+    .checkbox__checkbox
+      border-color: black
+    
+    .checkbox__checkbox svg
+      opacity: 1
+
+  .checkbox__checkbox
+    width: 15px
+    height: 15px
+    position: relative
+    margin: 0 3px
+    display: inline-block
+    float: left
+    transition: border-color 0.3s
+    border: 1px solid lightgrey
+    border-radius: 2px
+    overflow: hidden
+
+    svg
+      position: absolute
+      left: 50%
+      top: 50%
+      width: 75%
+      transform: translate(-50%, -50%)
+      opacity: 0
+      transition: opacity 0.3s
+
+  .checkbox__label
+    display: inline-block

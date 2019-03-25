@@ -1,13 +1,12 @@
-import { Component, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'docs-code',
-  templateUrl: './code.component.html',
-  styleUrls: ['./code.component.sass']
+  selector: 'docs-code-line',
+  templateUrl: './code-line.component.html',
+  styleUrls: ['./code-line.component.sass']
 })
-export class CodeComponent implements OnDestroy {
-  @Input() path: string;
+export class CodeLineComponent implements OnDestroy {
   @ViewChild('code') code: ElementRef;
   faCopy = faCopy;
   copied = false;
