@@ -13,8 +13,6 @@ export class CodeComponent implements OnDestroy {
   copied = false;
   copiedTimeout: any;
 
-  constructor() { }
-
   ngOnDestroy() {
     clearTimeout(this.copiedTimeout);
   }
