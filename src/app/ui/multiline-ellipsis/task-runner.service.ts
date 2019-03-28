@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * The TaskRunnerService was introduced to execute tasks in one zone run.
+ * This is useful when directives/components want to emit outputs after change detection.
+ */
 @Injectable()
 export class TaskRunnerService {
   private tasks: Function[] = [];
