@@ -1,4 +1,5 @@
 import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { TaskRunnerService } from './task-runner.service';
 
 /**
  * The multiline ellipsis directive can be used to display multi-line
@@ -36,7 +37,8 @@ export class MultilineEllipsisDirective implements AfterViewChecked, OnInit {
   private oldWidth: number;
 
   constructor(
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private taskRunner: TaskRunnerService
   ) {
   }
 
@@ -88,12 +90,10 @@ export class MultilineEllipsisDirective implements AfterViewChecked, OnInit {
     ellipsis.classList.add('ellipsis');
     ellipsis.innerText = '…';
     if (!overflow) {
-      this.truncated.emit(false);
-      this.__isOverflowing = false;
+      this.emitTruncated(false);
       return;
     }
-    this.truncated.emit(true);
-    this.__isOverflowing = true;
+    this.emitTruncated(true);
     self.appendChild(ellipsis);
     if (self.childNodes.length > 1) {
       const child = self.childNodes.item(self.childNodes.length - 2);
@@ -107,6 +107,13 @@ export class MultilineEllipsisDirective implements AfterViewChecked, OnInit {
       }
       overflow = self.offsetHeight < self.scrollHeight;
     }
+  }
+
+  private emitTruncated(truncated: boolean) {
+    this.taskRunner.addTaskForNextRound(() => {
+      this.truncated.emit(truncated);
+    });
+    this.__isOverflowing = truncated;
   }
 
   /**
