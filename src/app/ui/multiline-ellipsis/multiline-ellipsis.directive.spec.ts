@@ -40,7 +40,6 @@ describe('MultilineEllipsisDirective', () => {
 
   it('stays the same after view checked', () => {
     fixture.detectChanges();
-    fixture.detectChanges();
     expect(fixture.componentInstance.p1.nativeElement.innerHTML).toBe(
       'cut the text around here please<span class="ellipsis">…</span>'
     );
@@ -64,6 +63,57 @@ describe('MultilineEllipsisDirective', () => {
     expect(fixture.componentInstance.p1.nativeElement.innerHTML).toBe(
       'cut the text around here please sdkfjlk sjlk <span>fsklkjsf</span> qlksdj flkqkqsf'
     );
+  });
+
+  it('does not throw ExpressionChangedAfterItHasBeenCheckedError', () => {
+    expect(() => {
+      fixture.componentInstance.maxHeight = '60px';
+      fixture.detectChanges();
+      fixture.componentInstance.maxHeight = '20px';
+      fixture.detectChanges();
+    }).not.toThrow();
+  });
+
+});
+
+@Component({
+  template: `<p #p1 [style.max-height]="maxHeight"
+    [iwMultilineEllipsis]="text"
+    (truncated)="truncated = $event"
+  ></p>
+  <button *ngIf="truncated"></button>`
+})
+class StubComponent {
+  @ViewChild('p1') p1: ElementRef;
+  @ViewChildren(MultilineEllipsisDirective) ellipsis: QueryList<MultilineEllipsisDirective>;
+
+  maxHeight = '30px';
+  text = 'cut the text around here please sdkfjlk sjlk <span>fsklkjsf</span> qlksdj flkqkqsf';
+}
+
+describe('MultilineEllipsisDirective truncated event', () => {
+  let fixture: ComponentFixture<StubComponent>;
+
+  beforeEach(() => {
+    document.body.style.width = '250px';
+    document.body.style.fontFamily = 'Arial, Helvetica, sans-serif';
+    TestBed.configureTestingModule({
+      declarations: [StubComponent],
+      imports: [MultilineEllipsisModule]
+    });
+    TestBed.compileComponents();
+    fixture = TestBed.createComponent(StubComponent);
+    document.body.appendChild(fixture.nativeElement);
+    fixture.detectChanges();
+  });
+
+  it('does not throw ExpressionChangedAfterItHasBeenCheckedError', () => {
+    expect(() => {
+      fixture.componentInstance.maxHeight = '60px';
+      fixture.detectChanges();
+      fixture.componentInstance.maxHeight = '20px';
+      fixture.detectChanges();
+    }).not.toThrow();
   });
 
 });
