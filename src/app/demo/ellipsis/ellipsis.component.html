@@ -1,3 +1,6 @@
 <h1>Ellipsis</h1>
 
-<p [iwMultilineEllipsis]="lorem"></p>
+Height: <input type="number" [(ngModel)]="height" />
+Truncated: {{truncated ? 'Yes' : 'No'}}
+
+<p [iwMultilineEllipsis]="lorem" (truncated)="truncated = $event" [style.height.px]="height"></p>
