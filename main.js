@@ -731,6 +731,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultilineEllipsisDirective", function() { return MultilineEllipsisDirective; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _task_runner_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task-runner.service */ "../../src/app/ui/multiline-ellipsis/task-runner.service.ts");
+
 
 
 /**
@@ -742,8 +744,9 @@ __webpack_require__.r(__webpack_exports__);
  ```
  */
 var MultilineEllipsisDirective = /** @class */ (function () {
-    function MultilineEllipsisDirective(elementRef) {
+    function MultilineEllipsisDirective(elementRef, taskRunner) {
         this.elementRef = elementRef;
+        this.taskRunner = taskRunner;
         /**
          * An event that is emitted that indicates whether the text is truncated.
          */
@@ -803,12 +806,10 @@ var MultilineEllipsisDirective = /** @class */ (function () {
         ellipsis.classList.add('ellipsis');
         ellipsis.innerText = '…';
         if (!overflow) {
-            this.truncated.emit(false);
-            this.__isOverflowing = false;
+            this.emitTruncated(false);
             return;
         }
-        this.truncated.emit(true);
-        this.__isOverflowing = true;
+        this.emitTruncated(true);
         self.appendChild(ellipsis);
         if (self.childNodes.length > 1) {
             var child = self.childNodes.item(self.childNodes.length - 2);
@@ -822,6 +823,13 @@ var MultilineEllipsisDirective = /** @class */ (function () {
             }
             overflow = self.offsetHeight < self.scrollHeight;
         }
+    };
+    MultilineEllipsisDirective.prototype.emitTruncated = function (truncated) {
+        var _this = this;
+        this.taskRunner.addTaskForNextRound(function () {
+            _this.truncated.emit(truncated);
+        });
+        this.__isOverflowing = truncated;
     };
     /**
      * @ignore
@@ -882,7 +890,8 @@ var MultilineEllipsisDirective = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
             selector: '[iwMultilineEllipsis]'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
+            _task_runner_service__WEBPACK_IMPORTED_MODULE_2__["TaskRunnerService"]])
     ], MultilineEllipsisDirective);
     return MultilineEllipsisDirective;
 }());
@@ -905,6 +914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _multiline_ellipsis_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./multiline-ellipsis.directive */ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts");
+/* harmony import */ var _task_runner_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./task-runner.service */ "../../src/app/ui/multiline-ellipsis/task-runner.service.ts");
+
 
 
 
@@ -916,10 +927,56 @@ var MultilineEllipsisModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
             declarations: [_multiline_ellipsis_directive__WEBPACK_IMPORTED_MODULE_3__["MultilineEllipsisDirective"]],
-            exports: [_multiline_ellipsis_directive__WEBPACK_IMPORTED_MODULE_3__["MultilineEllipsisDirective"]]
+            exports: [_multiline_ellipsis_directive__WEBPACK_IMPORTED_MODULE_3__["MultilineEllipsisDirective"]],
+            providers: [_task_runner_service__WEBPACK_IMPORTED_MODULE_4__["TaskRunnerService"]]
         })
     ], MultilineEllipsisModule);
     return MultilineEllipsisModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/multiline-ellipsis/task-runner.service.ts":
+/*!**************************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/multiline-ellipsis/task-runner.service.ts ***!
+  \**************************************************************************************************************/
+/*! exports provided: TaskRunnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskRunnerService", function() { return TaskRunnerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+/**
+ * The TaskRunnerService was introduced to execute tasks in one zone run.
+ * This is useful when directives/components want to emit outputs after change detection.
+ */
+var TaskRunnerService = /** @class */ (function () {
+    function TaskRunnerService() {
+        this.tasks = [];
+        this.timeout = undefined;
+    }
+    TaskRunnerService.prototype.addTaskForNextRound = function (t) {
+        var _this = this;
+        this.tasks.push(t);
+        if (!this.timeout) {
+            this.timeout = setTimeout(function () {
+                var tasks = _this.tasks;
+                _this.tasks = [];
+                tasks.forEach(function (task) { return task(); });
+                _this.timeout = undefined;
+            }, 0);
+        }
+    };
+    TaskRunnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], TaskRunnerService);
+    return TaskRunnerService;
 }());
 
 

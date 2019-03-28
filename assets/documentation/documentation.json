@@ -1258,6 +1258,62 @@
                 ]
             },
             "type": "injectable"
+        },
+        {
+            "name": "TaskRunnerService",
+            "id": "injectable-TaskRunnerService-015067066177eb44ffbb91ed4295e910",
+            "file": "src/app/ui/multiline-ellipsis/task-runner.service.ts",
+            "properties": [
+                {
+                    "name": "tasks",
+                    "defaultValue": "[]",
+                    "type": "Function[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "timeout",
+                    "defaultValue": "undefined",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "addTaskForNextRound",
+                    "args": [
+                        {
+                            "name": "t",
+                            "type": "Function"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "jsdoctags": [
+                        {
+                            "name": "t",
+                            "type": "Function",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "<p>The TaskRunnerService was introduced to execute tasks in one zone run.\nThis is useful when directives/components want to emit outputs after change detection.</p>\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n/**\n * The TaskRunnerService was introduced to execute tasks in one zone run.\n * This is useful when directives/components want to emit outputs after change detection.\n */\n@Injectable()\nexport class TaskRunnerService {\n  private tasks: Function[] = [];\n  private timeout: any = undefined;\n\n  addTaskForNextRound(t: Function) {\n    this.tasks.push(t);\n    if (!this.timeout) {\n      this.timeout = setTimeout(() => {\n        const tasks = this.tasks;\n        this.tasks = [];\n        tasks.forEach(task => task());\n        this.timeout = undefined;\n      }, 0);\n    }\n  }\n}\n",
+            "type": "injectable"
         }
     ],
     "classes": [
@@ -1758,18 +1814,18 @@
         },
         {
             "name": "MultilineEllipsisDirective",
-            "id": "directive-MultilineEllipsisDirective-6e4550ce3df0688edeb0cd359919a262",
+            "id": "directive-MultilineEllipsisDirective-97e5dc0692fc020fc47a9bd4497ed472",
             "file": "src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts",
             "type": "directive",
             "description": "<p>The multiline ellipsis directive can be used to display multi-line\ntext with an ellipsis character at the end if the text is too long.</p>\n<div><pre class=\"line-numbers\"><code class=\"language-ts\"> import { MultilineEllipsisModule } from &#39;iwerk-angular-ui&#39;;</code></pre></div>",
-            "sourceCode": "import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\n\n/**\n * The multiline ellipsis directive can be used to display multi-line\n * text with an ellipsis character at the end if the text is too long.\n *\n ```ts\n import { MultilineEllipsisModule } from 'iwerk-angular-ui';\n ```\n */\n@Directive({\n  selector: '[iwMultilineEllipsis]'\n})\nexport class MultilineEllipsisDirective implements AfterViewChecked, OnInit {\n\n  /**\n   * The text to display.\n   */\n  @Input() iwMultilineEllipsis: string;\n  /**\n   * An event that is emitted that indicates whether the text is truncated.\n   */\n  @Output() truncated = new EventEmitter<boolean>();\n\n  /**\n   * A boolean that indicates if the text overflows.\n   */\n  get isOverflowing(): boolean {\n    return this.__isOverflowing;\n  }\n\n  private __isOverflowing: boolean;\n  private needsAdjust: boolean;\n  private oldText: string;\n  private oldHeight: number;\n  private oldWidth: number;\n\n  constructor(\n    private elementRef: ElementRef\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.classList.add('multiline-ellipsis');\n  }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewChecked() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    if (this.iwMultilineEllipsis !== this.oldText || this.oldHeight !== self.offsetHeight || this.oldWidth !== self.offsetWidth) {\n      this.oldText = this.iwMultilineEllipsis;\n      this.oldHeight = self.offsetHeight;\n      this.oldWidth = self.offsetWidth;\n      this.needsAdjust = true;\n    }\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  @HostListener('window:resize', [])\n  onResize() {\n    this.needsAdjust = true;\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  private adjustInner() {\n    if (!this.needsAdjust) {\n      return;\n    }\n    this.needsAdjust = false;\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.innerHTML = this.iwMultilineEllipsis || '';\n    const height = self.clientHeight;\n    const contentHeight = self.scrollHeight;\n    let overflow = height < contentHeight;\n    const ellipsis = document.createElement('span');\n    ellipsis.classList.add('ellipsis');\n    ellipsis.innerText = '…';\n    if (!overflow) {\n      this.truncated.emit(false);\n      this.__isOverflowing = false;\n      return;\n    }\n    this.truncated.emit(true);\n    this.__isOverflowing = true;\n    self.appendChild(ellipsis);\n    if (self.childNodes.length > 1) {\n      const child = self.childNodes.item(self.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        self.removeChild(child);\n      }\n    }\n    while (overflow) {\n      if (this.removeLastByte(self)) {\n        break;\n      }\n      overflow = self.offsetHeight < self.scrollHeight;\n    }\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByte(element: HTMLElement): boolean {\n    if (element.childNodes.length > 1) {\n      const child = element.childNodes.item(element.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        element.removeChild(child);\n      }\n    }\n    return element.childNodes.length === 1;\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByteAux(element: Node): boolean {\n    // true to remove\n    if (element.nodeType === Node.TEXT_NODE) {\n      const split = element.textContent.split(' ');\n      split.pop();\n      element.textContent = split.join(' ');\n      return element.textContent === '';\n    }\n    if (element.nodeType === Node.ELEMENT_NODE) {\n      if (element.hasChildNodes()) {\n        const last = element.childNodes.item(element.childNodes.length - 1);\n        const result = this.removeLastByteAux(last);\n        if (result) {\n          element.removeChild(last);\n          return this.removeLastByteAux(element);\n        } else {\n          return false;\n        }\n      } else {\n        return true;\n      }\n    }\n    throw new Error('This node type is not handled');\n  }\n\n}\n",
+            "sourceCode": "import { AfterViewChecked, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\nimport { TaskRunnerService } from './task-runner.service';\n\n/**\n * The multiline ellipsis directive can be used to display multi-line\n * text with an ellipsis character at the end if the text is too long.\n *\n ```ts\n import { MultilineEllipsisModule } from 'iwerk-angular-ui';\n ```\n */\n@Directive({\n  selector: '[iwMultilineEllipsis]'\n})\nexport class MultilineEllipsisDirective implements AfterViewChecked, OnInit {\n\n  /**\n   * The text to display.\n   */\n  @Input() iwMultilineEllipsis: string;\n  /**\n   * An event that is emitted that indicates whether the text is truncated.\n   */\n  @Output() truncated = new EventEmitter<boolean>();\n\n  /**\n   * A boolean that indicates if the text overflows.\n   */\n  get isOverflowing(): boolean {\n    return this.__isOverflowing;\n  }\n\n  private __isOverflowing: boolean;\n  private needsAdjust: boolean;\n  private oldText: string;\n  private oldHeight: number;\n  private oldWidth: number;\n\n  constructor(\n    private elementRef: ElementRef,\n    private taskRunner: TaskRunnerService\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.classList.add('multiline-ellipsis');\n  }\n\n  /**\n   * @ignore\n   */\n  ngAfterViewChecked() {\n    const self: HTMLElement = this.elementRef.nativeElement;\n    if (this.iwMultilineEllipsis !== this.oldText || this.oldHeight !== self.offsetHeight || this.oldWidth !== self.offsetWidth) {\n      this.oldText = this.iwMultilineEllipsis;\n      this.oldHeight = self.offsetHeight;\n      this.oldWidth = self.offsetWidth;\n      this.needsAdjust = true;\n    }\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  @HostListener('window:resize', [])\n  onResize() {\n    this.needsAdjust = true;\n    this.adjustInner();\n  }\n\n  /**\n   * @ignore\n   */\n  private adjustInner() {\n    if (!this.needsAdjust) {\n      return;\n    }\n    this.needsAdjust = false;\n    const self: HTMLElement = this.elementRef.nativeElement;\n    self.innerHTML = this.iwMultilineEllipsis || '';\n    const height = self.clientHeight;\n    const contentHeight = self.scrollHeight;\n    let overflow = height < contentHeight;\n    const ellipsis = document.createElement('span');\n    ellipsis.classList.add('ellipsis');\n    ellipsis.innerText = '…';\n    if (!overflow) {\n      this.emitTruncated(false);\n      return;\n    }\n    this.emitTruncated(true);\n    self.appendChild(ellipsis);\n    if (self.childNodes.length > 1) {\n      const child = self.childNodes.item(self.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        self.removeChild(child);\n      }\n    }\n    while (overflow) {\n      if (this.removeLastByte(self)) {\n        break;\n      }\n      overflow = self.offsetHeight < self.scrollHeight;\n    }\n  }\n\n  private emitTruncated(truncated: boolean) {\n    this.taskRunner.addTaskForNextRound(() => {\n      this.truncated.emit(truncated);\n    });\n    this.__isOverflowing = truncated;\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByte(element: HTMLElement): boolean {\n    if (element.childNodes.length > 1) {\n      const child = element.childNodes.item(element.childNodes.length - 2);\n      if (this.removeLastByteAux(child)) {\n        element.removeChild(child);\n      }\n    }\n    return element.childNodes.length === 1;\n  }\n\n  /**\n   * @ignore\n   */\n  private removeLastByteAux(element: Node): boolean {\n    // true to remove\n    if (element.nodeType === Node.TEXT_NODE) {\n      const split = element.textContent.split(' ');\n      split.pop();\n      element.textContent = split.join(' ');\n      return element.textContent === '';\n    }\n    if (element.nodeType === Node.ELEMENT_NODE) {\n      if (element.hasChildNodes()) {\n        const last = element.childNodes.item(element.childNodes.length - 1);\n        const result = this.removeLastByteAux(last);\n        if (result) {\n          element.removeChild(last);\n          return this.removeLastByteAux(element);\n        } else {\n          return false;\n        }\n      } else {\n        return true;\n      }\n    }\n    throw new Error('This node type is not handled');\n  }\n\n}\n",
             "selector": "[iwMultilineEllipsis]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "iwMultilineEllipsis",
                     "description": "<p>The text to display.</p>\n",
-                    "line": 19,
+                    "line": 20,
                     "type": "string"
                 }
             ],
@@ -1778,7 +1834,7 @@
                     "name": "truncated",
                     "defaultValue": "new EventEmitter<boolean>()",
                     "description": "<p>An event that is emitted that indicates whether the text is truncated.</p>\n",
-                    "line": 23,
+                    "line": 24,
                     "type": "EventEmitter"
                 }
             ],
@@ -1790,7 +1846,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 33,
                     "modifierKind": [
                         112
                     ]
@@ -1800,7 +1856,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 34,
                     "modifierKind": [
                         112
                     ]
@@ -1810,7 +1866,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 36,
                     "modifierKind": [
                         112
                     ]
@@ -1820,7 +1876,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 34,
+                    "line": 35,
                     "modifierKind": [
                         112
                     ]
@@ -1830,13 +1886,39 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 37,
                     "modifierKind": [
                         112
                     ]
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "emitTruncated",
+                    "args": [
+                        {
+                            "name": "truncated",
+                            "type": "boolean"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 112,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "truncated",
+                            "type": "boolean",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "implements": [
                 "AfterViewChecked",
                 "OnInit"
@@ -1848,13 +1930,24 @@
                     {
                         "name": "elementRef",
                         "type": "ElementRef"
+                    },
+                    {
+                        "name": "taskRunner",
+                        "type": "TaskRunnerService"
                     }
                 ],
-                "line": 36,
+                "line": 37,
                 "jsdoctags": [
                     {
                         "name": "elementRef",
                         "type": "ElementRef",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "taskRunner",
+                        "type": "TaskRunnerService",
                         "tagName": {
                             "text": "param"
                         }
@@ -1868,7 +1961,7 @@
                         "name": "isOverflowing",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 28,
+                        "line": 29,
                         "description": "<p>A boolean that indicates if the text overflows.</p>\n"
                     }
                 }
@@ -3637,7 +3730,7 @@
         },
         {
             "name": "EllipsisComponent",
-            "id": "component-EllipsisComponent-d71a650298d0ebd7a93da6e9dc91644e",
+            "id": "component-EllipsisComponent-3f65f0008da638cdfcb1741a96ad72d7",
             "file": "src/app/demo/ellipsis/ellipsis.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3657,47 +3750,45 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "height",
+                    "defaultValue": "1000",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
                     "name": "lorem",
                     "defaultValue": "'Consectetur qui non tempor aute. Adipisicing ad laboris mollit ea consectetur eu aliquip exercitation ipsum cillum esse. Dolor irure consequat magna enim dolor aute sunt sint. Incididunt sint ullamco eu proident eiusmod reprehenderit reprehenderit cillum fugiat voluptate elit nulla. Reprehenderit ad voluptate laboris eu ad ex veniam id sint cupidatat mollit. Dolore magna officia consectetur ea proident excepteur culpa veniam exercitation. Occaecat mollit commodo voluptate ex cupidatat enim veniam quis tempor voluptate culpa quis consequat mollit.'",
                     "type": "string",
                     "optional": false,
                     "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "truncated",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
                     "line": 10
                 }
             ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 13
-                }
-            ],
+            "methodsClass": [],
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-ellipsis',\n  templateUrl: './ellipsis.component.html',\n  styleUrls: ['./ellipsis.component.sass']\n})\nexport class EllipsisComponent implements OnInit {\n  // tslint:disable-next-line\n  lorem = 'Consectetur qui non tempor aute. Adipisicing ad laboris mollit ea consectetur eu aliquip exercitation ipsum cillum esse. Dolor irure consequat magna enim dolor aute sunt sint. Incididunt sint ullamco eu proident eiusmod reprehenderit reprehenderit cillum fugiat voluptate elit nulla. Reprehenderit ad voluptate laboris eu ad ex veniam id sint cupidatat mollit. Dolore magna officia consectetur ea proident excepteur culpa veniam exercitation. Occaecat mollit commodo voluptate ex cupidatat enim veniam quis tempor voluptate culpa quis consequat mollit.';\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-ellipsis',\n  templateUrl: './ellipsis.component.html',\n  styleUrls: ['./ellipsis.component.sass']\n})\nexport class EllipsisComponent {\n  height = 1000;\n  truncated = false;\n\n  // tslint:disable-next-line\n  lorem = 'Consectetur qui non tempor aute. Adipisicing ad laboris mollit ea consectetur eu aliquip exercitation ipsum cillum esse. Dolor irure consequat magna enim dolor aute sunt sint. Incididunt sint ullamco eu proident eiusmod reprehenderit reprehenderit cillum fugiat voluptate elit nulla. Reprehenderit ad voluptate laboris eu ad ex veniam id sint cupidatat mollit. Dolore magna officia consectetur ea proident excepteur culpa veniam exercitation. Occaecat mollit commodo voluptate ex cupidatat enim veniam quis tempor voluptate culpa quis consequat mollit.';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "p\n  max-height: 100px\n  max-width: 300px\n  border: 1px solid grey\n",
+                    "data": "p\n  max-width: 300px\n  border: 1px solid grey\n",
                     "styleUrl": "./ellipsis.component.sass"
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "args": [],
-                "line": 10
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<h1>Ellipsis</h1>\n\n<p [iwMultilineEllipsis]=\"lorem\"></p>\n"
+            "templateData": "<h1>Ellipsis</h1>\n\nHeight: <input type=\"number\" [(ngModel)]=\"height\" />\nTruncated: {{truncated ? 'Yes' : 'No'}}\n\n<p [iwMultilineEllipsis]=\"lorem\" (truncated)=\"truncated = $event\" [style.height.px]=\"height\"></p>\n"
         },
         {
             "name": "MyDialogComponent",
@@ -5803,7 +5894,11 @@
             "children": [
                 {
                     "type": "providers",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "TaskRunnerService"
+                        }
+                    ]
                 },
                 {
                     "type": "declarations",
@@ -7349,9 +7444,18 @@
                 "type": "directive",
                 "linktype": "directive",
                 "name": "MultilineEllipsisDirective",
-                "coveragePercent": 33,
-                "coverageCount": "3/9",
+                "coveragePercent": 30,
+                "coverageCount": "3/10",
                 "status": "medium"
+            },
+            {
+                "filePath": "src/app/ui/multiline-ellipsis/task-runner.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "TaskRunnerService",
+                "coveragePercent": 25,
+                "coverageCount": "1/4",
+                "status": "low"
             },
             {
                 "filePath": "src/app/ui/navigation/navigation-controller.service.ts",
