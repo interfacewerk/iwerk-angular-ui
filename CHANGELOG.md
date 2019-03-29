@@ -1,3 +1,10 @@
+## [3.17.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.0...v3.17.1) (2019-03-28)
+
+
+### Bug Fixes
+
+* **ellipsis:** fix error where an exception was thrown when truncated event was used ([ee4c9b2](https://github.com/interfacewerk/iwerk-angular-ui/commit/ee4c9b2))
+
 # [3.17.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.16.0...v3.17.0) (2019-03-25)
 
 
