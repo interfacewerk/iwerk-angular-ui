@@ -91,7 +91,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.2",
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
-    "ng-documentation": "1.0.2",
+    "ng-documentation": "1.0.3",
     "ng-packagr": "4.7.1",
     "node-html-parser": "^1.1.12",
     "nodemon": "^1.18.10",
