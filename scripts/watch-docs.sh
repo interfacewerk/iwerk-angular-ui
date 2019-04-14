@@ -1,1 +1,1 @@
-./node_modules/.bin/nodemon --watch . --exec ./scripts/generate-doc.sh --ext ts,html,sass
+./node_modules/.bin/nodemon --watch . --exec "./scripts/generate-doc.sh $1 $2 $3" --ext ts,html,sass
