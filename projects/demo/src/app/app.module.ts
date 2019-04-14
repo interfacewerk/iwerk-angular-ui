@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { DocsModule } from 'projects/docs/src/public_api';
+import { DocsModule } from 'ng-documentation';
 import { AppComponent } from './app.component';
 import { DialogDemoModule } from './dialog/dialog.module';
 import { DialogComponent } from './dialog/dialog/dialog.component';
@@ -34,6 +34,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     EllipsisDemoModule,
     DialogDemoModule,
     TreeDocsModule,
+    DocsModule,
     DocsModule.configure({
       welcomePage: WelcomeComponent,
       componentPages: {

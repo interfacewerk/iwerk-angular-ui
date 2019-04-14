@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from 'src/public_api';
-import { CoreModule } from 'projects/docs/src/lib/core/core.module';
+import { DocsModule } from 'ng-documentation';
 import {
   CustomPopoverContentDirective,
   CustomPopoverDemoComponent,
@@ -18,7 +18,7 @@ import { PropertyEditPopoverComponent } from './popover-example2/property-edit-p
     CommonModule,
     PopoverModule,
     FormsModule,
-    CoreModule
+    DocsModule
   ],
   declarations: [
     PopoverDemoComponent,

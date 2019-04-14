@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CoreModule } from 'projects/docs/src/lib/core/core.module';
+import { DocsModule } from 'ng-documentation';
 import { NavigationModule } from 'src/public_api';
 import { Example2Component } from './navigation-example1/navigation-example1-nested2.component';
 import { Example3Component } from './navigation-example1/navigation-example1-nested3.component';
@@ -11,7 +11,7 @@ import { NavigationdDemoComponent } from './navigation/navigation.component';
   imports: [
     CommonModule,
     NavigationModule,
-    CoreModule
+    DocsModule
   ],
   declarations: [
     NavigationdDemoComponent,
