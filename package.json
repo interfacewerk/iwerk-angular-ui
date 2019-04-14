@@ -38,7 +38,6 @@
     "serve-aot": "ng serve --aot=true",
     "build-aot": "ng build --aot=true",
     "build": "ng-packagr -p package.json",
-    "build:docs": "npm run compodoc && node scripts/generate-examples.js && npm run ng -- build demo --output-path=docs --base-href https://interfacewerk.github.io/iwerk-angular-ui/",
     "start": "ng serve",
     "start:docs": "ng serve demo",
     "lint": "ng lint",
@@ -51,13 +50,15 @@
     "build:dev": "./scripts/watch-build.dev.sh",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
-    "watch:docs": "./scripts/watch-docs.sh",
-    "compodoc": "./node_modules/.bin/compodoc --output projects/demo/src/assets/documentation -p src/tsconfig.app.json --exportFormat json"
+    "postinstall": "cp -R node_modules/ng-documentation/scripts .",
+    "build:docs": "./scripts/generate-doc.sh projects/demo/src/assets src/tsconfig.app.json demo && ng build demo",
+    "watch:docs": "./scripts/watch-docs.sh projects/demo/src/assets/documentation src/tsconfig.app.json demo"
   },
   "dependencies": {
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
-    "@fortawesome/free-solid-svg-icons": "^5.7.0"
+    "@fortawesome/free-solid-svg-icons": "^5.7.0",
+    "@fortawesome/free-brands-svg-icons": "5.8.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
@@ -91,6 +92,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.2",
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-documentation": "1.0.2",
     "ng-packagr": "4.7.1",
     "node-html-parser": "^1.1.12",
     "nodemon": "^1.18.10",

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CoreModule } from 'projects/docs/src/lib/core/core.module';
+import { DocsModule } from 'ng-documentation';
 import { TreeModule } from 'src/public_api';
 import { TreeDocsExample1Component } from './tree-docs-example1/tree-docs-example1.component';
 import { TreeDocsExample2Component } from './tree-docs-example2/tree-docs-example2.component';
@@ -17,7 +17,7 @@ import { TreeDocsComponent } from './tree-docs.component';
   ],
   imports: [
     CommonModule,
-    CoreModule,
+    DocsModule,
     TreeModule,
     RouterModule
   ]

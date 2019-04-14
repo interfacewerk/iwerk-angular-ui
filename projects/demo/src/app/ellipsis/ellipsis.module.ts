@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CoreModule } from 'projects/docs/src/lib/core/core.module';
+import { DocsModule } from 'ng-documentation';
 import { MultilineEllipsisModule } from 'src/app/ui/multiline-ellipsis/multiline-ellipsis.module';
 import { EllipsisExample1Component } from './ellipsis-example1/ellipsis-example1.component';
 import { EllipsisDemoComponent } from './ellipsis/ellipsis.component';
@@ -11,7 +11,7 @@ import { EllipsisDemoComponent } from './ellipsis/ellipsis.component';
     CommonModule,
     MultilineEllipsisModule,
     FormsModule,
-    CoreModule
+    DocsModule
   ],
   declarations: [
     EllipsisDemoComponent,
