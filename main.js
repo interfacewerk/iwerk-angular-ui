@@ -3023,1280 +3023,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../docs/src/lib/core/code-line/code-line.component.html":
-/*!***************************************************************!*\
-  !*** ../docs/src/lib/core/code-line/code-line.component.html ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"code-container\">\n  <button class=\"copy\" (click)=\"copy()\">\n    <fa-icon [icon]=\"faCopy\"></fa-icon>\n    <ng-template [ngIf]=\"!copied\">\n      <ng-template iwTooltip>Copy this code sample</ng-template>\n    </ng-template>\n  </button>\n  <pre><code #code><ng-content></ng-content></code></pre>\n</div>\n\n<div [class.hidden]=\"!copied\" class=\"copied\">Copied!</div>\n"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code-line/code-line.component.sass":
-/*!***************************************************************!*\
-  !*** ../docs/src/lib/core/code-line/code-line.component.sass ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ":host {\n  display: block;\n  margin: 5px 0; }\n\n.code-container {\n  display: flex;\n  flex-direction: row;\n  background: whitesmoke;\n  align-items: center; }\n\npre {\n  flex: 1 1;\n  background: transparent;\n  margin: 0; }\n\ncode {\n  margin: 0; }\n\n.hidden {\n  visibility: hidden; }\n\n.copy {\n  background: none;\n  color: #7a7272;\n  border: none;\n  border-radius: 0;\n  box-shadow: none;\n  padding: 0;\n  margin: 0 0 0 15px; }\n\n.copied {\n  font-size: 11px;\n  color: #7a7272; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2NvcmUvY29kZS1saW5lL2NvZGUtbGluZS5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQztFQUNDLGVBQWM7RUFDZCxjQUFhLEVBQUc7O0FBRWxCO0VBQ0UsY0FBYTtFQUNiLG9CQUFtQjtFQUNuQix1QkFBc0I7RUFDdEIsb0JBQW1CLEVBQUc7O0FBRXhCO0VBQ0UsVUFBUztFQUNULHdCQUF1QjtFQUN2QixVQUFTLEVBQUc7O0FBRWQ7RUFDRSxVQUFTLEVBQUc7O0FBRWQ7RUFDRSxtQkFBa0IsRUFBRzs7QUFFdkI7RUFDRSxpQkFBZ0I7RUFDaEIsZUFBYztFQUNkLGFBQVk7RUFDWixpQkFBZ0I7RUFDaEIsaUJBQWdCO0VBQ2hCLFdBQVU7RUFDVixtQkFBa0IsRUFBRzs7QUFFdkI7RUFDRSxnQkFBZTtFQUNmLGVBQWMsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS9jb2RlLWxpbmUvY29kZS1saW5lLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiIDpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG1hcmdpbjogNXB4IDA7IH1cblxuLmNvZGUtY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgYmFja2dyb3VuZDogd2hpdGVzbW9rZTtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjsgfVxuXG5wcmUge1xuICBmbGV4OiAxIDE7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBtYXJnaW46IDA7IH1cblxuY29kZSB7XG4gIG1hcmdpbjogMDsgfVxuXG4uaGlkZGVuIHtcbiAgdmlzaWJpbGl0eTogaGlkZGVuOyB9XG5cbi5jb3B5IHtcbiAgYmFja2dyb3VuZDogbm9uZTtcbiAgY29sb3I6ICM3YTcyNzI7XG4gIGJvcmRlcjogbm9uZTtcbiAgYm9yZGVyLXJhZGl1czogMDtcbiAgYm94LXNoYWRvdzogbm9uZTtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwIDAgMCAxNXB4OyB9XG5cbi5jb3BpZWQge1xuICBmb250LXNpemU6IDExcHg7XG4gIGNvbG9yOiAjN2E3MjcyOyB9XG4iXX0= */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code-line/code-line.component.ts":
-/*!*************************************************************!*\
-  !*** ../docs/src/lib/core/code-line/code-line.component.ts ***!
-  \*************************************************************/
-/*! exports provided: CodeLineComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeLineComponent", function() { return CodeLineComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-
-
-
-var CodeLineComponent = /** @class */ (function () {
-    function CodeLineComponent() {
-        this.faCopy = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faCopy"];
-        this.copied = false;
-    }
-    CodeLineComponent.prototype.ngOnDestroy = function () {
-        clearTimeout(this.copiedTimeout);
-    };
-    CodeLineComponent.prototype.copy = function () {
-        var _this = this;
-        this.copyToClipboard(this.code.nativeElement.innerText);
-        this.copied = true;
-        clearTimeout(this.copiedTimeout);
-        this.copiedTimeout = setTimeout(function () { return _this.copied = false; }, 3000);
-    };
-    CodeLineComponent.prototype.copyToClipboard = function (str) {
-        var el = document.createElement('textarea');
-        el.value = str;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('code'),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], CodeLineComponent.prototype, "code", void 0);
-    CodeLineComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-code-line',
-            template: __webpack_require__(/*! ./code-line.component.html */ "../docs/src/lib/core/code-line/code-line.component.html"),
-            styles: [__webpack_require__(/*! ./code-line.component.sass */ "../docs/src/lib/core/code-line/code-line.component.sass")]
-        })
-    ], CodeLineComponent);
-    return CodeLineComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code-sample/code-sample.module.ts":
-/*!**************************************************************!*\
-  !*** ../docs/src/lib/core/code-sample/code-sample.module.ts ***!
-  \**************************************************************/
-/*! exports provided: CodeSampleModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeSampleModule", function() { return CodeSampleModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./code-sample.pipe */ "../docs/src/lib/core/code-sample/code-sample.pipe.ts");
-
-
-
-
-var CodeSampleModule = /** @class */ (function () {
-    function CodeSampleModule() {
-    }
-    CodeSampleModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-            ],
-            exports: [_code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["CodeSamplePipe"], _code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["ComponentDescriptionPipe"]],
-            providers: [_code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["CodeSamplePipe"], _code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["ComponentDescriptionPipe"]],
-            declarations: [_code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["CodeSamplePipe"], _code_sample_pipe__WEBPACK_IMPORTED_MODULE_3__["ComponentDescriptionPipe"]]
-        })
-    ], CodeSampleModule);
-    return CodeSampleModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code-sample/code-sample.pipe.ts":
-/*!************************************************************!*\
-  !*** ../docs/src/lib/core/code-sample/code-sample.pipe.ts ***!
-  \************************************************************/
-/*! exports provided: CodeSamplePipe, ComponentDescriptionPipe */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeSamplePipe", function() { return CodeSamplePipe; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentDescriptionPipe", function() { return ComponentDescriptionPipe; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _documentation_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../documentation.service */ "../docs/src/lib/core/documentation.service.ts");
-
-
-
-
-var CodeSamplePipe = /** @class */ (function () {
-    function CodeSamplePipe(http, changeDetectorRef) {
-        var _this = this;
-        this.http = http;
-        this.changeDetectorRef = changeDetectorRef;
-        this.codeSamples = {};
-        this.http.get('assets/examples.json')
-            .subscribe(function (c) {
-            _this.codeSamples = c;
-            _this.changeDetectorRef.markForCheck();
-        });
-    }
-    CodeSamplePipe.prototype.transform = function (sampleId) {
-        var key = Object.keys(this.codeSamples).find(function (k) { return k.includes(sampleId); });
-        return this.codeSamples[key];
-    };
-    CodeSamplePipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Pipe"])({
-            name: 'codeSample',
-            pure: false
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_core__WEBPACK_IMPORTED_MODULE_2__["ChangeDetectorRef"]])
-    ], CodeSamplePipe);
-    return CodeSamplePipe;
-}());
-
-var ComponentDescriptionPipe = /** @class */ (function () {
-    function ComponentDescriptionPipe(documentationService, changeDetectorRef) {
-        var _this = this;
-        this.documentationService = documentationService;
-        this.changeDetectorRef = changeDetectorRef;
-        this.documentationService.documentation$.subscribe(function () {
-            _this.changeDetectorRef.markForCheck();
-        });
-    }
-    ComponentDescriptionPipe.prototype.transform = function (name, type) {
-        var comp = this.documentationService.getComponentDocumentation(name, type);
-        if (comp) {
-            return comp.description;
-        }
-        else {
-            return 'Loading';
-        }
-    };
-    ComponentDescriptionPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Pipe"])({
-            name: 'componentDescription',
-            pure: false
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_documentation_service__WEBPACK_IMPORTED_MODULE_3__["DocumentationService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_2__["ChangeDetectorRef"]])
-    ], ComponentDescriptionPipe);
-    return ComponentDescriptionPipe;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code/code.component.html":
-/*!*****************************************************!*\
-  !*** ../docs/src/lib/core/code/code.component.html ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<pre><code #code>{{ path | codeSample }}</code></pre>\n<div class=\"source-actions\">\n  <button class=\"copy\" (click)=\"copy()\">\n    <fa-icon [icon]=\"faCopy\"></fa-icon>\n    <ng-template iwTooltip [horizontal]=\"true\">Copy this code sample</ng-template>\n  </button>\n  <div *ngIf=\"copied\" class=\"copied\">Copied!</div>\n</div>\n"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code/code.component.sass":
-/*!*****************************************************!*\
-  !*** ../docs/src/lib/core/code/code.component.sass ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ":host {\n  position: relative;\n  display: block;\n  overflow: auto; }\n\npre {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n  overflow: auto; }\n\npre code {\n    margin: 0; }\n\n.source-actions {\n  position: absolute;\n  right: 0;\n  top: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  padding: 5px 15px; }\n\n.copy {\n  outline: none;\n  background: none;\n  box-shadow: none;\n  color: grey;\n  padding: 0; }\n\n.copy:hover {\n    color: black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2NvcmUvY29kZS9jb2RlLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFDO0VBQ0MsbUJBQWtCO0VBQ2xCLGVBQWM7RUFDZCxlQUFjLEVBQUc7O0FBRW5CO0VBQ0UsVUFBUztFQUNULFdBQVU7RUFDVixhQUFZO0VBQ1osZUFBYyxFQUdFOztBQVBsQjtJQU9JLFVBQVMsRUFBRzs7QUFFaEI7RUFDRSxtQkFBa0I7RUFDbEIsU0FBUTtFQUNSLE9BQU07RUFDTixjQUFhO0VBQ2IsdUJBQXNCO0VBQ3RCLHNCQUFxQjtFQUNyQixrQkFBaUIsRUFBRzs7QUFFdEI7RUFDRSxjQUFhO0VBQ2IsaUJBQWdCO0VBQ2hCLGlCQUFnQjtFQUNoQixZQUFXO0VBQ1gsV0FBVSxFQUdTOztBQVJyQjtJQVFJLGFBQVksRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS9jb2RlL2NvZGUuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyIgOmhvc3Qge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG5wcmUge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG4gIGhlaWdodDogMTAwJTtcbiAgb3ZlcmZsb3c6IGF1dG87XG5cbiAgY29kZSB7XG4gICAgbWFyZ2luOiAwOyB9IH1cblxuLnNvdXJjZS1hY3Rpb25zIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogMDtcbiAgdG9wOiAwO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogZmxleC1lbmQ7XG4gIHBhZGRpbmc6IDVweCAxNXB4OyB9XG5cbi5jb3B5IHtcbiAgb3V0bGluZTogbm9uZTtcbiAgYmFja2dyb3VuZDogbm9uZTtcbiAgYm94LXNoYWRvdzogbm9uZTtcbiAgY29sb3I6IGdyZXk7XG4gIHBhZGRpbmc6IDA7XG5cbiAgJjpob3ZlciB7XG4gICAgY29sb3I6IGJsYWNrOyB9IH1cbiJdfQ== */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/code/code.component.ts":
-/*!***************************************************!*\
-  !*** ../docs/src/lib/core/code/code.component.ts ***!
-  \***************************************************/
-/*! exports provided: CodeComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeComponent", function() { return CodeComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-
-
-
-var CodeComponent = /** @class */ (function () {
-    function CodeComponent() {
-        this.faCopy = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faCopy"];
-        this.copied = false;
-    }
-    CodeComponent.prototype.ngOnDestroy = function () {
-        clearTimeout(this.copiedTimeout);
-    };
-    CodeComponent.prototype.copy = function () {
-        var _this = this;
-        this.copyToClipboard(this.code.nativeElement.innerText);
-        this.copied = true;
-        clearTimeout(this.copiedTimeout);
-        this.copiedTimeout = setTimeout(function () { return _this.copied = false; }, 3000);
-    };
-    CodeComponent.prototype.copyToClipboard = function (str) {
-        var el = document.createElement('textarea');
-        el.value = str;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], CodeComponent.prototype, "path", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('code'),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], CodeComponent.prototype, "code", void 0);
-    CodeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-code',
-            template: __webpack_require__(/*! ./code.component.html */ "../docs/src/lib/core/code/code.component.html"),
-            styles: [__webpack_require__(/*! ./code.component.sass */ "../docs/src/lib/core/code/code.component.sass")]
-        })
-    ], CodeComponent);
-    return CodeComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-api/component-api.component.html":
-/*!***********************************************************************!*\
-  !*** ../docs/src/lib/core/component-api/component-api.component.html ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h2>Selector: <code>{{selector$ | async}}</code></h2>\n\n<ng-template [ngIf]=\"hasInputs$ | async\">\n  <h3>Inputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Input</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"inputs$ | async\" let-input>\n        <tr>\n          <td><code>{{input.name}}</code></td>\n          <td><code>{{getInputType(input) | async}}</code></td>\n          <td [innerHTML]=\"input.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasOutputs$ | async\">\n  <h3>Outputs</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Output</th>\n        <th class=\"type\">Type</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"outputs$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td><code>{{output.defaultValue}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>\n\n<ng-template [ngIf]=\"hasMethods$ | async\">\n  <h3>Methods</h3>\n\n  <table>\n    <thead>\n      <tr>\n        <th class=\"name\">Method</th>\n        <th class=\"description\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <ng-template ngFor [ngForOf]=\"methods$ | async\" let-output>\n        <tr>\n          <td><code>{{output.name}}</code></td>\n          <td [innerHTML]=\"output.description\"></td>\n        </tr>\n      </ng-template>\n    </tbody>\n  </table>\n</ng-template>"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-api/component-api.component.sass":
-/*!***********************************************************************!*\
-  !*** ../docs/src/lib/core/component-api/component-api.component.sass ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "table {\n  border-collapse: collapse;\n  border: 1px solid lightgrey;\n  border-radius: 1px;\n  width: 100%; }\n\nthead {\n  background: lightgrey; }\n\nth {\n  text-align: left; }\n\nth, td {\n  padding: 3px 20px 3px 3px; }\n\ntr {\n  border-bottom: 1px solid lightgrey; }\n\n.name, .type {\n  width: 30%; }\n\n.description {\n  width: 40%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2NvcmUvY29tcG9uZW50LWFwaS9jb21wb25lbnQtYXBpLmNvbXBvbmVudC5zYXNzIiwiL2hvbWUvdHJhdmlzL2J1aWxkL2ludGVyZmFjZXdlcmsvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kb2NzL3NyYy9saWIvc3R5bGVzL192YXJpYWJsZXMuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLDBCQUF5QjtFQUN6Qiw0QkNFd0I7RUREeEIsbUJBQWtCO0VBQ2xCLFlBQVcsRUFBRzs7QUFFbEI7RUFDSSxzQkNId0IsRURHUTs7QUFFcEM7RUFDSSxpQkFBZ0IsRUFBRzs7QUFFdkI7RUFDSSwwQkFBeUIsRUFBRzs7QUFFaEM7RUFDSSxtQ0Nad0IsRURZcUI7O0FBRWpEO0VBQ0ksV0FBVSxFQUFHOztBQUVqQjtFQUNJLFdBQVUsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS9jb21wb25lbnQtYXBpL2NvbXBvbmVudC1hcGkuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi9zdHlsZXMvdmFyaWFibGVzJztcblxudGFibGUge1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gICAgYm9yZGVyOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7XG4gICAgYm9yZGVyLXJhZGl1czogMXB4O1xuICAgIHdpZHRoOiAxMDAlOyB9XG5cbnRoZWFkIHtcbiAgICBiYWNrZ3JvdW5kOiAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG50aCB7XG4gICAgdGV4dC1hbGlnbjogbGVmdDsgfVxuXG50aCwgdGQge1xuICAgIHBhZGRpbmc6IDNweCAyMHB4IDNweCAzcHg7IH1cblxudHIge1xuICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG4ubmFtZSwgLnR5cGUge1xuICAgIHdpZHRoOiAzMCU7IH1cblxuLmRlc2NyaXB0aW9uIHtcbiAgICB3aWR0aDogNDAlOyB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-api/component-api.component.ts":
-/*!*********************************************************************!*\
-  !*** ../docs/src/lib/core/component-api/component-api.component.ts ***!
-  \*********************************************************************/
-/*! exports provided: ComponentApiComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentApiComponent", function() { return ComponentApiComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _documentation_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../documentation.service */ "../docs/src/lib/core/documentation.service.ts");
-
-
-
-
-var ComponentApiComponent = /** @class */ (function () {
-    function ComponentApiComponent(documentation) {
-        this.documentation = documentation;
-    }
-    ComponentApiComponent.prototype.ngOnChanges = function () {
-        this.documentation$ = this.documentation.getComponentDocumentation$(this.componentId, this.componentType);
-        this.selector$ = this.documentation$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (d) { return d ? d.selector : ''; }));
-        this.inputs$ = this.documentation$
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (d) { return d ? d.inputsClass || [] : []; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(sortByName));
-        this.outputs$ = this.documentation$
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (d) { return d ? d.outputsClass || [] : []; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(sortByName));
-        this.methods$ = this.documentation$
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (d) { return d ? d.methodsClass || [] : []; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(sortByName));
-        this.hasOutputs$ = this.outputs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (a) { return a.length > 0; }));
-        this.hasInputs$ = this.inputs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (a) { return a.length > 0; }));
-        this.hasMethods$ = this.methods$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (a) { return a.length > 0; }));
-    };
-    ComponentApiComponent.prototype.getInputType = function (input) {
-        return this.documentation.getInputType({
-            componentId: this.componentId,
-            componentType: this.componentType,
-            input: input
-        });
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentApiComponent.prototype, "componentId", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ComponentApiComponent.prototype, "componentType", void 0);
-    ComponentApiComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-component-api',
-            template: __webpack_require__(/*! ./component-api.component.html */ "../docs/src/lib/core/component-api/component-api.component.html"),
-            styles: [__webpack_require__(/*! ./component-api.component.sass */ "../docs/src/lib/core/component-api/component-api.component.sass")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_documentation_service__WEBPACK_IMPORTED_MODULE_3__["DocumentationService"]])
-    ], ComponentApiComponent);
-    return ComponentApiComponent;
-}());
-
-function sortByName(arr) {
-    var result = (arr || []).slice(0);
-    result.sort(function (a, b) {
-        return a.name.localeCompare(b.name);
-    });
-    return result;
-}
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-description/component-description.component.html":
-/*!***************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-description/component-description.component.html ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div [innerHTML]=\"componentId | componentDescription: componentType\"></div>"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-description/component-description.component.sass":
-/*!***************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-description/component-description.component.sass ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS9jb21wb25lbnQtZGVzY3JpcHRpb24vY29tcG9uZW50LWRlc2NyaXB0aW9uLmNvbXBvbmVudC5zYXNzIn0= */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-description/component-description.component.ts":
-/*!*************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-description/component-description.component.ts ***!
-  \*************************************************************************************/
-/*! exports provided: ComponentDescriptionComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentDescriptionComponent", function() { return ComponentDescriptionComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-
-
-var ComponentDescriptionComponent = /** @class */ (function () {
-    function ComponentDescriptionComponent() {
-    }
-    ComponentDescriptionComponent.prototype.ngOnInit = function () {
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentDescriptionComponent.prototype, "componentId", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentDescriptionComponent.prototype, "componentType", void 0);
-    ComponentDescriptionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-component-description',
-            template: __webpack_require__(/*! ./component-description.component.html */ "../docs/src/lib/core/component-description/component-description.component.html"),
-            styles: [__webpack_require__(/*! ./component-description.component.sass */ "../docs/src/lib/core/component-description/component-description.component.sass")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], ComponentDescriptionComponent);
-    return ComponentDescriptionComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-documentation/component-documentation.component.html":
-/*!*******************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-documentation/component-documentation.component.html ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"header\">\n  <h1>{{componentTitle}}</h1>\n\n  <ol>\n    <li [class.active]=\"isOverview$ | async\" (click)=\"select('overview')\">Overview</li>\n    <li [class.active]=\"isExamples$ | async\" (click)=\"select('examples')\">Examples</li>\n    <li [class.active]=\"isApi$ | async\" (click)=\"select('api')\">API</li>\n  </ol>\n</div>\n\n<div class=\"content\" [docsAnchorContainer]=\"tab$ | async\">\n  <docs-component-description\n    docsAnchor=\"overview\"\n    [componentId]=\"componentId\"\n    [componentType]=\"componentType\"\n  ></docs-component-description>\n\n  <h2 docsAnchor=\"examples\">Examples</h2>\n  <ng-template ngFor [ngForOf]=\"examples\" let-example>\n    <docs-component-example [example]=\"example\"></docs-component-example>\n  </ng-template>\n\n  <h2 docsAnchor=\"api\">API</h2>\n  \n  <docs-component-api\n    [componentId]=\"componentId\"\n    [componentType]=\"componentType\"\n  ></docs-component-api>\n  \n</div>\n\n"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-documentation/component-documentation.component.sass":
-/*!*******************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-documentation/component-documentation.component.sass ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ":host {\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column; }\n\n.header {\n  flex: 0 0 auto;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  border-bottom: 1px solid grey;\n  box-shadow: 2px 0px 2px 1px lightgrey;\n  padding: 0 15px; }\n\n.content {\n  flex: 1 1;\n  padding: 15px;\n  overflow: auto; }\n\nh2 {\n  margin-top: 50px;\n  border-bottom: 1px solid lightgrey; }\n\nol {\n  list-style: none;\n  margin: 0 0 0 30px;\n  padding: 0; }\n\nli {\n  display: inline-block;\n  margin: 0;\n  padding: 5px 10px;\n  transition: color 0.2s;\n  cursor: pointer; }\n\nli:hover {\n    color: #FF793F; }\n\nli.active {\n    color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2NvcmUvY29tcG9uZW50LWRvY3VtZW50YXRpb24vY29tcG9uZW50LWRvY3VtZW50YXRpb24uY29tcG9uZW50LnNhc3MiLCIvaG9tZS90cmF2aXMvYnVpbGQvaW50ZXJmYWNld2Vyay9pd2Vyay1hbmd1bGFyLXVpL3Byb2plY3RzL2RvY3Mvc3JjL2xpYi9zdHlsZXMvX3ZhcmlhYmxlcy5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVDO0VBQ0MsYUFBWTtFQUNaLGlCQUFnQjtFQUNoQixjQUFhO0VBQ2IsdUJBQXNCLEVBQUc7O0FBRTNCO0VBQ0UsZUFBYztFQUNkLGNBQWE7RUFDYixvQkFBbUI7RUFDbkIsb0JBQW1CO0VBQ25CLDhCQUE2QjtFQUM3QixzQ0FBcUM7RUFDckMsZ0JBQWUsRUFBRzs7QUFFcEI7RUFDRSxVQUFTO0VBQ1QsY0FBYTtFQUNiLGVBQWMsRUFBRzs7QUFHbkI7RUFDRSxpQkFBZ0I7RUFDaEIsbUNDbkIwQixFRG1CbUI7O0FBRS9DO0VBQ0UsaUJBQWdCO0VBQ2hCLG1CQUFrQjtFQUNsQixXQUFVLEVBQUc7O0FBRWY7RUFDRSxzQkFBcUI7RUFDckIsVUFBUztFQUNULGtCQUFpQjtFQUNqQix1QkFBc0I7RUFDdEIsZ0JBQWUsRUFNVTs7QUFYM0I7SUFRSSxlQ3RDaUIsRURzQ0s7O0FBUjFCO0lBV0ksZUN4Q2dCLEVEd0NLIiwiZmlsZSI6InByb2plY3RzL2RvY3Mvc3JjL2xpYi9jb3JlL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uL2NvbXBvbmVudC1kb2N1bWVudGF0aW9uLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vc3R5bGVzL3ZhcmlhYmxlcyc7XG5cbiA6aG9zdCB7XG4gIGhlaWdodDogMTAwJTtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgfVxuXG4uaGVhZGVyIHtcbiAgZmxleDogMCAwIGF1dG87XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCBncmV5O1xuICBib3gtc2hhZG93OiAycHggMHB4IDJweCAxcHggbGlnaHRncmV5O1xuICBwYWRkaW5nOiAwIDE1cHg7IH1cblxuLmNvbnRlbnQge1xuICBmbGV4OiAxIDE7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIG92ZXJmbG93OiBhdXRvOyB9XG5cblxuaDIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7IH1cblxub2wge1xuICBsaXN0LXN0eWxlOiBub25lO1xuICBtYXJnaW46IDAgMCAwIDMwcHg7XG4gIHBhZGRpbmc6IDA7IH1cblxubGkge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogNXB4IDEwcHg7XG4gIHRyYW5zaXRpb246IGNvbG9yIDAuMnM7XG4gIGN1cnNvcjogcG9pbnRlcjtcblxuICAmOmhvdmVyIHtcbiAgICBjb2xvcjogJGNvbG9yLXRocmVlOyB9XG5cbiAgJi5hY3RpdmUge1xuICAgIGNvbG9yOiAkY29sb3ItZm91cjsgfSB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-documentation/component-documentation.component.ts":
-/*!*****************************************************************************************!*\
-  !*** ../docs/src/lib/core/component-documentation/component-documentation.component.ts ***!
-  \*****************************************************************************************/
-/*! exports provided: ComponentDocumentationComponent, AnchorContainerDirective, AnchorDirective, ComponentExampleDirective */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentDocumentationComponent", function() { return ComponentDocumentationComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnchorContainerDirective", function() { return AnchorContainerDirective; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnchorDirective", function() { return AnchorDirective; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentExampleDirective", function() { return ComponentExampleDirective; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-var ComponentDocumentationComponent = /** @class */ (function () {
-    function ComponentDocumentationComponent(router, route) {
-        this.router = router;
-        this.route = route;
-        this.examples = [];
-        this.tab$ = this.route.queryParams.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (p) { return p.tab || 'overview'; }));
-        this.isOverview$ = this.tab$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (v) { return v === 'overview'; }));
-        this.isExamples$ = this.tab$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (v) { return v === 'examples'; }));
-        this.isApi$ = this.tab$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (v) { return v === 'api'; }));
-    }
-    ComponentDocumentationComponent.prototype.ngOnInit = function () {
-    };
-    ComponentDocumentationComponent.prototype.registerExample = function (example) {
-        this.examples.push(example);
-    };
-    ComponentDocumentationComponent.prototype.select = function (tab) {
-        this.router.navigate(['.'], {
-            queryParamsHandling: 'merge',
-            queryParams: {
-                tab: tab
-            },
-            relativeTo: this.route,
-        });
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentDocumentationComponent.prototype, "componentId", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentDocumentationComponent.prototype, "componentType", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentDocumentationComponent.prototype, "componentTitle", void 0);
-    ComponentDocumentationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-component-documentation',
-            template: __webpack_require__(/*! ./component-documentation.component.html */ "../docs/src/lib/core/component-documentation/component-documentation.component.html"),
-            styles: [__webpack_require__(/*! ./component-documentation.component.sass */ "../docs/src/lib/core/component-documentation/component-documentation.component.sass")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-    ], ComponentDocumentationComponent);
-    return ComponentDocumentationComponent;
-}());
-
-var AnchorContainerDirective = /** @class */ (function () {
-    function AnchorContainerDirective(elementRef) {
-        this.elementRef = elementRef;
-        this.anchors = [];
-    }
-    AnchorContainerDirective.prototype.registerAnchor = function (anchor) {
-        this.anchors.push(anchor);
-    };
-    AnchorContainerDirective.prototype.ngAfterViewChecked = function () {
-        var _this = this;
-        if (this.currentAnchor === this.docsAnchorContainer) {
-            return;
-        }
-        this.currentAnchor = this.docsAnchorContainer;
-        var element = this.elementRef.nativeElement;
-        var anchor = (this.anchors.find(function (a) { return a.docsAnchor === _this.docsAnchorContainer; }).elementRef.nativeElement);
-        element.scrollTop = anchor.offsetTop - element.offsetTop - 15;
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], AnchorContainerDirective.prototype, "docsAnchorContainer", void 0);
-    AnchorContainerDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[docsAnchorContainer]'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
-    ], AnchorContainerDirective);
-    return AnchorContainerDirective;
-}());
-
-var AnchorDirective = /** @class */ (function () {
-    function AnchorDirective(container, elementRef) {
-        this.container = container;
-        this.elementRef = elementRef;
-        this.container.registerAnchor(this);
-    }
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], AnchorDirective.prototype, "docsAnchor", void 0);
-    AnchorDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[docsAnchor]'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [AnchorContainerDirective,
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
-    ], AnchorDirective);
-    return AnchorDirective;
-}());
-
-var ComponentExampleDirective = /** @class */ (function () {
-    function ComponentExampleDirective(documentation, template) {
-        this.documentation = documentation;
-        this.template = template;
-        this.documentation.registerExample(this);
-    }
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ComponentExampleDirective.prototype, "docsComponentExample", void 0);
-    ComponentExampleDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[docsComponentExample]'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ComponentDocumentationComponent,
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]])
-    ], ComponentExampleDirective);
-    return ComponentExampleDirective;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-example/component-example.component.html":
-/*!*******************************************************************************!*\
-  !*** ../docs/src/lib/core/component-example/component-example.component.html ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h3>{{example.docsComponentExample}}</h3>\n\n<ng-container [ngTemplateOutlet]=\"example.template\"></ng-container>\n"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-example/component-example.component.sass":
-/*!*******************************************************************************!*\
-  !*** ../docs/src/lib/core/component-example/component-example.component.sass ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS9jb21wb25lbnQtZXhhbXBsZS9jb21wb25lbnQtZXhhbXBsZS5jb21wb25lbnQuc2FzcyJ9 */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/component-example/component-example.component.ts":
-/*!*****************************************************************************!*\
-  !*** ../docs/src/lib/core/component-example/component-example.component.ts ***!
-  \*****************************************************************************/
-/*! exports provided: ComponentExampleComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentExampleComponent", function() { return ComponentExampleComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../component-documentation/component-documentation.component */ "../docs/src/lib/core/component-documentation/component-documentation.component.ts");
-
-
-
-var ComponentExampleComponent = /** @class */ (function () {
-    function ComponentExampleComponent() {
-    }
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_2__["ComponentExampleDirective"])
-    ], ComponentExampleComponent.prototype, "example", void 0);
-    ComponentExampleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-component-example',
-            template: __webpack_require__(/*! ./component-example.component.html */ "../docs/src/lib/core/component-example/component-example.component.html"),
-            styles: [__webpack_require__(/*! ./component-example.component.sass */ "../docs/src/lib/core/component-example/component-example.component.sass")]
-        })
-    ], ComponentExampleComponent);
-    return ComponentExampleComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/core.module.ts":
-/*!*******************************************!*\
-  !*** ../docs/src/lib/core/core.module.ts ***!
-  \*******************************************/
-/*! exports provided: CoreModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreModule", function() { return CoreModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "../../node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
-/* harmony import */ var _src_public_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../src/public_api */ "../../src/public_api.ts");
-/* harmony import */ var _code_line_code_line_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./code-line/code-line.component */ "../docs/src/lib/core/code-line/code-line.component.ts");
-/* harmony import */ var _code_sample_code_sample_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./code-sample/code-sample.module */ "../docs/src/lib/core/code-sample/code-sample.module.ts");
-/* harmony import */ var _code_code_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./code/code.component */ "../docs/src/lib/core/code/code.component.ts");
-/* harmony import */ var _component_api_component_api_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component-api/component-api.component */ "../docs/src/lib/core/component-api/component-api.component.ts");
-/* harmony import */ var _component_description_component_description_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./component-description/component-description.component */ "../docs/src/lib/core/component-description/component-description.component.ts");
-/* harmony import */ var _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component-documentation/component-documentation.component */ "../docs/src/lib/core/component-documentation/component-documentation.component.ts");
-/* harmony import */ var _component_example_component_example_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./component-example/component-example.component */ "../docs/src/lib/core/component-example/component-example.component.ts");
-/* harmony import */ var _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./tabs/tabs.component */ "../docs/src/lib/core/tabs/tabs.component.ts");
-
-
-
-
-
-
-
-
-
-
-
-
-
-var CoreModule = /** @class */ (function () {
-    function CoreModule() {
-    }
-    CoreModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-            imports: [
-                _code_sample_code_sample_module__WEBPACK_IMPORTED_MODULE_6__["CodeSampleModule"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeModule"],
-                _src_public_api__WEBPACK_IMPORTED_MODULE_4__["TooltipModule"]
-            ],
-            exports: [
-                _code_sample_code_sample_module__WEBPACK_IMPORTED_MODULE_6__["CodeSampleModule"],
-                _component_description_component_description_component__WEBPACK_IMPORTED_MODULE_9__["ComponentDescriptionComponent"],
-                _component_api_component_api_component__WEBPACK_IMPORTED_MODULE_8__["ComponentApiComponent"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["ComponentDocumentationComponent"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["ComponentExampleDirective"],
-                _component_example_component_example_component__WEBPACK_IMPORTED_MODULE_11__["ComponentExampleComponent"],
-                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeModule"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["AnchorContainerDirective"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["AnchorDirective"],
-                _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_12__["TabsComponent"],
-                _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_12__["TabDirective"],
-                _code_code_component__WEBPACK_IMPORTED_MODULE_7__["CodeComponent"],
-                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeModule"],
-                _code_line_code_line_component__WEBPACK_IMPORTED_MODULE_5__["CodeLineComponent"]
-            ],
-            declarations: [
-                _component_description_component_description_component__WEBPACK_IMPORTED_MODULE_9__["ComponentDescriptionComponent"],
-                _component_api_component_api_component__WEBPACK_IMPORTED_MODULE_8__["ComponentApiComponent"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["ComponentDocumentationComponent"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["ComponentExampleDirective"],
-                _component_example_component_example_component__WEBPACK_IMPORTED_MODULE_11__["ComponentExampleComponent"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["AnchorContainerDirective"],
-                _component_documentation_component_documentation_component__WEBPACK_IMPORTED_MODULE_10__["AnchorDirective"],
-                _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_12__["TabsComponent"],
-                _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_12__["TabDirective"],
-                _code_code_component__WEBPACK_IMPORTED_MODULE_7__["CodeComponent"],
-                _code_line_code_line_component__WEBPACK_IMPORTED_MODULE_5__["CodeLineComponent"]
-            ]
-        })
-    ], CoreModule);
-    return CoreModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/documentation.service.ts":
-/*!*****************************************************!*\
-  !*** ../docs/src/lib/core/documentation.service.ts ***!
-  \*****************************************************/
-/*! exports provided: DocumentationService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentationService", function() { return DocumentationService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-
-var DocumentationService = /** @class */ (function () {
-    function DocumentationService(http) {
-        var _this = this;
-        this.http = http;
-        this.documentationSubject = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](undefined);
-        this.http.get('assets/documentation/documentation.json')
-            .subscribe(function (c) {
-            _this.documentationSubject.next(c);
-        });
-    }
-    Object.defineProperty(DocumentationService.prototype, "documentation", {
-        get: function () {
-            return this.documentationSubject.value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DocumentationService.prototype, "documentation$", {
-        get: function () {
-            return this.documentationSubject.asObservable();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    DocumentationService.prototype.getComponentDocumentation$ = function (name, type) {
-        return this.documentationSubject.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (documentation) {
-            if (!documentation) {
-                return undefined;
-            }
-            else {
-                return documentation[type].find(function (d) { return d.name === name; });
-            }
-        }));
-    };
-    DocumentationService.prototype.getComponentDocumentation = function (name, type) {
-        if (!this.documentation) {
-            return undefined;
-        }
-        else {
-            return this.documentation[type].find(function (d) { return d.name === name; });
-        }
-    };
-    DocumentationService.prototype.getInputType = function (options) {
-        return this.getComponentDocumentation$(options.componentId, options.componentType)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (d) {
-            var defaultResult = options.input.type;
-            if (!d.accessors) {
-                return defaultResult;
-            }
-            var acc = d.accessors[options.input.name];
-            if (acc) {
-                return acc.getSignature.returnType;
-            }
-            else {
-                return defaultResult;
-            }
-        }));
-    };
-    DocumentationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], DocumentationService);
-    return DocumentationService;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/tabs/tabs.component.html":
-/*!*****************************************************!*\
-  !*** ../docs/src/lib/core/tabs/tabs.component.html ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ol>\n  <li *ngFor=\"let tab of tabs\"\n    (click)=\"selectedTemplate = tab.template\"\n    [class.active]=\"tab.template === selectedTemplate\"\n  >{{tab.label}}</li>\n</ol>\n\n<div class=\"content\">\n  <ng-container *ngTemplateOutlet=\"selectedTemplate\"></ng-container>\n</div>"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/tabs/tabs.component.sass":
-/*!*****************************************************!*\
-  !*** ../docs/src/lib/core/tabs/tabs.component.sass ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ":host {\n  display: flex;\n  flex-direction: column;\n  height: 300px;\n  overflow: hidden;\n  border: lightgrey 1px solid; }\n\nol {\n  margin: 0;\n  padding: 0; }\n\nli {\n  list-style: none;\n  display: inline-block;\n  cursor: pointer;\n  padding: 0;\n  margin: 0; }\n\n.content {\n  flex: 1 1;\n  overflow: auto; }\n\n:host {\n  margin-top: 20px; }\n\n:host .content {\n    background-color: whitesmoke; }\n\n:host pre {\n    margin-top: 0; }\n\n:host li {\n    padding: 0 15px;\n    line-height: 40px;\n    height: 40px;\n    border-bottom: 2px solid transparent;\n    transition: border-bottom 0.2s; }\n\n:host li:hover:not(.active) {\n      border-bottom-color: lightgrey; }\n\n:host li.active {\n      color: #FF4D00;\n      border-bottom-color: #FF4D00; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2NvcmUvdGFicy90YWJzLmNvbXBvbmVudC5zYXNzIiwiL2hvbWUvdHJhdmlzL2J1aWxkL2ludGVyZmFjZXdlcmsvaXdlcmstYW5ndWxhci11aS9wcm9qZWN0cy9kb2NzL3NyYy9saWIvc3R5bGVzL192YXJpYWJsZXMuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQztFQUNDLGNBQWE7RUFDYix1QkFBc0I7RUFDdEIsY0FBYTtFQUNiLGlCQUFnQjtFQUNoQiw0QkFBbUMsRUFBRzs7QUFFeEM7RUFDRSxVQUFTO0VBQ1QsV0FBVSxFQUFHOztBQUVmO0VBQ0UsaUJBQWdCO0VBQ2hCLHNCQUFxQjtFQUNyQixnQkFBZTtFQUNmLFdBQVU7RUFDVixVQUFTLEVBQUc7O0FBRWQ7RUFDRSxVQUFTO0VBQ1QsZUFBYyxFQUFHOztBQUdsQjtFQUNDLGlCQUFnQixFQWtCMkI7O0FBbkI1QztJQUlHLDZCQUE0QixFQUFHOztBQUpsQztJQU1HLGNBQWEsRUFBRzs7QUFObkI7SUFRRyxnQkFBZTtJQUNmLGtCQUFpQjtJQUNqQixhQUFZO0lBQ1oscUNBQW9DO0lBQ3BDLCtCQUE4QixFQU9TOztBQW5CMUM7TUFlSywrQkNsQ3NCLEVEa0NtQjs7QUFmOUM7TUFrQkssZUN4Q2M7TUR5Q2QsNkJDekNjLEVEeUNxQiIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvY29yZS90YWJzL3RhYnMuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi9zdHlsZXMvdmFyaWFibGVzJztcblxuIDpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgYm9yZGVyOiAkY29sb3ItbGlnaHQtZ3JleSAxcHggc29saWQ7IH1cblxub2wge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7IH1cblxubGkge1xuICBsaXN0LXN0eWxlOiBub25lO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwOyB9XG5cbi5jb250ZW50IHtcbiAgZmxleDogMSAxO1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG4vLyBpbXBsZW1lbnRlZCB0byBkaXNwbGF5IGNvZGVcbiA6aG9zdCB7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG5cbiAgLmNvbnRlbnQge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlc21va2U7IH1cbiAgcHJlIHtcbiAgICBtYXJnaW4tdG9wOiAwOyB9XG4gIGxpIHtcbiAgICBwYWRkaW5nOiAwIDE1cHg7XG4gICAgbGluZS1oZWlnaHQ6IDQwcHg7XG4gICAgaGVpZ2h0OiA0MHB4O1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICB0cmFuc2l0aW9uOiBib3JkZXItYm90dG9tIDAuMnM7XG5cbiAgICAmOmhvdmVyOm5vdCguYWN0aXZlKSB7XG4gICAgICBib3JkZXItYm90dG9tLWNvbG9yOiAkY29sb3ItbGlnaHQtZ3JleTsgfVxuXG4gICAgJi5hY3RpdmUge1xuICAgICAgY29sb3I6ICRjb2xvci1mb3VyO1xuICAgICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogJGNvbG9yLWZvdXI7IH0gfSB9XG4iLCIkY29sb3Itb25lOiAjMjhDOEZGO1xuJGNvbG9yLXR3bzogIzI4QTJGRjtcbiRjb2xvci10aHJlZTogI0ZGNzkzRjtcbiRjb2xvci1mb3VyOiAjRkY0RDAwO1xuJGNvbG9yLWZpdmU6ICNFRTIyMDA7XG5cbiRjb2xvci1saWdodC1ncmV5OiBsaWdodGdyZXk7XG4iXX0= */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/core/tabs/tabs.component.ts":
-/*!***************************************************!*\
-  !*** ../docs/src/lib/core/tabs/tabs.component.ts ***!
-  \***************************************************/
-/*! exports provided: TabsComponent, TabDirective */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsComponent", function() { return TabsComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabDirective", function() { return TabDirective; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-
-
-var TabsComponent = /** @class */ (function () {
-    function TabsComponent() {
-        this.tabs = [];
-    }
-    TabsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-tabs',
-            template: __webpack_require__(/*! ./tabs.component.html */ "../docs/src/lib/core/tabs/tabs.component.html"),
-            styles: [__webpack_require__(/*! ./tabs.component.sass */ "../docs/src/lib/core/tabs/tabs.component.sass")]
-        })
-    ], TabsComponent);
-    return TabsComponent;
-}());
-
-var TabDirective = /** @class */ (function () {
-    function TabDirective(tabs, template) {
-        this.tabs = tabs;
-        this.template = template;
-    }
-    TabDirective.prototype.ngOnInit = function () {
-        this.tabs.tabs.push({
-            label: this.docsTab,
-            template: this.template
-        });
-        if (!this.tabs.selectedTemplate) {
-            this.tabs.selectedTemplate = this.template;
-        }
-    };
-    TabDirective.prototype.ngOnDestroy = function () {
-        var _this = this;
-        this.tabs.tabs = this.tabs.tabs.filter(function (t) { return t.template !== _this.template; });
-        if (this.tabs.selectedTemplate === this.template && this.tabs.tabs.length > 0) {
-            this.tabs.selectedTemplate = this.tabs.tabs[0].template;
-        }
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], TabDirective.prototype, "docsTab", void 0);
-    TabDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[docsTab]'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [TabsComponent, _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]])
-    ], TabDirective);
-    return TabDirective;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/default-welcome/default-welcome.component.html":
-/*!**********************************************************************!*\
-  !*** ../docs/src/lib/default-welcome/default-welcome.component.html ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h1>Default Welcome Page</h1>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Documentation & Demo</h2>\n<p>This documentation is a combination of automated comment extraction from your code and of component examples.\n</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Navigation</h2>\n<p>Use the menu on the left to navigate throught components.</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Backed by Interfacewerk</h2>\n<p><a>Interfacewerk</a> is a digital innovation consultancy focussing on Software Design and User Experience.</p>\n"
-
-/***/ }),
-
-/***/ "../docs/src/lib/default-welcome/default-welcome.component.sass":
-/*!**********************************************************************!*\
-  !*** ../docs/src/lib/default-welcome/default-welcome.component.sass ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ":host {\n  display: block;\n  padding: 15px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2RlZmF1bHQtd2VsY29tZS9kZWZhdWx0LXdlbGNvbWUuY29tcG9uZW50LnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFDQyxlQUFjO0VBQ2QsY0FBYSxFQUFHIiwiZmlsZSI6InByb2plY3RzL2RvY3Mvc3JjL2xpYi9kZWZhdWx0LXdlbGNvbWUvZGVmYXVsdC13ZWxjb21lLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiIDpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHBhZGRpbmc6IDE1cHg7IH1cbiJdfQ== */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/default-welcome/default-welcome.component.ts":
-/*!********************************************************************!*\
-  !*** ../docs/src/lib/default-welcome/default-welcome.component.ts ***!
-  \********************************************************************/
-/*! exports provided: DefaultWelcomeComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultWelcomeComponent", function() { return DefaultWelcomeComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-
-
-var DefaultWelcomeComponent = /** @class */ (function () {
-    function DefaultWelcomeComponent() {
-    }
-    DefaultWelcomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-default-welcome',
-            template: __webpack_require__(/*! ./default-welcome.component.html */ "../docs/src/lib/default-welcome/default-welcome.component.html"),
-            styles: [__webpack_require__(/*! ./default-welcome.component.sass */ "../docs/src/lib/default-welcome/default-welcome.component.sass")]
-        })
-    ], DefaultWelcomeComponent);
-    return DefaultWelcomeComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/docs.module.ts":
-/*!**************************************!*\
-  !*** ../docs/src/lib/docs.module.ts ***!
-  \**************************************/
-/*! exports provided: DocsModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocsModule", function() { return DocsModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/core.module */ "../docs/src/lib/core/core.module.ts");
-/* harmony import */ var _default_welcome_default_welcome_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./default-welcome/default-welcome.component */ "../docs/src/lib/default-welcome/default-welcome.component.ts");
-/* harmony import */ var _docs_docs_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./docs/docs.component */ "../docs/src/lib/docs/docs.component.ts");
-/* harmony import */ var _routes_token__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./routes.token */ "../docs/src/lib/routes.token.ts");
-/* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./menu/menu.component */ "../docs/src/lib/menu/menu.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-
-
-
-
-
-
-
-
-
-
-var DocsModule = /** @class */ (function () {
-    function DocsModule() {
-    }
-    DocsModule_1 = DocsModule;
-    DocsModule.configure = function (configuration) {
-        var sortedComponents = Object.keys(configuration.componentPages).map(function (path) { return ({
-            path: path,
-            component: configuration.componentPages[path].component,
-            title: configuration.componentPages[path].title
-        }); });
-        sortedComponents.sort(function (a, b) { return a.title.localeCompare(b.title); });
-        return {
-            ngModule: DocsModule_1,
-            providers: [
-                { provide: _routes_token__WEBPACK_IMPORTED_MODULE_7__["COMPONENT_PAGES"], useValue: sortedComponents },
-                Object(_angular_router__WEBPACK_IMPORTED_MODULE_3__["provideRoutes"])(sortedComponents.concat([
-                    { path: '', component: configuration.welcomePage || _default_welcome_default_welcome_component__WEBPACK_IMPORTED_MODULE_5__["DefaultWelcomeComponent"] }
-                ]))
-            ]
-        };
-    };
-    var DocsModule_1;
-    DocsModule = DocsModule_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-            declarations: [
-                _docs_docs_component__WEBPACK_IMPORTED_MODULE_6__["DocsComponent"],
-                _default_welcome_default_welcome_component__WEBPACK_IMPORTED_MODULE_5__["DefaultWelcomeComponent"],
-                _menu_menu_component__WEBPACK_IMPORTED_MODULE_8__["MenuComponent"]
-            ],
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot([]),
-                _core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"]
-            ],
-            exports: [
-                _docs_docs_component__WEBPACK_IMPORTED_MODULE_6__["DocsComponent"],
-                _core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"]
-            ]
-        })
-    ], DocsModule);
-    return DocsModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/docs/docs.component.html":
-/*!************************************************!*\
-  !*** ../docs/src/lib/docs/docs.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<aside>\n  <docs-menu>\n    <ng-content></ng-content>\n  </docs-menu>\n</aside>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
-
-/***/ }),
-
-/***/ "../docs/src/lib/docs/docs.component.sass":
-/*!************************************************!*\
-  !*** ../docs/src/lib/docs/docs.component.sass ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "docs-app {\n  display: block;\n  position: relative;\n  width: 100vw;\n  height: 100vh; }\n  docs-app a.app__logo {\n    width: calc(100% - 30px);\n    display: block;\n    height: 50px;\n    margin: 0 15px;\n    position: relative;\n    color: red;\n    background-size: 100%;\n    background-repeat: no-repeat; }\n  docs-app aside {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: 200px;\n    overflow: auto;\n    background: white;\n    color: black;\n    padding: 15px 0px;\n    border-right: 1px solid grey;\n    box-shadow: 2px 0px 2px 1px lightgray; }\n  docs-app main {\n    position: absolute;\n    top: 0;\n    left: 200px;\n    height: 100%;\n    right: 0;\n    overflow: auto; }\n  docs-app ul {\n    padding: 0;\n    margin: 0; }\n  docs-app ul li {\n      list-style: none;\n      width: 100%;\n      padding: 0; }\n  docs-app ul li a {\n        display: inline-block;\n        width: 100%;\n        height: 40px;\n        line-height: 40px;\n        text-decoration: none;\n        padding: 0px 15px;\n        color: black;\n        font-size: 1.6rem;\n        transition: color 0.2s; }\n  docs-app ul li a:hover {\n          color: #FF793F; }\n  docs-app ul li a.active-link {\n          color: #FF4D00; }\n  docs-app .extra-links li:first-child {\n    margin-top: 30px;\n    border-top: 1px solid lightgrey; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL2RvY3MvZG9jcy5jb21wb25lbnQuc2FzcyIsIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL3N0eWxlcy9fdmFyaWFibGVzLnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxlQUFjO0VBQ2QsbUJBQWtCO0VBQ2xCLGFBQVk7RUFDWixjQUFhLEVBK0RpQztFQW5FaEQ7SUFTSSx5QkFBd0I7SUFDeEIsZUFBYztJQUNkLGFBQVk7SUFDWixlQUFjO0lBQ2QsbUJBQWtCO0lBQ2xCLFdBQVU7SUFDVixzQkFBcUI7SUFDckIsNkJBQTRCLEVBQUc7RUFoQm5DO0lBbUJJLG1CQUFrQjtJQUNsQixPQUFNO0lBQ04sUUFBTztJQUNQLGFBQVk7SUFDWixhQWpCaUI7SUFrQmpCLGVBQWM7SUFDZCxrQkFBaUI7SUFDakIsYUFBWTtJQUNaLGtCQUFpQjtJQUNqQiw2QkFBNEI7SUFDNUIsc0NBQXFDLEVBQUc7RUE3QjVDO0lBZ0NJLG1CQUFrQjtJQUNsQixPQUFNO0lBQ04sWUE1QmlCO0lBNkJqQixhQUFZO0lBQ1osU0FBUTtJQUNSLGVBQWMsRUFBRztFQXJDckI7SUF3Q0ksV0FBVTtJQUNWLFVBQVMsRUFzQndCO0VBL0RyQztNQTRDTSxpQkFBZ0I7TUFDaEIsWUFBVztNQUNYLFdBQVUsRUFpQm1CO0VBL0RuQztRQWlEUSxzQkFBcUI7UUFDckIsWUFBVztRQUNYLGFBQVk7UUFDWixrQkFBaUI7UUFDakIsc0JBQXFCO1FBQ3JCLGtCQUFpQjtRQUNqQixhQUFZO1FBQ1osa0JBQWlCO1FBQ2pCLHVCQUFzQixFQU1HO0VBL0RqQztVQTREVSxlQzVEVyxFRDREVztFQTVEaEM7VUErRFUsZUM5RFUsRUQ4RFc7RUEvRC9CO0lBa0VJLGlCQUFnQjtJQUNoQixnQ0MvRHdCLEVEK0RrQiIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvZG9jcy9kb2NzLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vc3R5bGVzL192YXJpYWJsZXMnO1xuXG5kb2NzLWFwcCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcblxuICAkd2lkdGhfYXNpZGU6IDIwMHB4O1xuXG4gIGEuYXBwX19sb2dvIHtcbiAgICB3aWR0aDogY2FsYygxMDAlIC0gMzBweCk7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgaGVpZ2h0OiA1MHB4O1xuICAgIG1hcmdpbjogMCAxNXB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBjb2xvcjogcmVkO1xuICAgIGJhY2tncm91bmQtc2l6ZTogMTAwJTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0OyB9XG5cbiAgYXNpZGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG4gICAgbGVmdDogMDtcbiAgICBoZWlnaHQ6IDEwMCU7XG4gICAgd2lkdGg6ICR3aWR0aF9hc2lkZTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgcGFkZGluZzogMTVweCAwcHg7XG4gICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgZ3JleTtcbiAgICBib3gtc2hhZG93OiAycHggMHB4IDJweCAxcHggbGlnaHRncmF5OyB9XG5cbiAgbWFpbiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAkd2lkdGhfYXNpZGU7XG4gICAgaGVpZ2h0OiAxMDAlO1xuICAgIHJpZ2h0OiAwO1xuICAgIG92ZXJmbG93OiBhdXRvOyB9XG5cbiAgdWwge1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOiAwO1xuXG4gICAgbGkge1xuICAgICAgbGlzdC1zdHlsZTogbm9uZTtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgcGFkZGluZzogMDtcblxuICAgICAgYSB7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGhlaWdodDogNDBweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDQwcHg7XG4gICAgICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICAgICAgcGFkZGluZzogMHB4IDE1cHg7XG4gICAgICAgIGNvbG9yOiBibGFjaztcbiAgICAgICAgZm9udC1zaXplOiAxLjZyZW07XG4gICAgICAgIHRyYW5zaXRpb246IGNvbG9yIDAuMnM7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgY29sb3I6ICRjb2xvci10aHJlZTsgfVxuXG4gICAgICAgICYuYWN0aXZlLWxpbmsge1xuICAgICAgICAgIGNvbG9yOiAkY29sb3ItZm91cjsgfSB9IH0gfVxuXG4gIC5leHRyYS1saW5rcyBsaTpmaXJzdC1jaGlsZCB7XG4gICAgbWFyZ2luLXRvcDogMzBweDtcbiAgICBib3JkZXItdG9wOiAxcHggc29saWQgJGNvbG9yLWxpZ2h0LWdyZXk7IH0gfVxuIiwiJGNvbG9yLW9uZTogIzI4QzhGRjtcbiRjb2xvci10d286ICMyOEEyRkY7XG4kY29sb3ItdGhyZWU6ICNGRjc5M0Y7XG4kY29sb3ItZm91cjogI0ZGNEQwMDtcbiRjb2xvci1maXZlOiAjRUUyMjAwO1xuXG4kY29sb3ItbGlnaHQtZ3JleTogbGlnaHRncmV5O1xuIl19 */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/docs/docs.component.ts":
-/*!**********************************************!*\
-  !*** ../docs/src/lib/docs/docs.component.ts ***!
-  \**********************************************/
-/*! exports provided: DocsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocsComponent", function() { return DocsComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-
-var DocsComponent = /** @class */ (function () {
-    function DocsComponent(sanitizer, route) {
-        this.sanitizer = sanitizer;
-        this.route = route;
-    }
-    Object.defineProperty(DocsComponent.prototype, "brandLogo", {
-        set: function (v) {
-            this.secureBrandLogo = this.sanitizer.bypassSecurityTrustStyle("url(" + v + ")");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DocsComponent.prototype, "search$", {
-        get: function () {
-            return this.route.queryParams.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.search || ''; }));
-        },
-        enumerable: true,
-        configurable: true
-    });
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [String])
-    ], DocsComponent.prototype, "brandLogo", null);
-    DocsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-app',
-            template: __webpack_require__(/*! ./docs.component.html */ "../docs/src/lib/docs/docs.component.html"),
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
-            styles: [__webpack_require__(/*! ./docs.component.sass */ "../docs/src/lib/docs/docs.component.sass")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
-    ], DocsComponent);
-    return DocsComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/menu/menu.component.html":
-/*!************************************************!*\
-  !*** ../docs/src/lib/menu/menu.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"header\">\n  <a class=\"app__logo\" [style.backgroundImage]=\"secureBrandLogo\" routerLink=\"/\"></a>\n  <ul class=\"links\">\n    <li><a routerLink=\"/\" routerLinkActive=\"active-link\" [routerLinkActiveOptions]=\"{exact: true}\">Get started</a></li>\n  </ul>\n  <input type=\"text\"\n    class=\"search\"\n    [class.active]=\"search$ | async\"\n    [class.no-result]=\"(pages$ | async).length === 0\"\n    [ngModel]=\"search$ | async\"\n    (ngModelChange)=\"setSearch($event)\"\n    placeholder=\"Search for a component\"\n    autofocus\n    autocomplete=\"off\"\n  />\n  <div class=\"search-helper\"\n    [class.hidden]=\"!(search$ | async)\"\n    [class.no-result]=\"(pages$ | async).length === 0\">\n    <ng-container *ngIf=\"search$ | async\">\n      {{(pages$ | async).length}} <ng-container *ngIf=\"(pages$ | async).length > 1\">results</ng-container><ng-container *ngIf=\"(pages$ | async).length === 1\">result</ng-container> found\n    </ng-container>\n  </div>\n</div>\n<ul class=\"links\">\n  <ng-container *ngIf=\"pages$ | async as pages; else noResults\">\n    <li *ngFor=\"let page of pages\">\n      <a\n        [routerLink]=\"page.path\"\n        routerLinkActive=\"active-link\"\n      >{{page.title}}</a>\n    </li>\n  </ng-container>\n</ul>\n<ul class=\"extra-links\">\n  <ng-content></ng-content>\n</ul>\n\n<ng-template #noResults>\n  No result for this search!\n</ng-template>"
-
-/***/ }),
-
-/***/ "../docs/src/lib/menu/menu.component.sass":
-/*!************************************************!*\
-  !*** ../docs/src/lib/menu/menu.component.sass ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".search {\n  height: 40px;\n  line-height: 14px;\n  font-size: 14px;\n  padding: 13.5px 15px;\n  width: 100%;\n  border-radius: 0;\n  color: #28A2FF;\n  outline: none;\n  border: none;\n  border-top: lightgrey 1px solid;\n  border-bottom: lightgrey 1px solid; }\n  .search.no-result {\n    border-color: #EE2200;\n    color: #EE2200; }\n  .search-helper {\n  width: 100%;\n  padding: 0 15px;\n  line-height: 20px;\n  height: 20px;\n  background-color: #28A2FF;\n  color: white;\n  font-size: 1rem;\n  transition: opacity 0.2s;\n  opacity: 1; }\n  .search-helper.no-result {\n    background-color: #EE2200; }\n  .search-helper.hidden {\n    opacity: 0; }\n  :host {\n  display: flex;\n  height: 100%;\n  overflow: hidden;\n  flex-direction: column; }\n  .links {\n  flex: 1 1;\n  overflow: auto; }\n  .extra-links, .header {\n  flex: 0 0 auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL21lbnUvbWVudS5jb21wb25lbnQuc2FzcyIsIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZG9jcy9zcmMvbGliL3N0eWxlcy9fdmFyaWFibGVzLnNhc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSUE7RUFDRSxhQUFZO0VBQ1osa0JBQWlCO0VBQ2pCLGdCQUFlO0VBQ2YscUJBQW9CO0VBQ3BCLFlBQVc7RUFDWCxpQkFBZ0I7RUFDaEIsZUNWaUI7RURXakIsY0FBYTtFQUNiLGFBQVk7RUFDWixnQ0FBdUM7RUFDdkMsbUNBQTBDLEVBSWpCO0VBZjNCO0lBY0ksc0JDZGdCO0lEZWhCLGVDZmdCLEVEZUs7RUFFekI7RUFDRSxZQUFXO0VBQ1gsZ0JBQWU7RUFDZixrQkFBaUI7RUFDakIsYUFBWTtFQUNaLDBCQ3pCaUI7RUQwQmpCLGFBQVk7RUFDWixnQkFBZTtFQUNmLHlCQUF3QjtFQUN4QixXQUFVLEVBTU87RUFmbkI7SUFZSSwwQkM3QmdCLEVENkJnQjtFQVpwQztJQWVJLFdBQVUsRUFBRztFQUVoQjtFQUNDLGNBQWE7RUFDYixhQUFZO0VBQ1osaUJBQWdCO0VBQ2hCLHVCQUFzQixFQUFHO0VBRTNCO0VBQ0UsVUFBUztFQUNULGVBQWMsRUFBRztFQUVuQjtFQUNFLGVBQWMsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kb2NzL3NyYy9saWIvbWVudS9tZW51LmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vc3R5bGVzL3ZhcmlhYmxlcyc7XG5cbiRzZWFyY2gtY29sb3I6ICRjb2xvci10d287XG5cbi5zZWFyY2gge1xuICBoZWlnaHQ6IDQwcHg7XG4gIGxpbmUtaGVpZ2h0OiAxNHB4O1xuICBmb250LXNpemU6IDE0cHg7XG4gIHBhZGRpbmc6IDEzLjVweCAxNXB4O1xuICB3aWR0aDogMTAwJTtcbiAgYm9yZGVyLXJhZGl1czogMDtcbiAgY29sb3I6ICRzZWFyY2gtY29sb3I7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGJvcmRlcjogbm9uZTtcbiAgYm9yZGVyLXRvcDogJGNvbG9yLWxpZ2h0LWdyZXkgMXB4IHNvbGlkO1xuICBib3JkZXItYm90dG9tOiAkY29sb3ItbGlnaHQtZ3JleSAxcHggc29saWQ7XG5cbiAgJi5uby1yZXN1bHQge1xuICAgIGJvcmRlci1jb2xvcjogJGNvbG9yLWZpdmU7XG4gICAgY29sb3I6ICRjb2xvci1maXZlOyB9IH1cblxuLnNlYXJjaC1oZWxwZXIge1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMCAxNXB4O1xuICBsaW5lLWhlaWdodDogMjBweDtcbiAgaGVpZ2h0OiAyMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAkc2VhcmNoLWNvbG9yO1xuICBjb2xvcjogd2hpdGU7XG4gIGZvbnQtc2l6ZTogMXJlbTtcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjJzO1xuICBvcGFjaXR5OiAxO1xuXG4gICYubm8tcmVzdWx0IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkY29sb3ItZml2ZTsgfVxuXG4gICYuaGlkZGVuIHtcbiAgICBvcGFjaXR5OiAwOyB9IH1cblxuIDpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgaGVpZ2h0OiAxMDAlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOyB9XG5cbi5saW5rcyB7XG4gIGZsZXg6IDEgMTtcbiAgb3ZlcmZsb3c6IGF1dG87IH1cblxuLmV4dHJhLWxpbmtzLCAuaGVhZGVyIHtcbiAgZmxleDogMCAwIGF1dG87IH1cbiIsIiRjb2xvci1vbmU6ICMyOEM4RkY7XG4kY29sb3ItdHdvOiAjMjhBMkZGO1xuJGNvbG9yLXRocmVlOiAjRkY3OTNGO1xuJGNvbG9yLWZvdXI6ICNGRjREMDA7XG4kY29sb3ItZml2ZTogI0VFMjIwMDtcblxuJGNvbG9yLWxpZ2h0LWdyZXk6IGxpZ2h0Z3JleTtcbiJdfQ== */"
-
-/***/ }),
-
-/***/ "../docs/src/lib/menu/menu.component.ts":
-/*!**********************************************!*\
-  !*** ../docs/src/lib/menu/menu.component.ts ***!
-  \**********************************************/
-/*! exports provided: MenuComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuComponent", function() { return MenuComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _docs_docs_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../docs/docs.component */ "../docs/src/lib/docs/docs.component.ts");
-/* harmony import */ var _routes_token__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../routes.token */ "../docs/src/lib/routes.token.ts");
-
-
-
-
-
-
-
-var MenuComponent = /** @class */ (function () {
-    function MenuComponent(componentPages, docs, router) {
-        this.componentPages = componentPages;
-        this.docs = docs;
-        this.router = router;
-        this.pages$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.componentPages), this.search$)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (_a) {
-            var pages = _a[0], search = _a[1];
-            var normalized = (search || '').toLowerCase();
-            return pages.filter(function (p) { return p.title.toLowerCase().indexOf(normalized) > -1; });
-        }));
-    }
-    Object.defineProperty(MenuComponent.prototype, "secureBrandLogo", {
-        get: function () {
-            return this.docs.secureBrandLogo;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MenuComponent.prototype, "search$", {
-        get: function () {
-            return this.docs.search$;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    MenuComponent.prototype.setSearch = function (v) {
-        this.router.navigate([], {
-            queryParams: {
-                search: v
-            },
-            queryParamsHandling: 'merge'
-        });
-    };
-    MenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'docs-menu',
-            template: __webpack_require__(/*! ./menu.component.html */ "../docs/src/lib/menu/menu.component.html"),
-            styles: [__webpack_require__(/*! ./menu.component.sass */ "../docs/src/lib/menu/menu.component.sass")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_routes_token__WEBPACK_IMPORTED_MODULE_6__["COMPONENT_PAGES"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Array, _docs_docs_component__WEBPACK_IMPORTED_MODULE_5__["DocsComponent"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
-    ], MenuComponent);
-    return MenuComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../docs/src/lib/routes.token.ts":
-/*!***************************************!*\
-  !*** ../docs/src/lib/routes.token.ts ***!
-  \***************************************/
-/*! exports provided: COMPONENT_PAGES */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COMPONENT_PAGES", function() { return COMPONENT_PAGES; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-
-var COMPONENT_PAGES = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('COMPONENT_PAGES');
-
-
-/***/ }),
-
-/***/ "../docs/src/public_api.ts":
-/*!*********************************!*\
-  !*** ../docs/src/public_api.ts ***!
-  \*********************************/
-/*! exports provided: DocsModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_docs_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/docs.module */ "../docs/src/lib/docs.module.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocsModule", function() { return _lib_docs_module__WEBPACK_IMPORTED_MODULE_0__["DocsModule"]; });
-
-/*
- * Public API Surface of docs
- */
-
-
-
-/***/ }),
-
 /***/ "./$$_lazy_route_resource lazy recursive":
 /*!******************************************************!*\
   !*** ./$$_lazy_route_resource lazy namespace object ***!
@@ -4327,7 +3053,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<docs-app [brandLogo]=\"'assets/logo.svg'\">\n  <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n  <li><a href=\"https://interfacewerk.de/jobs\"><fa-icon [icon]=\"faHandshake\"></fa-icon> We are hiring!</a></li>\n  <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n</docs-app>\n"
+module.exports = "<docs-app>\n  <ng-template docsBrandHeader>\n    <img class=\"brand-header-image\" [attr.src]=\"'assets/logo.svg'\" />\n  </ng-template>\n\n  <li><a href=\"https://github.com/interfacewerk/iwerk-angular-ui\"><fa-icon [icon]=\"faGithub\"></fa-icon><i class=\"fa fa-github\" aria-hidden=\"true\"></i> Github</a></li>\n  <li><a href=\"https://interfacewerk.de/jobs\"><fa-icon [icon]=\"faHandshake\"></fa-icon> We are hiring!</a></li>\n  <li><a href=\"https://interfacewerk.de\">interfacewerk.de</a></li>\n</docs-app>\n"
 
 /***/ }),
 
@@ -4338,7 +3064,7 @@ module.exports = "<docs-app [brandLogo]=\"'assets/logo.svg'\">\n  <li><a href=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zYXNzIn0= */"
+module.exports = ".brand-header-image {\n  width: 100%;\n  height: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVc7RUFDWCxhQUFZLEVBQUciLCJmaWxlIjoicHJvamVjdHMvZGVtby9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIi5icmFuZC1oZWFkZXItaW1hZ2Uge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiBhdXRvOyB9XG4iXX0= */"
 
 /***/ }),
 
@@ -4355,12 +3081,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "../../node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+
 
 
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.faHandshake = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faHandshake"];
+        this.faGithub = _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faGithub"];
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -4392,7 +3121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! projects/docs/src/public_api */ "../docs/src/public_api.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dialog/dialog.module */ "./src/app/dialog/dialog.module.ts");
 /* harmony import */ var _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dialog/dialog/dialog.component */ "./src/app/dialog/dialog/dialog.component.ts");
@@ -4447,7 +3176,8 @@ var AppModule = /** @class */ (function () {
                 _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_10__["EllipsisDemoModule"],
                 _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__["DialogDemoModule"],
                 _tree_docs_tree_docs_module__WEBPACK_IMPORTED_MODULE_19__["TreeDocsModule"],
-                projects_docs_src_public_api__WEBPACK_IMPORTED_MODULE_6__["DocsModule"].configure({
+                ng_documentation__WEBPACK_IMPORTED_MODULE_6__["DocsModule"],
+                ng_documentation__WEBPACK_IMPORTED_MODULE_6__["DocsModule"].configure({
                     welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__["WelcomeComponent"],
                     componentPages: {
                         popover: { title: 'Popover', component: _popover_popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_14__["PopoverDemoComponent"] },
@@ -4486,7 +3216,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
 /* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dialog/dialog.component */ "./src/app/dialog/dialog/dialog.component.ts");
 /* harmony import */ var _example1_dialog_example1_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./example1/dialog-example1.component */ "./src/app/dialog/example1/dialog-example1.component.ts");
@@ -4511,7 +3241,7 @@ var DialogDemoModule = /** @class */ (function () {
                 src_public_api__WEBPACK_IMPORTED_MODULE_4__["DialogModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_4__["TooltipModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_4__["PopoverModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_3__["CoreModule"]
+                ng_documentation__WEBPACK_IMPORTED_MODULE_3__["DocsModule"]
             ],
             declarations: [_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["DialogComponent"], _my_dialog_my_dialog_component__WEBPACK_IMPORTED_MODULE_8__["MyDialogComponent"], _example1_dialog_example1_component__WEBPACK_IMPORTED_MODULE_6__["DialogExample1Component"], _example2_dialog_example2_component__WEBPACK_IMPORTED_MODULE_7__["DialogExample2Component"]],
             entryComponents: [_my_dialog_my_dialog_component__WEBPACK_IMPORTED_MODULE_8__["MyDialogComponent"]]
@@ -4795,7 +3525,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var src_app_ui_multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/ui/multiline-ellipsis/multiline-ellipsis.module */ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.module.ts");
 /* harmony import */ var _ellipsis_example1_ellipsis_example1_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ellipsis-example1/ellipsis-example1.component */ "./src/app/ellipsis/ellipsis-example1/ellipsis-example1.component.ts");
 /* harmony import */ var _ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ellipsis/ellipsis.component */ "./src/app/ellipsis/ellipsis/ellipsis.component.ts");
@@ -4816,7 +3546,7 @@ var EllipsisDemoModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 src_app_ui_multiline_ellipsis_multiline_ellipsis_module__WEBPACK_IMPORTED_MODULE_5__["MultilineEllipsisModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"]
+                ng_documentation__WEBPACK_IMPORTED_MODULE_4__["DocsModule"]
             ],
             declarations: [
                 _ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_7__["EllipsisDemoComponent"],
@@ -5021,7 +3751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
 /* harmony import */ var _navigation_example1_navigation_example1_nested2_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navigation-example1/navigation-example1-nested2.component */ "./src/app/navigation/navigation-example1/navigation-example1-nested2.component.ts");
 /* harmony import */ var _navigation_example1_navigation_example1_nested3_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navigation-example1/navigation-example1-nested3.component */ "./src/app/navigation/navigation-example1/navigation-example1-nested3.component.ts");
@@ -5044,7 +3774,7 @@ var NavigationDemoModule = /** @class */ (function () {
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_4__["NavigationModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_3__["CoreModule"]
+                ng_documentation__WEBPACK_IMPORTED_MODULE_3__["DocsModule"]
             ],
             declarations: [
                 _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_8__["NavigationdDemoComponent"],
@@ -5461,7 +4191,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var _custom_popover_demo_custom_popover_demo_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./custom-popover-demo/custom-popover-demo.component */ "./src/app/popover/custom-popover-demo/custom-popover-demo.component.ts");
 /* harmony import */ var _popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popover-demo/popover-demo.component */ "./src/app/popover/popover-demo/popover-demo.component.ts");
 /* harmony import */ var _popover_example1_popover_example1_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./popover-example1/popover-example1.component */ "./src/app/popover/popover-example1/popover-example1.component.ts");
@@ -5487,7 +4217,7 @@ var PopoverDemoModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_4__["PopoverModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_5__["CoreModule"]
+                ng_documentation__WEBPACK_IMPORTED_MODULE_5__["DocsModule"]
             ],
             declarations: [
                 _popover_demo_popover_demo_component__WEBPACK_IMPORTED_MODULE_7__["PopoverDemoComponent"],
@@ -5650,7 +4380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
 /* harmony import */ var _tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tooltip-demo/tooltip-demo.component */ "./src/app/tooltip/tooltip-demo/tooltip-demo.component.ts");
 
@@ -5669,7 +4399,7 @@ var TooltipDemoModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_5__["TooltipModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"]
+                ng_documentation__WEBPACK_IMPORTED_MODULE_4__["DocsModule"]
             ],
             declarations: [
                 _tooltip_demo_tooltip_demo_component__WEBPACK_IMPORTED_MODULE_6__["TooltipDemoComponent"],
@@ -6023,7 +4753,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! projects/docs/src/lib/core/core.module */ "../docs/src/lib/core/core.module.ts");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
 /* harmony import */ var src_public_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/public_api */ "../../src/public_api.ts");
 /* harmony import */ var _tree_docs_example1_tree_docs_example1_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tree-docs-example1/tree-docs-example1.component */ "./src/app/tree-docs/tree-docs-example1/tree-docs-example1.component.ts");
 /* harmony import */ var _tree_docs_example2_tree_docs_example2_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tree-docs-example2/tree-docs-example2.component */ "./src/app/tree-docs/tree-docs-example2/tree-docs-example2.component.ts");
@@ -6052,7 +4782,7 @@ var TreeDocsModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                projects_docs_src_lib_core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
+                ng_documentation__WEBPACK_IMPORTED_MODULE_4__["DocsModule"],
                 src_public_api__WEBPACK_IMPORTED_MODULE_5__["TreeModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"]
             ]
