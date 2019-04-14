@@ -15,6 +15,7 @@ install:
 script:
   - npm run lint && npm run test-ci && npm run build
   - npm run build:docs
+  - ls
 node_js:
   - '10'
 after_success:
@@ -28,6 +29,6 @@ deploy:
   skip-cleanup: true
   github-token: $GH_TOKEN
   keep-history: true
-  local-dir: ./dist/docs
+  local-dir: ./dist-docs
   on:
     branch: master
