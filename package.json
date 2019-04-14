@@ -51,7 +51,7 @@
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
     "postinstall": "cp -R node_modules/ng-documentation/scripts .",
-    "build:docs": "./scripts/generate-doc.sh projects/demo/src/assets src/tsconfig.app.json demo && ng build demo",
+    "build:docs": "./scripts/generate-doc.sh projects/demo/src/assets/documentation src/tsconfig.app.json demo && ng build demo --base-href https://interfacewerk.github.io/iwerk-angular-ui/",
     "watch:docs": "./scripts/watch-docs.sh projects/demo/src/assets/documentation src/tsconfig.app.json demo"
   },
   "dependencies": {},
