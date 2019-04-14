@@ -54,13 +54,12 @@
     "build:docs": "./scripts/generate-doc.sh projects/demo/src/assets src/tsconfig.app.json demo && ng build demo",
     "watch:docs": "./scripts/watch-docs.sh projects/demo/src/assets/documentation src/tsconfig.app.json demo"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-solid-svg-icons": "^5.7.0",
-    "@fortawesome/free-brands-svg-icons": "5.8.1"
-  },
-  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "5.8.1",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "~0.13.0",
     "@angular/cli": "^7.3.0",
