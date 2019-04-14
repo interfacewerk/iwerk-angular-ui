@@ -1,3 +1,11 @@
+## [3.17.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.2...v3.17.3) (2019-04-14)
+
+
+### Bug Fixes
+
+* **docs:** fix docs deploy ([5032f71](https://github.com/interfacewerk/iwerk-angular-ui/commit/5032f71))
+* **docs:** fix docs deploy ([69636ca](https://github.com/interfacewerk/iwerk-angular-ui/commit/69636ca))
+
 ## [3.17.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.1...v3.17.2) (2019-04-14)
 
 
