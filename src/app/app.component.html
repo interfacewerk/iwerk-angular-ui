@@ -1,4 +1,4 @@
-<aside>
+<aside [class.closed]="isClosed">
   <iw-tree #treeComponent class="routes-menu" [tree]="tree">
     <ng-template iwTreeNodeTemplate let-node let-depth="depth">
       <a [routerLink]="node.data.routerLink"
@@ -12,6 +12,8 @@
       </a>
     </ng-template>
   </iw-tree>
+
+  <button (click)="isClosed = !isClosed">Toggle</button>
 </aside>
 
 <main>

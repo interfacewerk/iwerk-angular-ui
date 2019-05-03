@@ -4,7 +4,7 @@ export interface PopoverOptions {
   popoverClass?: string;
   arrowClass?: string;
   horizontal?: boolean;
-  horizontalAlignment?: 'leftWithLeft' | undefined;
+  horizontalAlignment?: 'leftWithLeft' | 'rightWithRight' | undefined;
   scrollMaskClass?: string;
   escToClose?: boolean;
   clickOutsideToClose?: boolean;

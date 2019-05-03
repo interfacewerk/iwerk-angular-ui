@@ -20,6 +20,40 @@ describe('smartPosition', () => {
     document.body.removeChild(arrowElement);
   });
 
+  it('aligns the popover with the bottom right corner of the target', () => {
+    addInBody(target, { top: 10, left: 400, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      horizontalAlignment: 'rightWithRight',
+      popoverPosition: () => { }
+    });
+    expect(arrowElement.style.left).toBe('425px');
+    expect(container.style.top).toBe('40px');
+    expect(container.style.right).toBe('450px');
+  });
+
+  it('aligns the popover with the bottom right corner of the target', () => {
+    addInBody(target, { top: 10, left: 10, width: 50, height: 30 });
+    addInBody(container, { top: 0, left: 0, width: 200, height: 200 });
+    addInBody(arrowElement, { top: 0, left: 0, width: 0, height: 0 });
+    smartPosition({
+      arrowElement,
+      container,
+      target,
+    }, <PopoverOptions>{
+      horizontalAlignment: 'rightWithRight',
+      popoverPosition: () => { }
+    });
+    expect(arrowElement.style.left).toBe('35px');
+    expect(container.style.top).toBe('40px');
+    expect(container.style.right).toBe('700px');
+  });
+
   it('aligns the popover with the bottom left corner of the target', () => {
     addInBody(target, { top: 10, left: 400, width: 50, height: 30 });
     addInBody(container, { top: 0, left: 0, width: 200, height: 200 });

@@ -7,6 +7,8 @@ import { TreeItem } from './ui/tree/tree/tree.component';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  isClosed = false;
+
   tree: TreeItem[] = [
     {
       data: {
