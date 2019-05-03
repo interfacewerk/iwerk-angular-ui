@@ -1,3 +1,22 @@
+# [4.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.3...v4.0.0) (2019-05-03)
+
+
+### Bug Fixes
+
+* **popover:** put popover container and arrow element as siblings of scroll mask ([977588c](https://github.com/interfacewerk/iwerk-angular-ui/commit/977588c))
+
+
+### Features
+
+* **popover:** add rightWithRight alignment option ([15d2907](https://github.com/interfacewerk/iwerk-angular-ui/commit/15d2907))
+* **popover:** add rightWithRight alignment option ([bf1bba4](https://github.com/interfacewerk/iwerk-angular-ui/commit/bf1bba4))
+
+
+### BREAKING CHANGES
+
+* **popover:** The DOM structure changes: the container and the arrow are no longer children of
+the scroll mask
+
 ## [3.17.3](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.2...v3.17.3) (2019-04-14)
 
 
