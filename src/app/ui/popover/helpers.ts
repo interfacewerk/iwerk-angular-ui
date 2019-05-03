@@ -44,6 +44,9 @@ function verticalSmartPosition(elements: {
   if (options.horizontalAlignment === 'leftWithLeft') {
     const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
     container.style.left = Math.max(0, Math.min(maxLeft, left)) + 'px';
+  } else if (options.horizontalAlignment === 'rightWithRight') {
+    const maxRight = document.body.getBoundingClientRect().width - container.offsetWidth;
+    container.style.right = Math.min(maxRight, (document.body.getBoundingClientRect().width - right)) + 'px';
   } else {
     const maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
     container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
