@@ -1220,6 +1220,10 @@ function verticalSmartPosition(elements, options) {
         var maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
         container.style.left = Math.max(0, Math.min(maxLeft, left)) + 'px';
     }
+    else if (options.horizontalAlignment === 'rightWithRight') {
+        var maxRight = document.body.getBoundingClientRect().width - container.offsetWidth;
+        container.style.right = Math.min(maxRight, (document.body.getBoundingClientRect().width - right)) + 'px';
+    }
     else {
         var maxLeft = document.body.getBoundingClientRect().width - container.offsetWidth;
         container.style.left = Math.max(0, Math.min(maxLeft, centerX - 0.5 * container.offsetWidth)) + 'px';
@@ -1297,7 +1301,7 @@ module.exports = "<ng-content></ng-content>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "iw-popover-container {\n  position: absolute;\n  z-index: 4;\n  display: block;\n  background: white;\n  border: 1px solid black;\n  padding: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvc3JjL2FwcC91aS9wb3BvdmVyL3BvcG92ZXItY29udGFpbmVyL3BvcG92ZXItY29udGFpbmVyLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQWtCO0VBQ2xCLFdBQVU7RUFDVixlQUFjO0VBQ2Qsa0JBQWlCO0VBQ2pCLHdCQUF1QjtFQUN2QixhQUFZLEVBQUciLCJmaWxlIjoic3JjL2FwcC91aS9wb3BvdmVyL3BvcG92ZXItY29udGFpbmVyL3BvcG92ZXItY29udGFpbmVyLmNvbXBvbmVudC5zYXNzIiwic291cmNlc0NvbnRlbnQiOlsiaXctcG9wb3Zlci1jb250YWluZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHotaW5kZXg6IDQ7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIHBhZGRpbmc6IDVweDsgfVxuIl19 */"
+module.exports = "iw-popover-container {\n  position: fixed;\n  z-index: 4;\n  display: block;\n  background: white;\n  border: 1px solid black;\n  padding: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvc3JjL2FwcC91aS9wb3BvdmVyL3BvcG92ZXItY29udGFpbmVyL3BvcG92ZXItY29udGFpbmVyLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWU7RUFDZixXQUFVO0VBQ1YsZUFBYztFQUNkLGtCQUFpQjtFQUNqQix3QkFBdUI7RUFDdkIsYUFBWSxFQUFHIiwiZmlsZSI6InNyYy9hcHAvdWkvcG9wb3Zlci9wb3BvdmVyLWNvbnRhaW5lci9wb3BvdmVyLWNvbnRhaW5lci5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIml3LXBvcG92ZXItY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB6LWluZGV4OiA0O1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBwYWRkaW5nOiA1cHg7IH1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1707,12 +1711,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PopoverImpl = /** @class */ (function () {
-    function PopoverImpl(embeddedViewRef, appRef, componentRef, container, scrollMask) {
+    function PopoverImpl(embeddedViewRef, appRef, componentRef, container, scrollMask, arrowElement) {
         this.embeddedViewRef = embeddedViewRef;
         this.appRef = appRef;
         this.componentRef = componentRef;
         this.container = container;
         this.scrollMask = scrollMask;
+        this.arrowElement = arrowElement;
         this.isClosed = false;
     }
     PopoverImpl.prototype.close = function () {
@@ -1728,6 +1733,7 @@ var PopoverImpl = /** @class */ (function () {
             this.componentRef.destroy();
             this.appRef.detachView(this.componentRef.hostView);
         }
+        this.arrowElement.remove();
         this.appRef.detachView(this.container.hostView);
         this.appRef.detachView(this.scrollMask.hostView);
         this.container.destroy();
@@ -1788,7 +1794,7 @@ var PopoverService = /** @class */ (function () {
             .create(this.injector, componentRef ? [[componentRef.location.nativeElement]] : [embeddedViewRef.rootNodes]);
         // create the mask component
         var scrollMask = this.componentFactoryResolver.resolveComponentFactory(_popover_scroll_mask_popover_scroll_mask_component__WEBPACK_IMPORTED_MODULE_3__["PopoverScrollMaskComponent"])
-            .create(this.injector, [[container.location.nativeElement, arrowElement]]);
+            .create(this.injector);
         // we bind to the output (which is an observable)
         scrollMask.instance.clickOutsideToClose = options.clickOutsideToClose;
         scrollMask.instance.onClose.subscribe(function () {
@@ -1812,7 +1818,7 @@ var PopoverService = /** @class */ (function () {
             scrollMask: scrollMask.location.nativeElement,
             target: target
         }, options);
-        return new PopoverImpl(embeddedViewRef, this.appRef, componentRef, container, scrollMask);
+        return new PopoverImpl(embeddedViewRef, this.appRef, componentRef, container, scrollMask, arrowElement);
     };
     PopoverService.prototype.__showPopover = function (elements, options) {
         var container = elements.container;
@@ -1824,6 +1830,8 @@ var PopoverService = /** @class */ (function () {
             Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(container, options.popoverClass);
             Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(scrollMask, options.scrollMaskClass);
             Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(arrowElement, options.arrowClass);
+            document.body.appendChild(container);
+            document.body.appendChild(arrowElement);
             document.body.appendChild(scrollMask);
             Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["smartPosition"])(elements, options);
             container.classList.add('iw-popover-container--visible');
