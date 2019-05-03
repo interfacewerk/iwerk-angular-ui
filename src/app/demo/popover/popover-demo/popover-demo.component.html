@@ -1,5 +1,17 @@
 <h1> Popover </h1>
 
+<h2>Right alignment</h2>
+
+<button (click)="isPopoverOpen6 = true">Yoooo
+  <ng-template iwPopover 
+    [isOpen]="isPopoverOpen6"
+    arrowClass="popover-no-arrow"
+    [horizontalAlignment]="'rightWithRight'"
+    (shouldClose)="isPopoverOpen6 = false">
+    Helloooo
+  </ng-template>
+</button>
+
 <h2>Popover declarative logic</h2>
 
 <p>The popover will appear on this element!
