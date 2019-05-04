@@ -26,7 +26,7 @@ glob(path.join(projectRootPath, 'app/**/*'), (error, allFiles) => {
         if (!completePath) {
           console.error(`ERROR: could not find a file for the short path ${path}`);
         } else {
-          object[path] = fs.readFileSync(completePath).toString();
+          object[path] = fs.readFileSync(completePath).toString().replace(/from 'src\/public_api'/g, `from 'iwerk-angular-ui'`);
         }
       });
     });
