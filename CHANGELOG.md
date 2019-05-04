@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v4.0.0...v4.0.1) (2019-05-04)
+
+
+### Bug Fixes
+
+* **docs:** do not install new scripts and replace import ([fe35e04](https://github.com/interfacewerk/iwerk-angular-ui/commit/fe35e04))
+
 # [4.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.3...v4.0.0) (2019-05-03)
 
 
