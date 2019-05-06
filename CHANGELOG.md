@@ -16,7 +16,6 @@
 ### Features
 
 * **popover:** add rightWithRight alignment option ([15d2907](https://github.com/interfacewerk/iwerk-angular-ui/commit/15d2907))
-* **popover:** add rightWithRight alignment option ([bf1bba4](https://github.com/interfacewerk/iwerk-angular-ui/commit/bf1bba4))
 
 
 ### BREAKING CHANGES
@@ -30,7 +29,6 @@ the scroll mask
 ### Bug Fixes
 
 * **docs:** fix docs deploy ([5032f71](https://github.com/interfacewerk/iwerk-angular-ui/commit/5032f71))
-* **docs:** fix docs deploy ([69636ca](https://github.com/interfacewerk/iwerk-angular-ui/commit/69636ca))
 
 ## [3.17.2](https://github.com/interfacewerk/iwerk-angular-ui/compare/v3.17.1...v3.17.2) (2019-04-14)
 
