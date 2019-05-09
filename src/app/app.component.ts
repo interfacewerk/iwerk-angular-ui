@@ -57,6 +57,11 @@ export class AppComponent {
         routerLink: ['/tree'], label: 'Tree'
       },
     },
+    {
+      data: {
+        routerLink: ['/dropdown'], label: 'Dropdown'
+      },
+    },
   ];
 
   linkStyle(depth: number) {

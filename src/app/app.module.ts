@@ -9,6 +9,8 @@ import { TreeDemoComponent } from './demo/tree/tree.component';
 import { TreeModule } from './demo/tree/tree.module';
 import { UiModule } from './ui/ui.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { DropdownDemoComponent } from './demo/dropdown/dropdown/dropdown.component';
+import { DropdownModule } from './demo/dropdown/dropdown.module'
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -20,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
   { path: 'navigation', component: NavigationDemoComponent },
   { path: 'tree', component: TreeDemoComponent },
+  { path: 'dropdown', component: DropdownDemoComponent },
 ];
 
 @NgModule({
@@ -29,14 +32,15 @@ const appRoutes: Routes = [
     EllipsisComponent,
     NavigationDemoComponent,
     SomeComponent,
-    SomeOtherComponent
+    SomeOtherComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     UiModule,
     RouterModule.forRoot(appRoutes),
-    TreeModule
+    TreeModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent],
