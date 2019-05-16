@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable()
@@ -37,5 +37,36 @@ export class MovableService implements EventListenerObject {
         y: event.touches[0].pageY - this.initialPosition.top
       });
     }
+  }
+
+  makeHandle(target: { elementRef: ElementRef }): Function {
+    const element = target.elementRef.nativeElement as HTMLElement;
+
+    const listeners = [
+      { event: 'mousedown', fn: ($event: MouseEvent) => {
+        this.startMoving({
+          top: $event.pageY,
+          left: $event.pageX
+        });
+      }},
+      { event: 'mouseup', fn: () => {
+        this.stopMoving();
+      }},
+      { event: 'touchstart', fn: ($event: TouchEvent) => {
+        this.startMoving({
+          top: $event.touches[0].pageY,
+          left: $event.touches[0].pageX
+        });
+      }},
+      { event: 'touchend', fn: () => {
+        this.stopMoving();
+      }}
+    ];
+
+    listeners.forEach(item => element.addEventListener(item.event, item.fn));
+
+    return () => {
+      listeners.forEach(item => element.removeEventListener(item.event, item.fn));
+    };
   }
 }

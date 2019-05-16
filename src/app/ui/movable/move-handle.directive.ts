@@ -1,45 +1,22 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { MovableService } from './movable.service';
 
 @Directive({
   selector: '[iwMoveHandle]'
 })
-export class MoveHandleDirective {
+export class MoveHandleDirective implements OnInit, OnDestroy {
+  private sub: Function;
+
   constructor(
-    private movable: MovableService
+    private movable: MovableService,
+    public elementRef: ElementRef
   ) { }
 
-  @HostListener('mousedown', ['$event'])
-  onMouseDown($event: MouseEvent) {
-    this.startMoving({
-      top: $event.pageY,
-      left: $event.pageX
-    });
+  ngOnInit() {
+    this.sub = this.movable.makeHandle(this);
   }
 
-  @HostListener('mouseup', [])
-  onMouseUp() {
-    this.stopMoving();
-  }
-
-  @HostListener('touchstart', ['$event'])
-  onTouchStart($event: TouchEvent) {
-    this.startMoving({
-      top: $event.touches[0].pageY,
-      left: $event.touches[0].pageX
-    });
-  }
-
-  @HostListener('touchend', [])
-  onTouchEnd() {
-    this.stopMoving();
-  }
-
-  private startMoving(position: {top: number, left: number}) {
-    this.movable.startMoving(position);
-  }
-
-  private stopMoving() {
-    this.movable.stopMoving();
+  ngOnDestroy() {
+    this.sub();
   }
 }
