@@ -1,3 +1,16 @@
+# [5.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v4.0.1...v5.0.0) (2019-05-16)
+
+
+### Features
+
+* **movable:** add moved output ([824cfec](https://github.com/interfacewerk/iwerk-angular-ui/commit/824cfec))
+* **movable:** introduce Movable module ([83a2ce4](https://github.com/interfacewerk/iwerk-angular-ui/commit/83a2ce4))
+
+
+### BREAKING CHANGES
+
+* **movable:** We introduce a whole new module.
+
 ## [4.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v4.0.0...v4.0.1) (2019-05-04)
 
 
