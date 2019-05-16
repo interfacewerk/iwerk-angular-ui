@@ -1,12 +1,18 @@
 import { Directive, ElementRef, HostBinding, OnInit, EventEmitter, Output } from '@angular/core';
 import { MovableService } from './movable.service';
 
+/**
+ * The movable directive lets the user move around elements.
+ */
 @Directive({
   selector: '[iwMovable]',
   providers: [MovableService]
 })
 export class MovableDirective implements OnInit {
-  @Output() moved = new EventEmitter();
+  /**
+   * Emits true when the element is moved, false otherwise.
+   */
+  @Output() moved = new EventEmitter<boolean>();
 
   @HostBinding('style.top')
   get top() {
@@ -47,17 +53,21 @@ export class MovableDirective implements OnInit {
   ) {
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
     this.movable.move$.subscribe(move => {
       if (!this.__position) {
         this.updateCurrentPositionFromOffset();
       }
       this.__move = move;
-      this.moved.next();
+      this.moved.next(true);
     });
     this.movable.stopped$.subscribe(() => {
       this.__move = undefined;
       this.updateCurrentPositionFromOffset();
+      this.moved.next(false);
     });
   }
 
@@ -65,6 +75,9 @@ export class MovableDirective implements OnInit {
     return this.elementRef.nativeElement as HTMLElement;
   }
 
+  /**
+   * @ignore
+   */
   private updateCurrentPositionFromOffset() {
     this.__position = {
       top: this.element.offsetTop,
