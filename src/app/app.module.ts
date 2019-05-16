@@ -20,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'checkbox', loadChildren: 'app/demo/checkbox-demo/checkbox-demo.module#CheckboxDemoModule' },
   { path: 'navigation', component: NavigationDemoComponent },
   { path: 'tree', component: TreeDemoComponent },
+  { path: 'movable', loadChildren: 'app/demo/movable-demo/movable-demo.module#MovableDemoModule' },
 ];
 
 @NgModule({

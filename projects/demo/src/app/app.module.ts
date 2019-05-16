@@ -18,6 +18,8 @@ import { TooltipDemoModule } from './tooltip/tooltip.module';
 import { TreeDocsComponent } from './tree-docs/tree-docs.component';
 import { TreeDocsModule } from './tree-docs/tree-docs.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { MovableComponent } from './movable/movable/movable.component';
+import { MovableModule } from './movable/movable.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     EllipsisDemoModule,
     DialogDemoModule,
     TreeDocsModule,
+    MovableModule,
     DocsModule,
     DocsModule.configure({
       welcomePage: WelcomeComponent,
@@ -43,7 +46,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
         dialog: { title: 'Dialog', component: DialogComponent },
         navigation: { title: 'Navigation', component: NavigationdDemoComponent },
         ellipsis: { title: 'Ellipsis', component: EllipsisDemoComponent },
-        tree: { title: 'Tree', component: TreeDocsComponent }
+        tree: { title: 'Tree', component: TreeDocsComponent },
+        movable: { title: 'Movable', component: MovableComponent }
       }
     })
   ],
