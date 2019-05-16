@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostBinding, OnInit, EventEmitter, Output } from '@angular/core';
 import { MovableService } from './movable.service';
 
 @Directive({
@@ -6,6 +6,7 @@ import { MovableService } from './movable.service';
   providers: [MovableService]
 })
 export class MovableDirective implements OnInit {
+  @Output() moved = new EventEmitter();
 
   @HostBinding('style.top')
   get top() {
@@ -52,6 +53,7 @@ export class MovableDirective implements OnInit {
         this.updateCurrentPositionFromOffset();
       }
       this.__move = move;
+      this.moved.next();
     });
     this.movable.stopped$.subscribe(() => {
       this.__move = undefined;
