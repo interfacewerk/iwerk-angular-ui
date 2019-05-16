@@ -719,6 +719,293 @@ var DialogService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../src/app/ui/movable/movable.directive.ts":
+/*!*************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/movable/movable.directive.ts ***!
+  \*************************************************************************************************/
+/*! exports provided: MovableDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableDirective", function() { return MovableDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _movable_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./movable.service */ "../../src/app/ui/movable/movable.service.ts");
+
+
+
+/**
+ * The movable directive lets the user move around elements.
+ */
+var MovableDirective = /** @class */ (function () {
+    function MovableDirective(movable, elementRef) {
+        this.movable = movable;
+        this.elementRef = elementRef;
+        /**
+         * Emits true when the element is moved, false otherwise.
+         */
+        this.moved = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    Object.defineProperty(MovableDirective.prototype, "top", {
+        get: function () {
+            if (this.__position !== undefined) {
+                var top_1 = this.__position.top;
+                if (this.__move) {
+                    top_1 += this.__move.y;
+                }
+                return top_1 + 'px';
+            }
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MovableDirective.prototype, "left", {
+        get: function () {
+            if (this.__position !== undefined) {
+                var left = this.__position.left;
+                if (this.__move) {
+                    left += this.__move.x;
+                }
+                return left + 'px';
+            }
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @ignore
+     */
+    MovableDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this.movable.move$.subscribe(function (move) {
+            if (!_this.__position) {
+                _this.updateCurrentPositionFromOffset();
+            }
+            _this.__move = move;
+            _this.moved.next(true);
+        });
+        this.movable.stopped$.subscribe(function () {
+            _this.__move = undefined;
+            _this.updateCurrentPositionFromOffset();
+            _this.moved.next(false);
+        });
+    };
+    Object.defineProperty(MovableDirective.prototype, "element", {
+        get: function () {
+            return this.elementRef.nativeElement;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @ignore
+     */
+    MovableDirective.prototype.updateCurrentPositionFromOffset = function () {
+        this.__position = {
+            top: this.element.offsetTop,
+            left: this.element.offsetLeft
+        };
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], MovableDirective.prototype, "moved", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])('style.top'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MovableDirective.prototype, "top", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])('style.left'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MovableDirective.prototype, "left", null);
+    MovableDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[iwMovable]',
+            providers: [_movable_service__WEBPACK_IMPORTED_MODULE_2__["MovableService"]]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movable_service__WEBPACK_IMPORTED_MODULE_2__["MovableService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], MovableDirective);
+    return MovableDirective;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/movable/movable.module.ts":
+/*!**********************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/movable/movable.module.ts ***!
+  \**********************************************************************************************/
+/*! exports provided: MovableService, MovableModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableModule", function() { return MovableModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _movable_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./movable.directive */ "../../src/app/ui/movable/movable.directive.ts");
+/* harmony import */ var _move_handle_directive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./move-handle.directive */ "../../src/app/ui/movable/move-handle.directive.ts");
+/* harmony import */ var _movable_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./movable.service */ "../../src/app/ui/movable/movable.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MovableService", function() { return _movable_service__WEBPACK_IMPORTED_MODULE_5__["MovableService"]; });
+
+
+
+
+
+
+
+var MovableModule = /** @class */ (function () {
+    function MovableModule() {
+    }
+    MovableModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [_movable_directive__WEBPACK_IMPORTED_MODULE_3__["MovableDirective"], _move_handle_directive__WEBPACK_IMPORTED_MODULE_4__["MoveHandleDirective"]],
+            exports: [_movable_directive__WEBPACK_IMPORTED_MODULE_3__["MovableDirective"], _move_handle_directive__WEBPACK_IMPORTED_MODULE_4__["MoveHandleDirective"]],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]
+            ]
+        })
+    ], MovableModule);
+    return MovableModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/movable/movable.service.ts":
+/*!***********************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/movable/movable.service.ts ***!
+  \***********************************************************************************************/
+/*! exports provided: MovableService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableService", function() { return MovableService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
+
+
+
+var MovableService = /** @class */ (function () {
+    function MovableService() {
+        this.move$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.stopped$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+    }
+    MovableService.prototype.startMoving = function (position) {
+        this.initialPosition = position;
+        document.addEventListener('mousemove', this);
+        document.addEventListener('touchmove', this);
+    };
+    MovableService.prototype.stopMoving = function () {
+        document.removeEventListener('touchmove', this);
+        document.removeEventListener('mousemove', this);
+        this.stopped$.next();
+    };
+    MovableService.prototype.handleEvent = function (event) {
+        if (event instanceof MouseEvent) {
+            this.move$.next({
+                x: event.pageX - this.initialPosition.left,
+                y: event.pageY - this.initialPosition.top
+            });
+        }
+        else if (event instanceof TouchEvent) {
+            this.move$.next({
+                x: event.touches[0].pageX - this.initialPosition.left,
+                y: event.touches[0].pageY - this.initialPosition.top
+            });
+        }
+    };
+    MovableService.prototype.makeHandle = function (target) {
+        var _this = this;
+        var element = target.elementRef.nativeElement;
+        var listeners = [
+            { event: 'mousedown', fn: function ($event) {
+                    _this.startMoving({
+                        top: $event.pageY,
+                        left: $event.pageX
+                    });
+                } },
+            { event: 'mouseup', fn: function () {
+                    _this.stopMoving();
+                } },
+            { event: 'touchstart', fn: function ($event) {
+                    _this.startMoving({
+                        top: $event.touches[0].pageY,
+                        left: $event.touches[0].pageX
+                    });
+                } },
+            { event: 'touchend', fn: function () {
+                    _this.stopMoving();
+                } }
+        ];
+        listeners.forEach(function (item) { return element.addEventListener(item.event, item.fn); });
+        return function () {
+            listeners.forEach(function (item) { return element.removeEventListener(item.event, item.fn); });
+        };
+    };
+    MovableService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MovableService);
+    return MovableService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../src/app/ui/movable/move-handle.directive.ts":
+/*!*****************************************************************************************************!*\
+  !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/movable/move-handle.directive.ts ***!
+  \*****************************************************************************************************/
+/*! exports provided: MoveHandleDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MoveHandleDirective", function() { return MoveHandleDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _movable_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./movable.service */ "../../src/app/ui/movable/movable.service.ts");
+
+
+
+var MoveHandleDirective = /** @class */ (function () {
+    function MoveHandleDirective(movable, elementRef) {
+        this.movable = movable;
+        this.elementRef = elementRef;
+    }
+    MoveHandleDirective.prototype.ngOnInit = function () {
+        this.sub = this.movable.makeHandle(this);
+    };
+    MoveHandleDirective.prototype.ngOnDestroy = function () {
+        this.sub();
+    };
+    MoveHandleDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[iwMoveHandle]'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movable_service__WEBPACK_IMPORTED_MODULE_2__["MovableService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], MoveHandleDirective);
+    return MoveHandleDirective;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts":
 /*!***********************************************************************************************************************!*\
   !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/app/ui/multiline-ellipsis/multiline-ellipsis.directive.ts ***!
@@ -2964,7 +3251,7 @@ var UiModule = /** @class */ (function () {
 /*!***************************************************************************!*\
   !*** /home/travis/build/interfacewerk/iwerk-angular-ui/src/public_api.ts ***!
   \***************************************************************************/
-/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationController, NavigationModule, TreeComponent, TreeModule, UiModule */
+/*! exports provided: PopoverService, Popover, IW_POPOVER_CONFIG, PopoverModule, IW_TOOLTIP_CONFIG, TooltipModule, StateButtonModule, CheckboxModule, IW_DIALOG_CONFIG, DialogService, DialogDirective, DialogModule, MultilineEllipsisModule, NavigationComponent, NavigationData, NavigationController, NavigationModule, TreeComponent, TreeModule, MovableService, MovableModule, UiModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3015,8 +3302,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TreeModule", function() { return _app_ui_tree_tree_module__WEBPACK_IMPORTED_MODULE_7__["TreeModule"]; });
 
-/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_8__["UiModule"]; });
+/* harmony import */ var _app_ui_movable_movable_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app/ui/movable/movable.module */ "../../src/app/ui/movable/movable.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MovableService", function() { return _app_ui_movable_movable_module__WEBPACK_IMPORTED_MODULE_8__["MovableService"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MovableModule", function() { return _app_ui_movable_movable_module__WEBPACK_IMPORTED_MODULE_8__["MovableModule"]; });
+
+/* harmony import */ var _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app/ui/ui.module */ "../../src/app/ui/ui.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UiModule", function() { return _app_ui_ui_module__WEBPACK_IMPORTED_MODULE_9__["UiModule"]; });
+
 
 
 
@@ -3144,6 +3437,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tree_docs_tree_docs_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./tree-docs/tree-docs.component */ "./src/app/tree-docs/tree-docs.component.ts");
 /* harmony import */ var _tree_docs_tree_docs_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./tree-docs/tree-docs.module */ "./src/app/tree-docs/tree-docs.module.ts");
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
+/* harmony import */ var _movable_movable_movable_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./movable/movable/movable.component */ "./src/app/movable/movable/movable.component.ts");
+/* harmony import */ var _movable_movable_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./movable/movable.module */ "./src/app/movable/movable.module.ts");
+
+
 
 
 
@@ -3184,6 +3481,7 @@ var AppModule = /** @class */ (function () {
                 _ellipsis_ellipsis_module__WEBPACK_IMPORTED_MODULE_10__["EllipsisDemoModule"],
                 _dialog_dialog_module__WEBPACK_IMPORTED_MODULE_8__["DialogDemoModule"],
                 _tree_docs_tree_docs_module__WEBPACK_IMPORTED_MODULE_19__["TreeDocsModule"],
+                _movable_movable_module__WEBPACK_IMPORTED_MODULE_22__["MovableModule"],
                 ng_documentation__WEBPACK_IMPORTED_MODULE_6__["DocsModule"],
                 ng_documentation__WEBPACK_IMPORTED_MODULE_6__["DocsModule"].configure({
                     welcomePage: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_20__["WelcomeComponent"],
@@ -3193,7 +3491,8 @@ var AppModule = /** @class */ (function () {
                         dialog: { title: 'Dialog', component: _dialog_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_9__["DialogComponent"] },
                         navigation: { title: 'Navigation', component: _navigation_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_13__["NavigationdDemoComponent"] },
                         ellipsis: { title: 'Ellipsis', component: _ellipsis_ellipsis_ellipsis_component__WEBPACK_IMPORTED_MODULE_11__["EllipsisDemoComponent"] },
-                        tree: { title: 'Tree', component: _tree_docs_tree_docs_component__WEBPACK_IMPORTED_MODULE_18__["TreeDocsComponent"] }
+                        tree: { title: 'Tree', component: _tree_docs_tree_docs_component__WEBPACK_IMPORTED_MODULE_18__["TreeDocsComponent"] },
+                        movable: { title: 'Movable', component: _movable_movable_movable_component__WEBPACK_IMPORTED_MODULE_21__["MovableComponent"] }
                     }
                 })
             ],
@@ -3616,6 +3915,154 @@ var EllipsisDemoComponent = /** @class */ (function () {
         })
     ], EllipsisDemoComponent);
     return EllipsisDemoComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/movable/movable-example1/movable-example1.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/movable/movable-example1/movable-example1.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"area\">\n\n  <div class=\"target\" iwMovable (moved)=\"moved = $event\" [class.moved]=\"moved\">\n    <div class=\"handle\" iwMoveHandle>I'm the move handle!</div>\n    I can be moved around!\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/movable/movable-example1/movable-example1.component.sass":
+/*!**************************************************************************!*\
+  !*** ./src/app/movable/movable-example1/movable-example1.component.sass ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".area {\n  width: 300px;\n  height: 300px;\n  border: 1px solid grey;\n  position: relative;\n  overflow: hidden; }\n\n.handle {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 20px;\n  cursor: pointer;\n  background: black;\n  color: white; }\n\n.target {\n  position: absolute;\n  padding: 20px 0 0 0;\n  border: 3px solid red;\n  width: 100px; }\n\n.target.moved {\n    border-color: green; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9pbnRlcmZhY2V3ZXJrL2l3ZXJrLWFuZ3VsYXItdWkvcHJvamVjdHMvZGVtby9zcmMvYXBwL21vdmFibGUvbW92YWJsZS1leGFtcGxlMS9tb3ZhYmxlLWV4YW1wbGUxLmNvbXBvbmVudC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBWTtFQUNaLGNBQWE7RUFDYix1QkFBc0I7RUFDdEIsbUJBQWtCO0VBQ2xCLGlCQUFnQixFQUFHOztBQUVyQjtFQUNFLG1CQUFrQjtFQUNsQixPQUFNO0VBQ04sUUFBTztFQUNQLFlBQVc7RUFDWCxhQUFZO0VBQ1osZ0JBQWU7RUFDZixrQkFBaUI7RUFDakIsYUFBWSxFQUFHOztBQUVqQjtFQUNFLG1CQUFrQjtFQUNsQixvQkFBbUI7RUFDbkIsc0JBQXFCO0VBQ3JCLGFBQVksRUFHYzs7QUFQNUI7SUFPSSxvQkFBbUIsRUFBRyIsImZpbGUiOiJwcm9qZWN0cy9kZW1vL3NyYy9hcHAvbW92YWJsZS9tb3ZhYmxlLWV4YW1wbGUxL21vdmFibGUtZXhhbXBsZTEuY29tcG9uZW50LnNhc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYXJlYSB7XG4gIHdpZHRoOiAzMDBweDtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JleTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBvdmVyZmxvdzogaGlkZGVuOyB9XG5cbi5oYW5kbGUge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMjBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBiYWNrZ3JvdW5kOiBibGFjaztcbiAgY29sb3I6IHdoaXRlOyB9XG5cbi50YXJnZXQge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBhZGRpbmc6IDIwcHggMCAwIDA7XG4gIGJvcmRlcjogM3B4IHNvbGlkIHJlZDtcbiAgd2lkdGg6IDEwMHB4O1xuXG4gICYubW92ZWQge1xuICAgIGJvcmRlci1jb2xvcjogZ3JlZW47IH0gfVxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/movable/movable-example1/movable-example1.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/movable/movable-example1/movable-example1.component.ts ***!
+  \************************************************************************/
+/*! exports provided: MovableExample1Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableExample1Component", function() { return MovableExample1Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var MovableExample1Component = /** @class */ (function () {
+    function MovableExample1Component() {
+        this.moved = false;
+    }
+    MovableExample1Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-movable-example1',
+            template: __webpack_require__(/*! ./movable-example1.component.html */ "./src/app/movable/movable-example1/movable-example1.component.html"),
+            styles: [__webpack_require__(/*! ./movable-example1.component.sass */ "./src/app/movable/movable-example1/movable-example1.component.sass")]
+        })
+    ], MovableExample1Component);
+    return MovableExample1Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/movable/movable.module.ts":
+/*!*******************************************!*\
+  !*** ./src/app/movable/movable.module.ts ***!
+  \*******************************************/
+/*! exports provided: MovableModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableModule", function() { return MovableModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ng_documentation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-documentation */ "../../node_modules/ng-documentation/fesm5/ng-documentation.js");
+/* harmony import */ var _src_app_ui_movable_movable_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../src/app/ui/movable/movable.module */ "../../src/app/ui/movable/movable.module.ts");
+/* harmony import */ var _movable_example1_movable_example1_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./movable-example1/movable-example1.component */ "./src/app/movable/movable-example1/movable-example1.component.ts");
+/* harmony import */ var _movable_movable_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./movable/movable.component */ "./src/app/movable/movable/movable.component.ts");
+
+
+
+
+
+
+
+var MovableModule = /** @class */ (function () {
+    function MovableModule() {
+    }
+    MovableModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+            declarations: [
+                _movable_movable_component__WEBPACK_IMPORTED_MODULE_6__["MovableComponent"],
+                _movable_example1_movable_example1_component__WEBPACK_IMPORTED_MODULE_5__["MovableExample1Component"]
+            ],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                ng_documentation__WEBPACK_IMPORTED_MODULE_3__["DocsModule"],
+                _src_app_ui_movable_movable_module__WEBPACK_IMPORTED_MODULE_4__["MovableModule"]
+            ],
+            entryComponents: [
+                _movable_movable_component__WEBPACK_IMPORTED_MODULE_6__["MovableComponent"]
+            ]
+        })
+    ], MovableModule);
+    return MovableModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/movable/movable/movable.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/movable/movable/movable.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<docs-component-documentation\n  [componentTitle]=\"'Movable'\"\n  [componentId]=\"'MovableDirective'\"\n  [componentType]=\"'directives'\"\n>\n  <ng-template docsComponentExample=\"Basic Usage\">\n    <app-movable-example1></app-movable-example1>\n    <docs-tabs>\n      <docs-code *docsTab=\"'HTML'\" path=\"movable-example1.component.html\"></docs-code>\n    </docs-tabs>\n  </ng-template>\n</docs-component-documentation>\n"
+
+/***/ }),
+
+/***/ "./src/app/movable/movable/movable.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/movable/movable/movable.component.ts ***!
+  \******************************************************/
+/*! exports provided: MovableComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovableComponent", function() { return MovableComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+
+
+var MovableComponent = /** @class */ (function () {
+    function MovableComponent() {
+    }
+    MovableComponent.prototype.ngOnInit = function () {
+    };
+    MovableComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-movable',
+            template: __webpack_require__(/*! ./movable.component.html */ "./src/app/movable/movable/movable.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MovableComponent);
+    return MovableComponent;
 }());
 
 
