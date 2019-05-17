@@ -6,6 +6,7 @@
 dist.tgz
 /documentation
 /projects/demo/src/assets/documentation
+/projects/demo/src/assets/examples.json
 /docs
 
 # dependencies
