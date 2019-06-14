@@ -27,6 +27,9 @@ export class MovableService implements EventListenerObject {
 
   handleEvent(event: MouseEvent | TouchEvent) {
     if (event instanceof MouseEvent) {
+      // we do that to avoid selecting text while dragging
+      event.preventDefault();
+      event.stopPropagation();
       this.move$.next({
         x: event.pageX - this.initialPosition.left,
         y: event.pageY - this.initialPosition.top
@@ -44,6 +47,7 @@ export class MovableService implements EventListenerObject {
 
     const listeners = [
       { event: 'mousedown', fn: ($event: MouseEvent) => {
+        $event.preventDefault();
         this.startMoving({
           top: $event.pageY,
           left: $event.pageX
@@ -53,6 +57,8 @@ export class MovableService implements EventListenerObject {
         this.stopMoving();
       }},
       { event: 'touchstart', fn: ($event: TouchEvent) => {
+        // we avoid scrolling
+        $event.preventDefault();
         this.startMoving({
           top: $event.touches[0].pageY,
           left: $event.touches[0].pageX
