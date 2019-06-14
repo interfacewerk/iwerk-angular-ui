@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v5.0.0...v5.0.1) (2019-06-14)
+
+
+### Bug Fixes
+
+* **movable:** fix issue where text was selected when dragging and page could scroll ([6c05392](https://github.com/interfacewerk/iwerk-angular-ui/commit/6c05392))
+
 # [5.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v4.0.1...v5.0.0) (2019-05-16)
 
 
