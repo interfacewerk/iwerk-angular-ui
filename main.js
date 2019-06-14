@@ -914,6 +914,9 @@ var MovableService = /** @class */ (function () {
     };
     MovableService.prototype.handleEvent = function (event) {
         if (event instanceof MouseEvent) {
+            // we do that to avoid selecting text while dragging
+            event.preventDefault();
+            event.stopPropagation();
             this.move$.next({
                 x: event.pageX - this.initialPosition.left,
                 y: event.pageY - this.initialPosition.top
@@ -931,6 +934,7 @@ var MovableService = /** @class */ (function () {
         var element = target.elementRef.nativeElement;
         var listeners = [
             { event: 'mousedown', fn: function ($event) {
+                    $event.preventDefault();
                     _this.startMoving({
                         top: $event.pageY,
                         left: $event.pageX
@@ -940,6 +944,8 @@ var MovableService = /** @class */ (function () {
                     _this.stopMoving();
                 } },
             { event: 'touchstart', fn: function ($event) {
+                    // we avoid scrolling
+                    $event.preventDefault();
                     _this.startMoving({
                         top: $event.touches[0].pageY,
                         left: $event.touches[0].pageX

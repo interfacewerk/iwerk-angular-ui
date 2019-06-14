@@ -821,7 +821,7 @@
         },
         {
             "name": "MovableService",
-            "id": "injectable-MovableService-383a85f34b43bfc86937345c1f9a1462",
+            "id": "injectable-MovableService-55efb8339fd69b2882d13eccfc7fa3c1",
             "file": "src/app/ui/movable/movable.service.ts",
             "properties": [
                 {
@@ -882,7 +882,7 @@
                     "optional": false,
                     "returnType": "Function",
                     "typeParameters": [],
-                    "line": 42,
+                    "line": 45,
                     "jsdoctags": [
                         {
                             "name": "target",
@@ -925,7 +925,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable, ElementRef } from '@angular/core';\nimport { Subject } from 'rxjs';\n\n@Injectable()\nexport class MovableService implements EventListenerObject {\n  initialPosition: {\n    top: number\n    left: number\n  };\n\n  move$ = new Subject<{ x: number, y: number }>();\n  stopped$ = new Subject();\n\n  constructor() { }\n\n  startMoving(position: { top: number, left: number }) {\n    this.initialPosition = position;\n    document.addEventListener('mousemove', this);\n    document.addEventListener('touchmove', this);\n  }\n\n  stopMoving() {\n    document.removeEventListener('touchmove', this);\n    document.removeEventListener('mousemove', this);\n    this.stopped$.next();\n  }\n\n  handleEvent(event: MouseEvent | TouchEvent) {\n    if (event instanceof MouseEvent) {\n      this.move$.next({\n        x: event.pageX - this.initialPosition.left,\n        y: event.pageY - this.initialPosition.top\n      });\n    } else if (event instanceof TouchEvent) {\n      this.move$.next({\n        x: event.touches[0].pageX - this.initialPosition.left,\n        y: event.touches[0].pageY - this.initialPosition.top\n      });\n    }\n  }\n\n  makeHandle(target: { elementRef: ElementRef }): Function {\n    const element = target.elementRef.nativeElement as HTMLElement;\n\n    const listeners = [\n      { event: 'mousedown', fn: ($event: MouseEvent) => {\n        this.startMoving({\n          top: $event.pageY,\n          left: $event.pageX\n        });\n      }},\n      { event: 'mouseup', fn: () => {\n        this.stopMoving();\n      }},\n      { event: 'touchstart', fn: ($event: TouchEvent) => {\n        this.startMoving({\n          top: $event.touches[0].pageY,\n          left: $event.touches[0].pageX\n        });\n      }},\n      { event: 'touchend', fn: () => {\n        this.stopMoving();\n      }}\n    ];\n\n    listeners.forEach(item => element.addEventListener(item.event, item.fn));\n\n    return () => {\n      listeners.forEach(item => element.removeEventListener(item.event, item.fn));\n    };\n  }\n}\n",
+            "sourceCode": "import { Injectable, ElementRef } from '@angular/core';\nimport { Subject } from 'rxjs';\n\n@Injectable()\nexport class MovableService implements EventListenerObject {\n  initialPosition: {\n    top: number\n    left: number\n  };\n\n  move$ = new Subject<{ x: number, y: number }>();\n  stopped$ = new Subject();\n\n  constructor() { }\n\n  startMoving(position: { top: number, left: number }) {\n    this.initialPosition = position;\n    document.addEventListener('mousemove', this);\n    document.addEventListener('touchmove', this);\n  }\n\n  stopMoving() {\n    document.removeEventListener('touchmove', this);\n    document.removeEventListener('mousemove', this);\n    this.stopped$.next();\n  }\n\n  handleEvent(event: MouseEvent | TouchEvent) {\n    if (event instanceof MouseEvent) {\n      // we do that to avoid selecting text while dragging\n      event.preventDefault();\n      event.stopPropagation();\n      this.move$.next({\n        x: event.pageX - this.initialPosition.left,\n        y: event.pageY - this.initialPosition.top\n      });\n    } else if (event instanceof TouchEvent) {\n      this.move$.next({\n        x: event.touches[0].pageX - this.initialPosition.left,\n        y: event.touches[0].pageY - this.initialPosition.top\n      });\n    }\n  }\n\n  makeHandle(target: { elementRef: ElementRef }): Function {\n    const element = target.elementRef.nativeElement as HTMLElement;\n\n    const listeners = [\n      { event: 'mousedown', fn: ($event: MouseEvent) => {\n        $event.preventDefault();\n        this.startMoving({\n          top: $event.pageY,\n          left: $event.pageX\n        });\n      }},\n      { event: 'mouseup', fn: () => {\n        this.stopMoving();\n      }},\n      { event: 'touchstart', fn: ($event: TouchEvent) => {\n        // we avoid scrolling\n        $event.preventDefault();\n        this.startMoving({\n          top: $event.touches[0].pageY,\n          left: $event.touches[0].pageX\n        });\n      }},\n      { event: 'touchend', fn: () => {\n        this.stopMoving();\n      }}\n    ];\n\n    listeners.forEach(item => element.addEventListener(item.event, item.fn));\n\n    return () => {\n      listeners.forEach(item => element.removeEventListener(item.event, item.fn));\n    };\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
