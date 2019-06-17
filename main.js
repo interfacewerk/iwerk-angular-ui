@@ -1681,10 +1681,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PopoverScrollMaskComponent = /** @class */ (function () {
-    function PopoverScrollMaskComponent(elementRef) {
+    function PopoverScrollMaskComponent(elementRef, renderer) {
         this.elementRef = elementRef;
+        this.renderer = renderer;
         this.onClose = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"](false);
     }
+    PopoverScrollMaskComponent.prototype.ngOnInit = function () {
+        this.renderer.addClass(document.body, 'body-with-iw-popover');
+    };
+    PopoverScrollMaskComponent.prototype.ngOnDestroy = function () {
+        this.renderer.removeClass(document.body, 'body-with-iw-popover');
+    };
     PopoverScrollMaskComponent.prototype.onClick = function ($event) {
         if (this.clickOutsideToClose && $event.target === this.elementRef.nativeElement) {
             $event.preventDefault();
@@ -1705,7 +1712,8 @@ var PopoverScrollMaskComponent = /** @class */ (function () {
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
             styles: [__webpack_require__(/*! ./popover-scroll-mask.component.sass */ "../../src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.sass")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]])
     ], PopoverScrollMaskComponent);
     return PopoverScrollMaskComponent;
 }());
@@ -5263,7 +5271,7 @@ var TreeDocsModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Interfacewerk Angular UI</h1>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Production ready, highly customizable</h2>\n<p>This library is a set of interface tools that we use everyday in our Angular projects. They are designed as single\n  blocks, easily customizable with CSS, opinionated\n  components or directives.\n</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> AOT compatible</h2>\n<p>We keep this library up-to-date with the latest Angular capabilities. Therefore, we can use any of its component in\n  your AOT ready projects.</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> UX and performance</h2>\n<p>We develop this library with the user experience in mind. Therefore, interactions must be easy to understand and none\n  of the components should affect\n  the performance. When working with other libraries, we often face the problem that, in huge tables, a simple tooltip\n  on each cell could greatly impact\n  the snappiness of the application.\n</p>\n\n<h2>Get Started</h2>\n\n<ol>\n  <li>\n    1. Install the package\n    <docs-code-line>{{ \"npm install --save iwerk-angular-ui\" }}</docs-code-line>\n  </li>\n  <li>\n    2. Import the modules you need to any of your modules\n    <docs-code-line>{{ \"import { DialogModule } from 'iwerk-angular-ui';\" }}</docs-code-line>\n  </li>\n</ol>"
+module.exports = "<h1>Interfacewerk Angular UI</h1>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Production ready, highly customizable</h2>\n<p>This library is a set of interface tools that we use everyday in our Angular projects. They are designed as single\n  blocks, easily customizable with CSS, opinionated\n  components or directives.\n</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> AOT compatible</h2>\n<p>We keep this library up-to-date with the latest Angular capabilities. Therefore, we can use any of its component in\n  your AOT ready projects.</p>\n\n<h2><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> UX and performance</h2>\n<p>We develop this library with the user experience in mind. Therefore, interactions must be easy to understand and none\n  of the components should affect\n  the performance. When working with other libraries, we often face the problem that, in huge tables, a simple tooltip\n  on each cell could greatly impact\n  the snappiness of the application.\n</p>\n\n<h2>Get Started</h2>\n\n<ol>\n  <li>\n    1. Install the package\n    <docs-code-line>{{ \"npm install --save iwerk-angular-ui\" }}</docs-code-line>\n  </li>\n  <li>\n    2. Import the default styles in your angular.json or in your stylesheets.\n  </li>\n  <li>\n    2. Import the modules you need to any of your modules\n    <docs-code-line>{{ \"import { DialogModule } from 'iwerk-angular-ui';\" }}</docs-code-line>\n  </li>\n</ol>"
 
 /***/ }),
 

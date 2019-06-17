@@ -4976,7 +4976,7 @@
         },
         {
             "name": "PopoverScrollMaskComponent",
-            "id": "component-PopoverScrollMaskComponent-19b2087dbc3516a1ccbcfa2b1feae726",
+            "id": "component-PopoverScrollMaskComponent-236166f34b28dbcda469fab28d899987",
             "file": "src/app/ui/popover/popover-scroll-mask/popover-scroll-mask.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -5002,7 +5002,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 10
                 },
                 {
                     "name": "onClose",
@@ -5010,10 +5010,27 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 11
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18
+                }
+            ],
             "hostBindings": [],
             "hostListeners": [
                 {
@@ -5027,12 +5044,12 @@
                     "argsDecorator": [
                         "$event"
                     ],
-                    "line": 22
+                    "line": 27
                 }
             ],
             "description": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  HostListener,\n  EventEmitter,\n  ViewEncapsulation,\n  ElementRef\n} from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-scroll-mask',\n  templateUrl: './popover-scroll-mask.component.html',\n  styleUrls: ['./popover-scroll-mask.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverScrollMaskComponent {\n  clickOutsideToClose: boolean;\n  onClose = new EventEmitter(false);\n\n  constructor(private elementRef: ElementRef) {}\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if (this.clickOutsideToClose && $event.target === this.elementRef.nativeElement) {\n      $event.preventDefault();\n      $event.stopPropagation();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
+            "sourceCode": "import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';\n\n@Component({\n  selector: 'iw-popover-scroll-mask',\n  templateUrl: './popover-scroll-mask.component.html',\n  styleUrls: ['./popover-scroll-mask.component.sass'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class PopoverScrollMaskComponent implements OnInit, OnDestroy {\n  clickOutsideToClose: boolean;\n  onClose = new EventEmitter(false);\n\n  constructor(\n    private elementRef: ElementRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit() {\n    this.renderer.addClass(document.body, 'body-with-iw-popover');\n  }\n\n  ngOnDestroy() {\n    this.renderer.removeClass(document.body, 'body-with-iw-popover');\n  }\n\n  @HostListener('click', ['$event'])\n  onClick($event: MouseEvent) {\n    if (this.clickOutsideToClose && $event.target === this.elementRef.nativeElement) {\n      $event.preventDefault();\n      $event.stopPropagation();\n      this.onClose.emit();\n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5048,9 +5065,13 @@
                     {
                         "name": "elementRef",
                         "type": "ElementRef"
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2"
                     }
                 ],
-                "line": 17,
+                "line": 11,
                 "jsdoctags": [
                     {
                         "name": "elementRef",
@@ -5058,9 +5079,20 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
             "templateData": "<ng-content></ng-content>"
         },
         {
@@ -8256,7 +8288,7 @@
                 "linktype": "component",
                 "name": "PopoverScrollMaskComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
