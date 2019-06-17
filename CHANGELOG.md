@@ -1,3 +1,17 @@
+# [6.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v5.0.1...v6.0.0) (2019-06-17)
+
+
+### Bug Fixes
+
+* **popover:** the popover now adds a CSS class to the body ([b3e2b7b](https://github.com/interfacewerk/iwerk-angular-ui/commit/b3e2b7b)), closes [#195](https://github.com/interfacewerk/iwerk-angular-ui/issues/195)
+* **popover:** the popover scroll mask prevents whole body scrolling ([09aa0c1](https://github.com/interfacewerk/iwerk-angular-ui/commit/09aa0c1))
+
+
+### BREAKING CHANGES
+
+* **popover:** Developers must add the exported iwerk-angular-ui css stylesheet when using the
+popover.
+
 ## [5.0.1](https://github.com/interfacewerk/iwerk-angular-ui/compare/v5.0.0...v5.0.1) (2019-06-14)
 
 
