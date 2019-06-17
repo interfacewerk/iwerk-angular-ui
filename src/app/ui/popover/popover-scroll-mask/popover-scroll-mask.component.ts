@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostListener,
-  EventEmitter,
-  ViewEncapsulation,
-  ElementRef
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'iw-popover-scroll-mask',
@@ -12,11 +6,22 @@ import {
   styleUrls: ['./popover-scroll-mask.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
-export class PopoverScrollMaskComponent {
+export class PopoverScrollMaskComponent implements OnInit, OnDestroy {
   clickOutsideToClose: boolean;
   onClose = new EventEmitter(false);
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2
+  ) {}
+
+  ngOnInit() {
+    this.renderer.addClass(document.body, 'body-with-iw-popover');
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'body-with-iw-popover');
+  }
 
   @HostListener('click', ['$event'])
   onClick($event: MouseEvent) {

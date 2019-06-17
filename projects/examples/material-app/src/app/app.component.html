@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Custom Toolbar</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <mat-list-item>
+        <a mat-button routerLink=".">Home</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #1</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #2</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #3</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #4</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #5</a></mat-list-item>
+      <mat-list-item>
+        <a mat-button routerLink=".">Link #6</a></mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
