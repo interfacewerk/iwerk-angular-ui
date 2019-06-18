@@ -1,22 +1,31 @@
-import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, HostBinding, Optional } from '@angular/core';
 import { MovableService } from './movable.service';
 
 @Directive({
   selector: '[iwMoveHandle]'
 })
 export class MoveHandleDirective implements OnInit, OnDestroy {
+  @HostBinding('class.iw-move-handle')
+  get isMovable(): boolean {
+    return !!this.movable;
+  }
+
   private sub: Function;
 
   constructor(
-    private movable: MovableService,
+    @Optional() private movable: MovableService,
     public elementRef: ElementRef
   ) { }
 
   ngOnInit() {
-    this.sub = this.movable.makeHandle(this);
+    if (this.movable) {
+      this.sub = this.movable.makeHandle(this);
+    }
   }
 
   ngOnDestroy() {
-    this.sub();
+    if (this.movable) {
+      this.sub();
+    }
   }
 }
