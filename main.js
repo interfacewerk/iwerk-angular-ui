@@ -992,16 +992,33 @@ var MoveHandleDirective = /** @class */ (function () {
         this.movable = movable;
         this.elementRef = elementRef;
     }
+    Object.defineProperty(MoveHandleDirective.prototype, "isMovable", {
+        get: function () {
+            return !!this.movable;
+        },
+        enumerable: true,
+        configurable: true
+    });
     MoveHandleDirective.prototype.ngOnInit = function () {
-        this.sub = this.movable.makeHandle(this);
+        if (this.movable) {
+            this.sub = this.movable.makeHandle(this);
+        }
     };
     MoveHandleDirective.prototype.ngOnDestroy = function () {
-        this.sub();
+        if (this.movable) {
+            this.sub();
+        }
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])('class.iw-move-handle'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MoveHandleDirective.prototype, "isMovable", null);
     MoveHandleDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
             selector: '[iwMoveHandle]'
         }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"])()),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movable_service__WEBPACK_IMPORTED_MODULE_2__["MovableService"],
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
     ], MoveHandleDirective);

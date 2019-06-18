@@ -2029,11 +2029,11 @@
         },
         {
             "name": "MovableDirective",
-            "id": "directive-MovableDirective-1ec0c5bbdf0456dbf48fe96d7fe35ba2",
+            "id": "directive-MovableDirective-21f3d0b760d9461925d5bd71681b05da",
             "file": "src/app/ui/movable/movable.directive.ts",
             "type": "directive",
             "description": "<p>The movable directive lets the user move around elements.</p>\n",
-            "sourceCode": "import { Directive, ElementRef, HostBinding, OnInit, EventEmitter, Output } from '@angular/core';\nimport { MovableService } from './movable.service';\n\n/**\n * The movable directive lets the user move around elements.\n */\n@Directive({\n  selector: '[iwMovable]',\n  providers: [MovableService]\n})\nexport class MovableDirective implements OnInit {\n  /**\n   * Emits true when the element is moved, false otherwise.\n   */\n  @Output() moved = new EventEmitter<boolean>();\n\n  @HostBinding('style.top')\n  get top() {\n    if (this.__position !== undefined) {\n      let top = this.__position.top;\n      if (this.__move) {\n        top += this.__move.y;\n      }\n      return top + 'px';\n    }\n    return '';\n  }\n\n  @HostBinding('style.left')\n  get left() {\n    if (this.__position !== undefined) {\n      let left = this.__position.left;\n      if (this.__move) {\n        left += this.__move.x;\n      }\n      return left + 'px';\n    }\n    return '';\n  }\n\n  private __position: {\n    top: number\n    left: number\n  };\n  private __move: {\n    x: number\n    y: number\n  };\n\n  constructor(\n    private movable: MovableService,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    this.movable.move$.subscribe(move => {\n      if (!this.__position) {\n        this.updateCurrentPositionFromOffset();\n      }\n      this.__move = move;\n      this.moved.next(true);\n    });\n    this.movable.stopped$.subscribe(() => {\n      this.__move = undefined;\n      this.updateCurrentPositionFromOffset();\n      this.moved.next(false);\n    });\n  }\n\n  private get element() {\n    return this.elementRef.nativeElement as HTMLElement;\n  }\n\n  /**\n   * @ignore\n   */\n  private updateCurrentPositionFromOffset() {\n    this.__position = {\n      top: this.element.offsetTop,\n      left: this.element.offsetLeft\n    };\n  }\n\n}\n",
+            "sourceCode": "import { Directive, ElementRef, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';\nimport { MovableService } from './movable.service';\n\n/**\n * The movable directive lets the user move around elements.\n */\n@Directive({\n  selector: '[iwMovable]',\n  providers: [MovableService]\n})\nexport class MovableDirective implements OnInit {\n  /**\n   * Emits true when the element is moved, false otherwise.\n   */\n  @Output() moved = new EventEmitter<boolean>();\n\n  @HostBinding('style.top')\n  get top() {\n    if (this.__position !== undefined) {\n      let top = this.__position.top;\n      if (this.__move) {\n        top += this.__move.y;\n      }\n      return top + 'px';\n    }\n    return '';\n  }\n\n  @HostBinding('style.left')\n  get left() {\n    if (this.__position !== undefined) {\n      let left = this.__position.left;\n      if (this.__move) {\n        left += this.__move.x;\n      }\n      return left + 'px';\n    }\n    return '';\n  }\n\n  private __position: {\n    top: number\n    left: number\n  };\n  private __move: {\n    x: number\n    y: number\n  };\n\n  constructor(\n    private movable: MovableService,\n    private elementRef: ElementRef\n  ) {\n  }\n\n  /**\n   * @ignore\n   */\n  ngOnInit() {\n    this.movable.move$.subscribe(move => {\n      if (!this.__position) {\n        this.updateCurrentPositionFromOffset();\n      }\n      this.__move = move;\n      this.moved.next(true);\n    });\n    this.movable.stopped$.subscribe(() => {\n      this.__move = undefined;\n      this.updateCurrentPositionFromOffset();\n      this.moved.next(false);\n    });\n  }\n\n  private get element() {\n    return this.elementRef.nativeElement as HTMLElement;\n  }\n\n  /**\n   * @ignore\n   */\n  private updateCurrentPositionFromOffset() {\n    this.__position = {\n      top: this.element.offsetTop,\n      left: this.element.offsetLeft\n    };\n  }\n\n}\n",
             "selector": "[iwMovable]",
             "providers": [
                 {
@@ -2132,16 +2132,22 @@
         },
         {
             "name": "MoveHandleDirective",
-            "id": "directive-MoveHandleDirective-c9ef917ac7b30a7eae5dbc8108a4a3a0",
+            "id": "directive-MoveHandleDirective-4c4fc54cc4cec53a4d96a9b1b028ed5c",
             "file": "src/app/ui/movable/move-handle.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';\nimport { MovableService } from './movable.service';\n\n@Directive({\n  selector: '[iwMoveHandle]'\n})\nexport class MoveHandleDirective implements OnInit, OnDestroy {\n  private sub: Function;\n\n  constructor(\n    private movable: MovableService,\n    public elementRef: ElementRef\n  ) { }\n\n  ngOnInit() {\n    this.sub = this.movable.makeHandle(this);\n  }\n\n  ngOnDestroy() {\n    this.sub();\n  }\n}\n",
+            "sourceCode": "import { Directive, ElementRef, OnDestroy, OnInit, HostBinding, Optional } from '@angular/core';\nimport { MovableService } from './movable.service';\n\n@Directive({\n  selector: '[iwMoveHandle]'\n})\nexport class MoveHandleDirective implements OnInit, OnDestroy {\n  @HostBinding('class.iw-move-handle')\n  get isMovable(): boolean {\n    return !!this.movable;\n  }\n\n  private sub: Function;\n\n  constructor(\n    @Optional() private movable: MovableService,\n    public elementRef: ElementRef\n  ) { }\n\n  ngOnInit() {\n    if (this.movable) {\n      this.sub = this.movable.makeHandle(this);\n    }\n  }\n\n  ngOnDestroy() {\n    if (this.movable) {\n      this.sub();\n    }\n  }\n}\n",
             "selector": "[iwMoveHandle]",
             "providers": [],
             "inputsClass": [],
             "outputsClass": [],
-            "hostBindings": [],
+            "hostBindings": [
+                {
+                    "name": "class.iw-move-handle",
+                    "line": 9,
+                    "type": "boolean"
+                }
+            ],
             "hostListeners": [],
             "propertiesClass": [
                 {
@@ -2149,7 +2155,7 @@
                     "type": "ElementRef",
                     "optional": false,
                     "description": "",
-                    "line": 12,
+                    "line": 17,
                     "modifierKind": [
                         114
                     ]
@@ -2159,7 +2165,7 @@
                     "type": "Function",
                     "optional": false,
                     "description": "",
-                    "line": 8,
+                    "line": 13,
                     "modifierKind": [
                         112
                     ]
@@ -2172,7 +2178,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19
+                    "line": 26
                 },
                 {
                     "name": "ngOnInit",
@@ -2180,7 +2186,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 15
+                    "line": 20
                 }
             ],
             "implements": [
@@ -2200,7 +2206,7 @@
                         "type": "ElementRef"
                     }
                 ],
-                "line": 8,
+                "line": 13,
                 "jsdoctags": [
                     {
                         "name": "movable",
@@ -4257,7 +4263,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<h1>Movable</h1>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <div class=\"handle\" iwMoveHandle></div>\n  </div>\n</div>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <ng-container [ngComponentOutlet]=\"movableDemoContentComponent\"></ng-container>\n  </div>\n</div>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <ng-container [ngComponentOutlet]=\"movableDemoContent2Component\"></ng-container>\n  </div>\n</div>\n"
+            "templateData": "<h1>Movable</h1>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <div class=\"handle\" iwMoveHandle></div>\n  </div>\n</div>\n\n<div class=\"area\">\n  <div class=\"target\" style=\"top: 20px; left: 40px;\">\n    <div class=\"handle\" iwMoveHandle>I'm a handle in a non-movable target :(</div>\n  </div>\n</div>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <ng-container [ngComponentOutlet]=\"movableDemoContentComponent\"></ng-container>\n  </div>\n</div>\n\n<div class=\"area\">\n  <div class=\"target\" iwMovable style=\"top: 20px; left: 40px;\">\n    <ng-container [ngComponentOutlet]=\"movableDemoContent2Component\"></ng-container>\n  </div>\n</div>\n"
         },
         {
             "name": "MovableDemoContent2Component",
@@ -8143,7 +8149,7 @@
                 "linktype": "directive",
                 "name": "MoveHandleDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
