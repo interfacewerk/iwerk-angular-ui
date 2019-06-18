@@ -1,3 +1,15 @@
+# [6.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v6.0.0...v6.1.0) (2019-06-18)
+
+
+### Bug Fixes
+
+* **fontawesome:** this version 0.4.0 is broken ([9eb7536](https://github.com/interfacewerk/iwerk-angular-ui/commit/9eb7536))
+
+
+### Features
+
+* **movable/handle:** the handle has a iw-move-handle class ([de2956b](https://github.com/interfacewerk/iwerk-angular-ui/commit/de2956b))
+
 # [6.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v5.0.1...v6.0.0) (2019-06-17)
 
 
