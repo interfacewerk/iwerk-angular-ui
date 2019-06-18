@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, OnInit, EventEmitter, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
 import { MovableService } from './movable.service';
 
 /**
