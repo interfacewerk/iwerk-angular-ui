@@ -102,6 +102,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
+            "port": 4301,
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "iwerk-angular-ui:serve"
           }

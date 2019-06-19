@@ -9,10 +9,13 @@ exports.config = {
     './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    chromeOptions: {
+        args: ['--window-size=1200,800'] // THIS!
+    }
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://localhost:4301/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

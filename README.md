@@ -46,8 +46,9 @@ Documentation is generated automatically by using inline documentation and an An
 
 #### Serve
 
-1. Start the watcher `npm run watch:docs`
-2. Start the application `npm run start:docs`
+```sh
+npm run docs
+```
 
 ### Build
 
