@@ -13,10 +13,7 @@ apt:
 install:
   - npm install
 script:
-  - npm run lint && npm run test-ci
-  - npm run pree2e && npm run e2e-ci
-  - npm run build && npm run build:docs
-  - ls
+  - npm run lint && npm run test-ci && npm run pree2e && npm run e2e-ci && npm run build && npm run build:docs
 node_js:
   - '10'
 after_success:
