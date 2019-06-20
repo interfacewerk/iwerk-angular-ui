@@ -1,27 +1,53 @@
+import { browser, by, element } from 'protractor';
 import { PopoverPage } from './popover.po';
-import { element, by } from 'protractor';
+const VisualTestingReport = require('visual-testing-report');
+
+export function wait(t: number) {
+  return new Promise(r => setTimeout(r, t));
+}
+
+export async function capabilitiesName(): Promise<string> {
+  return (await browser.getProcessedConfig()).capabilities.name;
+}
 
 describe('Popover page', function() {
   let page: PopoverPage;
+  let report: any;
 
-  beforeEach(() => {
+  beforeAll(async () => {
+    report = new VisualTestingReport('visuals/popover_' + await capabilitiesName());
+  });
+
+  beforeEach(async () => {
+    await browser.waitForAngularEnabled(true);
     page = new PopoverPage();
-    page.navigateTo();
+    await page.navigateTo();
   });
 
-  it('opens and closes the first popover', () => {
-    page.openFirstPopover();
-    expect(element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
-    page.closeFirstPopover();
-    expect(element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(false);
+  it('opens horizontal popover', async () => {
+    await page.openHorizontalPopover();
+    await wait(1000);
+    await report.add('horizontal-popover', await browser.driver.takeScreenshot());
+    await page.tryToCloseSecondPopoverWithEsc();
   });
 
-  it('opens and tries to close the second popover', () => {
-    page.openSecondPopover();
-    expect(element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
-    page.tryToCloseSecondPopoverWithClick();
-    expect(element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
-    page.tryToCloseSecondPopoverWithEsc();
-    expect(element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
+  it('opens and closes the first popover', async () => {
+    await page.openFirstPopover();
+    expect(await element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
+    await page.closeFirstPopover();
+    expect(await element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(false);
+  });
+
+  it('opens and tries to close the second popover', async () => {
+    await page.openSecondPopover();
+    expect(await element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
+    await page.tryToCloseSecondPopoverWithClick();
+    expect(await element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
+    await page.tryToCloseSecondPopoverWithEsc();
+    expect(await element(by.css('iw-popover-scroll-mask')).isPresent()).toBe(true);
+  });
+
+  afterAll(() => {
+    report.testIfError();
   });
 });

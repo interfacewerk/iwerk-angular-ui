@@ -20,11 +20,13 @@ export class PopoverDemoComponent implements OnInit {
   isPopoverOpen5 = false;
 
   constructor(private popoverService: PopoverService) {
-    for (let i = 0; i < 1000; i++) {
-      this.persons.push({
-        first: this.firsts[Math.floor(Math.random() * this.firsts.length)],
-        last: this.lasts[Math.floor(Math.random() * this.lasts.length)],
-      });
+    for (let i = 0; i < this.firsts.length; i++) {
+      for (let j = 0; j < this.lasts.length; j++) {
+        this.persons.push({
+          first: this.firsts[i],
+          last: this.lasts[j],
+        });
+      }
     }
   }
 
