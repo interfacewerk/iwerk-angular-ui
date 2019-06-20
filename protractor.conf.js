@@ -10,7 +10,8 @@ const BS_USER = process.env.BS_USER;
 const BS_COMMON_CAPS = {
   'browserstack.user': BS_USER,
   'browserstack.key': BS_KEY,
-  'browserstack.local': true
+  'browserstack.local': true,
+  'project': 'iwerk-angular-ui'
 };
 
 exports.config = {
