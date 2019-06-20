@@ -6,12 +6,16 @@ export function wait(t: number) {
   return new Promise(r => setTimeout(r, t));
 }
 
+export async function capabilitiesName(): Promise<string> {
+  return (await browser.getProcessedConfig()).capabilities.name;
+}
+
 describe('Popover page', function() {
   let page: PopoverPage;
   let report: any;
 
   beforeAll(async () => {
-    report = new VisualTestingReport('visuals/popover');
+    report = new VisualTestingReport('visuals/popover_' + await capabilitiesName());
   });
 
   beforeEach(async () => {
@@ -22,6 +26,7 @@ describe('Popover page', function() {
 
   it('opens horizontal popover', async () => {
     await page.openHorizontalPopover();
+    await wait(1000);
     await report.add('horizontal-popover', await browser.driver.takeScreenshot());
     await page.tryToCloseSecondPopoverWithEsc();
   });
