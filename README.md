@@ -14,7 +14,7 @@ We decided to take this implementation inside a bigger library to make it easier
 
 ## Install
 
-```
+```sh
 npm install iwerk-angular-ui --save
 ```
 
@@ -55,3 +55,7 @@ npm run docs
 ### Build
 
 To build, run `npm run build:docs`.
+
+### BrowserStack
+
+We want to avoid visual regressions. Therefore, we have setup [Browserstack](https://www.browserstack.com) along with Protractor in order to test our library across multiple devices and browsers. Furthermore, we use [visual-testing-report](https://github.com/kevinmerckx/visual-testing-report) to compare screenshots and report any potential difference.
