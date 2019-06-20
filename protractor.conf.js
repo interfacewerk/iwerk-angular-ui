@@ -34,6 +34,35 @@ exports.config = {
     'browser_version': '18.0',
     'resolution': '1920x1080',
     name: 'win10_edge'
+  }, {
+    'os': 'Windows',
+    'os_version': '10',
+    'browserName': 'Firefox',
+    'browser_version': '67.0',
+    'resolution': '1920x1080',
+    name: 'win10_firefox'
+  // SAFARI does not seem to work with BS local for now
+  // }, {
+  //   'os': 'OS X',
+  //   'os_version': 'Mojave',
+  //   'browserName': 'Safari',
+  //   'browser_version': '12.0',
+  //   'resolution': '1920x1080',
+  //   name: 'osx_safari'
+  }, {
+    'os': 'OS X',
+    'os_version': 'Mojave',
+    'browserName': 'Firefox',
+    'browser_version': '67.0',
+    'resolution': '1920x1080',
+    name: 'osx_firefox'
+  }, {
+    'os': 'OS X',
+    'os_version': 'Mojave',
+    'browserName': 'Chrome',
+    'browser_version': '74.0',
+    'resolution': '1920x1080',
+    name: 'osx_chrome'
   }].map(c => ({
     ...c,
     ...BS_COMMON_CAPS
