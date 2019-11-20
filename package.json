@@ -97,7 +97,7 @@
     "ng-packagr": "4.7.1",
     "node-html-parser": "^1.1.12",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.0",
     "protractor": "^6.0.0",
     "rxjs": "^6.3.3",
     "semantic-release": "^15.13.0",
