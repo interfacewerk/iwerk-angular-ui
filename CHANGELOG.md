@@ -1,3 +1,18 @@
+# [7.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v6.1.0...v7.0.0) (2019-11-22)
+
+
+* * feat(angular): upgrade to Angular 8 ([735867d](https://github.com/interfacewerk/iwerk-angular-ui/commit/735867d))
+
+
+### Features
+
+* **package:** add popover directive to public api ([2245cda](https://github.com/interfacewerk/iwerk-angular-ui/commit/2245cda))
+
+
+### BREAKING CHANGES
+
+* upgrade to Angular 8
+
 # [6.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v6.0.0...v6.1.0) (2019-06-18)
 
 
