@@ -4,13 +4,16 @@ notifications:
   email: false
 addons:
   chrome: stable
-addons:
-  chrome: stable
 apt:
 install:
   - npm install
 script:
-  - npm run lint && npm run test:ci && npm run pree2e && npm run e2e-ci && npm run build && npm run build:docs
+  - npm run lint
+  - npm run test:ci
+  - npm run pree2e
+  - npm run e2e-ci
+  - npm run build
+  - npm run build:docs
 node_js:
   - '12'
 after_success:
