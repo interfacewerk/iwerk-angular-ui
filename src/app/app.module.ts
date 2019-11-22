@@ -15,7 +15,10 @@ const appRoutes: Routes = [
   { path: 'ellipsis', component: EllipsisComponent },
   { path: 'popover', loadChildren: () => import('app/demo/popover/popover.module').then(m => m.PopoverModule) },
   { path: 'tooltip', loadChildren: () => import('app/demo/tooltip/tooltip.module').then(m => m.TooltipModule) },
-  { path: 'stateful-button', loadChildren: () => import('app/demo/stateful-button/stateful-button.module').then(m => m.StatefulButtonDemoModule) },
+  {
+    path: 'stateful-button',
+    loadChildren: () => import('app/demo/stateful-button/stateful-button.module').then(m => m.StatefulButtonDemoModule)
+  },
   { path: 'dialog', loadChildren: () => import('app/demo/dialog-demo/dialog-demo.module').then(m => m.DialogDemoModule) },
   { path: 'checkbox', loadChildren: () => import('app/demo/checkbox-demo/checkbox-demo.module').then(m => m.CheckboxDemoModule) },
   { path: 'navigation', component: NavigationDemoComponent },
