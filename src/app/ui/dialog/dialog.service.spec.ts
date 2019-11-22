@@ -30,7 +30,7 @@ class DialogTestDirective {
   template: '<ng-template dialogTest></ng-template>'
 })
 class DialogServiceTest2Component {
-  @ViewChild(DialogTestDirective) directive: DialogTestDirective;
+  @ViewChild(DialogTestDirective,  { static: true }) directive: DialogTestDirective;
 }
 
 @NgModule({

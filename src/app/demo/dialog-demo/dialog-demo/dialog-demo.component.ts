@@ -8,7 +8,7 @@ import { DialogDirective, DialogService, IDialog } from '../../../ui/dialog/dial
   styleUrls: ['./dialog-demo.component.sass']
 })
 export class DialogComponent implements OnInit, OnDestroy {
-  @ViewChild('myDialog1') myDialog1: DialogDirective;
+  @ViewChild('myDialog1', { static: true }) myDialog1: DialogDirective;
   someValue = 667;
 
   private __dialogInstance: IDialog;
