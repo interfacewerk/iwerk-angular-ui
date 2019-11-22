@@ -35,7 +35,7 @@ class SomeComponent {
   </iw-navigation>`
 })
 class HostComponent {
-  @ViewChild('nav') nav: NavigationComponent;
+  @ViewChild('nav',  { static: true }) nav: NavigationComponent;
   present() {
     return this.nav.present(SomeComponent, 1);
   }

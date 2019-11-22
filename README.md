@@ -3,6 +3,8 @@
 [![npm monthly downloads](https://img.shields.io/npm/dm/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 [![current version](https://img.shields.io/npm/v/iwerk-angular-ui.svg)](https://www.npmjs.com/package/iwerk-angular-ui)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=K0ErNTNVbWY3dGhKekdCK0NyVXVSNzdUdWVvbzRscVc5bXk1ZEJJQ1ZnZz0tLXJSQ2J4dlU0M0hZMHE1c2lCcTN0eEE9PQ==--d153d6294458948e1eb66d3023bba41f5ddfb32e)](https://www.browserstack.com/automate/public-build/K0ErNTNVbWY3dGhKekdCK0NyVXVSNzdUdWVvbzRscVc5bXk1ZEJJQ1ZnZz0tLXJSQ2J4dlU0M0hZMHE1c2lCcTN0eEE9PQ==--d153d6294458948e1eb66d3023bba41f5ddfb32e)
+
 
 # Iwerk Angular Ui
 
@@ -12,7 +14,7 @@ We decided to take this implementation inside a bigger library to make it easier
 
 ## Install
 
-```
+```sh
 npm install iwerk-angular-ui --save
 ```
 
@@ -46,9 +48,14 @@ Documentation is generated automatically by using inline documentation and an An
 
 #### Serve
 
-1. Start the watcher `npm run watch:docs`
-2. Start the application `npm run start:docs`
+```sh
+npm run docs
+```
 
 ### Build
 
 To build, run `npm run build:docs`.
+
+### BrowserStack
+
+We want to avoid visual regressions. Therefore, we have setup [Browserstack](https://www.browserstack.com) along with Protractor in order to test our library across multiple devices and browsers. Furthermore, we use [visual-testing-report](https://github.com/kevinmerckx/visual-testing-report) to compare screenshots and report any potential difference.

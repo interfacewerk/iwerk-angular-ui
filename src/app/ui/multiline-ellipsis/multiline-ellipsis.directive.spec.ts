@@ -8,8 +8,8 @@ import { MultilineEllipsisDirective } from './multiline-ellipsis.directive';
   <p #p2 style="width: 30px; max-height: 300px" [iwMultilineEllipsis]="text"></p>`
 })
 class EllipsisComponent {
-  @ViewChild('p1') p1: ElementRef;
-  @ViewChild('p2') p2: ElementRef;
+  @ViewChild('p1',  { static: true }) p1: ElementRef;
+  @ViewChild('p2',  { static: true }) p2: ElementRef;
   @ViewChildren(MultilineEllipsisDirective) ellipsis: QueryList<MultilineEllipsisDirective>;
 
   maxHeight = '30px';
@@ -84,7 +84,7 @@ describe('MultilineEllipsisDirective', () => {
   <button *ngIf="truncated"></button>`
 })
 class StubComponent {
-  @ViewChild('p1') p1: ElementRef;
+  @ViewChild('p1',  { static: true }) p1: ElementRef;
   @ViewChildren(MultilineEllipsisDirective) ellipsis: QueryList<MultilineEllipsisDirective>;
 
   maxHeight = '30px';

@@ -10,6 +10,10 @@ export class PopoverPage {
     return element(by.css('app-popover-demo h1')).getText();
   }
 
+  openHorizontalPopover() {
+    return element(by.id('horizontal-e2e')).click();
+  }
+
   openFirstPopover() {
     return element(by.css('app-popover-demo button#pop1')).click();
   }

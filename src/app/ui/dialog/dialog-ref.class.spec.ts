@@ -25,7 +25,7 @@ class DialogTestDirective {
   template: '<ng-template dialogTest></ng-template>'
 })
 class TestComponent {
-  @ViewChild(DialogTestDirective) directive: DialogTestDirective;
+  @ViewChild(DialogTestDirective,  { static: true }) directive: DialogTestDirective;
 }
 
 
