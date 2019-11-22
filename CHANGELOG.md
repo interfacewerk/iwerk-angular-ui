@@ -1,7 +1,7 @@
 # [7.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v6.1.0...v7.0.0) (2019-11-22)
 
 
-* * feat(angular): upgrade to Angular 8 ([735867d](https://github.com/interfacewerk/iwerk-angular-ui/commit/735867d))
+* feat(angular): upgrade to Angular 8 ([735867d](https://github.com/interfacewerk/iwerk-angular-ui/commit/735867d))
 
 
 ### Features
