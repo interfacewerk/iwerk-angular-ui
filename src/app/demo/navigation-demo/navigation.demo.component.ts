@@ -45,7 +45,7 @@ export class SomeOtherComponent extends SomeComponent {
   styleUrls: ['./navigation.demo.component.sass']
 })
 export class NavigationDemoComponent implements OnInit {
-  @ViewChild('nav') nav: NavigationComponent;
+  @ViewChild('nav', { static: true }) nav: NavigationComponent;
   depth = 0;
 
   constructor() { }

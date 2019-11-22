@@ -49,7 +49,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "host": "0.0.0.0",
-            "port": 4300,
+            "port": 45000,
             "browserTarget": "iwerk-angular-ui:build"
           },
           "configurations": {

@@ -41,7 +41,7 @@ class MockDialogService implements IDialogService {
   `
 })
 class TestComponent {
-  @ViewChild('myDialog') dialog: DialogDirective;
+  @ViewChild('myDialog',  { static: true }) dialog: DialogDirective;
 }
 
 describe('DialogDirective', () => {

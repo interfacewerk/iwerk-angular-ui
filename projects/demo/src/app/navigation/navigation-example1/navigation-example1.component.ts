@@ -21,7 +21,7 @@ import { Example2Component, Example2ComponentNavData, Example2ReturnedData } fro
   ]
 })
 export class Example1Component {
-  @ViewChild('nav') nav: NavigationComponent;
+  @ViewChild('nav', { static: true }) nav: NavigationComponent;
   returnedByExample2 = -1;
 
   present() {
