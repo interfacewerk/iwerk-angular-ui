@@ -13,17 +13,17 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'ellipsis', component: EllipsisComponent },
-  { path: 'popover', loadChildren: () => import('app/demo/popover/popover.module').then(m => m.PopoverModule) },
-  { path: 'tooltip', loadChildren: () => import('app/demo/tooltip/tooltip.module').then(m => m.TooltipModule) },
+  { path: 'popover', loadChildren: () => import('./demo/popover/popover.module').then(m => m.PopoverModule) },
+  { path: 'tooltip', loadChildren: () => import('./demo/tooltip/tooltip.module').then(m => m.TooltipModule) },
   {
     path: 'stateful-button',
-    loadChildren: () => import('app/demo/stateful-button/stateful-button.module').then(m => m.StatefulButtonDemoModule)
+    loadChildren: () => import('./demo/stateful-button/stateful-button.module').then(m => m.StatefulButtonDemoModule)
   },
-  { path: 'dialog', loadChildren: () => import('app/demo/dialog-demo/dialog-demo.module').then(m => m.DialogDemoModule) },
-  { path: 'checkbox', loadChildren: () => import('app/demo/checkbox-demo/checkbox-demo.module').then(m => m.CheckboxDemoModule) },
+  { path: 'dialog', loadChildren: () => import('./demo/dialog-demo/dialog-demo.module').then(m => m.DialogDemoModule) },
+  { path: 'checkbox', loadChildren: () => import('./demo/checkbox-demo/checkbox-demo.module').then(m => m.CheckboxDemoModule) },
   { path: 'navigation', component: NavigationDemoComponent },
   { path: 'tree', component: TreeDemoComponent },
-  { path: 'movable', loadChildren: () => import('app/demo/movable-demo/movable-demo.module').then(m => m.MovableDemoModule) },
+  { path: 'movable', loadChildren: () => import('./demo/movable-demo/movable-demo.module').then(m => m.MovableDemoModule) },
 ];
 
 @NgModule({
