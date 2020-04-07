@@ -106,7 +106,9 @@ export function combineOptionsAndDefaults(providedConfig: PopoverConfig, options
     horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
     shouldClose: options.shouldClose || (() => { }),
     popoverPosition: options.popoverPosition || (() => { }),
-    horizontal: options.hasOwnProperty('horizontal') ? options.horizontal : defaultOptions.horizontal
+    horizontal: options.hasOwnProperty('horizontal') ? options.horizontal : defaultOptions.horizontal,
+    appendTo: options.appendTo ? options.appendTo : document.body,
+    zIndex: options.zIndex
   };
   return result;
 }

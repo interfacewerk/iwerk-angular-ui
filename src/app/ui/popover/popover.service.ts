@@ -189,9 +189,16 @@ export class PopoverService {
       addClasses(container, options.popoverClass);
       addClasses(scrollMask, options.scrollMaskClass);
       addClasses(arrowElement, options.arrowClass);
-      document.body.appendChild(container);
-      document.body.appendChild(arrowElement);
-      document.body.appendChild(scrollMask);
+
+      if (options.zIndex) {
+        container.style.zIndex = options.zIndex.toString();
+        arrowElement.style.zIndex = options.zIndex.toString();
+        scrollMask.style.zIndex = (options.zIndex - 1).toString();
+      }
+
+      options.appendTo.appendChild(container);
+      options.appendTo.appendChild(arrowElement);
+      options.appendTo.appendChild(scrollMask);
 
       smartPosition(elements, options);
 

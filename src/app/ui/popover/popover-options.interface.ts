@@ -8,6 +8,8 @@ export interface PopoverOptions {
   scrollMaskClass?: string;
   escToClose?: boolean;
   clickOutsideToClose?: boolean;
+  appendTo?: HTMLElement;
+  zIndex?: number;
   shouldClose?: () => void;
   popoverPosition?: (p: PopoverPosition) => void;
 }
