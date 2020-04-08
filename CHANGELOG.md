@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v7.0.0...v7.1.0) (2020-04-08)
+
+
+### Features
+
+* **popover:** add 'appendTo' and 'zIndex' optional properties ([85adadc](https://github.com/interfacewerk/iwerk-angular-ui/commit/85adadc))
+
 # [7.0.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v6.1.0...v7.0.0) (2019-11-22)
 
 
