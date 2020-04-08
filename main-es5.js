@@ -2098,7 +2098,9 @@ var __extends = (this && this.__extends) || (function () {
                     horizontalAlignment: options.horizontalAlignment || defaultOptions.horizontalAlignment,
                     shouldClose: options.shouldClose || (function () { }),
                     popoverPosition: options.popoverPosition || (function () { }),
-                    horizontal: options.hasOwnProperty('horizontal') ? options.horizontal : defaultOptions.horizontal
+                    horizontal: options.hasOwnProperty('horizontal') ? options.horizontal : defaultOptions.horizontal,
+                    appendTo: options.appendTo ? options.appendTo : document.body,
+                    zIndex: options.zIndex
                 };
                 return result;
             }
@@ -2602,9 +2604,14 @@ var __extends = (this && this.__extends) || (function () {
                         Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(container, options.popoverClass);
                         Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(scrollMask, options.scrollMaskClass);
                         Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["addClasses"])(arrowElement, options.arrowClass);
-                        document.body.appendChild(container);
-                        document.body.appendChild(arrowElement);
-                        document.body.appendChild(scrollMask);
+                        if (options.zIndex) {
+                            container.style.zIndex = options.zIndex.toString();
+                            arrowElement.style.zIndex = options.zIndex.toString();
+                            scrollMask.style.zIndex = (options.zIndex - 1).toString();
+                        }
+                        options.appendTo.appendChild(container);
+                        options.appendTo.appendChild(arrowElement);
+                        options.appendTo.appendChild(scrollMask);
                         Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["smartPosition"])(elements, options);
                         container.classList.add('iw-popover-container--visible');
                         arrowElement.classList.add('iw-popover-arrow-element--visible');
