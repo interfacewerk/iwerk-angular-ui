@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v7.1.0...v7.2.0) (2021-02-14)
+
+
+### Features
+
+* **dialog:** emit event when dialog is closed ([9038559](https://github.com/interfacewerk/iwerk-angular-ui/commit/9038559))
+
 # [7.1.0](https://github.com/interfacewerk/iwerk-angular-ui/compare/v7.0.0...v7.1.0) (2020-04-08)
 
 
