@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, Input, OnDestroy } from '@angular/core';
+import { Directive, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
 import { DialogService, IDialog } from './dialog.service';
 
 /**
@@ -25,6 +25,11 @@ export class DialogDirective implements OnDestroy {
    * A class that is added to the container.
    */
   @Input() containerClass: string;
+
+  /**
+   * Emitted when the dialog has been closed.
+   */
+  @Output() didClose = new EventEmitter<IDialog>();
 
   private __dialogInstance: IDialog;
 
@@ -56,6 +61,7 @@ export class DialogDirective implements OnDestroy {
       escToClose: this.escToClose === undefined ? true : this.escToClose,
       onClose: (dialog) => {
         if (this.__dialogInstance === dialog) {
+          this.didClose.emit(dialog);
           this.__dialogInstance = undefined;
         }
       }

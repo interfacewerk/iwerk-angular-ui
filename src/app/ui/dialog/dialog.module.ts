@@ -4,6 +4,7 @@ import { DialogContainerComponent } from './dialog-container/dialog-container.co
 import { DialogService, IDialog } from './dialog.service';
 import { DialogDirective } from './dialog.directive';
 import { DialogFocusTrapDirective } from './dialog-focus-trap.directive';
+import { DialogComponent } from './dialog/dialog.component';
 export { IW_DIALOG_CONFIG } from './dialog.config';
 export { DialogConfig } from './dialog-config.interface';
 export { DialogService, IDialog, DialogDirective };
