@@ -1098,6 +1098,10 @@ let DialogDirective = class DialogDirective {
     constructor(dialogService, templateRef) {
         this.dialogService = dialogService;
         this.templateRef = templateRef;
+        /**
+         * Emitted when the dialog has been closed.
+         */
+        this.didClose = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     /**
      * @ignore
@@ -1121,6 +1125,7 @@ let DialogDirective = class DialogDirective {
             escToClose: this.escToClose === undefined ? true : this.escToClose,
             onClose: (dialog) => {
                 if (this.__dialogInstance === dialog) {
+                    this.didClose.emit(dialog);
                     this.__dialogInstance = undefined;
                 }
             }
@@ -1152,6 +1157,10 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
 ], DialogDirective.prototype, "containerClass", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], DialogDirective.prototype, "didClose", void 0);
 DialogDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
         selector: '[iwDialog]',
@@ -1208,7 +1217,7 @@ DialogModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         declarations: [
             _dialog_container_dialog_container_component__WEBPACK_IMPORTED_MODULE_3__["DialogContainerComponent"],
             _dialog_directive__WEBPACK_IMPORTED_MODULE_5__["DialogDirective"],
-            _dialog_focus_trap_directive__WEBPACK_IMPORTED_MODULE_6__["DialogFocusTrapDirective"]
+            _dialog_focus_trap_directive__WEBPACK_IMPORTED_MODULE_6__["DialogFocusTrapDirective"],
         ],
         entryComponents: [_dialog_container_dialog_container_component__WEBPACK_IMPORTED_MODULE_3__["DialogContainerComponent"]],
         exports: [_dialog_directive__WEBPACK_IMPORTED_MODULE_5__["DialogDirective"]],
